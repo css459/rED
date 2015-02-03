@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		490646091A814425003CD480 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490646081A814425003CD480 /* main.m */; };
+		4906460C1A814425003CD480 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4906460B1A814425003CD480 /* AppDelegate.m */; };
+		4906460F1A814425003CD480 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4906460E1A814425003CD480 /* ViewController.m */; };
+		490646121A814425003CD480 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490646101A814425003CD480 /* Main.storyboard */; };
+		490646141A814425003CD480 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490646131A814425003CD480 /* Images.xcassets */; };
+		490646171A814425003CD480 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490646151A814425003CD480 /* LaunchScreen.xib */; };
+		490646231A814425003CD480 /* Shorecrest_Web_BrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4906461D1A814425003CD480 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 490645FB1A814425003CD480 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 490646021A814425003CD480;
+			remoteInfo = "Shorecrest Web Browser";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		490646031A814425003CD480 /* Shorecrest Web Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shorecrest Web Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		490646071A814425003CD480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		490646081A814425003CD480 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4906460A1A814425003CD480 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4906460B1A814425003CD480 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4906460D1A814425003CD480 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4906460E1A814425003CD480 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		490646111A814425003CD480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		490646131A814425003CD480 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		490646161A814425003CD480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		4906461C1A814425003CD480 /* Shorecrest Web BrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shorecrest Web BrowserTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		490646211A814425003CD480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shorecrest_Web_BrowserTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		490646001A814425003CD480 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		490646191A814425003CD480 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		490645FA1A814425003CD480 = {
+			isa = PBXGroup;
+			children = (
+				490646051A814425003CD480 /* Shorecrest Web Browser */,
+				4906461F1A814425003CD480 /* Shorecrest Web BrowserTests */,
+				490646041A814425003CD480 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		490646041A814425003CD480 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				490646031A814425003CD480 /* Shorecrest Web Browser.app */,
+				4906461C1A814425003CD480 /* Shorecrest Web BrowserTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		490646051A814425003CD480 /* Shorecrest Web Browser */ = {
+			isa = PBXGroup;
+			children = (
+				4906460A1A814425003CD480 /* AppDelegate.h */,
+				4906460B1A814425003CD480 /* AppDelegate.m */,
+				4906460D1A814425003CD480 /* ViewController.h */,
+				4906460E1A814425003CD480 /* ViewController.m */,
+				490646101A814425003CD480 /* Main.storyboard */,
+				490646131A814425003CD480 /* Images.xcassets */,
+				490646151A814425003CD480 /* LaunchScreen.xib */,
+				490646061A814425003CD480 /* Supporting Files */,
+			);
+			path = "Shorecrest Web Browser";
+			sourceTree = "<group>";
+		};
+		490646061A814425003CD480 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				490646071A814425003CD480 /* Info.plist */,
+				490646081A814425003CD480 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4906461F1A814425003CD480 /* Shorecrest Web BrowserTests */ = {
+			isa = PBXGroup;
+			children = (
+				490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */,
+				490646201A814425003CD480 /* Supporting Files */,
+			);
+			path = "Shorecrest Web BrowserTests";
+			sourceTree = "<group>";
+		};
+		490646201A814425003CD480 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				490646211A814425003CD480 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		490646021A814425003CD480 /* Shorecrest Web Browser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 490646261A814425003CD480 /* Build configuration list for PBXNativeTarget "Shorecrest Web Browser" */;
+			buildPhases = (
+				490645FF1A814425003CD480 /* Sources */,
+				490646001A814425003CD480 /* Frameworks */,
+				490646011A814425003CD480 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shorecrest Web Browser";
+			productName = "Shorecrest Web Browser";
+			productReference = 490646031A814425003CD480 /* Shorecrest Web Browser.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4906461B1A814425003CD480 /* Shorecrest Web BrowserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 490646291A814425003CD480 /* Build configuration list for PBXNativeTarget "Shorecrest Web BrowserTests" */;
+			buildPhases = (
+				490646181A814425003CD480 /* Sources */,
+				490646191A814425003CD480 /* Frameworks */,
+				4906461A1A814425003CD480 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4906461E1A814425003CD480 /* PBXTargetDependency */,
+			);
+			name = "Shorecrest Web BrowserTests";
+			productName = "Shorecrest Web BrowserTests";
+			productReference = 4906461C1A814425003CD480 /* Shorecrest Web BrowserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		490645FB1A814425003CD480 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Shorecrest Preparatory";
+				TargetAttributes = {
+					490646021A814425003CD480 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					4906461B1A814425003CD480 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 490646021A814425003CD480;
+					};
+				};
+			};
+			buildConfigurationList = 490645FE1A814425003CD480 /* Build configuration list for PBXProject "Shorecrest Web Browser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 490645FA1A814425003CD480;
+			productRefGroup = 490646041A814425003CD480 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				490646021A814425003CD480 /* Shorecrest Web Browser */,
+				4906461B1A814425003CD480 /* Shorecrest Web BrowserTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		490646011A814425003CD480 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490646121A814425003CD480 /* Main.storyboard in Resources */,
+				490646171A814425003CD480 /* LaunchScreen.xib in Resources */,
+				490646141A814425003CD480 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4906461A1A814425003CD480 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		490645FF1A814425003CD480 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4906460F1A814425003CD480 /* ViewController.m in Sources */,
+				4906460C1A814425003CD480 /* AppDelegate.m in Sources */,
+				490646091A814425003CD480 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		490646181A814425003CD480 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490646231A814425003CD480 /* Shorecrest_Web_BrowserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4906461E1A814425003CD480 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 490646021A814425003CD480 /* Shorecrest Web Browser */;
+			targetProxy = 4906461D1A814425003CD480 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		490646101A814425003CD480 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				490646111A814425003CD480 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		490646151A814425003CD480 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				490646161A814425003CD480 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		490646241A814425003CD480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		490646251A814425003CD480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		490646271A814425003CD480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Shorecrest Web Browser/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		490646281A814425003CD480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Shorecrest Web Browser/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4906462A1A814425003CD480 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Shorecrest Web BrowserTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shorecrest Web Browser.app/Shorecrest Web Browser";
+			};
+			name = Debug;
+		};
+		4906462B1A814425003CD480 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Shorecrest Web BrowserTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shorecrest Web Browser.app/Shorecrest Web Browser";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		490645FE1A814425003CD480 /* Build configuration list for PBXProject "Shorecrest Web Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490646241A814425003CD480 /* Debug */,
+				490646251A814425003CD480 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		490646261A814425003CD480 /* Build configuration list for PBXNativeTarget "Shorecrest Web Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490646271A814425003CD480 /* Debug */,
+				490646281A814425003CD480 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		490646291A814425003CD480 /* Build configuration list for PBXNativeTarget "Shorecrest Web BrowserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4906462A1A814425003CD480 /* Debug */,
+				4906462B1A814425003CD480 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 490645FB1A814425003CD480 /* Project object */;
+}
