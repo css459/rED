@@ -18,8 +18,9 @@
 		495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67571A82849200E15853 /* AutoScrollViewController.m */; };
 		495D675B1A8284BA00E15853 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D675A1A8284BA00E15853 /* SettingsViewController.m */; };
 		495D675E1A8284DD00E15853 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D675D1A8284DD00E15853 /* Page.m */; };
-		495D67611A8284E700E15853 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67601A8284E700E15853 /* Note.m */; };
+		495D67611A8284E700E15853 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67601A8284E700E15853 /* Notebook.m */; };
 		495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67661A828CF000E15853 /* SavedPagesTableViewController.m */; };
+		495D676A1A82A39500E15853 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67691A82A39500E15853 /* Note.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,10 +55,12 @@
 		495D675A1A8284BA00E15853 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		495D675C1A8284DD00E15853 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		495D675D1A8284DD00E15853 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
-		495D675F1A8284E700E15853 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		495D67601A8284E700E15853 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		495D675F1A8284E700E15853 /* Notebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notebook.h; sourceTree = "<group>"; };
+		495D67601A8284E700E15853 /* Notebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notebook.m; sourceTree = "<group>"; };
 		495D67651A828CF000E15853 /* SavedPagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedPagesTableViewController.h; sourceTree = "<group>"; };
 		495D67661A828CF000E15853 /* SavedPagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedPagesTableViewController.m; sourceTree = "<group>"; };
+		495D67681A82A39500E15853 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		495D67691A82A39500E15853 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +104,10 @@
 			children = (
 				495D675C1A8284DD00E15853 /* Page.h */,
 				495D675D1A8284DD00E15853 /* Page.m */,
-				495D675F1A8284E700E15853 /* Note.h */,
-				495D67601A8284E700E15853 /* Note.m */,
+				495D675F1A8284E700E15853 /* Notebook.h */,
+				495D67601A8284E700E15853 /* Notebook.m */,
+				495D67681A82A39500E15853 /* Note.h */,
+				495D67691A82A39500E15853 /* Note.m */,
 				4906460D1A814425003CD480 /* ViewController.h */,
 				4906460E1A814425003CD480 /* ViewController.m */,
 				495D67651A828CF000E15853 /* SavedPagesTableViewController.h */,
@@ -249,11 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				495D67611A8284E700E15853 /* Note.m in Sources */,
+				495D67611A8284E700E15853 /* Notebook.m in Sources */,
 				495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */,
 				495D67551A82848600E15853 /* NotesViewController.m in Sources */,
 				4906460F1A814425003CD480 /* ViewController.m in Sources */,
 				4906460C1A814425003CD480 /* AppDelegate.m in Sources */,
+				495D676A1A82A39500E15853 /* Note.m in Sources */,
 				495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */,
 				490646091A814425003CD480 /* main.m in Sources */,
 				495D675E1A8284DD00E15853 /* Page.m in Sources */,
