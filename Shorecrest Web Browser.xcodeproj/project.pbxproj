@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		490646091A814425003CD480 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490646081A814425003CD480 /* main.m */; };
 		4906460C1A814425003CD480 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4906460B1A814425003CD480 /* AppDelegate.m */; };
-		4906460F1A814425003CD480 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4906460E1A814425003CD480 /* ViewController.m */; };
+		4906460F1A814425003CD480 /* PagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4906460E1A814425003CD480 /* PagesViewController.m */; };
 		490646121A814425003CD480 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490646101A814425003CD480 /* Main.storyboard */; };
 		490646141A814425003CD480 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490646131A814425003CD480 /* Images.xcassets */; };
 		490646171A814425003CD480 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490646151A814425003CD480 /* LaunchScreen.xib */; };
@@ -39,8 +39,8 @@
 		490646081A814425003CD480 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4906460A1A814425003CD480 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4906460B1A814425003CD480 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4906460D1A814425003CD480 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4906460E1A814425003CD480 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4906460D1A814425003CD480 /* PagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagesViewController.h; sourceTree = "<group>"; };
+		4906460E1A814425003CD480 /* PagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagesViewController.m; sourceTree = "<group>"; };
 		490646111A814425003CD480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		490646131A814425003CD480 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		490646161A814425003CD480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 				495D67601A8284E700E15853 /* Notebook.m */,
 				495D67681A82A39500E15853 /* Note.h */,
 				495D67691A82A39500E15853 /* Note.m */,
-				4906460D1A814425003CD480 /* ViewController.h */,
-				4906460E1A814425003CD480 /* ViewController.m */,
+				4906460D1A814425003CD480 /* PagesViewController.h */,
+				4906460E1A814425003CD480 /* PagesViewController.m */,
 				495D67651A828CF000E15853 /* SavedPagesTableViewController.h */,
 				495D67661A828CF000E15853 /* SavedPagesTableViewController.m */,
 				495D67531A82848600E15853 /* NotesViewController.h */,
@@ -257,7 +257,7 @@
 				495D67611A8284E700E15853 /* Notebook.m in Sources */,
 				495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */,
 				495D67551A82848600E15853 /* NotesViewController.m in Sources */,
-				4906460F1A814425003CD480 /* ViewController.m in Sources */,
+				4906460F1A814425003CD480 /* PagesViewController.m in Sources */,
 				4906460C1A814425003CD480 /* AppDelegate.m in Sources */,
 				495D676A1A82A39500E15853 /* Note.m in Sources */,
 				495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */,

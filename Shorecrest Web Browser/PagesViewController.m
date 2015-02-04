@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  PagesViewController.m
 //  Shorecrest Web Browser
 //
 //  Created by Cole Smith on 2/3/15.
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "PagesViewController.h"
 
-@interface ViewController ()
+@interface PagesViewController ()
 
 @end
 
-@implementation ViewController
+@implementation PagesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

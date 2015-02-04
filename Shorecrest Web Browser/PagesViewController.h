@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PagesViewController.h
 //  Shorecrest Web Browser
 //
 //  Created by Cole Smith on 2/3/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface PagesViewController : UIViewController
 
 
 @end

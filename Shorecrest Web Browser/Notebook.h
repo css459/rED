@@ -7,18 +7,10 @@
 //
 
 /*
-    The Note object stores the notes data that the user creates
-    Every "Page" object should have a Note object. 
- 
-    Notes, when displayed in the Notes View Controller should follow this convention:
- 
-        "Vitae class luctus convallis vestibulum." - Line 42
- 
-            Here, the user will write a note about the quoted line above from the text
-            The note should be indented as shown and have margins left aligned.
-            Notes should be separated by a generous about of space or a thin line.
+    The Notebook should contain an array of "Note" objects.
+    It should also have a weak reference back to its containing "Page" object.
+    The Notebook is the object that will be displayed in the NotesViewController.
  */
-
 #import <Foundation/Foundation.h>
 
 @interface Notebook : NSObject
