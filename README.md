@@ -12,14 +12,27 @@ Expectations:
 
 Responsibilities:
 
-UI and Storyboard: Cole
+* UI and Storyboard: Cole
 
-Table View(s): Cole
+* Table View(s): Cole
 
-Custom Object files:
+* Custom Object files:
 
-* Page: Matt
+     * Page: Matt
 
-* Notebook: John
+     * Notebook: John
 
-* Note: John
+     * Note: John
+
+Conventions:
+
+* any image added to cassettes should follow the naming convention: " [img type]_[img name] "
+
+     * Please put any images in the "1x" slot for image sets
+     
+     * Example:
+     
+          asset_SettingsGear
+
+          logo_NavigationBar
+
