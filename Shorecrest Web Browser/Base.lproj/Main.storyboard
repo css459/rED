@@ -7,7 +7,7 @@
         <!--Notes-->
         <scene sceneID="d9C-9f-vkh">
             <objects>
-                <viewController title="Notes" id="vfo-5Y-0bf" sceneMemberID="viewController">
+                <viewController title="Notes" id="vfo-5Y-0bf" customClass="NotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hXY-vc-wqZ"/>
                         <viewControllerLayoutGuide type="bottom" id="1mZ-e3-HgM"/>
@@ -44,7 +44,7 @@
         <!--Auto Scroll-->
         <scene sceneID="Y5C-6J-lID">
             <objects>
-                <viewController title="Auto Scroll" id="3HN-64-yQV" sceneMemberID="viewController">
+                <viewController title="Auto Scroll" id="3HN-64-yQV" customClass="AutoScrollViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XpL-ON-ZMz"/>
                         <viewControllerLayoutGuide type="bottom" id="IIt-9z-jGl"/>
@@ -108,12 +108,20 @@
                                 <items>
                                     <barButtonItem title="Item" systemItem="action" id="YNk-3v-56E"/>
                                     <barButtonItem title="[Auto-Scroll]" id="1Sz-PB-8TB"/>
-                                    <barButtonItem title="[Settings]" id="rIK-IR-5HO"/>
+                                    <barButtonItem title="[Settings]" id="rIK-IR-5HO">
+                                        <connections>
+                                            <segue destination="yWB-z3-bxX" kind="show" id="Mur-rE-Fc1"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-JT-ian">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="URL" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-JT-ian">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -174,7 +182,7 @@
         <!--Settings-->
         <scene sceneID="iqV-Ka-5IK">
             <objects>
-                <viewController title="Settings" id="yWB-z3-bxX" sceneMemberID="viewController">
+                <viewController title="Settings" id="yWB-z3-bxX" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lEK-rc-RY7"/>
                         <viewControllerLayoutGuide type="bottom" id="wiK-GY-Bei"/>
@@ -187,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDP-rM-RQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="458" y="1119"/>
+            <point key="canvasLocation" x="458" y="1109"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.19189086029999999" green="0.19189086029999999" blue="0.19189086029999999" alpha="1" colorSpace="calibratedRGB"/>

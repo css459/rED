@@ -1,5 +1,5 @@
 //
-//  SavedPagesViewController.h
+//  SavedPagesTableViewController.h
 //  Shorecrest Web Browser
 //
 //  Created by Cole Smith on 2/4/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SavedPagesViewController : UIViewController
+@interface SavedPagesTableViewController : UITableViewController
 
 @end
