@@ -231,6 +231,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uSG-oP-x4d">
                                 <rect key="frame" x="43" y="138" width="515" height="31"/>
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="43" y="138" width="715" height="31"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="43" y="138" width="315" height="31"/>
                                 </variation>
@@ -244,6 +247,9 @@
                                 <string key="text">rED is an app desinged by four high school students in St. Petersburg, Florida. We hope you enjoy using our app for the sake of your personal enrichment and pursuit of knowledge.</string>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="45" y="527" width="711" height="53"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="45" y="527" width="311" height="53"/>
                                 </variation>
