@@ -9,10 +9,11 @@
 #import "ColorPalette.h"
 
 @implementation ColorPalette
-@synthesize master_red;
+@synthesize tint_master_red, tint_darkGrey;
 
 - (id)init {
-    master_red = [[UIColor alloc] initWithRed:187.0 green:28.0 blue:29.0 alpha:1.0];
+    tint_master_red = [[UIColor alloc] initWithRed:187.0/255 green:28.0/255 blue:29.0/255 alpha:1.0];
+    tint_darkGrey = [[UIColor alloc] initWithRed:40.0/255 green:40.0/255 blue:40.0/255 alpha:1.0];
     
     return self;
 }

@@ -24,4 +24,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Hides the Navigation Bar on appearance
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+// Displays the Navigation Bar on disappearance
+- (void)viewDidDisappear: (BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewDidDisappear:animated];
+}
+
 @end
