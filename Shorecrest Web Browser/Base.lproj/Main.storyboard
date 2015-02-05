@@ -59,47 +59,27 @@
                                 <items>
                                     <barButtonItem style="plain" id="2gO-UE-eVK">
                                         <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="wd8-nX-CH0">
-                                            <rect key="frame" x="14" y="5.5" width="525" height="33"/>
+                                            <rect key="frame" x="14" y="3" width="454" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </slider>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8ol-PG-5oo"/>
                                     <barButtonItem title="Done" id="AwD-nv-8UA"/>
                                 </items>
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wv7-6d-hO5">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
-                                <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jmK-Gw-R4c">
-                                        <rect key="frame" x="0.0" y="253" width="600" height="50"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="Xca-PY-HV6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <blurEffect style="light"/>
-                                    </visualEffectView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="jmK-Gw-R4c" secondAttribute="centerX" id="MgL-du-oxP"/>
-                                    <constraint firstAttribute="centerY" secondItem="jmK-Gw-R4c" secondAttribute="centerY" id="fwQ-Fv-qz7"/>
-                                </constraints>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Wv7-6d-hO5" firstAttribute="leading" secondItem="cgQ-vR-s8B" secondAttribute="leadingMargin" constant="-16" id="1Ex-IX-xDx"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Wv7-6d-hO5" secondAttribute="trailing" constant="-16" id="B2q-R1-3Jq"/>
-                            <constraint firstItem="u0u-eo-7Sw" firstAttribute="top" secondItem="Wv7-6d-hO5" secondAttribute="bottom" id="a3u-k1-2JE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="u0u-eo-7Sw" secondAttribute="trailing" constant="-16" id="bq6-sT-WyA"/>
-                            <constraint firstItem="IIt-9z-jGl" firstAttribute="top" secondItem="u0u-eo-7Sw" secondAttribute="bottom" id="dVQ-lf-gG9"/>
-                            <constraint firstItem="u0u-eo-7Sw" firstAttribute="leading" secondItem="cgQ-vR-s8B" secondAttribute="leadingMargin" constant="-16" id="fTU-5d-3nA"/>
-                            <constraint firstItem="Wv7-6d-hO5" firstAttribute="top" secondItem="cgQ-vR-s8B" secondAttribute="topMargin" id="kXp-Py-PF6"/>
+                            <constraint firstItem="u0u-eo-7Sw" firstAttribute="leading" secondItem="cgQ-vR-s8B" secondAttribute="leadingMargin" constant="-16" id="7ha-3W-Uo6"/>
+                            <constraint firstItem="IIt-9z-jGl" firstAttribute="top" secondItem="u0u-eo-7Sw" secondAttribute="bottom" id="7na-6s-B33"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="u0u-eo-7Sw" secondAttribute="trailing" constant="-16" id="PDq-Zy-ZkY"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irb-zi-8Q1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="60"/>
+            <point key="canvasLocation" x="1170" y="60"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
@@ -131,11 +111,11 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <barButtonItem title="Item" systemItem="action" id="YNk-3v-56E"/>
+                                    <barButtonItem image="toolbar_Save_Unclicked" id="YNk-3v-56E"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Cnc-76-Fhh"/>
-                                    <barButtonItem title="[Auto-Scroll]" id="1Sz-PB-8TB">
+                                    <barButtonItem image="toolbar_AutoScroll" id="1Sz-PB-8TB">
                                         <connections>
-                                            <segue destination="3HN-64-yQV" kind="showDetail" id="EI1-nD-9ZO"/>
+                                            <segue destination="3HN-64-yQV" kind="show" id="EI1-nD-9ZO"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0HX-p2-Rtg"/>
@@ -244,6 +224,12 @@
                             <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uSG-oP-x4d">
                                 <rect key="frame" x="43" y="138" width="515" height="31"/>
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="43" y="138" width="315" height="31"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="43" y="138" width="715" height="31"/>
+                                </variation>
                             </slider>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3In-mS-Oud">
                                 <rect key="frame" x="45" y="527" width="511" height="53"/>
@@ -251,6 +237,12 @@
                                 <string key="text">rED is an app desinged by four high school students in St. Petersburg, Florida. We hope you enjoy using our app for the sake of your personal enrichment and pursuit of knowledge.</string>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="45" y="527" width="311" height="53"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="45" y="527" width="711" height="53"/>
+                                </variation>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Aa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1c-aw-gT6">
                                 <rect key="frame" x="210" y="182" width="181" height="117"/>
@@ -327,6 +319,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="toolbar_AutoScroll" width="22" height="22"/>
+        <image name="toolbar_Save_Unclicked" width="22" height="22"/>
         <image name="toolbar_SettingsGear" width="22" height="22"/>
     </resources>
     <color key="tintColor" red="0.1539937609" green="0.1539937609" blue="0.1539937609" alpha="1" colorSpace="calibratedRGB"/>
