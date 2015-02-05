@@ -7,35 +7,56 @@
 //
 
 #import "PagesViewController.h"
+#import "ColorPalette.h"
 
 @interface PagesViewController ()
-
+{
+    BOOL savedButtonState;
+    ColorPalette *cp;
+}
 @end
 
 @implementation PagesViewController
+@synthesize button_SavePageProp;
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        savedButtonState = false;
+        cp = [[ColorPalette alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // Hides the Navigation Bar on appearance
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }
 
 // Displays the Navigation Bar on disappearance
-- (void)viewDidDisappear: (BOOL)animated
-{
+- (void)viewDidDisappear: (BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewDidDisappear:animated];
 }
 
+- (IBAction)button_SavePage:(id)sender {
+    if (!savedButtonState) {
+        savedButtonState = true;
+        if (savedButtonState) {
+            [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        }
+    } else {
+        [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+    }
+    savedButtonState = false;
+}
 @end

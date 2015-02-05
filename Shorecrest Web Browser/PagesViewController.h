@@ -16,6 +16,9 @@
 
 @interface PagesViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *button_SavePageProp;
+
+- (IBAction)button_SavePage:(id)sender;
 
 @end
 

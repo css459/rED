@@ -111,7 +111,11 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <barButtonItem image="toolbar_Save_Unclicked" id="YNk-3v-56E"/>
+                                    <barButtonItem image="toolbar_Save_Unclicked" id="YNk-3v-56E">
+                                        <connections>
+                                            <action selector="button_SavePage:" destination="BYZ-38-t0r" id="Srk-Kx-Imq"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Cnc-76-Fhh"/>
                                     <barButtonItem image="toolbar_AutoScroll" id="1Sz-PB-8TB">
                                         <connections>
@@ -144,6 +148,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xvo-BH-JR2"/>
+                    <connections>
+                        <outlet property="button_SavePageProp" destination="YNk-3v-56E" id="Tkf-zs-YfK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
