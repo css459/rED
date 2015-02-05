@@ -240,7 +240,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3In-mS-Oud">
                                 <rect key="frame" x="45" y="527" width="511" height="53"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">[] is an app desinged by four high school students in St. Petersburg, Florida. We hope you enjoy using our app for the sake of your personal enrichment and strive for knowledge.</string>
+                                <string key="text">rED is an app desinged by four high school students in St. Petersburg, Florida. We hope you enjoy using our app for the sake of your personal enrichment and pursuit of knowledge.</string>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
