@@ -9,6 +9,7 @@
 #import "Settings.h"
 
 @implementation Settings
+@synthesize homeSite;
 
 + (Settings *)sharedSettings {
     static Settings *sharedSettings = nil;
@@ -21,8 +22,14 @@
 - (id)init {
     self = [super init];
     if (self) {
+        homeSite = [[NSString alloc] init];
     }
     return self;
+    
+}
+
++ (id)allocWithZone:(struct _NSZone *)zone {
+    return [self sharedSettings];
 }
 
 

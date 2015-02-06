@@ -13,6 +13,6 @@
 @property BOOL nightMode;
 @property BOOL tutorialMode;
 @property int textSize;
-@property NSString *homeStie;
+@property NSString *homeSite;
 
 @end

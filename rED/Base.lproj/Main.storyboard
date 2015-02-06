@@ -95,11 +95,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mb1-85-Kw1">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
-                                <color key="backgroundColor" red="0.98994302486187846" green="0.98994302486187846" blue="0.98994302486187846" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.19189086026685087" green="0.19189086026685087" blue="0.19189086026685087" alpha="1" colorSpace="calibratedRGB"/>
-                            </scrollView>
                             <searchBar contentMode="redraw" text="" placeholder="URL" translatesAutoresizingMaskIntoConstraints="NO" id="dEH-JT-ian">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -134,18 +129,22 @@
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQo-5n-j2j">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dEH-JT-ian" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="BgP-wu-DZf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Mb1-85-Kw1" secondAttribute="trailing" constant="-16" id="CV0-bs-Zxh"/>
-                            <constraint firstItem="Mb1-85-Kw1" firstAttribute="top" secondItem="dEH-JT-ian" secondAttribute="bottom" id="DjD-zG-TIo"/>
-                            <constraint firstItem="Mb1-85-Kw1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="M57-Y8-T67"/>
+                            <constraint firstItem="2e2-xv-VAV" firstAttribute="top" secondItem="aQo-5n-j2j" secondAttribute="bottom" id="DtU-aI-Eme"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2e2-xv-VAV" secondAttribute="trailing" constant="-16" id="M5y-ES-dVi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aQo-5n-j2j" secondAttribute="trailing" constant="-16" id="Qqv-tw-i0a"/>
                             <constraint firstItem="2e2-xv-VAV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="RgZ-F8-E3o"/>
+                            <constraint firstItem="aQo-5n-j2j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="U5S-xw-eRq"/>
                             <constraint firstItem="dEH-JT-ian" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YBj-X9-upH"/>
+                            <constraint firstItem="aQo-5n-j2j" firstAttribute="top" secondItem="dEH-JT-ian" secondAttribute="bottom" id="cXG-ir-z5v"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2e2-xv-VAV" secondAttribute="bottom" id="ich-fX-S9T"/>
-                            <constraint firstItem="2e2-xv-VAV" firstAttribute="top" secondItem="Mb1-85-Kw1" secondAttribute="bottom" id="qmM-bb-jNL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dEH-JT-ian" secondAttribute="trailing" constant="-16" id="r71-4B-iDS"/>
                         </constraints>
                     </view>
