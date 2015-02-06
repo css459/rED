@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "490646021A814425003CD480"
-               BuildableName = "Shorecrest Web Browser.app"
-               BlueprintName = "Shorecrest Web Browser"
-               ReferencedContainer = "container:Shorecrest Web Browser.xcodeproj">
+               BuildableName = "rED.app"
+               BlueprintName = "rED"
+               ReferencedContainer = "container:rED.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4906461B1A814425003CD480"
-               BuildableName = "Shorecrest Web BrowserTests.xctest"
-               BlueprintName = "Shorecrest Web BrowserTests"
-               ReferencedContainer = "container:Shorecrest Web Browser.xcodeproj">
+               BuildableName = "rEDTests.xctest"
+               BlueprintName = "rEDTests"
+               ReferencedContainer = "container:rED.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4906461B1A814425003CD480"
-               BuildableName = "Shorecrest Web BrowserTests.xctest"
-               BlueprintName = "Shorecrest Web BrowserTests"
-               ReferencedContainer = "container:Shorecrest Web Browser.xcodeproj">
+               BuildableName = "rEDTests.xctest"
+               BlueprintName = "rEDTests"
+               ReferencedContainer = "container:rED.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "490646021A814425003CD480"
-            BuildableName = "Shorecrest Web Browser.app"
-            BlueprintName = "Shorecrest Web Browser"
-            ReferencedContainer = "container:Shorecrest Web Browser.xcodeproj">
+            BuildableName = "rED.app"
+            BlueprintName = "rED"
+            ReferencedContainer = "container:rED.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "490646021A814425003CD480"
-            BuildableName = "Shorecrest Web Browser.app"
-            BlueprintName = "Shorecrest Web Browser"
-            ReferencedContainer = "container:Shorecrest Web Browser.xcodeproj">
+            BuildableName = "rED.app"
+            BlueprintName = "rED"
+            ReferencedContainer = "container:rED.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "490646021A814425003CD480"
-            BuildableName = "Shorecrest Web Browser.app"
-            BlueprintName = "Shorecrest Web Browser"
-            ReferencedContainer = "container:Shorecrest Web Browser.xcodeproj">
+            BuildableName = "rED.app"
+            BlueprintName = "rED"
+            ReferencedContainer = "container:rED.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

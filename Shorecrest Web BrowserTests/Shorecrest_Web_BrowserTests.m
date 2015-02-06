@@ -1,6 +1,6 @@
 //
 //  Shorecrest_Web_BrowserTests.m
-//  Shorecrest Web BrowserTests
+//  rEDTests
 //
 //  Created by Cole Smith on 2/3/15.
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
