@@ -15,6 +15,7 @@
 		490646171A814425003CD480 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490646151A814425003CD480 /* LaunchScreen.xib */; };
 		490646231A814425003CD480 /* Shorecrest_Web_BrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */; };
 		491CEB481A84374600838145 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491CEB471A84374600838145 /* ThankYouViewController.m */; };
+		4958887B1A8503F400B8D439 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958887A1A8503F400B8D439 /* Settings.m */; };
 		495D67551A82848600E15853 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67541A82848600E15853 /* NotesViewController.m */; };
 		495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67571A82849200E15853 /* AutoScrollViewController.m */; };
 		495D675B1A8284BA00E15853 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D675A1A8284BA00E15853 /* SettingsViewController.m */; };
@@ -23,7 +24,6 @@
 		495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67661A828CF000E15853 /* SavedPagesTableViewController.m */; };
 		495D676A1A82A39500E15853 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67691A82A39500E15853 /* Note.m */; };
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
-		49A441A31A85011400641930 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A441A21A85011400641930 /* Settings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +52,8 @@
 		490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shorecrest_Web_BrowserTests.m; sourceTree = "<group>"; };
 		491CEB461A84374600838145 /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		491CEB471A84374600838145 /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
+		495888791A8503F400B8D439 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		4958887A1A8503F400B8D439 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		495D67531A82848600E15853 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
 		495D67541A82848600E15853 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		495D67561A82849200E15853 /* AutoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoScrollViewController.h; sourceTree = "<group>"; };
@@ -68,8 +70,6 @@
 		495D67691A82A39500E15853 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		49609ABE1A82DA1C00594EA8 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
 		49609ABF1A82DA1C00594EA8 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
-		49A441A11A85011400641930 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		49A441A21A85011400641930 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,9 +119,9 @@
 				495D67691A82A39500E15853 /* Note.m */,
 				49609ABE1A82DA1C00594EA8 /* ColorPalette.h */,
 				49609ABF1A82DA1C00594EA8 /* ColorPalette.m */,
-				49A441A11A85011400641930 /* Settings.h */,
-				49A441A21A85011400641930 /* Settings.m */,
 				4906460D1A814425003CD480 /* PagesViewController.h */,
+				495888791A8503F400B8D439 /* Settings.h */,
+				4958887A1A8503F400B8D439 /* Settings.m */,
 				4906460E1A814425003CD480 /* PagesViewController.m */,
 				495D67651A828CF000E15853 /* SavedPagesTableViewController.h */,
 				495D67661A828CF000E15853 /* SavedPagesTableViewController.m */,
@@ -271,7 +271,7 @@
 			files = (
 				495D67611A8284E700E15853 /* Notebook.m in Sources */,
 				491CEB481A84374600838145 /* ThankYouViewController.m in Sources */,
-				49A441A31A85011400641930 /* Settings.m in Sources */,
+				4958887B1A8503F400B8D439 /* Settings.m in Sources */,
 				49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */,
 				495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */,
 				495D67551A82848600E15853 /* NotesViewController.m in Sources */,
