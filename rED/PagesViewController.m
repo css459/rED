@@ -57,14 +57,13 @@
 
 // Handles toggling of saved button
 - (IBAction)button_SavePage:(id)sender {
-    if (!savedButtonState) {
-        savedButtonState = true;
-        if (savedButtonState) {
-            [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        }
+    savedButtonState = !savedButtonState;
+    if (savedButtonState) {
+        [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        // Here, the Page obj should be added to the cell array.
     } else {
         [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+        // Here, the Page obj should be removed from the cell array.
     }
-    savedButtonState = false;
 }
 @end
