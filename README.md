@@ -41,3 +41,7 @@ Conventions:
           asset_SettingsGear
 
           logo_NavigationBar
+
+Resources:
+
+[Readability Implementation](http://stackoverflow.com/questions/7657553/ios-access-to-safari-reader-feature-through-uiwebview)
