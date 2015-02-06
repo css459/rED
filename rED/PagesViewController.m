@@ -42,11 +42,12 @@
     [super viewWillAppear:animated];
 }
 
-// Displays the Navigation Bar on disappearance
-- (void)viewDidDisappear: (BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [super viewDidDisappear:animated];
-}
+// This method was commented out for incorrect behavior with the Auto Scroll Navigation Bar
+//// Displays the Navigation Bar on disappearance
+//- (void)viewDidDisappear: (BOOL)animated {
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [super viewDidDisappear:animated];
+//}
 
 // Allows user to exit editing
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

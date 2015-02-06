@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "ColorPalette.h"
+#import "Settings.h"
 
 @interface SettingsViewController ()
 {
@@ -16,7 +17,7 @@
 @end
 
 @implementation SettingsViewController
-@synthesize slider_TextSize, label_TextPreview;
+@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -42,7 +43,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // Allows user to exit editing
@@ -55,6 +55,21 @@
 - (IBAction)slider_TextSizeDidChange:(id)sender {
     label_TextPreview.font=[label_TextPreview.font fontWithSize:slider_TextSize.value];
     // Here the user settings should accept the font size for 'fontSizeAsProportion'
+}
+
+#pragma mark - Switches
+
+- (IBAction)switch_NightModeDidChange:(id)sender {
+    BOOL switchState = switch_NightMode.state;
+    // Here the settings will accept 'swtichState' for Night Mode
+}
+
+- (IBAction)switch_TutorialModeDidChange:(id)sender {
+    BOOL switchState = switch_TutorialMode.state;
+    //Here the settings will accept the 'switchState' for Tutorial Mode
+}
+
+- (IBAction)textField_HomeSiteDidChange:(id)sender {
 }
 
 /*

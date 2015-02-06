@@ -5,7 +5,13 @@
 //  Created by Cole Smith on 2/4/15.
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
- 
+
+/*
+    NOTE:
+    The ColorPalette will need new methods to change tints to Night Mode
+    This will mean a greater degree of consistency in tints will be required.
+ */
+
 #import "ColorPalette.h"
 
 @implementation ColorPalette

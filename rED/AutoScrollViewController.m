@@ -9,7 +9,7 @@
 /*
  NOTE:
  
- *The behavior of scrool speed dialing has changed.
+ *The behavior of scroll speed dialing has changed.
     Instead, we will use a gesture of scrolling thumb up in vc to increase
     scroll speed and down to decrease scroll speed.
  
@@ -36,17 +36,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [super viewWillAppear:animated];
 }
 
 //Pressing the 'Done' button will dismiss view controller

@@ -22,7 +22,6 @@
 - (id)init {
     self = [super init];
     if (self) {
-        homeSite = [[NSString alloc] init];
     }
     return self;
     

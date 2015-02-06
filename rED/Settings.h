@@ -6,6 +6,11 @@
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
+/*
+    The Settings object will maintain a globally accessible singleton
+    that holds the parameters defined in the Settings View Controller
+ */
+
 #import <Foundation/Foundation.h>
 
 @interface Settings : NSObject
