@@ -4,7 +4,7 @@ Expectations:
 
 * You should NOT edit the either the master or production branch unless absolutely sure.
 
-* You should comment your code so that others can follow your logic.
+* You should comment your code and use pragma marks so that others can follow your logic.
 
 * You should keep to any agreed upon conventions, design or otherwise, set in place.
 
@@ -35,4 +35,3 @@ Conventions:
           asset_SettingsGear
 
           logo_NavigationBar
-
