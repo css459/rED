@@ -24,6 +24,12 @@ Responsibilities:
 
      * Note: John
 
+* Settings: Cole
+
+* Website Conversion: KJ and Matt
+
+* Auto Scroll
+
 Conventions:
 
 * any image added to cassettes should follow the naming convention: " [img type]_[img name] "
