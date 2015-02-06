@@ -7,15 +7,43 @@
 //
 
 #import "SavedPagesTableViewController.h"
+#import "Page.h"
 
 @interface SavedPagesTableViewController ()
+{
+    NSMutableArray *array_cells;
+    
+    // This object is assigned in cellForRowAtIndexPath and
+    // and used in the segue
+    Page *navigatingPage;
+}
 
 @end
 
 @implementation SavedPagesTableViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        array_cells = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Implements custom title with formatting
+    [self.navigationController setNavigationBarHidden:NO];
+    UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
+    UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
+    [naviTitle setText:@"Saved Sites"];
+    [naviTitle setFont:titleFont];
+    [naviTitle setTextColor:[UIColor darkTextColor]];
+    [naviTitle sizeToFit];
+    self.navigationItem.titleView = naviTitle;
+    [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -32,7 +60,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+#warning Incomplete method implementation.
     // Return the number of sections.
     // Our sections should be arranged by subject
     return 0;
@@ -41,18 +69,27 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [array_cells count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"simpleCell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SimpleCell"];
+    }
+    navigatingPage = [array_cells objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+//    NSString *cell_Title = [[array_cells objectAtIndex:[indexPath row]] title];
+//    NSString *cell_Subtitle = [[array_cells objectAtIndex:[indexPath row]] dateAdded];
+    
+//    cell.textLabel.text = cell_Title;
+//    cell.detailTextLabel.text = cell_Subtitle;
+//    cell.accessoryView.tintColor = [cp color_master_tan];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -62,17 +99,18 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [array_cells removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

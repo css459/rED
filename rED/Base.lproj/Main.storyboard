@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rUd-gL-EKU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qS0-UD-OxS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -40,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ck-a8-CJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="402"/>
+            <point key="canvasLocation" x="1172" y="414"/>
         </scene>
         <!--Auto Scroll-->
         <scene sceneID="Y5C-6J-lID">
@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="458" y="402"/>
+            <point key="canvasLocation" x="458" y="414"/>
         </scene>
         <!--Saved Sites-->
         <scene sceneID="ttK-vw-350">
@@ -175,19 +175,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="zin-wV-VOe">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <textAttributes key="titleTextAttributes">
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
-                            </textAttributes>
-                            <items>
-                                <navigationItem title="Saved Sites" id="aed-QF-beC"/>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Md5-og-UwC" detailTextLabel="Kd4-6D-w3W" style="IBUITableViewCellStyleSubtitle" id="Tbj-Gz-rhw">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="simpleCell" textLabel="Md5-og-UwC" detailTextLabel="Kd4-6D-w3W" style="IBUITableViewCellStyleSubtitle" id="Tbj-Gz-rhw">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tbj-Gz-rhw" id="22Z-ah-VIo">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -215,10 +204,11 @@
                             <outlet property="delegate" destination="xWD-04-dDI" id="zr6-gH-Z0g"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="1au-sn-mrt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6si-QX-cgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226" y="402"/>
+            <point key="canvasLocation" x="-256" y="402"/>
         </scene>
         <!--Settings-->
         <scene sceneID="iqV-Ka-5IK">
@@ -511,6 +501,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HV2-F1-3am" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="458" y="-302"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TIP-IC-nbw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qS0-UD-OxS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KnM-W6-04X">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xWD-04-dDI" kind="relationship" relationship="rootViewController" id="EjH-ZZ-JTL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="83i-RB-wac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-256" y="-302"/>
         </scene>
     </scenes>
     <resources>
