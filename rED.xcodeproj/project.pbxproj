@@ -133,8 +133,7 @@
 				490646151A814425003CD480 /* LaunchScreen.xib */,
 				490646061A814425003CD480 /* Supporting Files */,
 			);
-			name = rED;
-			path = "Shorecrest Web Browser";
+			path = rED;
 			sourceTree = "<group>";
 		};
 		490646061A814425003CD480 /* Supporting Files */ = {
@@ -154,8 +153,7 @@
 				490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */,
 				490646201A814425003CD480 /* Supporting Files */,
 			);
-			name = rEDTests;
-			path = "Shorecrest Web BrowserTests";
+			path = rEDTests;
 			sourceTree = "<group>";
 		};
 		490646201A814425003CD480 /* Supporting Files */ = {
@@ -401,7 +399,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Shorecrest Web Browser/Info.plist";
+				INFOPLIST_FILE = rED/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = rED;
 			};
@@ -411,7 +409,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Shorecrest Web Browser/Info.plist";
+				INFOPLIST_FILE = rED/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = rED;
 			};
@@ -429,7 +427,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Shorecrest Web BrowserTests/Info.plist";
+				INFOPLIST_FILE = rED/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = rEDTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rED.app/rED";
@@ -444,7 +442,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Shorecrest Web BrowserTests/Info.plist";
+				INFOPLIST_FILE = rED/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = rEDTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rED.app/rED";
