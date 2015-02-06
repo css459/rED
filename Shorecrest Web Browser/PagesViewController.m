@@ -48,6 +48,13 @@
     [super viewDidDisappear:animated];
 }
 
+// Allows user to exit editing
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
+// Handles toggling of saved button
 - (IBAction)button_SavePage:(id)sender {
     if (!savedButtonState) {
         savedButtonState = true;

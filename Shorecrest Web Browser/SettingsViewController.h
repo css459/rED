@@ -10,4 +10,9 @@
 
 @interface SettingsViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *label_TextPreview;
+@property (weak, nonatomic) IBOutlet UISlider *slider_TextSize;
+
+- (IBAction)slider_TextSizeDidChange:(id)sender;
+
 @end

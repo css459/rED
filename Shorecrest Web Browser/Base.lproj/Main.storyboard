@@ -57,25 +57,27 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u0u-eo-7Sw">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" id="2gO-UE-eVK">
-                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="wd8-nX-CH0">
-                                            <rect key="frame" x="14" y="3" width="454" height="38"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </slider>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wE2-el-5jQ"/>
+                                    <barButtonItem systemItem="done" id="iPa-FX-mTM">
+                                        <connections>
+                                            <action selector="button_DoneWasPressed:" destination="3HN-64-yQV" id="hrf-8K-AFv"/>
+                                        </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8ol-PG-5oo"/>
-                                    <barButtonItem title="Done" id="AwD-nv-8UA"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="N5d-fC-GhV"/>
                                 </items>
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="u0u-eo-7Sw" firstAttribute="leading" secondItem="cgQ-vR-s8B" secondAttribute="leadingMargin" constant="-16" id="7ha-3W-Uo6"/>
-                            <constraint firstItem="IIt-9z-jGl" firstAttribute="top" secondItem="u0u-eo-7Sw" secondAttribute="bottom" id="7na-6s-B33"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="u0u-eo-7Sw" secondAttribute="trailing" constant="-16" id="PDq-Zy-ZkY"/>
+                            <constraint firstItem="u0u-eo-7Sw" firstAttribute="bottom" secondItem="IIt-9z-jGl" secondAttribute="top" id="10Q-4w-Ygm"/>
+                            <constraint firstItem="u0u-eo-7Sw" firstAttribute="leading" secondItem="cgQ-vR-s8B" secondAttribute="leading" id="6gj-Ot-CyJ"/>
+                            <constraint firstAttribute="trailing" secondItem="u0u-eo-7Sw" secondAttribute="trailing" id="RKV-wq-mvB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="button_Done" destination="iPa-FX-mTM" id="4EH-bA-Lui"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irb-zi-8Q1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,95 +224,232 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Text Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMt-r0-rZD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Text Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMt-r0-rZD">
                                 <rect key="frame" x="266" y="103" width="69" height="21"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uSG-oP-x4d">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="9" maxValue="72" translatesAutoresizingMaskIntoConstraints="NO" id="uSG-oP-x4d">
                                 <rect key="frame" x="43" y="138" width="515" height="31"/>
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="43" y="138" width="715" height="31"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="43" y="138" width="315" height="31"/>
-                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="43" y="138" width="715" height="31"/>
                                 </variation>
+                                <connections>
+                                    <action selector="slider_TextSizeDidChange:" destination="yWB-z3-bxX" eventType="valueChanged" id="BC9-Bk-Zgv"/>
+                                </connections>
                             </slider>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3In-mS-Oud">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3In-mS-Oud">
                                 <rect key="frame" x="45" y="527" width="511" height="53"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="uPM-YH-lsc"/>
+                                </constraints>
                                 <string key="text">rED is an app desinged by four high school students in St. Petersburg, Florida. We hope you enjoy using our app for the sake of your personal enrichment and pursuit of knowledge.</string>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="45" y="527" width="711" height="53"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="45" y="527" width="311" height="53"/>
-                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="45" y="527" width="711" height="53"/>
                                 </variation>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Aa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1c-aw-gT6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Aa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1c-aw-gT6">
                                 <rect key="frame" x="210" y="182" width="181" height="117"/>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="72"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x3D-l3-Pl1">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x3D-l3-Pl1">
                                 <rect key="frame" x="114" y="334" width="51" height="31"/>
                                 <color key="onTintColor" red="0.98994302486187846" green="0.041526058350532177" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Night Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17d-HZ-NMq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Night Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17d-HZ-NMq">
                                 <rect key="frame" x="16" y="339" width="90" height="21"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Home Site" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBZ-Oy-EN7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Home Site" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBZ-Oy-EN7">
                                 <rect key="frame" x="16" y="388" width="90" height="21"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1j-2a-9aI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1j-2a-9aI">
                                 <rect key="frame" x="114" y="384" width="175" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="eBD-bV-eQh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddB-zW-q7K">
+                                <rect key="frame" x="289" y="497" width="22" height="22"/>
+                                <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vtG-R0-bx7" kind="show" id="zQf-dj-slg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="3In-mS-Oud" secondAttribute="trailing" constant="28" id="29n-Uo-gqB"/>
+                            <constraint firstItem="ddB-zW-q7K" firstAttribute="top" secondItem="M1c-aw-gT6" secondAttribute="bottom" constant="198" id="8QK-dS-qdD"/>
+                            <constraint firstItem="3In-mS-Oud" firstAttribute="leading" secondItem="uSG-oP-x4d" secondAttribute="leading" id="CU0-vt-ocK"/>
+                            <constraint firstItem="fBZ-Oy-EN7" firstAttribute="leading" secondItem="UNa-6h-Zbb" secondAttribute="leadingMargin" id="DhH-Je-VbF"/>
+                            <constraint firstItem="17d-HZ-NMq" firstAttribute="top" secondItem="uSG-oP-x4d" secondAttribute="bottom" constant="171" id="Fqa-xz-Mts"/>
                             <constraint firstItem="uSG-oP-x4d" firstAttribute="top" secondItem="DMt-r0-rZD" secondAttribute="bottom" constant="14" id="Gu7-9S-y37"/>
+                            <constraint firstItem="DMt-r0-rZD" firstAttribute="top" secondItem="lEK-rc-RY7" secondAttribute="bottom" constant="83" id="JzN-MJ-wLr"/>
                             <constraint firstItem="M1c-aw-gT6" firstAttribute="top" secondItem="uSG-oP-x4d" secondAttribute="bottom" constant="14" id="Pye-Kr-9ol"/>
                             <constraint firstItem="F1j-2a-9aI" firstAttribute="top" secondItem="x3D-l3-Pl1" secondAttribute="bottom" constant="19" id="Weu-U9-jA2"/>
                             <constraint firstItem="x3D-l3-Pl1" firstAttribute="leading" secondItem="17d-HZ-NMq" secondAttribute="trailing" constant="8" id="XVU-ct-Ni4"/>
+                            <constraint firstAttribute="bottom" secondItem="3In-mS-Oud" secondAttribute="bottom" constant="20" symbolic="YES" id="a9T-nd-MP0"/>
                             <constraint firstAttribute="centerX" secondItem="DMt-r0-rZD" secondAttribute="centerX" id="ara-ea-AqN"/>
                             <constraint firstAttribute="centerX" secondItem="M1c-aw-gT6" secondAttribute="centerX" id="ciB-PX-dfZ"/>
-                            <constraint firstItem="3In-mS-Oud" firstAttribute="leading" secondItem="UNa-6h-Zbb" secondAttribute="leadingMargin" constant="29" id="fJ1-XS-XKv"/>
+                            <constraint firstItem="3In-mS-Oud" firstAttribute="trailing" secondItem="uSG-oP-x4d" secondAttribute="trailing" id="gmS-UJ-4f6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uSG-oP-x4d" secondAttribute="trailing" constant="28" id="gz5-rZ-FVG"/>
-                            <constraint firstItem="wiK-GY-Bei" firstAttribute="top" secondItem="3In-mS-Oud" secondAttribute="bottom" constant="20" id="iN0-hr-KO0"/>
                             <constraint firstItem="uSG-oP-x4d" firstAttribute="top" secondItem="DMt-r0-rZD" secondAttribute="bottom" constant="14" id="j0V-T8-oX8"/>
+                            <constraint firstItem="17d-HZ-NMq" firstAttribute="leading" secondItem="UNa-6h-Zbb" secondAttribute="leadingMargin" id="paf-C1-Il3"/>
+                            <constraint firstItem="3In-mS-Oud" firstAttribute="top" secondItem="ddB-zW-q7K" secondAttribute="bottom" constant="8" symbolic="YES" id="pnV-fw-e5v"/>
                             <constraint firstItem="uSG-oP-x4d" firstAttribute="leading" secondItem="UNa-6h-Zbb" secondAttribute="leadingMargin" constant="29" id="qke-xQ-dZ9"/>
                             <constraint firstItem="fBZ-Oy-EN7" firstAttribute="leading" secondItem="17d-HZ-NMq" secondAttribute="leading" id="s6D-LB-zTf"/>
+                            <constraint firstItem="ddB-zW-q7K" firstAttribute="centerX" secondItem="3In-mS-Oud" secondAttribute="centerX" id="tXb-xf-thU"/>
                             <constraint firstItem="fBZ-Oy-EN7" firstAttribute="top" secondItem="17d-HZ-NMq" secondAttribute="bottom" constant="28" id="vLe-JG-Rn7"/>
                             <constraint firstItem="fBZ-Oy-EN7" firstAttribute="top" secondItem="17d-HZ-NMq" secondAttribute="bottom" constant="28" id="wDk-cK-yd5"/>
                             <constraint firstItem="F1j-2a-9aI" firstAttribute="leading" secondItem="fBZ-Oy-EN7" secondAttribute="trailing" constant="8" id="xeG-B9-dzD"/>
                             <constraint firstItem="x3D-l3-Pl1" firstAttribute="top" secondItem="uSG-oP-x4d" secondAttribute="bottom" constant="166" id="zSA-L3-JLR"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="j0V-T8-oX8"/>
+                                <exclude reference="wDk-cK-yd5"/>
+                                <exclude reference="8QK-dS-qdD"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="label_TextPreview" destination="M1c-aw-gT6" id="71h-Vb-fhQ"/>
+                        <outlet property="slider_TextSize" destination="uSG-oP-x4d" id="sZn-XS-pl9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDP-rM-RQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="458" y="1109"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="h9g-vp-6hG">
+            <objects>
+                <viewController id="vtG-R0-bx7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c4T-an-jaB"/>
+                        <viewControllerLayoutGuide type="bottom" id="RT8-FM-NtA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ocv-8h-0xH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="A Shorecrest Preparatory App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-7U-wSf">
+                                <rect key="frame" x="216" y="573" width="168" height="19"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_Shorecrest" translatesAutoresizingMaskIntoConstraints="NO" id="vyw-a2-2ai">
+                                <rect key="frame" x="240" y="465" width="121" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="cF5-v6-GBa"/>
+                                    <constraint firstAttribute="height" constant="100" id="gyS-Ta-Lbl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt3-VR-9lx">
+                                <rect key="frame" x="16" y="51" width="143" height="36.5"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Eric Hunt for Coding Guidance and Source Control" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-Sd-3D5">
+                                <rect key="frame" x="16" y="95" width="309" height="18.5"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Cole Smith for UI and Storyboard Design" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylj-77-0eN">
+                                <rect key="frame" x="16" y="122" width="250.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To John Rightmyer for Object Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaI-u8-MSx">
+                                <rect key="frame" x="16" y="148" width="243" height="18.5"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Matt Kongsiri for Data Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsF-cl-HMI">
+                                <rect key="frame" x="16" y="175" width="221.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To KJ for View Controller Development" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="320-dL-OCJ">
+                                <rect key="frame" x="16" y="201" width="225.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And also to the Shorecrest Middle Division for providing the vital evocation for this idea." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-jZ-u8Y">
+                                <rect key="frame" x="16" y="247.5" width="332" height="126"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="332" id="64O-tV-bTH"/>
+                                    <constraint firstAttribute="height" constant="126" id="rOm-d3-XGD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eaI-u8-MSx" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="0R6-Rq-vcw"/>
+                            <constraint firstItem="OZJ-jZ-u8Y" firstAttribute="top" secondItem="320-dL-OCJ" secondAttribute="bottom" constant="28" id="0qI-Lv-hvJ"/>
+                            <constraint firstItem="OZJ-jZ-u8Y" firstAttribute="leading" secondItem="320-dL-OCJ" secondAttribute="leading" id="3O2-cK-1u3"/>
+                            <constraint firstItem="ngM-Sd-3D5" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="3hv-eU-4RI"/>
+                            <constraint firstItem="Ylj-77-0eN" firstAttribute="top" secondItem="ngM-Sd-3D5" secondAttribute="bottom" constant="8" id="6i1-24-s51"/>
+                            <constraint firstItem="Rjm-7U-wSf" firstAttribute="top" secondItem="vyw-a2-2ai" secondAttribute="bottom" constant="8" symbolic="YES" id="AKV-ak-1oh"/>
+                            <constraint firstItem="vyw-a2-2ai" firstAttribute="centerX" secondItem="Rjm-7U-wSf" secondAttribute="centerX" id="HAA-he-eKz"/>
+                            <constraint firstItem="Tt3-VR-9lx" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="HEh-yq-F23"/>
+                            <constraint firstItem="Ylj-77-0eN" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="Lc1-Qr-gCD"/>
+                            <constraint firstAttribute="centerX" secondItem="Rjm-7U-wSf" secondAttribute="centerX" id="PVh-6n-700"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="eaI-u8-MSx" secondAttribute="leading" id="Pwb-gP-RvW"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="Ylj-77-0eN" secondAttribute="leading" id="Reg-Sa-CpO"/>
+                            <constraint firstItem="eaI-u8-MSx" firstAttribute="top" secondItem="Ylj-77-0eN" secondAttribute="bottom" constant="8" id="SWm-lj-7Ce"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="top" secondItem="eaI-u8-MSx" secondAttribute="bottom" constant="8" id="Uzc-xp-LmQ"/>
+                            <constraint firstItem="320-dL-OCJ" firstAttribute="top" secondItem="BsF-cl-HMI" secondAttribute="bottom" constant="8" id="afk-Oc-ZXC"/>
+                            <constraint firstAttribute="bottom" secondItem="vyw-a2-2ai" secondAttribute="bottom" constant="35" id="ctU-GU-Psd"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="320-dL-OCJ" secondAttribute="leading" id="dty-nL-plI"/>
+                            <constraint firstItem="Tt3-VR-9lx" firstAttribute="top" secondItem="c4T-an-jaB" secondAttribute="bottom" constant="31" id="jx4-hB-IBP"/>
+                            <constraint firstItem="ngM-Sd-3D5" firstAttribute="top" secondItem="Tt3-VR-9lx" secondAttribute="bottom" constant="8" id="q1c-fh-WIW"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="Tt3-VR-9lx" secondAttribute="leading" id="qEu-A5-dHS"/>
+                            <constraint firstItem="320-dL-OCJ" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="rJo-7X-zL7"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="tPR-WS-oY3"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="ngM-Sd-3D5" secondAttribute="leading" id="wKk-S5-a4Y"/>
+                            <constraint firstItem="RT8-FM-NtA" firstAttribute="top" secondItem="Rjm-7U-wSf" secondAttribute="bottom" constant="8" id="zwQ-Sb-Zno"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Zy-OR-jQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="458" y="1804.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wd8-gQ-biT">
@@ -332,6 +471,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo_Shorecrest" width="512" height="512"/>
         <image name="toolbar_AutoScroll" width="22" height="22"/>
         <image name="toolbar_Save_Unclicked" width="22" height="22"/>
         <image name="toolbar_SettingsGear" width="22" height="22"/>
