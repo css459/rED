@@ -8,7 +8,7 @@
         <!--Notes-->
         <scene sceneID="d9C-9f-vkh">
             <objects>
-                <viewController title="Notes" id="vfo-5Y-0bf" customClass="NotesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotesViewController" title="Notes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vfo-5Y-0bf" customClass="NotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hXY-vc-wqZ"/>
                         <viewControllerLayoutGuide type="bottom" id="1mZ-e3-HgM"/>
@@ -39,8 +39,14 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ck-a8-CJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="fax-4q-G2R">
+                    <connections>
+                        <action selector="gesture_SwipeRight:" destination="vfo-5Y-0bf" id="hps-RS-YhG"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" id="oV6-vP-98A"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1172" y="414"/>
+            <point key="canvasLocation" x="1396" y="818"/>
         </scene>
         <!--Auto Scroll-->
         <scene sceneID="Y5C-6J-lID">
@@ -90,7 +96,7 @@
                 <tapGestureRecognizer id="SPd-HA-5pu"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Ufj-VN-laV"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="-302"/>
+            <point key="canvasLocation" x="1396" y="-50"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
@@ -163,13 +169,27 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="jdY-5f-hgn">
+                    <connections>
+                        <action selector="gesture_SwipeRight:" destination="BYZ-38-t0r" id="qYA-Io-PIr"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="uFv-rU-2CT"/>
+                        <segue destination="xWD-04-dDI" kind="presentation" id="KZ5-XL-hNV"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="M0X-ro-zRl">
+                    <connections>
+                        <action selector="gesture_SwipeLeft:" destination="BYZ-38-t0r" id="UIi-Ee-G4k"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="dbf-9q-rUJ"/>
+                        <segue destination="vfo-5Y-0bf" kind="presentation" id="BVh-Kp-x5d"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="458" y="414"/>
+            <point key="canvasLocation" x="450" y="454"/>
         </scene>
         <!--Saved Sites-->
         <scene sceneID="ttK-vw-350">
             <objects>
-                <tableViewController title="Saved Sites" id="xWD-04-dDI" customClass="SavedPagesTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SavedPagesTableViewController" title="Saved Sites" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xWD-04-dDI" customClass="SavedPagesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hdG-qD-n8u">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,8 +227,15 @@
                     <navigationItem key="navigationItem" id="1au-sn-mrt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6si-QX-cgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="itg-BK-Yk0">
+                    <connections>
+                        <action selector="gesture_SwipeLeft:" destination="xWD-04-dDI" id="Uyx-1p-d4Z"/>
+                        <outlet property="delegate" destination="xWD-04-dDI" id="QZr-VY-dGv"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" id="O7a-0Y-IEa"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-256" y="402"/>
+            <point key="canvasLocation" x="-398" y="454"/>
         </scene>
         <!--Settings-->
         <scene sceneID="iqV-Ka-5IK">
@@ -377,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDP-rM-RQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="458" y="1109"/>
+            <point key="canvasLocation" x="450" y="1266"/>
         </scene>
         <!--Developers-->
         <scene sceneID="h9g-vp-6hG">
@@ -391,8 +418,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="A Shorecrest Preparatory App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-7U-wSf">
-                                <rect key="frame" x="216" y="573" width="168" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Shorecrest Preparatory App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-7U-wSf">
+                                <rect key="frame" x="238.5" y="573" width="123.5" height="19"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -441,7 +468,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And also to the Shorecrest Middle Division for providing the vital evocation for this idea." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-jZ-u8Y">
-                                <rect key="frame" x="16" y="247.5" width="332" height="126"/>
+                                <rect key="frame" x="16" y="247" width="332" height="126"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="332" id="64O-tV-bTH"/>
                                     <constraint firstAttribute="height" constant="126" id="rOm-d3-XGD"/>
@@ -482,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Zy-OR-jQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="458" y="1816"/>
+            <point key="canvasLocation" x="450" y="2030"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wd8-gQ-biT">
@@ -500,7 +527,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HV2-F1-3am" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="458" y="-302"/>
+            <point key="canvasLocation" x="450" y="-302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TIP-IC-nbw">
@@ -518,7 +545,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83i-RB-wac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-256" y="-302"/>
+            <point key="canvasLocation" x="-398" y="-302"/>
         </scene>
     </scenes>
     <resources>
@@ -527,5 +554,9 @@
         <image name="toolbar_Save_Unclicked" width="22" height="22"/>
         <image name="toolbar_SettingsGear" width="22" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="KZ5-XL-hNV"/>
+        <segue reference="oV6-vP-98A"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.1539937609" green="0.1539937609" blue="0.1539937609" alpha="1" colorSpace="calibratedRGB"/>
 </document>

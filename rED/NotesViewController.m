@@ -34,4 +34,6 @@
 }
 */
 
+- (IBAction)gesture_SwipeRight:(id)sender {
+}
 @end

@@ -12,9 +12,6 @@
 @interface SavedPagesTableViewController ()
 {
     NSMutableArray *array_cells;
-    
-    // This object is assigned in cellForRowAtIndexPath and
-    // and used in the segue
     Page *navigatingPage;
 }
 
@@ -49,7 +46,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,14 +57,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete method implementation.
     // Return the number of sections.
     // Our sections should be arranged by subject
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [array_cells count];
 }
@@ -136,4 +131,6 @@
 }
 */
 
+- (IBAction)gesture_SwipeLeft:(id)sender {
+}
 @end

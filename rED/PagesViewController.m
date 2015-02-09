@@ -8,6 +8,8 @@
 
 #import "PagesViewController.h"
 #import "ColorPalette.h"
+#import "SavedPagesTableViewController.h"
+#import "NotesViewController.h"
 
 @interface PagesViewController ()
 {
@@ -30,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +47,7 @@
 }
 
 // This method was commented out for incorrect behavior with the Auto Scroll Navigation Bar
+
 //// Displays the Navigation Bar on disappearance
 //- (void)viewDidDisappear: (BOOL)animated {
 //    [self.navigationController setNavigationBarHidden:NO animated:animated];
@@ -66,4 +71,27 @@
         // Here, the Page obj should be removed from the cell array.
     }
 }
+
+//These methods may or may not be needed depending on the segue type set in the storyboard
+
+// Switch to Saved Pages
+- (IBAction)gesture_SwipeRight:(id)sender {
+    NSLog(@"swipe right");
+    
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
+}
+
+// Switch to Notebook
+- (IBAction)gesture_SwipeLeft:(id)sender {
+    NSLog(@"swipe left");
+    
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    NotesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
+}
+
 @end

@@ -35,7 +35,7 @@
     UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
     [naviTitle setText:@"Settings"];
     [naviTitle setFont:titleFont];
-    [naviTitle setTextColor:[UIColor darkTextColor]];
+    [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
 
@@ -54,19 +54,32 @@
 // Handles the font size of reader based on slider value.
 - (IBAction)slider_TextSizeDidChange:(id)sender {
     label_TextPreview.font=[label_TextPreview.font fontWithSize:slider_TextSize.value];
-    // Here the user settings should accept the font size for 'fontSizeAsProportion'
+
+    double fontSizeAsProportion = slider_TextSize.value;
+    Settings *s = [Settings sharedSettings];
+    [s setTextSize:fontSizeAsProportion];
 }
 
 #pragma mark - Switches
 
 - (IBAction)switch_NightModeDidChange:(id)sender {
     BOOL switchState = switch_NightMode.state;
-    // Here the settings will accept 'swtichState' for Night Mode
+    Settings *s = [Settings sharedSettings];
+    [s setNightMode:switchState];
+    
+    if (switchState) {
+        NSLog(@"Night Mode ON");
+        [cp changeColorProfile:@"NightMode"];
+    } else {
+        [cp changeColorProfile:@"Default"];
+    }
+    
 }
 
 - (IBAction)switch_TutorialModeDidChange:(id)sender {
     BOOL switchState = switch_TutorialMode.state;
-    //Here the settings will accept the 'switchState' for Tutorial Mode
+    Settings *s = [Settings sharedSettings];
+    [s setNightMode:switchState];
 }
 
 - (IBAction)textField_HomeSiteDidChange:(id)sender {
