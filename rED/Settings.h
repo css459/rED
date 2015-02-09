@@ -17,7 +17,9 @@
 
 @property BOOL nightMode;
 @property BOOL tutorialMode;
-@property int textSize;
+@property double textSize;
 @property NSString *homeSite;
+
++(Settings *)sharedSettings;
 
 @end

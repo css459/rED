@@ -16,8 +16,9 @@
 
 @interface ColorPalette : NSObject
 
-// The main red color that should be used tints where appropriate
-@property UIColor *tint_master_red;
-@property UIColor *tint_darkGrey;
+@property UIColor *tint_accent;
+@property UIColor *tint_text;
+@property UIColor *tint_background;
 
+- (void)changeColorProfile: (NSString *) colorProfile;
 @end

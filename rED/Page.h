@@ -12,6 +12,12 @@
     These are the objects to be displayed by the Table View Controller for Saved Pages.
  */
 
+/*
+    To Pages developer,
+        Please add an NSString property for the date created of the 'Page' object
+        We'll need it for the subtitle of the cell in the Table View Controller.
+ */
+
 #import <Foundation/Foundation.h>
 
 @interface Page : NSObject

@@ -11,20 +11,20 @@
 @implementation Settings
 @synthesize homeSite;
 
-+ (Settings *)sharedSettings {
-    static Settings *sharedSettings = nil;
-    if (!sharedSettings) {
-        sharedSettings = [[super allocWithZone:nil] init];
-    }
-    return sharedSettings;
-}
-
 - (id)init {
     self = [super init];
     if (self) {
     }
     return self;
     
+}
+
++ (Settings *)sharedSettings {
+    static Settings *sharedSettings = nil;
+    if (!sharedSettings) {
+        sharedSettings = [[super allocWithZone:nil] init];
+    }
+    return sharedSettings;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone {

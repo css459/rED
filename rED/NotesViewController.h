@@ -10,4 +10,6 @@
 
 @interface NotesViewController : UIViewController
 
+- (IBAction)gesture_SwipeRight:(id)sender;
+
 @end
