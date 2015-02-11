@@ -19,8 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_SavePageProp;
 
 - (IBAction)button_SavePage:(id)sender;
- - (IBAction)gesture_SwipeRight:(id)sender;
- - (IBAction)gesture_SwipeLeft:(id)sender;
-
+- (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;
+- (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;
 @end
 

@@ -8,7 +8,7 @@
 
 /*
     This object outlines the saved pages that the user creates. 
-    This object should store the URL, the simplified text, and a Notes object.
+    This object should store the URL, the simplified text, and a Notebook object.
     These are the objects to be displayed by the Table View Controller for Saved Pages.
  */
 

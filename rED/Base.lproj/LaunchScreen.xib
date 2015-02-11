@@ -10,17 +10,17 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" ambiguous="YES" placeholder="URL" translatesAutoresizingMaskIntoConstraints="NO" id="qga-tO-JfF">
+                <searchBar contentMode="redraw" misplaced="YES" placeholder="URL" translatesAutoresizingMaskIntoConstraints="NO" id="qga-tO-JfF">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
                     <color key="tintColor" red="0.1539937609" green="0.1539937609" blue="0.1539937609" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nyu-LT-XPn">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nyu-LT-XPn">
                     <rect key="frame" x="0.0" y="436" width="480" height="44"/>
                     <items/>
                 </toolbar>
-                <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-86-JMA">
+                <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-86-JMA">
                     <rect key="frame" x="90" y="117" width="301" height="245"/>
                 </imageView>
             </subviews>

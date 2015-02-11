@@ -7,6 +7,7 @@
 //
 
 #import "SavedPagesTableViewController.h"
+#import "PagesViewController.h"
 #import "Page.h"
 
 @interface SavedPagesTableViewController ()
@@ -29,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.hidesBackButton = YES;
     
     // Implements custom title with formatting
     [self.navigationController setNavigationBarHidden:NO];
@@ -47,6 +49,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Swipe Declaration
+    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeLeft:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,6 +138,10 @@
 }
 */
 
-- (IBAction)gesture_SwipeLeft:(id)sender {
+- (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
 }
 @end

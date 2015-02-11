@@ -42,11 +42,10 @@
                 <swipeGestureRecognizer direction="right" id="fax-4q-G2R">
                     <connections>
                         <action selector="gesture_SwipeRight:" destination="vfo-5Y-0bf" id="hps-RS-YhG"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" id="oV6-vP-98A"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1396" y="818"/>
+            <point key="canvasLocation" x="1355" y="454"/>
         </scene>
         <!--Auto Scroll-->
         <scene sceneID="Y5C-6J-lID">
@@ -96,12 +95,12 @@
                 <tapGestureRecognizer id="SPd-HA-5pu"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Ufj-VN-laV"/>
             </objects>
-            <point key="canvasLocation" x="1396" y="-50"/>
+            <point key="canvasLocation" x="1355" y="-302"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Home" id="BYZ-38-t0r" customClass="PagesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PagesViewController" title="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="PagesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -144,7 +143,7 @@
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQo-5n-j2j">
+                            <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQo-5n-j2j">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
@@ -169,20 +168,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="jdY-5f-hgn">
-                    <connections>
-                        <action selector="gesture_SwipeRight:" destination="BYZ-38-t0r" id="qYA-Io-PIr"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="uFv-rU-2CT"/>
-                        <segue destination="xWD-04-dDI" kind="presentation" id="KZ5-XL-hNV"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="M0X-ro-zRl">
-                    <connections>
-                        <action selector="gesture_SwipeLeft:" destination="BYZ-38-t0r" id="UIi-Ee-G4k"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="dbf-9q-rUJ"/>
-                        <segue destination="vfo-5Y-0bf" kind="presentation" id="BVh-Kp-x5d"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="450" y="454"/>
         </scene>
@@ -231,7 +216,6 @@
                     <connections>
                         <action selector="gesture_SwipeLeft:" destination="xWD-04-dDI" id="Uyx-1p-d4Z"/>
                         <outlet property="delegate" destination="xWD-04-dDI" id="QZr-VY-dGv"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" id="O7a-0Y-IEa"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -419,7 +403,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Shorecrest Preparatory App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-7U-wSf">
-                                <rect key="frame" x="238.5" y="573" width="123.5" height="19"/>
+                                <rect key="frame" x="238" y="573" width="123.5" height="19"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -455,13 +439,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Matt Kongsiri for Data Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsF-cl-HMI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To Matt Kongsiri for HTML Parsing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsF-cl-HMI">
                                 <rect key="frame" x="16" y="175" width="221.5" height="18.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To KJ for View Controller Development" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="320-dL-OCJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To KJ for Backend Web Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="320-dL-OCJ">
                                 <rect key="frame" x="16" y="201" width="225.5" height="18.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -554,9 +538,5 @@
         <image name="toolbar_Save_Unclicked" width="22" height="22"/>
         <image name="toolbar_SettingsGear" width="22" height="22"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="KZ5-XL-hNV"/>
-        <segue reference="oV6-vP-98A"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.1539937609" green="0.1539937609" blue="0.1539937609" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -14,9 +14,9 @@
  
  "Vitae class luctus convallis vestibulum." - Line 42
  
- Here, the user will write a note about the quoted line above from the text
- The note should be indented as shown and have margins left aligned.
- Notes should be separated by a generous about of space or a thin line.
+    Here, the user will write a note about the quoted line above from the text
+    The note should be indented as shown and have margins left aligned.
+    Notes should be separated by a generous about of space or a thin line.
  
  The Note object should contain at least 3 things:
  

@@ -7,6 +7,7 @@
 //
 
 #import "NotesViewController.h"
+#import "PagesViewController.h"
 
 @interface NotesViewController ()
 
@@ -16,12 +17,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeRight:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeRight];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
 }
 
 /*
@@ -33,7 +44,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)gesture_SwipeRight:(id)sender {
-}
 @end

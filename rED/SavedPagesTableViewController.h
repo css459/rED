@@ -10,6 +10,6 @@
 
 @interface SavedPagesTableViewController : UITableViewController
 
-- (IBAction)gesture_SwipeLeft:(id)sender;
+- (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;
 
 @end

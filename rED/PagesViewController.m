@@ -33,7 +33,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Swipe Declarations
+    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeLeft:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
     
+    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeRight:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeRight];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,14 +52,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }
-
-// This method was commented out for incorrect behavior with the Auto Scroll Navigation Bar
-
-//// Displays the Navigation Bar on disappearance
-//- (void)viewDidDisappear: (BOOL)animated {
-//    [self.navigationController setNavigationBarHidden:NO animated:animated];
-//    [super viewDidDisappear:animated];
-//}
 
 // Allows user to exit editing
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -72,25 +71,19 @@
     }
 }
 
-//These methods may or may not be needed depending on the segue type set in the storyboard
-
-// Switch to Saved Pages
-- (IBAction)gesture_SwipeRight:(id)sender {
-    NSLog(@"swipe right");
-    
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
-    SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
-    [[self navigationController] pushViewController:vc animated:YES];
-}
-
 // Switch to Notebook
-- (IBAction)gesture_SwipeLeft:(id)sender {
-    NSLog(@"swipe left");
-    
+- (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
     NSString * storyboardName = @"Main";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
     NotesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
+}
+
+// Switch to Saved Pages
+- (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
 }
 

@@ -13,16 +13,18 @@
 @interface SettingsViewController ()
 {
     ColorPalette *cp;
+    Settings *userSettings;
 }
 @end
 
 @implementation SettingsViewController
-@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode;
+@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
+        userSettings = [Settings sharedSettings];
     }
     return self;
 }
@@ -38,7 +40,14 @@
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
-
+    
+    // Color Tints for Night Mode integration
+    [self.navigationController.navigationBar setTintColor:[cp tint_text]];
+    [self.navigationController.navigationBar setBackgroundColor:[cp tint_background]];
+    [self.view setBackgroundColor:[cp tint_background]];
+    [self.view setTintColor:[cp tint_accent]];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,38 +60,43 @@
     [super touchesBegan:touches withEvent:event];
 }
 
-// Handles the font size of reader based on slider value.
-- (IBAction)slider_TextSizeDidChange:(id)sender {
-    label_TextPreview.font=[label_TextPreview.font fontWithSize:slider_TextSize.value];
+#pragma mark - Setting Components
 
+- (IBAction)slider_TextSizeDidChange:(id)sender {
     double fontSizeAsProportion = slider_TextSize.value;
-    Settings *s = [Settings sharedSettings];
-    [s setTextSize:fontSizeAsProportion];
+    
+    label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
+    [userSettings setTextSize:fontSizeAsProportion];
 }
 
-#pragma mark - Switches
-
 - (IBAction)switch_NightModeDidChange:(id)sender {
-    BOOL switchState = switch_NightMode.state;
-    Settings *s = [Settings sharedSettings];
-    [s setNightMode:switchState];
     
-    if (switchState) {
-        NSLog(@"Night Mode ON");
+    if (switch_NightMode.on) {
         [cp changeColorProfile:@"NightMode"];
+        [userSettings setNightMode:YES];
     } else {
         [cp changeColorProfile:@"Default"];
+        [userSettings setNightMode:NO];
     }
+    
+    [self.navigationController.navigationBar setTintColor:[cp tint_text]];
+    [self.navigationController.navigationBar setBackgroundColor:[cp tint_background]];
+    [self.view setBackgroundColor:[cp tint_background]];
+    [self.view setTintColor:[cp tint_accent]];
+
     
 }
 
 - (IBAction)switch_TutorialModeDidChange:(id)sender {
-    BOOL switchState = switch_TutorialMode.state;
-    Settings *s = [Settings sharedSettings];
-    [s setNightMode:switchState];
+    if (switch_TutorialMode.on) {
+        [userSettings setTutorialMode:YES];
+    } else {
+        [userSettings setTutorialMode:NO];
+    }
 }
 
 - (IBAction)textField_HomeSiteDidChange:(id)sender {
+    [userSettings setHomeSite:textField_HomeSite.text];
 }
 
 /*
