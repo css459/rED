@@ -28,7 +28,7 @@ Responsibilities:
 
 * Website Conversion: KJ and Matt
 
-* Auto Scroll
+* Auto Scroll: KJ
 
 Conventions:
 
