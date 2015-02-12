@@ -10,6 +10,6 @@
 
 @interface NotesViewController : UIViewController
 
-- (IBAction)gesture_SwipeRight:(id)sender;
+- (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;
 
 @end

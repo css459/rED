@@ -42,7 +42,7 @@
     [super didReceiveMemoryWarning];
 }
 
-//Pressing the 'Done' button will dismiss view controller
+// Switch to Home
 - (IBAction)button_DoneWasPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

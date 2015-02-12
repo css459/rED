@@ -13,21 +13,35 @@
 @interface SettingsViewController ()
 {
     ColorPalette *cp;
+    Settings *userSettings;
+    NSArray *array_TextLabels;
+    NSArray *array_switches;
 }
 @end
 
+// TO DO:
+//  Use the arrays above to implement the Night Mode, not yet finished.
+
 @implementation SettingsViewController
-@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode;
+@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
+        userSettings = [Settings sharedSettings];
     }
     return self;
 }
+
+#pragma mark - View Control Methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // UI array aeclarations
+    array_switches = @[switch_NightMode, switch_TutorialMode];
+    array_TextLabels = @[label_NightMode, label_TutorialMode, label_HomeSite, label_TextPreview, label_TextSize];
     
     // Implements custom title with formatting
     [self.navigationController setNavigationBarHidden:NO];
@@ -38,7 +52,37 @@
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
+    
+    // Color tints for night mode integration
+//    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setTintColor:[cp tint_text]];
+    [self.navigationController.navigationBar setBackgroundColor:[cp tint_navBar]];
+    [self.view setBackgroundColor:[cp tint_background]];
+    [self.view setTintColor:[cp tint_accent]];
+    [slider_TextSize setTintColor:[cp tint_accent]];
+    
+    for (UISwitch *s in array_switches) {
+        [s setTintColor:[cp tint_accent]];
+        [s setThumbTintColor:[cp tint_switch_thumb]];
+        [s setOnTintColor:[cp tint_accent]];
+    }
+    for (UILabel *l in array_TextLabels) {
+        [l setTextColor:[cp tint_text]];
+    }
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    slider_TextSize.value = [userSettings textSize];
+    switch_NightMode.on = [userSettings nightMode];
+    switch_TutorialMode.on = [userSettings tutorialMode];
+    textField_HomeSite.text = [userSettings homeSite];
+    
+    label_TextPreview.font = [label_TextPreview.font fontWithSize:[userSettings textSize]];
+}
+
+- (void)refreshView:(NSNotification *) notification {
+    [self viewDidLoad];
+    [self viewWillAppear:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,38 +95,37 @@
     [super touchesBegan:touches withEvent:event];
 }
 
-// Handles the font size of reader based on slider value.
-- (IBAction)slider_TextSizeDidChange:(id)sender {
-    label_TextPreview.font=[label_TextPreview.font fontWithSize:slider_TextSize.value];
+#pragma mark - Setting Components
 
+- (IBAction)slider_TextSizeDidChange:(id)sender {
     double fontSizeAsProportion = slider_TextSize.value;
-    Settings *s = [Settings sharedSettings];
-    [s setTextSize:fontSizeAsProportion];
+    
+    label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
+    [userSettings setTextSize:fontSizeAsProportion];
 }
 
-#pragma mark - Switches
-
 - (IBAction)switch_NightModeDidChange:(id)sender {
-    BOOL switchState = switch_NightMode.state;
-    Settings *s = [Settings sharedSettings];
-    [s setNightMode:switchState];
     
-    if (switchState) {
-        NSLog(@"Night Mode ON");
+    if (switch_NightMode.on) {
         [cp changeColorProfile:@"NightMode"];
+        [userSettings setNightMode:YES];
     } else {
         [cp changeColorProfile:@"Default"];
+        [userSettings setNightMode:NO];
     }
-    
+    [self refreshView:nil];
 }
 
 - (IBAction)switch_TutorialModeDidChange:(id)sender {
-    BOOL switchState = switch_TutorialMode.state;
-    Settings *s = [Settings sharedSettings];
-    [s setNightMode:switchState];
+    if (switch_TutorialMode.on) {
+        [userSettings setTutorialMode:YES];
+    } else {
+        [userSettings setTutorialMode:NO];
+    }
 }
 
 - (IBAction)textField_HomeSiteDidChange:(id)sender {
+    [userSettings setHomeSite:textField_HomeSite.text];
 }
 
 /*

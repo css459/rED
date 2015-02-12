@@ -7,14 +7,15 @@
 //
 
 #import "SavedPagesTableViewController.h"
+#import "PagesViewController.h"
 #import "Page.h"
 
 @interface SavedPagesTableViewController ()
 {
     NSMutableArray *array_cells;
     Page *navigatingPage;
+    NSInteger indexForDelete;
 }
-
 @end
 
 @implementation SavedPagesTableViewController
@@ -40,6 +41,7 @@
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
+    self.navigationItem.hidesBackButton = YES;
 
     
     // Uncomment the following line to preserve selection between presentations.
@@ -47,11 +49,24 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // Swipe Declaration
+    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeLeft:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Switch to Home
+- (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -99,13 +114,27 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [array_cells removeObjectAtIndex:indexPath.row];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure?"
+                                                        message:@"Deleting this page will remove its Notebook and highlights as well."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Retain"
+                                              otherButtonTitles:@"Delete"];
+        [alert show];
+        indexForDelete = indexPath.row;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == [alertView cancelButtonIndex]){
+        //cancel clicked ...do your action
+    }else{
+        //reset clicked
+        [array_cells removeObjectAtIndex:indexForDelete];
+    }
+}
 
 /*
 // Override to support rearranging the table view.
@@ -130,7 +159,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)gesture_SwipeLeft:(id)sender {
-}
 @end
