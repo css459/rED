@@ -10,22 +10,25 @@
 #import "ColorPalette.h"
 #import "SavedPagesTableViewController.h"
 #import "NotesViewController.h"
+#import "Settings.h"
 
 @interface PagesViewController ()
 {
     BOOL savedButtonState;
     ColorPalette *cp;
+    Settings *userSettings;
 }
 @end
 
 @implementation PagesViewController
-@synthesize button_SavePageProp;
+@synthesize button_SavePageProp, textView;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         savedButtonState = false;
         cp = [[ColorPalette alloc] init];
+        userSettings = [Settings sharedSettings];
     }
     return self;
 }
@@ -43,14 +46,19 @@
     [self.view addGestureRecognizer:swipeRight];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-// Hides the Navigation Bar on appearance
 - (void)viewWillAppear:(BOOL)animated {
+    
+    // Hides the Navigation Bar on appearance
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    
+    // Font Size Configuration
+    UIFont *font_textView = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:[userSettings textSize]];
+    textView.font = font_textView;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 // Allows user to exit editing

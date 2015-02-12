@@ -16,9 +16,12 @@
 
 @interface ColorPalette : NSObject
 
-@property UIColor *tint_accent;
-@property UIColor *tint_text;
-@property UIColor *tint_background;
+@property (nonatomic) UIColor *tint_accent;
+@property (nonatomic) UIColor *tint_text;
+@property (nonatomic) UIColor *tint_background;
+@property (nonatomic) UIColor *tint_navBar;
+@property (nonatomic) UIColor *tint_switch_thumb;
 
 - (void)changeColorProfile: (NSString *) colorProfile;
+
 @end

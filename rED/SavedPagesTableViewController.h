@@ -11,5 +11,6 @@
 @interface SavedPagesTableViewController : UITableViewController
 
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end

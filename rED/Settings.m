@@ -9,11 +9,14 @@
 #import "Settings.h"
 
 @implementation Settings
-@synthesize homeSite;
+@synthesize homeSite, textSize, nightMode, tutorialMode;
 
 - (id)init {
     self = [super init];
     if (self) {
+        textSize = 25.0;
+        nightMode = NO;
+        tutorialMode = NO;
     }
     return self;
     
