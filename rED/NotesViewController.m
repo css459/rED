@@ -37,6 +37,13 @@
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
     self.navigationItem.hidesBackButton = YES;
     
+    // Bar Buttons
+    UIBarButtonItem *button_Share = [[UIBarButtonItem alloc]
+                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                     target:self
+                                     action:@selector(button_ShareWasPressed:)];
+    [self.navigationItem setRightBarButtonItem:button_Share];
+    
     // Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeRight:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
@@ -45,7 +52,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // Switch to Home
@@ -55,6 +61,8 @@
     PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
 }
+
+- (IBAction)button_ShareWasPressed:(id)sender {}
 
 /*
 #pragma mark - Navigation

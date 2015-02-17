@@ -31,4 +31,6 @@
 - (IBAction)textField_HomeSiteDidChange:(id)sender;
 - (IBAction)switch_TutorialModeDidChange:(id)sender;
 
+- (void)updateColorScheme;
+
 @end

@@ -24,9 +24,7 @@
                                     <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Notebook" id="DgU-QE-Yy7">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" id="56Q-Vi-0uH"/>
-                                    </navigationItem>
+                                    <navigationItem title="Notebook" id="DgU-QE-Yy7"/>
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tas-pW-STP">

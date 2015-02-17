@@ -37,11 +37,15 @@
     [super viewDidLoad];
     
     // Swipe Declarations
-    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeLeft:)];
+    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]
+                                            initWithTarget:self
+                                            action:@selector(gesture_SwipeLeft:)];
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeLeft];
     
-    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeRight:)];
+    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self
+                                             action:@selector(gesture_SwipeRight:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
 }
@@ -53,7 +57,9 @@
     [super viewWillAppear:animated];
     
     // Font Size Configuration
-    UIFont *font_textView = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:[userSettings textSize]];
+    UIFont *font_textView = [UIFont
+                             fontWithName:@"Bodoni 72 Oldstyle"
+                             size:[userSettings textSize]];
     textView.font = font_textView;
 }
 
@@ -82,7 +88,10 @@
 // Switch to Notebook
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
     NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    UIStoryboard *storyboard = [UIStoryboard
+                                storyboardWithName:storyboardName
+                                bundle:[NSBundle bundleForClass:[self class]]];
+    
     NotesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
 }
@@ -90,7 +99,10 @@
 // Switch to Saved Pages
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
     NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+    UIStoryboard *storyboard = [UIStoryboard
+                                storyboardWithName:storyboardName
+                                bundle:[NSBundle bundleForClass:[self class]]];
+    
     SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
 }
