@@ -11,5 +11,6 @@
 @interface NotesViewController : UIViewController
 
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;
+- (IBAction)button_ShareWasPressed:(id)sender;
 
 @end

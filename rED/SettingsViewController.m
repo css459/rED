@@ -14,8 +14,6 @@
 {
     ColorPalette *cp;
     Settings *userSettings;
-    NSArray *array_TextLabels;
-    NSArray *array_switches;
 }
 @end
 
@@ -39,10 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // UI array aeclarations
-    array_switches = @[switch_NightMode, switch_TutorialMode];
-    array_TextLabels = @[label_NightMode, label_TutorialMode, label_HomeSite, label_TextPreview, label_TextSize];
-    
     // Implements custom title with formatting
     [self.navigationController setNavigationBarHidden:NO];
     UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -53,8 +47,33 @@
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
     
-    // Color tints for night mode integration
-//    [self.navigationController.navigationBar setTranslucent:NO];
+    [self updateColorScheme];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    slider_TextSize.value = [userSettings textSize];
+    switch_NightMode.on = [userSettings nightMode];
+    switch_TutorialMode.on = [userSettings tutorialMode];
+    textField_HomeSite.text = [userSettings homeSite];
+    
+    label_TextPreview.font = [label_TextPreview.font fontWithSize:[userSettings textSize]];
+    
+    [self updateColorScheme];
+}
+
+- (void)refreshView:(NSNotification *) notification {
+    [self viewDidLoad];
+    [self viewWillAppear:YES];
+}
+
+- (void)updateColorScheme {
+    // UI array declarations
+    NSArray *array_TextLabels;
+    NSArray *array_switches;
+    array_switches = @[switch_NightMode, switch_TutorialMode];
+    array_TextLabels = @[label_NightMode, label_TutorialMode, label_HomeSite, label_TextPreview, label_TextSize];
+    
+    // Color tints
     [self.navigationController.navigationBar setTintColor:[cp tint_text]];
     [self.navigationController.navigationBar setBackgroundColor:[cp tint_navBar]];
     [self.view setBackgroundColor:[cp tint_background]];
@@ -69,20 +88,6 @@
     for (UILabel *l in array_TextLabels) {
         [l setTextColor:[cp tint_text]];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    slider_TextSize.value = [userSettings textSize];
-    switch_NightMode.on = [userSettings nightMode];
-    switch_TutorialMode.on = [userSettings tutorialMode];
-    textField_HomeSite.text = [userSettings homeSite];
-    
-    label_TextPreview.font = [label_TextPreview.font fontWithSize:[userSettings textSize]];
-}
-
-- (void)refreshView:(NSNotification *) notification {
-    [self viewDidLoad];
-    [self viewWillAppear:YES];
 }
 
 - (void)didReceiveMemoryWarning {
