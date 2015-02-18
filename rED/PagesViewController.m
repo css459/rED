@@ -11,6 +11,7 @@
 #import "SavedPagesTableViewController.h"
 #import "NotesViewController.h"
 #import "Settings.h"
+#import "AppDelegate.h"
 
 @interface PagesViewController ()
 {
@@ -21,7 +22,7 @@
 @end
 
 @implementation PagesViewController
-@synthesize button_SavePageProp, textView;
+@synthesize button_SavePageProp, searchBar, webView, url, htmlContent, htmlDictionary;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -55,12 +56,6 @@
     // Hides the Navigation Bar on appearance
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
-    
-    // Font Size Configuration
-    UIFont *font_textView = [UIFont
-                             fontWithName:@"Bodoni 72 Oldstyle"
-                             size:[userSettings textSize]];
-    textView.font = font_textView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,6 +100,43 @@
     
     SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)sB
+{
+    url = [NSString stringWithString:sB.text];
+    [self getHTML:url];
+}
+
+-(void)getHTML:(NSString *)URL
+{
+    NSString *URLString = [NSString stringWithFormat:@"https://www.readability.com/api/content/v1/parser?url=%@&token=79df0f9969a83dfb8759ba33c4530d6d04ffe87f", URL];
+    NSURL *websiteUrl = [NSURL URLWithString:URLString];
+    
+    [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data)
+     {
+         if (data != nil)
+         {
+             NSError *error;
+             NSMutableDictionary *returnedDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+             
+             if (error != nil)
+             {
+                 NSLog(@"%@",[error localizedDescription]);
+             }
+             else
+             {
+                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
+                 self.htmlContent = [[self htmlDictionary] description];
+                 [self openHTML:htmlContent];
+             }
+         }
+     }];
+}
+
+-(void)openHTML:(NSString *)html
+{
+    [webView loadHTMLString:html baseURL:nil];
 }
 
 @end
