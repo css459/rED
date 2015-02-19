@@ -160,6 +160,8 @@
      }];
 }
 
+#pragma mark - UIWebView Handlers
+
 - (void)openHTML:(NSString *)html {
     //Loads UIWebView with HTML
     [webView loadHTMLString:html baseURL:nil];

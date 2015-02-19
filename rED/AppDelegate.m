@@ -34,7 +34,7 @@
                                           
                                           // If it's other than 200, then show it on the console.
                                           if (HTTPStatusCode != 200) {
-                                              NSLog(@"HTTP status code = %ld", HTTPStatusCode);
+                                              NSLog(@"HTTP status code = %ld", (long)HTTPStatusCode);
                                           }
                                           
                                           // Call the completion handler with the returned data on the main thread.
