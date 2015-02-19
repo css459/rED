@@ -27,5 +27,9 @@
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)sB;
+- (void)getHTML:(NSString *)URL;
+- (void)openHTML:(NSString *)html;
+
 @end
 

@@ -103,48 +103,47 @@
 }
 
 // Called when URL search button is pressed
--(void)searchBarSearchButtonClicked:(UISearchBar *)sB
-{
-
+- (void)searchBarSearchButtonClicked:(UISearchBar *)sB {
     url = [NSString stringWithString:sB.text];
     
     // Formats the URL if it does not contain the "http://" prefix
-    if ([url containsString:@"http://"])
-    {
+    if ([url containsString:@"http://"]) {
         [self getHTML:url];
-    }
-    else
-    {
+    } else {
         NSString *newUrl = [NSString stringWithFormat:@"http://%@", url];
         [self getHTML:newUrl];
     }
 }
 
--(void)getHTML:(NSString *)URL
-{
+- (void)getHTML:(NSString *)URL {
+    
     // URLString is the URL from which the data is downloaded from
     NSString *URLString = [NSString stringWithFormat:@"https://www.readability.com/api/content/v1/parser?url=%@&token=79df0f9969a83dfb8759ba33c4530d6d04ffe87f", URL];
+    
     // NSString is converted to a NSURL
     NSURL *websiteUrl = [NSURL URLWithString:URLString];
     
     // Data download block
-    [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data)
-     {
-         if (data != nil)
-         {
+    [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
+         if (data != nil) {
              NSError *error;
-             NSMutableDictionary *returnedDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+             NSMutableDictionary *returnedDict = [NSJSONSerialization
+                                                  JSONObjectWithData:data
+                                                  options:kNilOptions
+                                                  error:&error];
              
-             if (error != nil)
-             {
+             if (error != nil) {
                  NSLog(@"%@",[error localizedDescription]);
                  
-                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh-Oh!" message:@"The URL you requested is not compatible with rED :(" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+                 UIAlertView *alert = [[UIAlertView alloc]
+                                       initWithTitle:@"Uh-Oh!"
+                                       message:@"The URL you requested is not compatible with rED :("
+                                       delegate:nil
+                                       cancelButtonTitle:@"Okay"
+                                       otherButtonTitles:nil, nil];
                                        
                  [alert show];
-             }
-             else
-             {
+             } else {
                  self.htmlDictionary = [returnedDict objectForKey:@"content"];
                  
                  // HTML Content property is set to contain the HTML code for the page
@@ -156,8 +155,7 @@
      }];
 }
 
--(void)openHTML:(NSString *)html
-{
+- (void)openHTML:(NSString *)html {
     //Loads UIWebView with HTML
     [webView loadHTMLString:html baseURL:nil];
 }
