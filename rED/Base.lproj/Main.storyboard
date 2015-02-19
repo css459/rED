@@ -265,7 +265,7 @@
         <!--Settings-->
         <scene sceneID="iqV-Ka-5IK">
             <objects>
-                <viewController title="Settings" id="yWB-z3-bxX" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" title="Settings" id="yWB-z3-bxX" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lEK-rc-RY7"/>
                         <viewControllerLayoutGuide type="bottom" id="wiK-GY-Bei"/>
@@ -445,7 +445,7 @@
         <!--Developers-->
         <scene sceneID="h9g-vp-6hG">
             <objects>
-                <viewController title="Developers" id="vtG-R0-bx7" customClass="ThankYouViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThankYouViewController" title="Developers" id="vtG-R0-bx7" customClass="ThankYouViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c4T-an-jaB"/>
                         <viewControllerLayoutGuide type="bottom" id="RT8-FM-NtA"/>
@@ -455,7 +455,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Shorecrest Preparatory App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-7U-wSf">
-                                <rect key="frame" x="238" y="573" width="124" height="19"/>
+                                <rect key="frame" x="238.5" y="573" width="123.5" height="19"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -468,43 +468,43 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt3-VR-9lx">
-                                <rect key="frame" x="16" y="51" width="143" height="37"/>
+                                <rect key="frame" x="16" y="51" width="143" height="36.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Eric Hunt for Coding Guidance and Source Control" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-Sd-3D5">
-                                <rect key="frame" x="16" y="95" width="309" height="19"/>
+                                <rect key="frame" x="16" y="95.5" width="309" height="18.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Cole Smith for UI and Storyboard Design" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylj-77-0eN">
-                                <rect key="frame" x="16" y="122" width="251" height="19"/>
+                                <rect key="frame" x="16" y="122" width="250.5" height="18.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To John Rightmyer for Object Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaI-u8-MSx">
-                                <rect key="frame" x="16" y="148" width="243" height="19"/>
+                                <rect key="frame" x="16" y="148.5" width="243" height="18.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To Matt Kongsiri for HTML Parsing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsF-cl-HMI">
-                                <rect key="frame" x="16" y="175" width="222" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Matt Kongsiri for HTML Parsing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsF-cl-HMI">
+                                <rect key="frame" x="16" y="175" width="203" height="18.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To KJ for Backend Web Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="320-dL-OCJ">
-                                <rect key="frame" x="16" y="201" width="226" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To KJ for Backend Web Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="320-dL-OCJ">
+                                <rect key="frame" x="16" y="201.5" width="210" height="18.5"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="And also to the Shorecrest Middle Division for providing the vital evocation for this idea." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-jZ-u8Y">
-                                <rect key="frame" x="16" y="247" width="332" height="126"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And also to the Shorecrest Middle Division for providing the vital evocation for this idea." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-jZ-u8Y">
+                                <rect key="frame" x="16" y="248" width="332" height="126"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="332" id="64O-tV-bTH"/>
                                     <constraint firstAttribute="height" constant="126" id="rOm-d3-XGD"/>
@@ -550,7 +550,7 @@
         <!--Navigation Controller-->
         <scene sceneID="wd8-gQ-biT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rUd-gL-EKU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PagesViewControllerNavigation" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="rUd-gL-EKU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="W5P-wf-fnR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -568,7 +568,7 @@
         <!--Navigation Controller-->
         <scene sceneID="TIP-IC-nbw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qS0-UD-OxS" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SavedPagesTableViewControllerNavigation" automaticallyAdjustsScrollViewInsets="NO" id="qS0-UD-OxS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KnM-W6-04X">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

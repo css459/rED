@@ -26,13 +26,16 @@
 
 @implementation AutoScrollViewController
 
+#pragma mark - Initializers
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-    
     }
     return self;
 }
+
+#pragma mark - View Handlers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,6 +44,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - Action Handlers
 
 // Switch to Home
 - (IBAction)button_DoneWasPressed:(id)sender {

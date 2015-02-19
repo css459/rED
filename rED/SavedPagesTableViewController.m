@@ -20,6 +20,8 @@
 
 @implementation SavedPagesTableViewController
 
+#pragma mark - Initializers
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -27,6 +29,8 @@
     }
     return self;
 }
+
+#pragma mark - View Handlers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,7 +55,9 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Swipe Declaration
-    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeLeft:)];
+    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]
+                                            initWithTarget:self
+                                            action:@selector(gesture_SwipeLeft:)];
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeLeft];
 }
@@ -60,6 +66,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Action Handlers
 
 // Switch to Home
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -114,11 +122,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure?"
-                                                        message:@"Deleting this page will remove its Notebook and highlights as well."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Retain"
-                                              otherButtonTitles:@"Delete"];
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Are you sure?"
+                              message:@"Deleting this page will remove its Notebook and highlights as well."
+                              delegate:self
+                              cancelButtonTitle:@"Retain"
+                              otherButtonTitles:@"Delete", nil];
         [alert show];
         indexForDelete = indexPath.row;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

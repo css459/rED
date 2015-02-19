@@ -6,12 +6,6 @@
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-/*
- *** WAIT! ***
- If you're planning to write the implementation for this class, keep in mind
- it may need to be replaced with a Page View Controller to enable swiping between view controllers.
- */
-
 #import <UIKit/UIKit.h>
 
 @interface PagesViewController : UIViewController <UISearchBarDelegate>

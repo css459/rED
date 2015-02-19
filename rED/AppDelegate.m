@@ -15,8 +15,7 @@
 @implementation AppDelegate
 
 
-+(void)downloadDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *))completionHandler
-{
++(void)downloadDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *))completionHandler {
     // Instantiate a session configuration object.
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
@@ -26,20 +25,16 @@
     // Create a data task to perform the data downloading.
     NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                   {
-                                      if (error != nil)
-                                      {
+                                      if (error != nil) {
                                           // If any error occurs then just display its description on the console.
                                           NSLog(@"%@", [error localizedDescription]);
-                                      }
-                                      else
-                                      {
+                                      } else {
                                           // If no error occurs, check the HTTP status code.
                                           NSInteger HTTPStatusCode = [(NSHTTPURLResponse *)response statusCode];
                                           
                                           // If it's other than 200, then show it on the console.
-                                          if (HTTPStatusCode != 200)
-                                          {
-                                              NSLog(@"HTTP status code = %d", HTTPStatusCode);
+                                          if (HTTPStatusCode != 200) {
+                                              NSLog(@"HTTP status code = %ld", HTTPStatusCode);
                                           }
                                           
                                           // Call the completion handler with the returned data on the main thread.

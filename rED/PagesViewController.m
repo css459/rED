@@ -24,6 +24,8 @@
 @implementation PagesViewController
 @synthesize button_SavePageProp, searchBar, webView, url, htmlContent, htmlDictionary;
 
+#pragma mark - Initalizers
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -33,6 +35,8 @@
     }
     return self;
 }
+
+#pragma mark - View Handlers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +56,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     // Hides the Navigation Bar on appearance
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
@@ -62,11 +65,7 @@
     [super didReceiveMemoryWarning];
 }
 
-// Allows user to exit editing
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
+#pragma mark - Action Handlers
 
 // Handles toggling of saved button
 - (IBAction)button_SavePage:(id)sender {
@@ -78,6 +77,12 @@
         [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
         // Here, the Page obj should be removed from the cell array.
     }
+}
+
+// Allows user to exit editing
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 // Switch to Notebook
@@ -102,6 +107,8 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
+#pragma mark - HTML Handlers
+
 // Called when URL search button is pressed
 - (void)searchBarSearchButtonClicked:(UISearchBar *)sB {
     url = [NSString stringWithString:sB.text];
@@ -116,7 +123,6 @@
 }
 
 - (void)getHTML:(NSString *)URL {
-    
     // URLString is the URL from which the data is downloaded from
     NSString *URLString = [NSString stringWithFormat:@"https://www.readability.com/api/content/v1/parser?url=%@&token=79df0f9969a83dfb8759ba33c4530d6d04ffe87f", URL];
     
@@ -131,7 +137,6 @@
                                                   JSONObjectWithData:data
                                                   options:kNilOptions
                                                   error:&error];
-             
              if (error != nil) {
                  NSLog(@"%@",[error localizedDescription]);
                  
@@ -141,13 +146,13 @@
                                        delegate:nil
                                        cancelButtonTitle:@"Okay"
                                        otherButtonTitles:nil, nil];
-                                       
                  [alert show];
              } else {
                  self.htmlDictionary = [returnedDict objectForKey:@"content"];
                  
                  // HTML Content property is set to contain the HTML code for the page
                  self.htmlContent = [[self htmlDictionary] description];
+                 
                  // HTML is opened in the UIWebView
                  [self openHTML:htmlContent];
              }

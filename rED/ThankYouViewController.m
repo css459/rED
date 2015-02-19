@@ -14,12 +14,16 @@
 
 @implementation ThankYouViewController
 
+#pragma mark - Initializers
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
     }
     return self;
 }
+
+#pragma mark - View Handlers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +41,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

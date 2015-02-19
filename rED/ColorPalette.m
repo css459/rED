@@ -16,7 +16,7 @@
 
 @interface ColorPalette ()
 {
-    UIColor *default_accent;     // Prev. tint_master_red
+    UIColor *default_accent;
     UIColor *default_text;
     UIColor *default_background;
     UIColor *default_navBar;

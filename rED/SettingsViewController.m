@@ -23,6 +23,8 @@
 @implementation SettingsViewController
 @synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info;
 
+#pragma mark - Initializers
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -94,23 +96,15 @@
     [super didReceiveMemoryWarning];
 }
 
-// Allows user to exit editing
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
-
-#pragma mark - Setting Components
+#pragma mark - Action Handlers
 
 - (IBAction)slider_TextSizeDidChange:(id)sender {
     double fontSizeAsProportion = slider_TextSize.value;
-    
     label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
     [userSettings setTextSize:fontSizeAsProportion];
 }
 
 - (IBAction)switch_NightModeDidChange:(id)sender {
-    
     if (switch_NightMode.on) {
         [cp changeColorProfile:@"NightMode"];
         [userSettings setNightMode:YES];
@@ -131,6 +125,12 @@
 
 - (IBAction)textField_HomeSiteDidChange:(id)sender {
     [userSettings setHomeSite:textField_HomeSite.text];
+}
+
+// Allows user to exit editing
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 /*
