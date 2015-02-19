@@ -44,4 +44,6 @@ Conventions:
 
 Resources:
 
+[Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide)
+
 [Readability Implementation](http://stackoverflow.com/questions/7657553/ios-access-to-safari-reader-feature-through-uiwebview)
