@@ -107,6 +107,29 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
+- (void)customTransition {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard
+                                storyboardWithName:storyboardName
+                                bundle:[NSBundle bundleForClass:[self class]]];
+    
+    __block PagesViewController *sourceViewController = (UIViewController*)[self sourceViewController];
+    __block SavedPagesTableViewController *destinationController = (UIViewController*)[self destinationViewController];
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = .25;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush; //kCATransitionMoveIn; //, kCATransitionPush, kCATransitionReveal, kCATransitionFade
+    transition.subtype = kCATransitionFromLeft; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
+    
+    
+    
+    [sourceViewController.navigationController.view.layer addAnimation:transition
+                                                                forKey:kCATransition];
+    
+    [sourceViewController.navigationController pushViewController:destinationController animated:NO];
+}
+
 #pragma mark - HTML Handlers
 
 // Called when URL search button is pressed
@@ -131,33 +154,33 @@
     
     // Data download block
     [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
-         if (data != nil) {
-             NSError *error;
-             NSMutableDictionary *returnedDict = [NSJSONSerialization
-                                                  JSONObjectWithData:data
-                                                  options:kNilOptions
-                                                  error:&error];
-             if (error != nil) {
-                 NSLog(@"%@",[error localizedDescription]);
-                 
-                 UIAlertView *alert = [[UIAlertView alloc]
-                                       initWithTitle:@"Uh-Oh!"
-                                       message:@"The URL you requested is not compatible with rED :("
-                                       delegate:nil
-                                       cancelButtonTitle:@"Okay"
-                                       otherButtonTitles:nil, nil];
-                 [alert show];
-             } else {
-                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
-                 
-                 // HTML Content property is set to contain the HTML code for the page
-                 self.htmlContent = [[self htmlDictionary] description];
-                 
-                 // HTML is opened in the UIWebView
-                 [self openHTML:htmlContent];
-             }
-         }
-     }];
+        if (data != nil) {
+            NSError *error;
+            NSMutableDictionary *returnedDict = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:kNilOptions
+                                                 error:&error];
+            if (error != nil) {
+                NSLog(@"%@",[error localizedDescription]);
+                
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Uh-Oh!"
+                                      message:@"The URL you requested is not compatible with rED :("
+                                      delegate:nil
+                                      cancelButtonTitle:@"Okay"
+                                      otherButtonTitles:nil, nil];
+                [alert show];
+            } else {
+                self.htmlDictionary = [returnedDict objectForKey:@"content"];
+                
+                // HTML Content property is set to contain the HTML code for the page
+                self.htmlContent = [[self htmlDictionary] description];
+                
+                // HTML is opened in the UIWebView
+                [self openHTML:htmlContent];
+            }
+        }
+    }];
 }
 
 - (void)openHTML:(NSString *)html {
