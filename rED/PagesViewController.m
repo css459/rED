@@ -12,6 +12,7 @@
 #import "NotesViewController.h"
 #import "Settings.h"
 #import "AppDelegate.h"
+#import "Page.h"
 
 @interface PagesViewController ()
 {
@@ -73,9 +74,24 @@
     if (savedButtonState) {
         [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         // Here, the Page obj should be added to the cell array.
+        
+        if (url != nil)
+        {
+            NSDateFormatter *format = [[NSDateFormatter alloc] init];
+            [format setDateFormat:@"MMM dd, yyyy HH:mm"];
+            NSDate *now = [[NSDate alloc] init];
+            NSString *dateString = [format stringFromDate:now];
+            Notebook *notebook = [[Notebook alloc] init];
+        
+            Page *newPage = [[Page alloc] initWithURL:url withHTML:htmlContent withDateSaved:dateString withNoteBook:notebook];
+            [newPage savePage:newPage];
+        }
+    
     } else {
         [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
         // Here, the Page obj should be removed from the cell array.
+    
+    
     }
 }
 

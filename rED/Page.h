@@ -19,7 +19,16 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "Notebook.h"
 
 @interface Page : NSObject
+
+@property (weak, nonatomic) NSString *dateSaved;
+@property (weak, nonatomic) NSString *url;
+@property (weak, nonatomic) NSString *htmlContent;
+@property (weak, nonatomic) Notebook *notebook;
+
+- (id)initWithURL:(NSString *)urlAddress withHTML:(NSString *)HTML withDateSaved:(NSString *)date withNoteBook:(Notebook *)nb;
+- (void)savePage:(Page *)p;
 
 @end
