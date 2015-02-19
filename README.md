@@ -26,7 +26,7 @@ Responsibilities:
 
 * Settings: Cole
 
-* Website Conversion: KJ and Matt
+* Website Conversion: KJ and Matt (COMPLETE)
 
 * Auto Scroll: KJ
 
@@ -47,3 +47,7 @@ Resources:
 [Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide)
 
 [Readability Implementation](http://stackoverflow.com/questions/7657553/ios-access-to-safari-reader-feature-through-uiwebview)
+
+[Readability API](https://readability.com/developers/api)
+
+[Parser API Documentation](https://readability.com/developers/api/parser)
