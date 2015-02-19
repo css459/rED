@@ -107,29 +107,6 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
-- (void)customTransition {
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard
-                                storyboardWithName:storyboardName
-                                bundle:[NSBundle bundleForClass:[self class]]];
-    
-    __block PagesViewController *sourceViewController = (UIViewController*)[self sourceViewController];
-    __block SavedPagesTableViewController *destinationController = (UIViewController*)[self destinationViewController];
-    
-    CATransition* transition = [CATransition animation];
-    transition.duration = .25;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush; //kCATransitionMoveIn; //, kCATransitionPush, kCATransitionReveal, kCATransitionFade
-    transition.subtype = kCATransitionFromLeft; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
-    
-    
-    
-    [sourceViewController.navigationController.view.layer addAnimation:transition
-                                                                forKey:kCATransition];
-    
-    [sourceViewController.navigationController pushViewController:destinationController animated:NO];
-}
-
 #pragma mark - HTML Handlers
 
 // Called when URL search button is pressed
@@ -187,5 +164,31 @@
     //Loads UIWebView with HTML
     [webView loadHTMLString:html baseURL:nil];
 }
+
+// We will worry about custom transitions later
+/*
+ - (void)customTransition {
+ NSString * storyboardName = @"Main";
+ UIStoryboard *storyboard = [UIStoryboard
+ storyboardWithName:storyboardName
+ bundle:[NSBundle bundleForClass:[self class]]];
+ 
+ __block PagesViewController *sourceViewController = (UIViewController*)[self sourceViewController];
+ __block SavedPagesTableViewController *destinationController = (UIViewController*)[self destinationViewController];
+ 
+ CATransition* transition = [CATransition animation];
+ transition.duration = .25;
+ transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+ transition.type = kCATransitionPush; //kCATransitionMoveIn; //, kCATransitionPush, kCATransitionReveal, kCATransitionFade
+ transition.subtype = kCATransitionFromLeft; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
+ 
+ 
+ 
+ [sourceViewController.navigationController.view.layer addAnimation:transition
+ forKey:kCATransition];
+ 
+ [sourceViewController.navigationController pushViewController:destinationController animated:NO];
+ }
+ */
 
 @end

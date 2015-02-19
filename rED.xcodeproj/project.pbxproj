@@ -24,6 +24,7 @@
 		495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67661A828CF000E15853 /* SavedPagesTableViewController.m */; };
 		495D676A1A82A39500E15853 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67691A82A39500E15853 /* Note.m */; };
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
+		498434071A962AEC00029FFC /* NotebookManagerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498434061A962AEC00029FFC /* NotebookManagerTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		495D67691A82A39500E15853 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		49609ABE1A82DA1C00594EA8 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
 		49609ABF1A82DA1C00594EA8 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
+		498434051A962AEC00029FFC /* NotebookManagerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookManagerTableViewController.h; sourceTree = "<group>"; };
+		498434061A962AEC00029FFC /* NotebookManagerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebookManagerTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				495D67661A828CF000E15853 /* SavedPagesTableViewController.m */,
 				495D67531A82848600E15853 /* NotesViewController.h */,
 				495D67541A82848600E15853 /* NotesViewController.m */,
+				498434051A962AEC00029FFC /* NotebookManagerTableViewController.h */,
+				498434061A962AEC00029FFC /* NotebookManagerTableViewController.m */,
 				495D67561A82849200E15853 /* AutoScrollViewController.h */,
 				495D67571A82849200E15853 /* AutoScrollViewController.m */,
 				495D67591A8284BA00E15853 /* SettingsViewController.h */,
@@ -271,6 +276,7 @@
 			files = (
 				495D67611A8284E700E15853 /* Notebook.m in Sources */,
 				491CEB481A84374600838145 /* ThankYouViewController.m in Sources */,
+				498434071A962AEC00029FFC /* NotebookManagerTableViewController.m in Sources */,
 				4958887B1A8503F400B8D439 /* Settings.m in Sources */,
 				49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */,
 				495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */,
