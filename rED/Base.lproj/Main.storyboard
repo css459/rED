@@ -73,15 +73,36 @@
         <scene sceneID="Pan-mZ-mnU">
             <objects>
                 <tableViewController title="Notebook Manager" id="edx-Pz-AEi" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0OT-gN-U4x">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="0OT-gN-U4x">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bzS-LE-viM">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="bzS-LE-viM">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bzS-LE-viM" id="n21-LQ-8rx">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hx-c0-A2S">
+                                            <rect key="frame" x="536" y="0.0" width="64" height="64"/>
+                                            <color key="backgroundColor" red="0.32192862280000001" green="0.82136999310000003" blue="0.1150691529" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main Notebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUJ-ak-1bn">
+                                            <rect key="frame" x="15" y="10" width="130" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Modified: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxu-mg-4a5">
+                                            <rect key="frame" x="15" y="33" width="114" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -93,7 +114,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHc-su-Zi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2060" y="454"/>
+            <point key="canvasLocation" x="2060" y="453"/>
         </scene>
         <!--Auto Scroll-->
         <scene sceneID="Y5C-6J-lID">
@@ -274,27 +295,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="simpleCell" textLabel="Md5-og-UwC" detailTextLabel="Kd4-6D-w3W" style="IBUITableViewCellStyleSubtitle" id="Tbj-Gz-rhw">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="zJj-gB-mKF">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tbj-Gz-rhw" id="22Z-ah-VIo">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zJj-gB-mKF" id="mES-wL-yG2">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Website Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Md5-og-UwC">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saved Page" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQC-ET-pjV">
+                                            <rect key="frame" x="15" y="10" width="94" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Date Added" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kd4-6D-w3W">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Added: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjR-bb-Inh">
+                                            <rect key="frame" x="15" y="33" width="114" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="13"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -733,6 +752,19 @@
                                 <exclude reference="a1o-Jc-gQa"/>
                                 <exclude reference="tCa-U1-gic"/>
                                 <exclude reference="tDN-rc-A5w"/>
+                                <exclude reference="FnM-pQ-njM"/>
+                                <exclude reference="GeE-Gr-Zsq"/>
+                                <exclude reference="IMw-JW-KdL"/>
+                                <exclude reference="VZw-QP-n7M"/>
+                                <exclude reference="8ta-jJ-3SN"/>
+                                <exclude reference="T9E-9f-OSf"/>
+                                <exclude reference="eAl-fu-qbz"/>
+                                <exclude reference="hFb-YF-b1d"/>
+                                <exclude reference="i9h-rg-8Xe"/>
+                                <exclude reference="ixB-Ny-tet"/>
+                                <exclude reference="V4H-uO-kiu"/>
+                                <exclude reference="kmU-EN-PEu"/>
+                                <exclude reference="vj7-ad-k9c"/>
                                 <exclude reference="9ra-bd-jMj"/>
                                 <exclude reference="CeO-AX-AxE"/>
                                 <exclude reference="GSE-4j-QFU"/>
@@ -747,25 +779,12 @@
                                 <exclude reference="qBV-sL-RWV"/>
                                 <exclude reference="qMR-r0-GoV"/>
                                 <exclude reference="z0L-r1-1D6"/>
-                                <exclude reference="FnM-pQ-njM"/>
-                                <exclude reference="GeE-Gr-Zsq"/>
-                                <exclude reference="IMw-JW-KdL"/>
-                                <exclude reference="VZw-QP-n7M"/>
                                 <exclude reference="6gb-vI-deY"/>
                                 <exclude reference="70Z-oh-rQk"/>
                                 <exclude reference="EHL-KS-YOA"/>
                                 <exclude reference="N1b-v3-Gk4"/>
                                 <exclude reference="e1W-fY-nTW"/>
                                 <exclude reference="nYA-cS-F2U"/>
-                                <exclude reference="V4H-uO-kiu"/>
-                                <exclude reference="kmU-EN-PEu"/>
-                                <exclude reference="vj7-ad-k9c"/>
-                                <exclude reference="8ta-jJ-3SN"/>
-                                <exclude reference="T9E-9f-OSf"/>
-                                <exclude reference="eAl-fu-qbz"/>
-                                <exclude reference="hFb-YF-b1d"/>
-                                <exclude reference="i9h-rg-8Xe"/>
-                                <exclude reference="ixB-Ny-tet"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -789,6 +808,12 @@
                                 <include reference="a1o-Jc-gQa"/>
                                 <include reference="tCa-U1-gic"/>
                                 <include reference="tDN-rc-A5w"/>
+                                <include reference="GeE-Gr-Zsq"/>
+                                <include reference="IMw-JW-KdL"/>
+                                <include reference="8ta-jJ-3SN"/>
+                                <include reference="T9E-9f-OSf"/>
+                                <include reference="eAl-fu-qbz"/>
+                                <include reference="V4H-uO-kiu"/>
                                 <include reference="9ra-bd-jMj"/>
                                 <include reference="CeO-AX-AxE"/>
                                 <include reference="PJa-3k-Ues"/>
@@ -796,14 +821,8 @@
                                 <include reference="lHV-Cj-a97"/>
                                 <include reference="qMR-r0-GoV"/>
                                 <include reference="z0L-r1-1D6"/>
-                                <include reference="GeE-Gr-Zsq"/>
-                                <include reference="IMw-JW-KdL"/>
                                 <include reference="6gb-vI-deY"/>
                                 <include reference="N1b-v3-Gk4"/>
-                                <include reference="V4H-uO-kiu"/>
-                                <include reference="8ta-jJ-3SN"/>
-                                <include reference="T9E-9f-OSf"/>
-                                <include reference="eAl-fu-qbz"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -823,6 +842,13 @@
                                 <include reference="FHa-LO-n6F"/>
                                 <include reference="0gi-vf-yFH"/>
                                 <include reference="AAy-yj-hZX"/>
+                                <include reference="FnM-pQ-njM"/>
+                                <include reference="VZw-QP-n7M"/>
+                                <include reference="hFb-YF-b1d"/>
+                                <include reference="i9h-rg-8Xe"/>
+                                <include reference="ixB-Ny-tet"/>
+                                <include reference="kmU-EN-PEu"/>
+                                <include reference="vj7-ad-k9c"/>
                                 <include reference="GSE-4j-QFU"/>
                                 <include reference="dYf-4z-vsI"/>
                                 <include reference="nCP-WV-Lb0"/>
@@ -830,17 +856,10 @@
                                 <include reference="bQm-bl-YM6"/>
                                 <include reference="mQj-PG-dvS"/>
                                 <include reference="qBV-sL-RWV"/>
-                                <include reference="FnM-pQ-njM"/>
-                                <include reference="VZw-QP-n7M"/>
                                 <include reference="70Z-oh-rQk"/>
                                 <include reference="EHL-KS-YOA"/>
                                 <include reference="e1W-fY-nTW"/>
                                 <include reference="nYA-cS-F2U"/>
-                                <include reference="kmU-EN-PEu"/>
-                                <include reference="vj7-ad-k9c"/>
-                                <include reference="hFb-YF-b1d"/>
-                                <include reference="i9h-rg-8Xe"/>
-                                <include reference="ixB-Ny-tet"/>
                             </mask>
                         </variation>
                     </view>
