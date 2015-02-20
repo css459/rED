@@ -22,16 +22,17 @@
 @end
 
 @implementation PagesViewController
-@synthesize button_SavePageProp, searchBar, webView, url, htmlContent, htmlDictionary;
+@synthesize button_SavePage, searchBar, webView, url, htmlContent, htmlDictionary;
 
 #pragma mark - Initalizers
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         savedButtonState = false;
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
+        [self getHTML:@"about:blank"];
     }
     return self;
 }
@@ -68,15 +69,16 @@
 #pragma mark - Action Handlers
 
 // Handles toggling of saved button
-- (IBAction)button_SavePage:(id)sender {
+- (IBAction)button_SavePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
     if (savedButtonState) {
-        [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [button_SavePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         // Here, the Page obj should be added to the cell array.
     } else {
-        [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+        [button_SavePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
         // Here, the Page obj should be removed from the cell array.
     }
+    [self button_FadeOut:button_SavePage];
 }
 
 // Allows user to exit editing
@@ -139,7 +141,6 @@
                                                  error:&error];
             if (error != nil) {
                 NSLog(@"%@",[error localizedDescription]);
-                
                 UIAlertView *alert = [[UIAlertView alloc]
                                       initWithTitle:@"Uh-Oh!"
                                       message:@"The URL you requested is not compatible with rED :("
@@ -163,6 +164,12 @@
 - (void)openHTML:(NSString *)html {
     //Loads UIWebView with HTML
     [webView loadHTMLString:html baseURL:nil];
+}
+
+# pragma mark - Custom Transitions
+
+- (void)button_FadeOut:(UIBarButtonItem *)button {
+   //[UIView animateWithDuration:0.25 animations:^{alpha = 0.0;}];
 }
 
 // We will worry about custom transitions later

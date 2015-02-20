@@ -35,7 +35,7 @@
 @implementation ColorPalette
 @synthesize tint_accent, tint_background, tint_text, tint_navBar, tint_switch_thumb;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         // Default Mode implementation

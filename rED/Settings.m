@@ -11,7 +11,7 @@
 @implementation Settings
 @synthesize homeSite, textSize, nightMode, tutorialMode;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         textSize = 25.0;

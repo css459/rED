@@ -21,11 +21,11 @@
 //  Use the arrays above to implement the Night Mode, not yet finished.
 
 @implementation SettingsViewController
-@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info;
+@synthesize switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TutorialMode, textView_Disclaimer, button_Info;
 
 #pragma mark - Initializers
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
@@ -53,12 +53,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    slider_TextSize.value = [userSettings textSize];
+    //slider_TextSize.value = [userSettings textSize];
     switch_NightMode.on = [userSettings nightMode];
     switch_TutorialMode.on = [userSettings tutorialMode];
     textField_HomeSite.text = [userSettings homeSite];
     
-    label_TextPreview.font = [label_TextPreview.font fontWithSize:[userSettings textSize]];
+    //label_TextPreview.font = [label_TextPreview.font fontWithSize:[userSettings textSize]];
     
     [self updateColorScheme];
 }
@@ -73,14 +73,14 @@
     NSArray *array_TextLabels;
     NSArray *array_switches;
     array_switches = @[switch_NightMode, switch_TutorialMode];
-    array_TextLabels = @[label_NightMode, label_TutorialMode, label_HomeSite, label_TextPreview, label_TextSize];
+    array_TextLabels = @[label_NightMode, label_TutorialMode, label_HomeSite];
     
     // Color tints
     [self.navigationController.navigationBar setTintColor:[cp tint_text]];
     [self.navigationController.navigationBar setBackgroundColor:[cp tint_navBar]];
     [self.view setBackgroundColor:[cp tint_background]];
     [self.view setTintColor:[cp tint_accent]];
-    [slider_TextSize setTintColor:[cp tint_accent]];
+    //[slider_TextSize setTintColor:[cp tint_accent]];
     
     for (UISwitch *s in array_switches) {
         [s setTintColor:[cp tint_accent]];
@@ -98,11 +98,11 @@
 
 #pragma mark - Action Handlers
 
-- (IBAction)slider_TextSizeDidChange:(id)sender {
-    double fontSizeAsProportion = slider_TextSize.value;
-    label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
-    [userSettings setTextSize:fontSizeAsProportion];
-}
+//- (IBAction)slider_TextSizeDidChange:(id)sender {
+//    double fontSizeAsProportion = slider_TextSize.value;
+//    label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
+//    [userSettings setTextSize:fontSizeAsProportion];
+//}
 
 - (IBAction)switch_NightModeDidChange:(id)sender {
     if (switch_NightMode.on) {

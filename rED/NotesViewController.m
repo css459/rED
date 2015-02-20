@@ -17,7 +17,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
     }
@@ -49,7 +49,9 @@
 //    [self.navigationItem setRightBarButtonItem:button_Share];
     
     // Swipe Declaration
-    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeRight:)];
+    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self
+                                             action:@selector(gesture_SwipeRight:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
 }
