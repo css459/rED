@@ -24,6 +24,7 @@
 		495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67661A828CF000E15853 /* SavedPagesTableViewController.m */; };
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
 		498434071A962AEC00029FFC /* NotebookManagerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498434061A962AEC00029FFC /* NotebookManagerTableViewController.m */; };
+		49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEE81A97C9A600B62BB4 /* Highlight.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		49609ABF1A82DA1C00594EA8 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
 		498434051A962AEC00029FFC /* NotebookManagerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookManagerTableViewController.h; sourceTree = "<group>"; };
 		498434061A962AEC00029FFC /* NotebookManagerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebookManagerTableViewController.m; sourceTree = "<group>"; };
+		49C3DEE71A97C9A600B62BB4 /* Highlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Highlight.h; sourceTree = "<group>"; };
+		49C3DEE81A97C9A600B62BB4 /* Highlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Highlight.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +118,8 @@
 				495D675D1A8284DD00E15853 /* Page.m */,
 				495D675F1A8284E700E15853 /* Notebook.h */,
 				495D67601A8284E700E15853 /* Notebook.m */,
-				49C3DEE41A97B9C600B62BB4 /* Highlight.h */,
-				49C3DEE51A97B9C600B62BB4 /* Highlight.m */,
+				49C3DEE71A97C9A600B62BB4 /* Highlight.h */,
+				49C3DEE81A97C9A600B62BB4 /* Highlight.m */,
 				49609ABE1A82DA1C00594EA8 /* ColorPalette.h */,
 				49609ABF1A82DA1C00594EA8 /* ColorPalette.m */,
 				495888791A8503F400B8D439 /* Settings.h */,
@@ -279,11 +282,11 @@
 				495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */,
 				495D67551A82848600E15853 /* NotesViewController.m in Sources */,
 				4906460F1A814425003CD480 /* PagesViewController.m in Sources */,
-				49C3DEE61A97B9C600B62BB4 /* Highlight.m in Sources */,
 				4906460C1A814425003CD480 /* AppDelegate.m in Sources */,
 				495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */,
 				490646091A814425003CD480 /* main.m in Sources */,
 				495D675E1A8284DD00E15853 /* Page.m in Sources */,
+				49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */,
 				495D675B1A8284BA00E15853 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

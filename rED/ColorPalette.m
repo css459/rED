@@ -33,7 +33,7 @@
 @end
 
 @implementation ColorPalette
-@synthesize tint_accent, tint_background, tint_text, tint_navBar, tint_switch_thumb;
+@synthesize tint_accent, tint_background, tint_text, tint_navBar, tint_switch_thumb, highlight_blue, highlight_orange, highlight_red, highlight_yellow;
 
 - (instancetype)init {
     self = [super init];
@@ -58,6 +58,12 @@
         tint_accent = default_accent;
         tint_navBar = default_navBar;
         tint_switch_thumb = defualt_switch_thumb;
+        
+        // Highlights
+        highlight_yellow = [UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:204.0f/255.0f alpha:1.0];
+        highlight_blue = [UIColor colorWithRed:201.0f/255.0f green:218.0f/255.0f blue:248.0f/255.0f alpha:1.0];
+        highlight_orange = [UIColor colorWithRed:255.0f/255.0f green:198.0f/255.0f blue:112.0f/255.0f alpha:1.0];
+        highlight_red = [UIColor colorWithRed:255.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:1.0];
     }
     return self;
 }
