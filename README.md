@@ -26,7 +26,7 @@ Responsibilities:
 
 * Settings: Cole
 
-* Website Conversion: KJ and Matt
+* Website Conversion: KJ and Matt (COMPLETE)
 
 * Auto Scroll: KJ
 
