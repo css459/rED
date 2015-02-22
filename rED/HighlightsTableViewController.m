@@ -1,18 +1,18 @@
 //
-//  NotebookManagerTableViewController.m
+//  HighlightsTableViewController.m
 //  rED
 //
-//  Created by Cole Smith on 2/21/15.
+//  Created by Cole Smith on 2/20/15.
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-#import "NotebookManagerTableViewController.h"
+#import "HighlightsTableViewController.h"
 
-@interface NotebookManagerTableViewController ()
+@interface HighlightsTableViewController ()
 
 @end
 
-@implementation NotebookManagerTableViewController
+@implementation HighlightsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

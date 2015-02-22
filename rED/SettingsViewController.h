@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *button_Info;
 
 
-- (IBAction)slider_TextSizeDidChange:(id)sender;
 - (IBAction)switch_NightModeDidChange:(id)sender;
 - (IBAction)textField_HomeSiteDidChange:(id)sender;
 - (IBAction)switch_TutorialModeDidChange:(id)sender;
