@@ -13,6 +13,7 @@
 #import "Settings.h"
 #import "AppDelegate.h"
 #import "Page.h"
+#import "SettingsViewController.h"
 
 @interface PagesViewController ()
 {
@@ -58,8 +59,48 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // Hides the Navigation Bar on appearance
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    if (htmlContent != nil)
+    {
+        Settings *settings = [Settings sharedSettings];
+        double size = [settings textSize];
+        if (size >= 1 && size <= 10)
+        {
+            size = 1;
+        }
+        if (size >= 11 && size <= 20)
+        {
+            size = 2;
+        }
+        if (size >= 21 && size <= 30)
+        {
+            size = 3;
+        }
+        if (size >= 31 && size <= 40)
+        {
+            size = 4;
+        }
+        if (size >= 41 && size <= 50)
+        {
+            size = 5;
+        }
+        if (size >= 51 && size <= 60)
+        {
+            size = 6;
+        }
+        if (size >= 61)
+        {
+            size = 7;
+        }
+    
+        //update html
+        NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
+    
+        //reload webview html content
+        [self openHTML:updatedHTML];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

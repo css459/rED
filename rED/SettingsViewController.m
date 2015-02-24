@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "ColorPalette.h"
 #import "Settings.h"
+#import "PagesViewController.h"
 
 @interface SettingsViewController ()
 {
@@ -21,7 +22,7 @@
 //  Use the arrays above to implement the Night Mode, not yet finished.
 
 @implementation SettingsViewController
-@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info;
+@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info, currentURL;
 
 #pragma mark - Initializers
 
@@ -96,12 +97,15 @@
     [super didReceiveMemoryWarning];
 }
 
+
 #pragma mark - Action Handlers
 
 - (IBAction)slider_TextSizeDidChange:(id)sender {
     double fontSizeAsProportion = slider_TextSize.value;
     label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
-    [userSettings setTextSize:fontSizeAsProportion];
+    Settings *settings = [Settings sharedSettings];
+    [settings setTextSize:fontSizeAsProportion];
+    
 }
 
 - (IBAction)switch_NightModeDidChange:(id)sender {

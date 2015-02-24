@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UISlider *slider_TextSize;
 @property (weak, nonatomic) IBOutlet UIButton *button_Info;
 
+@property (weak, nonatomic) NSString *currentURL;
+
 
 - (IBAction)slider_TextSizeDidChange:(id)sender;
 - (IBAction)switch_NightModeDidChange:(id)sender;
