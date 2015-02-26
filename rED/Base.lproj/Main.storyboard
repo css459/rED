@@ -211,6 +211,7 @@
                     <connections>
                         <outlet property="button_SavePageProp" destination="YNk-3v-56E" id="Tkf-zs-YfK"/>
                         <outlet property="searchBar" destination="dEH-JT-ian" id="cct-YB-qKR"/>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="YDs-kh-zVW"/>
                         <outlet property="webView" destination="dm8-DN-vS0" id="Jrc-OC-6uX"/>
                     </connections>
                 </viewController>

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) NSString *url;
 @property (strong, nonatomic) NSString *htmlContent;
+@property (strong, nonatomic) NSString *updateHTML;
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 
 - (IBAction)button_SavePage:(id)sender;

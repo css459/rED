@@ -112,9 +112,13 @@
     if (switch_NightMode.on) {
         [cp changeColorProfile:@"NightMode"];
         [userSettings setNightMode:YES];
+        Settings *settings = [Settings sharedSettings];
+        [settings setNightMode:YES];
     } else {
         [cp changeColorProfile:@"Default"];
         [userSettings setNightMode:NO];
+        Settings *settings = [Settings sharedSettings];
+        [settings setNightMode:NO];
     }
     [self refreshView:nil];
 }

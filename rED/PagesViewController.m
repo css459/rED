@@ -24,7 +24,7 @@
 @end
 
 @implementation PagesViewController
-@synthesize button_SavePageProp, searchBar, webView, url, htmlContent, htmlDictionary;
+@synthesize button_SavePageProp, searchBar, webView, url, htmlContent, htmlDictionary, updateHTML;
 
 #pragma mark - Initalizers
 
@@ -62,9 +62,11 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
+    // Codes to adjust text size in UIWebView
+    Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil)
     {
-        Settings *settings = [Settings sharedSettings];
+        // Convert settings text size to HTML text size
         double size = [settings textSize];
         if (size >= 1 && size <= 10)
         {
@@ -95,11 +97,25 @@
             size = 7;
         }
     
-        //update html
+        //Update HTML
         NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
+        updateHTML = updatedHTML;
+        
+        //Reload webview html content
+        [self openHTML:updateHTML];
+    }
     
-        //reload webview html content
+    // Codes to change UIWebView to night mode
+    if (htmlContent != nil && [settings nightMode])
+    {
+        NSString *updatedHTML = [NSString stringWithFormat:@"<body bgcolor=\"grey\"><font color=\"white\">%@</font></body>", updateHTML];
+        [[self view]setBackgroundColor:[UIColor grayColor]];
+        
         [self openHTML:updatedHTML];
+    }
+    else
+    {
+        [[self view]setBackgroundColor:[UIColor whiteColor]];
     }
 }
 
