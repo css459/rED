@@ -30,10 +30,10 @@
 @property (nonatomic) UIColor *tint_navBar;
 @property (nonatomic) UIColor *tint_switch_thumb;
 
-@property (nonatomic) UIColor *highlight_yellow;
-@property (nonatomic) UIColor *highlight_red;
-@property (nonatomic) UIColor *highlight_blue;
-@property (nonatomic) UIColor *highlight_orange;
+@property (nonatomic) const UIColor *highlight_yellow;
+@property (nonatomic) const UIColor *highlight_red;
+@property (nonatomic) const UIColor *highlight_blue;
+@property (nonatomic) const UIColor *highlight_orange;
 
 - (void)changeColorProfile: (NSString *) colorProfile;
 

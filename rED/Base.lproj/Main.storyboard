@@ -51,7 +51,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gPs-c0-Cf8"/>
-                                    <barButtonItem image="toolbar_SettingsGear_Unclicked" id="MK6-2r-sIO"/>
+                                    <barButtonItem image="settingsToolbar_TextSize_Clicked" id="MK6-2r-sIO"/>
                                 </items>
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
@@ -75,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="1355" y="454"/>
         </scene>
-        <!--Notebook Manager-->
+        <!--Notebook Tabs-->
         <scene sceneID="fRK-kk-W88">
             <objects>
-                <tableViewController title="Notebook Manager" id="4NK-s4-tNx" sceneMemberID="viewController">
+                <tableViewController title="Notebook Tabs" id="4NK-s4-tNx" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="Fjt-54-OaF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,7 +168,7 @@
         <!--Auto Scroll-->
         <scene sceneID="Y5C-6J-lID">
             <objects>
-                <viewController title="Auto Scroll" id="3HN-64-yQV" customClass="AutoScrollViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AutoScrollViewController" title="Auto Scroll" id="3HN-64-yQV" customClass="AutoScrollViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XpL-ON-ZMz"/>
                         <viewControllerLayoutGuide type="bottom" id="IIt-9z-jGl"/>
@@ -282,21 +282,25 @@
                                 <items>
                                     <barButtonItem image="toolbar_Save_Unclicked" id="YNk-3v-56E">
                                         <connections>
-                                            <action selector="button_SavePageWasPressed:" destination="BYZ-38-t0r" id="w5B-rn-l8W"/>
+                                            <action selector="button_Slot1WasPressed:" destination="BYZ-38-t0r" id="GLP-HQ-9rc"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Cnc-76-Fhh"/>
                                     <barButtonItem image="toolbar_AutoScroll_Unclicked" id="1Sz-PB-8TB">
                                         <connections>
-                                            <segue destination="3HN-64-yQV" kind="show" id="EI1-nD-9ZO"/>
+                                            <action selector="button_Slot2WasPressed:" destination="BYZ-38-t0r" id="PhY-oF-quW"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ioh-tT-sMe"/>
-                                    <barButtonItem systemItem="action" id="CpX-LD-It2"/>
+                                    <barButtonItem systemItem="action" id="CpX-LD-It2">
+                                        <connections>
+                                            <action selector="button_Slot3WasPressed:" destination="BYZ-38-t0r" id="8YX-Xa-y60"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0HX-p2-Rtg"/>
                                     <barButtonItem image="toolbar_SettingsGear_Unclicked" id="rIK-IR-5HO">
                                         <connections>
-                                            <segue destination="yWB-z3-bxX" kind="show" id="Mur-rE-Fc1"/>
+                                            <action selector="button_SettingsWasPressed:" destination="BYZ-38-t0r" id="18I-jr-ZxS"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -325,7 +329,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="xvo-BH-JR2"/>
                     <connections>
-                        <outlet property="button_SavePage" destination="YNk-3v-56E" id="Gfp-zK-eOf"/>
+                        <outlet property="button_Settings" destination="rIK-IR-5HO" id="twV-78-0hm"/>
+                        <outlet property="button_Slot1" destination="YNk-3v-56E" id="Eng-SW-rz0"/>
+                        <outlet property="button_Slot2" destination="1Sz-PB-8TB" id="RHm-Y1-KMz"/>
+                        <outlet property="button_Slot3" destination="CpX-LD-It2" id="0yM-03-gmH"/>
                         <outlet property="searchBar" destination="dEH-JT-ian" id="cct-YB-qKR"/>
                         <outlet property="webView" destination="dm8-DN-vS0" id="Jrc-OC-6uX"/>
                     </connections>
@@ -376,10 +383,10 @@
             </objects>
             <point key="canvasLocation" x="-398" y="454"/>
         </scene>
-        <!--Settings-->
+        <!--SettingsViewController-->
         <scene sceneID="iqV-Ka-5IK">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" title="Settings" id="yWB-z3-bxX" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewController" title="SettingsViewController" id="yWB-z3-bxX" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lEK-rc-RY7"/>
                         <viewControllerLayoutGuide type="bottom" id="wiK-GY-Bei"/>
@@ -1114,6 +1121,7 @@
     </scenes>
     <resources>
         <image name="logo_Shorecrest" width="512" height="512"/>
+        <image name="settingsToolbar_TextSize_Clicked" width="22" height="22"/>
         <image name="toolbar_AutoScroll_Unclicked" width="22" height="22"/>
         <image name="toolbar_Quotations" width="22" height="22"/>
         <image name="toolbar_Save_Unclicked" width="22" height="22"/>

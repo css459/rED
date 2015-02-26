@@ -10,29 +10,93 @@
 #import "ColorPalette.h"
 #import "SavedPagesTableViewController.h"
 #import "NotesViewController.h"
+#import "SettingsViewController.h"
+#import "AutoScrollViewController.h"
 #import "Settings.h"
 #import "AppDelegate.h"
 
 @interface PagesViewController ()
 {
+    // States
     BOOL savedButtonState;
+    BOOL nightModeState;
+    BOOL settingsButtonState;
+    
+    // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
+    UISlider *slider_textSize;
+    
+    // Button Arrays
+    NSArray *array_toolbarButtons;
+    NSArray *array_settingsToolbarButtons;
+    NSArray *array_defaultToolbarButtons;
+    
+    // Default Buttons
+    UIBarButtonItem *button_savePage;
+    UIBarButtonItem *button_autoScroll;
+    UIBarButtonItem *button_action;
+    UIBarButtonItem *button_defaultSettings;
+    
+    // Settings-State Buttons
+    UIBarButtonItem *button_more;
+    UIBarButtonItem *button_textSize;
+    UIBarButtonItem *button_nightMode;
+    UIBarButtonItem *button_expandedSettings;
+    
+    
 }
 @end
 
 @implementation PagesViewController
-@synthesize button_SavePage, searchBar, webView, url, htmlContent, htmlDictionary;
+@synthesize button_Slot1, button_Slot2, button_Slot3, button_Settings, searchBar, webView, url, htmlContent, htmlDictionary;
 
 #pragma mark - Initalizers
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        savedButtonState = false;
+        savedButtonState = NO;
+        settingsButtonState = NO;
+        nightModeState = NO;
+        
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
-        [self getHTML:@"about:blank"];
+        slider_textSize = [[UISlider alloc] init];
+        
+        button_Slot1 = [[UIBarButtonItem alloc] init];
+        button_Slot2 = [[UIBarButtonItem alloc] init];
+        button_Slot3 = [[UIBarButtonItem alloc] init];
+        button_Settings = [[UIBarButtonItem alloc] init];
+        
+        button_more = [[UIBarButtonItem alloc] init];
+        button_nightMode = [[UIBarButtonItem alloc] init];
+        button_textSize = [[UIBarButtonItem alloc] init];
+        button_expandedSettings = [[UIBarButtonItem alloc] init];
+        
+        button_savePage = [[UIBarButtonItem alloc] init];
+        button_autoScroll = [[UIBarButtonItem alloc] init];
+        button_action = [[UIBarButtonItem alloc] init];
+        button_defaultSettings = [[UIBarButtonItem alloc] init];;
+        
+        [button_more setImage:[UIImage imageNamed:@"settingsToolbar_More"]];
+        [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Clicked"]];
+        [button_textSize setImage:[UIImage imageNamed:@"settingsToolbar_TextSize_Unclicked"]]; // This needs fixing
+        [button_expandedSettings setImage:[UIImage imageNamed:@"toolbar_SettingsGear_Clicked"]];
+        
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]]; // This will need to be dynamic
+        [button_autoScroll setImage:[UIImage imageNamed:@"toolbar_AutoScroll_Unclicked"]];
+        [button_action setImage:[UIImage imageNamed:@"settingsToolbar_TextSize_Unclicked"]]; // This needs fixing
+        [button_defaultSettings setImage:[UIImage imageNamed:@"toolbar_SettingsGear_Unclicked"]];
+        
+        array_toolbarButtons = @[button_Slot1, button_Slot2, button_Slot3, button_Settings];
+        array_defaultToolbarButtons = @[button_savePage, button_autoScroll, button_action, button_defaultSettings];
+        array_settingsToolbarButtons = @[button_more, button_nightMode, button_textSize, button_expandedSettings];
+        
+        slider_textSize.minimumValue = 9;
+        slider_textSize.maximumValue = 72;
+        
+        [self getHTML:@"about:blank"];  // Will be replaced with homepage from settings
     }
     return self;
 }
@@ -62,24 +126,17 @@
     [super viewWillAppear:animated];
 }
 
+- (void)refreshView:(NSNotification *) notification {
+    [self viewDidLoad];
+    [self viewWillAppear:YES];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Action Handlers
-
-// Handles toggling of saved button
-- (IBAction)button_SavePageWasPressed:(id)sender {
-    savedButtonState = !savedButtonState;
-    if (savedButtonState) {
-        [button_SavePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        // Here, the Page obj should be added to the cell array.
-    } else {
-        [button_SavePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-        // Here, the Page obj should be removed from the cell array.
-    }
-    [self button_FadeOut:button_SavePage];
-}
 
 // Allows user to exit editing
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -108,6 +165,144 @@
     SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
 }
+
+#pragma mark - Button Actions
+
+- (IBAction)button_Slot1WasPressed:(id)sender {
+    if (settingsButtonState) {
+        // Settings ACTIVE
+        [self button_savePageWasPressed];
+        
+    } else {
+        // Normal state
+        [self button_moreWasPressed];
+    }
+}
+
+- (IBAction)button_Slot2WasPressed:(id)sender {
+    if (settingsButtonState) {
+        // Settings ACTIVE
+        [self button_autoScrollWasPressed];
+    } else {
+        // Normal State
+        [self button_nightModeWasPressed];
+    }
+}
+
+- (IBAction)button_Slot3WasPressed:(id)sender {
+    if (settingsButtonState) {
+        // Settings ACTIVE
+        [self button_textSizeWasPressed];
+    } else {
+        // Normal State
+        [self button_actionWasPressed];
+    }
+}
+
+- (IBAction)button_SettingsWasPressed:(id)sender {
+    settingsButtonState = !settingsButtonState;
+    if (settingsButtonState) {
+        // Swap to expanded settings
+        [self button_expandedSettingsWasPressed];
+    } else {
+        // Swap to default settings
+        [self button_defaultSettingsWasPressed];
+    }
+}
+
+#pragma mark - Contexual Button Methods
+
+- (void)button_savePageWasPressed {
+    savedButtonState = !savedButtonState;
+    if (savedButtonState) {
+        [button_Slot1 setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        // Here, the Page obj should be ADDED to the cell array.
+    } else {
+        [button_Slot1 setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+        // Here, the Page obj should be REMOVED from the cell array.
+    }
+    [self button_FadeOut:button_Slot1];
+}
+
+- (void)button_autoScrollWasPressed {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard
+                                storyboardWithName:storyboardName
+                                bundle:[NSBundle bundleForClass:[self class]]];
+    
+    AutoScrollViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AutoScrollViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
+}
+
+- (void)button_actionWasPressed {
+#warning incomplete implementation
+    // This button will share the page. We will do this later.
+}
+
+- (void)button_defaultSettingsWasPressed {
+    array_toolbarButtons = array_settingsToolbarButtons;
+    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
+    // We may have to reload the view now
+    [self refreshView:nil];
+}
+
+- (void)button_moreWasPressed {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard
+                                storyboardWithName:storyboardName
+                                bundle:[NSBundle bundleForClass:[self class]]];
+    
+    SettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
+}
+
+- (void)button_nightModeWasPressed {
+    nightModeState = !nightModeState;
+    if (nightModeState) {
+        [cp changeColorProfile:@"NightMode"];
+        [self refreshView:nil];
+    } else {
+        [cp changeColorProfile:@"Default"];
+        [self refreshView:nil];
+    }
+}
+
+- (void)button_textSizeWasPressed {
+    #warning incomplete implementation
+    UIBarButtonItem *button_done = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                    target:self
+                                    action:@selector(button_doneWasPressed:)];
+    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                   target:nil
+                                   action:nil];
+    [fixedSpace setWidth:10.0f];
+    
+    NSArray *array_SliderInterface = @[slider_textSize,fixedSpace,button_done];
+    [self.navigationController.toolbar setItems:array_SliderInterface animated:YES];
+    
+}
+
+
+
+- (void)button_expandedSettingsWasPressed {
+    array_toolbarButtons = array_defaultToolbarButtons;
+    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
+    // We may have to reload the view now
+    [self refreshView:nil];
+}
+
+#pragma mark - Supporting Methods
+
+// Action for "Done Button" in "textSizeWasPressed" method
+- (IBAction)button_doneWasPressed:(id)sender {
+    [userSettings setTextSize:slider_textSize.value];
+    array_toolbarButtons = array_defaultToolbarButtons;
+    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
+    [self refreshView:nil];
+}
+- (void)loadInToolbarItems:(NSArray *)arrayToSet {}
 
 #pragma mark - HTML Handlers
 
