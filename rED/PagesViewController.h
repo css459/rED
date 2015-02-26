@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Settings.h"
 
 @interface PagesViewController : UIViewController <UISearchBarDelegate>
 
@@ -14,7 +15,8 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) NSString *url;
-@property (weak, nonatomic) NSString *htmlContent;
+@property (strong, nonatomic) NSString *htmlContent;
+@property (strong, nonatomic) NSString *updateHTML;
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 
 - (IBAction)button_SavePage:(id)sender;

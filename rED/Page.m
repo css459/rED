@@ -7,7 +7,25 @@
 //
 
 #import "Page.h"
+#import "Notebook.h"
 
 @implementation Page
+
+@synthesize url, htmlContent, dateSaved, notebook;
+
+- (id)initWithURL:(NSString *)urlAddress withHTML:(NSString *)HTML withDateSaved:(NSString *)date withNoteBook:(Notebook *)nb
+{
+    url = urlAddress;
+    htmlContent = HTML;
+    dateSaved = date;
+    notebook = nb;
+    
+    return self;
+}
+
+-(void)savePage:(Page *)p
+{
+    
+}
 
 @end

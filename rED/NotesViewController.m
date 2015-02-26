@@ -15,6 +15,8 @@
 
 @implementation NotesViewController
 
+@synthesize textView;
+
 #pragma mark - Initializers
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -68,7 +70,33 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
-- (IBAction)button_ShareWasPressed:(id)sender {}
+// Open up mail view controller with text
+- (IBAction)button_ShareWasPressed:(id)sender
+{
+    NSString *emailText = [textView text];
+    
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        mailViewController.mailComposeDelegate = self;
+        
+        [mailViewController setSubject:@"My Note"];
+        
+        [mailViewController setMessageBody:emailText isHTML:NO];
+        
+        [self presentViewController:mailViewController animated:YES completion:nil];
+    }
+
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    
+    if (error != nil) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
 
 /*
 #pragma mark - Navigation

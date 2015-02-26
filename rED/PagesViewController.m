@@ -12,6 +12,8 @@
 #import "NotesViewController.h"
 #import "Settings.h"
 #import "AppDelegate.h"
+#import "Page.h"
+#import "SettingsViewController.h"
 
 @interface PagesViewController ()
 {
@@ -22,7 +24,7 @@
 @end
 
 @implementation PagesViewController
-@synthesize button_SavePageProp, searchBar, webView, url, htmlContent, htmlDictionary;
+@synthesize button_SavePageProp, searchBar, webView, url, htmlContent, htmlDictionary, updateHTML;
 
 #pragma mark - Initalizers
 
@@ -57,8 +59,64 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // Hides the Navigation Bar on appearance
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    // Codes to adjust text size in UIWebView
+    Settings *settings = [Settings sharedSettings];
+    if (htmlContent != nil)
+    {
+        // Convert settings text size to HTML text size
+        double size = [settings textSize];
+        if (size >= 1 && size <= 10)
+        {
+            size = 1;
+        }
+        if (size >= 11 && size <= 20)
+        {
+            size = 2;
+        }
+        if (size >= 21 && size <= 30)
+        {
+            size = 3;
+        }
+        if (size >= 31 && size <= 40)
+        {
+            size = 4;
+        }
+        if (size >= 41 && size <= 50)
+        {
+            size = 5;
+        }
+        if (size >= 51 && size <= 60)
+        {
+            size = 6;
+        }
+        if (size >= 61)
+        {
+            size = 7;
+        }
+    
+        //Update HTML
+        NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
+        updateHTML = updatedHTML;
+        
+        //Reload webview html content
+        [self openHTML:updateHTML];
+    }
+    
+    // Codes to change UIWebView to night mode
+    if (htmlContent != nil && [settings nightMode])
+    {
+        NSString *updatedHTML = [NSString stringWithFormat:@"<body bgcolor=\"grey\"><font color=\"white\">%@</font></body>", updateHTML];
+        [[self view]setBackgroundColor:[UIColor grayColor]];
+        
+        [self openHTML:updatedHTML];
+    }
+    else
+    {
+        [[self view]setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,9 +131,24 @@
     if (savedButtonState) {
         [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         // Here, the Page obj should be added to the cell array.
+        
+        if (url != nil)
+        {
+            NSDateFormatter *format = [[NSDateFormatter alloc] init];
+            [format setDateFormat:@"MMM dd, yyyy HH:mm"];
+            NSDate *now = [[NSDate alloc] init];
+            NSString *dateString = [format stringFromDate:now];
+            Notebook *notebook = [[Notebook alloc] init];
+        
+            Page *newPage = [[Page alloc] initWithURL:url withHTML:htmlContent withDateSaved:dateString withNoteBook:notebook];
+            [newPage savePage:newPage];
+        }
+    
     } else {
         [button_SavePageProp setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
         // Here, the Page obj should be removed from the cell array.
+    
+    
     }
 }
 
@@ -159,6 +232,8 @@
          }
      }];
 }
+
+#pragma mark - UIWebView Handlers
 
 - (void)openHTML:(NSString *)html {
     //Loads UIWebView with HTML
