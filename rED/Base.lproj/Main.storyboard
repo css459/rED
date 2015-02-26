@@ -46,6 +46,9 @@
                             <constraint firstItem="1mZ-e3-HgM" firstAttribute="top" secondItem="Tas-pW-STP" secondAttribute="bottom" id="tY1-EN-uup"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="Tas-pW-STP" id="Q0V-C5-F2Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ck-a8-CJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
