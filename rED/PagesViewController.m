@@ -96,7 +96,7 @@
         slider_textSize.minimumValue = 9;
         slider_textSize.maximumValue = 72;
         
-        [self getHTML:@"about:blank"];  // Will be replaced with homepage from settings
+        [self getHTML:[userSettings homeSite]];
     }
     return self;
 }
@@ -212,6 +212,7 @@
 
 #pragma mark - Contexual Button Methods
 
+// Toggle saving of the Page Object
 - (void)button_savePageWasPressed {
     savedButtonState = !savedButtonState;
     if (savedButtonState) {
@@ -224,6 +225,7 @@
     [self button_FadeOut:button_Slot1];
 }
 
+// Present the Auto Scroll View Controller
 - (void)button_autoScrollWasPressed {
     NSString * storyboardName = @"Main";
     UIStoryboard *storyboard = [UIStoryboard
@@ -234,18 +236,19 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
+// Handle sharing of Page Object and Notebook Object, depending on settings.
 - (void)button_actionWasPressed {
-#warning incomplete implementation
-    // This button will share the page. We will do this later.
+    #warning incomplete implementation
 }
 
+// Switch to expanded settings state
 - (void)button_defaultSettingsWasPressed {
-    array_toolbarButtons = array_settingsToolbarButtons;
-    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
-    // We may have to reload the view now
+    settingsButtonState = YES;
+    [self loadInToolbarItems:array_settingsToolbarButtons];
     [self refreshView:nil];
 }
 
+// Present the Settings View Controller
 - (void)button_moreWasPressed {
     NSString * storyboardName = @"Main";
     UIStoryboard *storyboard = [UIStoryboard
@@ -256,6 +259,7 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
+// Toggle Night Mode
 - (void)button_nightModeWasPressed {
     nightModeState = !nightModeState;
     if (nightModeState) {
@@ -267,8 +271,8 @@
     }
 }
 
+// Change Toolbar to slider and adjust the text size based on Slider value.
 - (void)button_textSizeWasPressed {
-    #warning incomplete implementation
     UIBarButtonItem *button_done = [[UIBarButtonItem alloc]
                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                     target:self
@@ -284,12 +288,10 @@
     
 }
 
-
-
+// Switch back to normal state
 - (void)button_expandedSettingsWasPressed {
-    array_toolbarButtons = array_defaultToolbarButtons;
-    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
-    // We may have to reload the view now
+    settingsButtonState = NO;
+    [self loadInToolbarItems:array_defaultToolbarButtons];
     [self refreshView:nil];
 }
 
@@ -298,11 +300,15 @@
 // Action for "Done Button" in "textSizeWasPressed" method
 - (IBAction)button_doneWasPressed:(id)sender {
     [userSettings setTextSize:slider_textSize.value];
-    array_toolbarButtons = array_defaultToolbarButtons;
-    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
+    [self loadInToolbarItems:array_defaultToolbarButtons];
     [self refreshView:nil];
 }
-- (void)loadInToolbarItems:(NSArray *)arrayToSet {}
+
+// Switch the buttons in the toolbar for input array
+- (void)loadInToolbarItems:(NSArray *)arrayToSet {
+    array_toolbarButtons = arrayToSet;
+    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
+}
 
 #pragma mark - HTML Handlers
 

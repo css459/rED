@@ -17,6 +17,7 @@
         textSize = 25.0;
         nightMode = NO;
         tutorialMode = NO;
+        homeSite = @"about:blank";  // This is sort of a hack 
     }
     return self;
     
