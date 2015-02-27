@@ -51,3 +51,5 @@ Resources:
 [Readability API](https://readability.com/developers/api)
 
 [Parser API Documentation](https://readability.com/developers/api/parser)
+
+[Thesaurus API](http://words.bighugelabs.com/api.php)
