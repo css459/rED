@@ -20,7 +20,6 @@
     // States
     BOOL savedButtonState;
     BOOL nightModeState;
-    BOOL settingsButtonState;
     
     // Utility Objects
     ColorPalette *cp;
@@ -28,7 +27,6 @@
     UISlider *slider_textSize;
     
     // Button Arrays
-    NSArray *array_toolbarButtons;
     NSArray *array_settingsToolbarButtons;
     NSArray *array_defaultToolbarButtons;
     
@@ -44,12 +42,14 @@
     UIBarButtonItem *button_nightMode;
     UIBarButtonItem *button_expandedSettings;
     
+    UIBarButtonItem *flexibleSpace;
+    
     
 }
 @end
 
 @implementation PagesViewController
-@synthesize button_Slot1, button_Slot2, button_Slot3, button_Settings, searchBar, webView, url, htmlContent, htmlDictionary;
+@synthesize searchBar, webView, url, htmlContent, htmlDictionary;
 
 #pragma mark - Initalizers
 
@@ -57,41 +57,69 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         savedButtonState = NO;
-        settingsButtonState = NO;
         nightModeState = NO;
         
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
         slider_textSize = [[UISlider alloc] init];
         
-        button_Slot1 = [[UIBarButtonItem alloc] init];
-        button_Slot2 = [[UIBarButtonItem alloc] init];
-        button_Slot3 = [[UIBarButtonItem alloc] init];
-        button_Settings = [[UIBarButtonItem alloc] init];
+        button_more = [[UIBarButtonItem alloc]
+                       initWithImage:[UIImage imageNamed:@"settingsToolbar_More"]
+                       style:UIBarButtonItemStylePlain
+                       target: self
+                       action:@selector(button_moreWasPressed:)];
         
-        button_more = [[UIBarButtonItem alloc] init];
-        button_nightMode = [[UIBarButtonItem alloc] init];
-        button_textSize = [[UIBarButtonItem alloc] init];
-        button_expandedSettings = [[UIBarButtonItem alloc] init];
+        button_nightMode = [[UIBarButtonItem alloc]
+                            initWithImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Clicked"]
+                            style:UIBarButtonItemStylePlain
+                            target:self
+                            action:@selector(button_nightModeWasPressed:)];
         
-        button_savePage = [[UIBarButtonItem alloc] init];
-        button_autoScroll = [[UIBarButtonItem alloc] init];
-        button_action = [[UIBarButtonItem alloc] init];
-        button_defaultSettings = [[UIBarButtonItem alloc] init];;
+        button_textSize = [[UIBarButtonItem alloc]
+                           initWithImage:[UIImage imageNamed:@"settingsToolbar_TextSize_Unclicked"]
+                           style:UIBarButtonItemStylePlain
+                           target:self
+                           action:@selector(button_textSizeWasPressed:)];
         
-        [button_more setImage:[UIImage imageNamed:@"settingsToolbar_More"]];
-        [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Clicked"]];
-        [button_textSize setImage:[UIImage imageNamed:@"settingsToolbar_TextSize_Unclicked"]]; // This needs fixing
-        [button_expandedSettings setImage:[UIImage imageNamed:@"toolbar_SettingsGear_Clicked"]];
+        button_expandedSettings = [[UIBarButtonItem alloc]
+                                   initWithImage:[UIImage imageNamed:@"toolbar_SettingsGear_Clicked"]
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(button_expandedSettingsWasPressed:)];
         
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]]; // This will need to be dynamic
-        [button_autoScroll setImage:[UIImage imageNamed:@"toolbar_AutoScroll_Unclicked"]];
-        [button_action setImage:[UIImage imageNamed:@"settingsToolbar_TextSize_Unclicked"]]; // This needs fixing
-        [button_defaultSettings setImage:[UIImage imageNamed:@"toolbar_SettingsGear_Unclicked"]];
+        button_savePage = [[UIBarButtonItem alloc]
+                           initWithImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]
+                           style:UIBarButtonItemStylePlain
+                           target:self
+                           action:@selector(button_savePageWasPressed:)];
         
-        array_toolbarButtons = @[button_Slot1, button_Slot2, button_Slot3, button_Settings];
-        array_defaultToolbarButtons = @[button_savePage, button_autoScroll, button_action, button_defaultSettings];
-        array_settingsToolbarButtons = @[button_more, button_nightMode, button_textSize, button_expandedSettings];
+        button_autoScroll = [[UIBarButtonItem alloc]
+                             initWithImage:[UIImage imageNamed:@"toolbar_AutoScroll_Unclicked"]
+                             style:UIBarButtonItemStylePlain
+                             target:self
+                             action:@selector(button_autoScrollWasPressed:)];
+        
+        button_action = [[UIBarButtonItem alloc]
+                         initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                         target:self
+                         action:@selector(button_actionWasPressed:)];
+        
+        button_defaultSettings = [[UIBarButtonItem alloc]
+                                  initWithImage:[UIImage imageNamed:@"toolbar_SettingsGear_Unclicked"]
+                                  style:UIBarButtonItemStylePlain
+                                  target:self
+                                  action:@selector(button_defaultSettingsWasPressed:)];
+        
+        flexibleSpace = [[UIBarButtonItem alloc]
+                         initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                         target:nil
+                         action:nil];
+        
+        array_defaultToolbarButtons = @[button_savePage, flexibleSpace, button_autoScroll, flexibleSpace,
+                                        button_action, flexibleSpace, button_defaultSettings];
+        
+        array_settingsToolbarButtons = @[button_more, flexibleSpace, button_nightMode, flexibleSpace,
+                                         button_textSize, flexibleSpace, button_expandedSettings];
         
         slider_textSize.minimumValue = 9;
         slider_textSize.maximumValue = 72;
@@ -110,20 +138,30 @@
     UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]
                                             initWithTarget:self
                                             action:@selector(gesture_SwipeLeft:)];
+    
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeLeft];
     
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
                                              initWithTarget:self
                                              action:@selector(gesture_SwipeRight:)];
+    
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
+    
+    // Toolbar Configurations
+    [self.navigationController.toolbar setTintColor:[cp tint_accent]];
+    [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
+    [self setToolbarItems:array_defaultToolbarButtons];
+    [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // Hides the Navigation Bar on appearance
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)refreshView:(NSNotification *) notification {
@@ -168,65 +206,20 @@
 
 #pragma mark - Button Actions
 
-- (IBAction)button_Slot1WasPressed:(id)sender {
-    if (settingsButtonState) {
-        // Settings ACTIVE
-        [self button_savePageWasPressed];
-        
-    } else {
-        // Normal state
-        [self button_moreWasPressed];
-    }
-}
-
-- (IBAction)button_Slot2WasPressed:(id)sender {
-    if (settingsButtonState) {
-        // Settings ACTIVE
-        [self button_autoScrollWasPressed];
-    } else {
-        // Normal State
-        [self button_nightModeWasPressed];
-    }
-}
-
-- (IBAction)button_Slot3WasPressed:(id)sender {
-    if (settingsButtonState) {
-        // Settings ACTIVE
-        [self button_textSizeWasPressed];
-    } else {
-        // Normal State
-        [self button_actionWasPressed];
-    }
-}
-
-- (IBAction)button_SettingsWasPressed:(id)sender {
-    settingsButtonState = !settingsButtonState;
-    if (settingsButtonState) {
-        // Swap to expanded settings
-        [self button_expandedSettingsWasPressed];
-    } else {
-        // Swap to default settings
-        [self button_defaultSettingsWasPressed];
-    }
-}
-
-#pragma mark - Contexual Button Methods
-
 // Toggle saving of the Page Object
-- (void)button_savePageWasPressed {
+- (IBAction)button_savePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
     if (savedButtonState) {
-        [button_Slot1 setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         // Here, the Page obj should be ADDED to the cell array.
     } else {
-        [button_Slot1 setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
         // Here, the Page obj should be REMOVED from the cell array.
     }
-    [self button_FadeOut:button_Slot1];
 }
 
 // Present the Auto Scroll View Controller
-- (void)button_autoScrollWasPressed {
+- (IBAction)button_autoScrollWasPressed:(id)sender {
     NSString * storyboardName = @"Main";
     UIStoryboard *storyboard = [UIStoryboard
                                 storyboardWithName:storyboardName
@@ -237,19 +230,17 @@
 }
 
 // Handle sharing of Page Object and Notebook Object, depending on settings.
-- (void)button_actionWasPressed {
+- (IBAction)button_actionWasPressed :(id)sender {
     #warning incomplete implementation
 }
 
 // Switch to expanded settings state
-- (void)button_defaultSettingsWasPressed {
-    settingsButtonState = YES;
-    [self loadInToolbarItems:array_settingsToolbarButtons];
-    [self refreshView:nil];
+- (IBAction)button_defaultSettingsWasPressed:(id)sender {
+    [self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
 }
 
 // Present the Settings View Controller
-- (void)button_moreWasPressed {
+- (IBAction)button_moreWasPressed:(id)sender {
     NSString * storyboardName = @"Main";
     UIStoryboard *storyboard = [UIStoryboard
                                 storyboardWithName:storyboardName
@@ -260,19 +251,21 @@
 }
 
 // Toggle Night Mode
-- (void)button_nightModeWasPressed {
+- (IBAction)button_nightModeWasPressed:(id)sender {
     nightModeState = !nightModeState;
     if (nightModeState) {
         [cp changeColorProfile:@"NightMode"];
+        [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Unclicked"]];
         [self refreshView:nil];
     } else {
         [cp changeColorProfile:@"Default"];
+        [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Clicked"]];
         [self refreshView:nil];
     }
 }
 
 // Change Toolbar to slider and adjust the text size based on Slider value.
-- (void)button_textSizeWasPressed {
+- (IBAction)button_textSizeWasPressed:(id)sender {
     UIBarButtonItem *button_done = [[UIBarButtonItem alloc]
                                     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                     target:self
@@ -283,15 +276,13 @@
                                    action:nil];
     [fixedSpace setWidth:10.0f];
     
-    NSArray *array_SliderInterface = @[slider_textSize,fixedSpace,button_done];
+    NSArray *array_SliderInterface = @[slider_textSize, fixedSpace, button_done];
     [self.navigationController.toolbar setItems:array_SliderInterface animated:YES];
-    
 }
 
 // Switch back to normal state
-- (void)button_expandedSettingsWasPressed {
-    settingsButtonState = NO;
-    [self loadInToolbarItems:array_defaultToolbarButtons];
+- (IBAction)button_expandedSettingsWasPressed:(id)sender {
+    [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
     [self refreshView:nil];
 }
 
@@ -300,14 +291,8 @@
 // Action for "Done Button" in "textSizeWasPressed" method
 - (IBAction)button_doneWasPressed:(id)sender {
     [userSettings setTextSize:slider_textSize.value];
-    [self loadInToolbarItems:array_defaultToolbarButtons];
+    [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
     [self refreshView:nil];
-}
-
-// Switch the buttons in the toolbar for input array
-- (void)loadInToolbarItems:(NSArray *)arrayToSet {
-    array_toolbarButtons = arrayToSet;
-    [self.navigationController.toolbar setItems:array_toolbarButtons animated:YES];
 }
 
 #pragma mark - HTML Handlers
@@ -366,37 +351,4 @@
     //Loads UIWebView with HTML
     [webView loadHTMLString:html baseURL:nil];
 }
-
-# pragma mark - Custom Transitions
-
-- (void)button_FadeOut:(UIBarButtonItem *)button {
-   //[UIView animateWithDuration:0.25 animations:^{alpha = 0.0;}];
-}
-
-// We will worry about custom transitions later
-/*
- - (void)customTransition {
- NSString * storyboardName = @"Main";
- UIStoryboard *storyboard = [UIStoryboard
- storyboardWithName:storyboardName
- bundle:[NSBundle bundleForClass:[self class]]];
- 
- __block PagesViewController *sourceViewController = (UIViewController*)[self sourceViewController];
- __block SavedPagesTableViewController *destinationController = (UIViewController*)[self destinationViewController];
- 
- CATransition* transition = [CATransition animation];
- transition.duration = .25;
- transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
- transition.type = kCATransitionPush; //kCATransitionMoveIn; //, kCATransitionPush, kCATransitionReveal, kCATransitionFade
- transition.subtype = kCATransitionFromLeft; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
- 
- 
- 
- [sourceViewController.navigationController.view.layer addAnimation:transition
- forKey:kCATransition];
- 
- [sourceViewController.navigationController pushViewController:destinationController animated:NO];
- }
- */
-
 @end

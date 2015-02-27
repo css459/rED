@@ -10,12 +10,6 @@
 
 @interface PagesViewController : UIViewController <UISearchBarDelegate>
 
-// Bar Button Properties
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *button_Slot1;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *button_Slot2;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *button_Slot3;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *button_Settings;
-
 // Web Viewing Properties
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -25,18 +19,20 @@
 @property (weak, nonatomic) NSString *htmlContent;
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 
+// Button Actions
+- (IBAction)button_savePageWasPressed:(id)sender;
+- (IBAction)button_autoScrollWasPressed:(id)sender;
+- (IBAction)button_actionWasPressed :(id)sender;
+- (IBAction)button_defaultSettingsWasPressed:(id)sender;
+- (IBAction)button_moreWasPressed:(id)sender;
+- (IBAction)button_nightModeWasPressed:(id)sender;
+- (IBAction)button_textSizeWasPressed:(id)sender;
+- (IBAction)button_expandedSettingsWasPressed:(id)sender;
+- (IBAction)button_doneWasPressed:(id)sender;
+
 // Gesture Handlers
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;
-
-// Button Actions
-- (IBAction)button_Slot1WasPressed:(id)sender;
-- (IBAction)button_Slot2WasPressed:(id)sender;
-- (IBAction)button_Slot3WasPressed:(id)sender;
-- (IBAction)button_SettingsWasPressed:(id)sender;
-
-// Custom Transitions
-- (void)button_FadeOut:(UIBarButtonItem *)button;
 
 // HTML Handlers
 - (void)searchBarSearchButtonClicked:(UISearchBar *)sB;

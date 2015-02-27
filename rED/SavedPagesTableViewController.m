@@ -37,6 +37,7 @@
     
     // Implements custom title with formatting
     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
     UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
     UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
     [naviTitle setText:@"Saved Sites"];
