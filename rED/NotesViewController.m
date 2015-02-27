@@ -8,18 +8,23 @@
 
 #import "NotesViewController.h"
 #import "PagesViewController.h"
+#import "ColorPalette.h"
 
 @interface NotesViewController ()
 
 @end
 
 @implementation NotesViewController
+{
+    ColorPalette *cp;
+}
 
 #pragma mark - Initializers
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        cp = [[ColorPalette alloc] init];
     }
     return self;
 }
@@ -54,6 +59,9 @@
                                              action:@selector(gesture_SwipeRight:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
+    
+    [self.navigationController setToolbarHidden:YES];
+    [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
 }
 
 - (void)didReceiveMemoryWarning {
