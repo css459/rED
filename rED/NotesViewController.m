@@ -46,13 +46,6 @@
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
     self.navigationItem.hidesBackButton = YES;
     
-//    // Bar Buttons
-//    UIBarButtonItem *button_Share = [[UIBarButtonItem alloc]
-//                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-//                                     target:self
-//                                     action:@selector(button_ShareWasPressed:)];
-//    [self.navigationItem setRightBarButtonItem:button_Share];
-    
     // Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
                                              initWithTarget:self
