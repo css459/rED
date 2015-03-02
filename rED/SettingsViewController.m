@@ -19,7 +19,7 @@
 @end
 
 @implementation SettingsViewController
-@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info, currentURL;
+@synthesize switch_TutorialMode, textField_HomeSite, label_HomeSite, label_TutorialMode, textView_Disclaimer, button_Info;
 
 #pragma mark - Initializers
 
@@ -66,29 +66,6 @@
 
 
 #pragma mark - Action Handlers
-
-- (IBAction)slider_TextSizeDidChange:(id)sender {
-    double fontSizeAsProportion = slider_TextSize.value;
-    label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
-    Settings *settings = [Settings sharedSettings];
-    [settings setTextSize:fontSizeAsProportion];
-    
-}
-
-- (IBAction)switch_NightModeDidChange:(id)sender {
-    if (switch_NightMode.on) {
-        [cp changeColorProfile:@"NightMode"];
-        [userSettings setNightMode:YES];
-        Settings *settings = [Settings sharedSettings];
-        [settings setNightMode:YES];
-    } else {
-        [cp changeColorProfile:@"Default"];
-        [userSettings setNightMode:NO];
-        Settings *settings = [Settings sharedSettings];
-        [settings setNightMode:NO];
-    }
-    [self refreshView:nil];
-}
 
 - (IBAction)switch_TutorialModeDidChange:(id)sender {
     if (switch_TutorialMode.on) {
