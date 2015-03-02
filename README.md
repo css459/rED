@@ -10,26 +10,6 @@ Expectations:
 
 * You should learn how to use git and know how commits, pushes, pulls, etc work.
 
-Responsibilities:
-
-* UI and Storyboard: Cole
-
-* Table View(s): Cole
-
-* Custom Object files:
-
-     * Page: Matt
-
-     * Notebook: John
-
-     * Note: John
-
-* Settings: Cole
-
-* Website Conversion: KJ and Matt (COMPLETE)
-
-* Auto Scroll: KJ
-
 Conventions:
 
 * any image added to cassettes should follow the naming convention: " [img type]_[img name] "
