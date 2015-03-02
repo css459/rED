@@ -8,20 +8,25 @@
 
 #import "NotesViewController.h"
 #import "PagesViewController.h"
+#import "ColorPalette.h"
 
 @interface NotesViewController ()
 
 @end
 
 @implementation NotesViewController
+{
+    ColorPalette *cp;
+}
 
 @synthesize textView;
 
 #pragma mark - Initializers
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        cp = [[ColorPalette alloc] init];
     }
     return self;
 }
@@ -43,17 +48,15 @@
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
     self.navigationItem.hidesBackButton = YES;
     
-    // Bar Buttons
-    UIBarButtonItem *button_Share = [[UIBarButtonItem alloc]
-                                     initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                     target:self
-                                     action:@selector(button_ShareWasPressed:)];
-    [self.navigationItem setRightBarButtonItem:button_Share];
-    
     // Swipe Declaration
-    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeRight:)];
+    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self
+                                             action:@selector(gesture_SwipeRight:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
+    
+    [self.navigationController setToolbarHidden:YES];
+    [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
 }
 
 - (void)didReceiveMemoryWarning {

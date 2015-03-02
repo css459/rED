@@ -10,6 +10,8 @@
 #import "ColorPalette.h"
 #import "SavedPagesTableViewController.h"
 #import "NotesViewController.h"
+#import "SettingsViewController.h"
+#import "AutoScrollViewController.h"
 #import "Settings.h"
 #import "AppDelegate.h"
 #import "Page.h"
@@ -17,9 +19,34 @@
 
 @interface PagesViewController ()
 {
+    // States
     BOOL savedButtonState;
+    BOOL nightModeState;
+    
+    // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
+    UISlider *slider_textSize;
+    
+    // Button Arrays
+    NSArray *array_settingsToolbarButtons;
+    NSArray *array_defaultToolbarButtons;
+    
+    // Default Buttons
+    UIBarButtonItem *button_savePage;
+    UIBarButtonItem *button_autoScroll;
+    UIBarButtonItem *button_action;
+    UIBarButtonItem *button_defaultSettings;
+    
+    // Settings-State Buttons
+    UIBarButtonItem *button_more;
+    UIBarButtonItem *button_textSize;
+    UIBarButtonItem *button_nightMode;
+    UIBarButtonItem *button_expandedSettings;
+    
+    UIBarButtonItem *flexibleSpace;
+    
+    
 }
 @end
 
@@ -28,12 +55,78 @@
 
 #pragma mark - Initalizers
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        savedButtonState = false;
+        savedButtonState = NO;
+        nightModeState = NO;
+        
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
+        slider_textSize = [[UISlider alloc] init];
+        
+        button_more = [[UIBarButtonItem alloc]
+                       initWithImage:[UIImage imageNamed:@"settingsToolbar_More"]
+                       style:UIBarButtonItemStylePlain
+                       target: self
+                       action:@selector(button_moreWasPressed:)];
+        
+        button_nightMode = [[UIBarButtonItem alloc]
+                            initWithImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Clicked"]
+                            style:UIBarButtonItemStylePlain
+                            target:self
+                            action:@selector(button_nightModeWasPressed:)];
+        
+        button_textSize = [[UIBarButtonItem alloc]
+                           initWithImage:[UIImage imageNamed:@"settingsToolbar_TextSize_Unclicked"]
+                           style:UIBarButtonItemStylePlain
+                           target:self
+                           action:@selector(button_textSizeWasPressed:)];
+        
+        button_expandedSettings = [[UIBarButtonItem alloc]
+                                   initWithImage:[UIImage imageNamed:@"toolbar_SettingsGear_Clicked"]
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(button_expandedSettingsWasPressed:)];
+        
+        button_savePage = [[UIBarButtonItem alloc]
+                           initWithImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]
+                           style:UIBarButtonItemStylePlain
+                           target:self
+                           action:@selector(button_savePageWasPressed:)];
+        
+        button_autoScroll = [[UIBarButtonItem alloc]
+                             initWithImage:[UIImage imageNamed:@"toolbar_AutoScroll_Unclicked"]
+                             style:UIBarButtonItemStylePlain
+                             target:self
+                             action:@selector(button_autoScrollWasPressed:)];
+        
+        button_action = [[UIBarButtonItem alloc]
+                         initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                         target:self
+                         action:@selector(button_actionWasPressed:)];
+        
+        button_defaultSettings = [[UIBarButtonItem alloc]
+                                  initWithImage:[UIImage imageNamed:@"toolbar_SettingsGear_Unclicked"]
+                                  style:UIBarButtonItemStylePlain
+                                  target:self
+                                  action:@selector(button_defaultSettingsWasPressed:)];
+        
+        flexibleSpace = [[UIBarButtonItem alloc]
+                         initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                         target:nil
+                         action:nil];
+        
+        array_defaultToolbarButtons = @[button_savePage, flexibleSpace, button_autoScroll, flexibleSpace,
+                                        button_action, flexibleSpace, button_defaultSettings];
+        
+        array_settingsToolbarButtons = @[button_more, flexibleSpace, button_nightMode, flexibleSpace,
+                                         button_textSize, flexibleSpace, button_expandedSettings];
+        
+        slider_textSize.minimumValue = 9;
+        slider_textSize.maximumValue = 72;
+        
+        [self getHTML:[userSettings homeSite]];
     }
     return self;
 }
@@ -47,14 +140,22 @@
     UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]
                                             initWithTarget:self
                                             action:@selector(gesture_SwipeLeft:)];
+    
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeLeft];
     
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
                                              initWithTarget:self
                                              action:@selector(gesture_SwipeRight:)];
+    
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
+    
+    // Toolbar Configurations
+    [self.navigationController.toolbar setTintColor:[cp tint_accent]];
+    [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
+    [self setToolbarItems:array_defaultToolbarButtons];
+    [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -119,6 +220,7 @@
     }
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -180,6 +282,97 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
+#pragma mark - Button Actions
+
+// Toggle saving of the Page Object
+- (IBAction)button_savePageWasPressed:(id)sender {
+    savedButtonState = !savedButtonState;
+    if (savedButtonState) {
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        // Here, the Page obj should be ADDED to the cell array.
+    } else {
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+        // Here, the Page obj should be REMOVED from the cell array.
+    }
+}
+
+// Present the Auto Scroll View Controller
+- (IBAction)button_autoScrollWasPressed:(id)sender {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard
+                                storyboardWithName:storyboardName
+                                bundle:[NSBundle bundleForClass:[self class]]];
+    
+    AutoScrollViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AutoScrollViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
+}
+
+// Handle sharing of Page Object and Notebook Object, depending on settings.
+- (IBAction)button_actionWasPressed :(id)sender {
+    #warning incomplete implementation
+}
+
+// Switch to expanded settings state
+- (IBAction)button_defaultSettingsWasPressed:(id)sender {
+    [self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
+}
+
+// Present the Settings View Controller
+- (IBAction)button_moreWasPressed:(id)sender {
+    NSString * storyboardName = @"Main";
+    UIStoryboard *storyboard = [UIStoryboard
+                                storyboardWithName:storyboardName
+                                bundle:[NSBundle bundleForClass:[self class]]];
+    
+    SettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+    [[self navigationController] pushViewController:vc animated:YES];
+}
+
+// Toggle Night Mode
+- (IBAction)button_nightModeWasPressed:(id)sender {
+    nightModeState = !nightModeState;
+    if (nightModeState) {
+        [cp changeColorProfile:@"NightMode"];
+        [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Unclicked"]];
+        [self refreshView:nil];
+    } else {
+        [cp changeColorProfile:@"Default"];
+        [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Clicked"]];
+        [self refreshView:nil];
+    }
+}
+
+// Change Toolbar to slider and adjust the text size based on Slider value.
+- (IBAction)button_textSizeWasPressed:(id)sender {
+    UIBarButtonItem *button_done = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                    target:self
+                                    action:@selector(button_doneWasPressed:)];
+    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                   target:nil
+                                   action:nil];
+    [fixedSpace setWidth:10.0f];
+    
+    NSArray *array_SliderInterface = @[slider_textSize, fixedSpace, button_done];
+    [self.navigationController.toolbar setItems:array_SliderInterface animated:YES];
+}
+
+// Switch back to normal state
+- (IBAction)button_expandedSettingsWasPressed:(id)sender {
+    [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
+    [self refreshView:nil];
+}
+
+#pragma mark - Supporting Methods
+
+// Action for "Done Button" in "textSizeWasPressed" method
+- (IBAction)button_doneWasPressed:(id)sender {
+    [userSettings setTextSize:slider_textSize.value];
+    [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
+    [self refreshView:nil];
+}
+
 #pragma mark - HTML Handlers
 
 // Called when URL search button is pressed
@@ -204,33 +397,32 @@
     
     // Data download block
     [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
-         if (data != nil) {
-             NSError *error;
-             NSMutableDictionary *returnedDict = [NSJSONSerialization
-                                                  JSONObjectWithData:data
-                                                  options:kNilOptions
-                                                  error:&error];
-             if (error != nil) {
-                 NSLog(@"%@",[error localizedDescription]);
-                 
-                 UIAlertView *alert = [[UIAlertView alloc]
-                                       initWithTitle:@"Uh-Oh!"
-                                       message:@"The URL you requested is not compatible with rED :("
-                                       delegate:nil
-                                       cancelButtonTitle:@"Okay"
-                                       otherButtonTitles:nil, nil];
-                 [alert show];
-             } else {
-                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
-                 
-                 // HTML Content property is set to contain the HTML code for the page
-                 self.htmlContent = [[self htmlDictionary] description];
-                 
-                 // HTML is opened in the UIWebView
-                 [self openHTML:htmlContent];
-             }
-         }
-     }];
+        if (data != nil) {
+            NSError *error;
+            NSMutableDictionary *returnedDict = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:kNilOptions
+                                                 error:&error];
+            if (error != nil) {
+                NSLog(@"%@",[error localizedDescription]);
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Uh-Oh!"
+                                      message:@"The URL you requested is not compatible with rED :("
+                                      delegate:nil
+                                      cancelButtonTitle:@"Okay"
+                                      otherButtonTitles:nil, nil];
+                [alert show];
+            } else {
+                self.htmlDictionary = [returnedDict objectForKey:@"content"];
+                
+                // HTML Content property is set to contain the HTML code for the page
+                self.htmlContent = [[self htmlDictionary] description];
+                
+                // HTML is opened in the UIWebView
+                [self openHTML:htmlContent];
+            }
+        }
+    }];
 }
 
 #pragma mark - UIWebView Handlers
@@ -239,5 +431,4 @@
     //Loads UIWebView with HTML
     [webView loadHTMLString:html baseURL:nil];
 }
-
 @end

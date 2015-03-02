@@ -18,15 +18,12 @@
 }
 @end
 
-// TO DO:
-//  Use the arrays above to implement the Night Mode, not yet finished.
-
 @implementation SettingsViewController
 @synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info, currentURL;
 
 #pragma mark - Initializers
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
@@ -40,6 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setToolbarHidden:YES];
+    
     // Implements custom title with formatting
     [self.navigationController setNavigationBarHidden:NO];
     UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -49,48 +48,16 @@
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
-    
-    [self updateColorScheme];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    slider_TextSize.value = [userSettings textSize];
-    switch_NightMode.on = [userSettings nightMode];
     switch_TutorialMode.on = [userSettings tutorialMode];
     textField_HomeSite.text = [userSettings homeSite];
-    
-    label_TextPreview.font = [label_TextPreview.font fontWithSize:[userSettings textSize]];
-    
-    [self updateColorScheme];
 }
 
 - (void)refreshView:(NSNotification *) notification {
     [self viewDidLoad];
     [self viewWillAppear:YES];
-}
-
-- (void)updateColorScheme {
-    // UI array declarations
-    NSArray *array_TextLabels;
-    NSArray *array_switches;
-    array_switches = @[switch_NightMode, switch_TutorialMode];
-    array_TextLabels = @[label_NightMode, label_TutorialMode, label_HomeSite, label_TextPreview, label_TextSize];
-    
-    // Color tints
-    [self.navigationController.navigationBar setTintColor:[cp tint_text]];
-    [self.navigationController.navigationBar setBackgroundColor:[cp tint_navBar]];
-    [self.view setBackgroundColor:[cp tint_background]];
-    [self.view setTintColor:[cp tint_accent]];
-    [slider_TextSize setTintColor:[cp tint_accent]];
-    
-    for (UISwitch *s in array_switches) {
-        [s setTintColor:[cp tint_accent]];
-        [s setThumbTintColor:[cp tint_switch_thumb]];
-        [s setOnTintColor:[cp tint_accent]];
-    }
-    for (UILabel *l in array_TextLabels) {
-        [l setTextColor:[cp tint_text]];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +97,8 @@
         [userSettings setTutorialMode:NO];
     }
 }
+
+- (IBAction)switch_SharingModeDidChange:(id)sender {}
 
 - (IBAction)textField_HomeSiteDidChange:(id)sender {
     [userSettings setHomeSite:textField_HomeSite.text];

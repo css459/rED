@@ -28,7 +28,7 @@
 
 #pragma mark - Initializers
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
     }
@@ -39,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setToolbarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
