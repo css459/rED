@@ -23,9 +23,6 @@
 
 @property (weak, nonatomic) NSString *currentURL;
 
-
-- (IBAction)slider_TextSizeDidChange:(id)sender;
-- (IBAction)switch_NightModeDidChange:(id)sender;
 - (IBAction)textField_HomeSiteDidChange:(id)sender;
 - (IBAction)switch_TutorialModeDidChange:(id)sender;
 - (IBAction)switch_SharingModeDidChange:(id)sender;
