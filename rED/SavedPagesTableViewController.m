@@ -68,6 +68,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)updateColorScheme {}
+
 #pragma mark - Action Handlers
 
 // Switch to Home

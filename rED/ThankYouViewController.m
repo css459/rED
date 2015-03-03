@@ -43,6 +43,8 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)updateColorScheme {}
+
 /*
 #pragma mark - Navigation
 

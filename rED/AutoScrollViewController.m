@@ -46,6 +46,8 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)updateColorScheme {}
+
 #pragma mark - Action Handlers
 
 // Switch to Home

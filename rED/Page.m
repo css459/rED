@@ -13,8 +13,7 @@
 
 @synthesize url, htmlContent, dateSaved, notebook;
 
-- (id)initWithURL:(NSString *)urlAddress withHTML:(NSString *)HTML withDateSaved:(NSString *)date withNoteBook:(Notebook *)nb
-{
+- (id)initWithURL:(NSString *)urlAddress withHTML:(NSString *)HTML withDateSaved:(NSString *)date withNoteBook:(Notebook *)nb {
     url = urlAddress;
     htmlContent = HTML;
     dateSaved = date;
@@ -23,9 +22,6 @@
     return self;
 }
 
--(void)savePage:(Page *)p
-{
-    
-}
+-(void)savePage:(Page *)p {}
 
 @end

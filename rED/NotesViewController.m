@@ -63,6 +63,8 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)updateColorScheme {}
+
 #pragma mark - Action Handlers
 
 // Switch to Home
@@ -74,12 +76,10 @@
 }
 
 // Open up mail view controller with text
-- (IBAction)button_ShareWasPressed:(id)sender
-{
+- (IBAction)button_ShareWasPressed:(id)sender {
     NSString *emailText = [textView text];
     
-    if ([MFMailComposeViewController canSendMail])
-    {
+    if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
         
@@ -89,10 +89,9 @@
         
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
-
 }
 
--(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     
     if (error != nil) {
         NSLog(@"%@", [error localizedDescription]);

@@ -224,6 +224,8 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)updateColorScheme {}
+
 #pragma mark - Action Handlers
 
 // Handles toggling of saved button
