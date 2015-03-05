@@ -27,7 +27,7 @@ Conventions:
 #!objective-c
 
 // Comments should look like this (note the SPACE)
-- (id) methodImplementationsShouldLookLikeThis {
+- (id)methodImplementationsShouldLookLikeThis {
      // No space between first line or last bracket
      if (ifStatementsAndLoopsShouldLookLikeThis) {
           // Note the lack of spaces
