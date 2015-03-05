@@ -7,15 +7,40 @@
 //
 
 #import "NotebookManagerTableViewController.h"
+#import "ColorPalette.h"
 
 @interface NotebookManagerTableViewController ()
+{
+    ColorPalette *cp;
+}
 
 @end
 
 @implementation NotebookManagerTableViewController
 
+#pragma mark - Initializers
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        cp = [[ColorPalette alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Implements custom title with formatting
+    [self.navigationController setNavigationBarHidden:NO];
+    UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
+    UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
+    [naviTitle setText:@"Notebook Tabs"];
+    [naviTitle setFont:titleFont];
+    [naviTitle setTextColor:[cp tint_text]];
+    [naviTitle sizeToFit];
+    self.navigationItem.titleView = naviTitle;
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -8,12 +8,16 @@
 
 #import "SavedPagesTableViewController.h"
 #import "PagesViewController.h"
+#import "ColorPalette.h"
 #import "Page.h"
+#import "Settings.h"
 
 @interface SavedPagesTableViewController ()
 {
     NSMutableArray *array_cells;
+    ColorPalette *cp;
     Page *navigatingPage;
+    Settings *userSettings;
     NSInteger indexForDelete;
 }
 @end
@@ -26,6 +30,8 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         array_cells = [[NSMutableArray alloc] init];
+        cp = [[ColorPalette alloc] init];
+        userSettings = [Settings sharedSettings];
     }
     return self;
 }
@@ -47,6 +53,12 @@
     self.navigationItem.titleView = naviTitle;
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
     self.navigationItem.hidesBackButton = YES;
+    
+    if ([userSettings nightMode]) {
+        [cp changeColorProfile:@"NightMode"];
+    } else {
+        [cp changeColorProfile:@"Default"];
+    }
 
     
     // Uncomment the following line to preserve selection between presentations.
@@ -68,7 +80,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)updateColorScheme {}
+-(void)updateColorScheme {
+    [self.view setBackgroundColor:[cp tint_background]];
+    [self.view setTintColor:[cp tint_accent]];
+}
 
 #pragma mark - Action Handlers
 
