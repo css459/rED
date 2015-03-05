@@ -27,27 +27,16 @@ Conventions:
 #!objective-c
 
 // Comments should look like this (note the SPACE)
-```
-
-
-```
-#!objective-c
-
 - (id) methodImplementationsShouldLookLikeThis {
      // No space between first line or last bracket
+     if (ifStatementsAndLoopsShouldLookLikeThis) {
+          // Note the lack of spaces
+     } else {
+          // Note the nested else
+     }
 }
 ```
 
-
-```
-#!objective-c
-
-if (ifStatementsAndLoopsShouldLookLikeThis) {
-     // Note the lack of spaces
-} else {
-     // Note the nested else
-}
-```
 
 Resources:
 
