@@ -22,7 +22,8 @@
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 
 // Supporting Properties
-@property (strong, nonatomic) UISlider *slider_textSize;
+@property (nonatomic) UISlider *slider_textSize;
+@property (nonatomic) UIBarButtonItem *button_done;
 
 // Button Actions
 - (IBAction)button_savePageWasPressed:(id)sender;

@@ -87,7 +87,7 @@
         <!--Notebook Tabs-->
         <scene sceneID="fRK-kk-W88">
             <objects>
-                <tableViewController title="Notebook Tabs" id="4NK-s4-tNx" sceneMemberID="viewController">
+                <tableViewController title="Notebook Tabs" id="4NK-s4-tNx" customClass="NotebookManagerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="Fjt-54-OaF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,7 +309,6 @@
                     <navigationItem key="navigationItem" id="xvo-BH-JR2"/>
                     <connections>
                         <outlet property="searchBar" destination="dEH-JT-ian" id="cct-YB-qKR"/>
-                        <outlet property="view" destination="8bC-Xf-vdC" id="YDs-kh-zVW"/>
                         <outlet property="webView" destination="dm8-DN-vS0" id="Jrc-OC-6uX"/>
                     </connections>
                 </viewController>
