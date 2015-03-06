@@ -56,8 +56,10 @@
     
     if ([userSettings nightMode]) {
         [cp changeColorProfile:@"NightMode"];
+        [self updateColorScheme];
     } else {
         [cp changeColorProfile:@"Default"];
+        [self updateColorScheme];
     }
 
     
