@@ -176,24 +176,24 @@
     
     NSLog(@"%@", self.slider_textSize);
     
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:self.slider_textSize
-                              attribute:NSLayoutAttributeLeft
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:self.view
-                              attribute:NSLayoutAttributeLeft
-                              multiplier:1
-                              constant:5]];
-    
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:self.slider_textSize
-                              attribute:NSLayoutAttributeRight
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:button_done attribute:NSLayoutAttributeRight
-                              multiplier:1
-                              constant:10]];
-    
-    slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeLeft
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:self.view
+//                              attribute:NSLayoutAttributeLeft
+//                              multiplier:1
+//                              constant:5]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeRight
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:button_done attribute:NSLayoutAttributeRight
+//                              multiplier:1
+//                              constant:10]];
+//    
+//    slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
 
 }
 
