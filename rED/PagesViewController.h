@@ -21,6 +21,9 @@
 @property (strong, nonatomic) NSString *updateHTML;
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 
+// Supporting Properties
+@property (nonatomic) UISlider *slider_textSize;
+
 // Button Actions
 - (IBAction)button_savePageWasPressed:(id)sender;
 - (IBAction)button_autoScrollWasPressed:(id)sender;
@@ -30,7 +33,10 @@
 - (IBAction)button_nightModeWasPressed:(id)sender;
 - (IBAction)button_textSizeWasPressed:(id)sender;
 - (IBAction)button_expandedSettingsWasPressed:(id)sender;
+
+// Supporting Actions
 - (IBAction)button_doneWasPressed:(id)sender;
+- (IBAction)slider_textSizeValueChanged:(id)sender;
 
 // Gesture Handlers
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;

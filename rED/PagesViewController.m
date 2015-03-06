@@ -26,7 +26,8 @@
     // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
-    UISlider *slider_textSize;
+    
+    UIBarButtonItem *button_done;
     
     // Button Arrays
     NSArray *array_settingsToolbarButtons;
@@ -51,7 +52,7 @@
 @end
 
 @implementation PagesViewController
-@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML;
+@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML, slider_textSize;
 
 #pragma mark - Initalizers
 
@@ -64,6 +65,15 @@
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
         slider_textSize = [[UISlider alloc] init];
+        
+        [slider_textSize addTarget:self
+                         action:@selector(slider_textSizeValueChanged:)
+                         forControlEvents:UIControlEventValueChanged];
+        
+         button_done = [[UIBarButtonItem alloc]
+                        initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                        target:self
+                        action:@selector(button_doneWasPressed:)];
         
         button_more = [[UIBarButtonItem alloc]
                        initWithImage:[UIImage imageNamed:@"settingsToolbar_More"]
@@ -122,10 +132,8 @@
         
         array_settingsToolbarButtons = @[button_more, flexibleSpace, button_nightMode, flexibleSpace,
                                          button_textSize, flexibleSpace, button_expandedSettings];
-        
-        slider_textSize.minimumValue = 9;
-        slider_textSize.maximumValue = 72;
-        
+
+
         [self getHTML:[userSettings homeSite]];
     }
     return self;
@@ -156,6 +164,37 @@
     [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
     [self setToolbarItems:array_defaultToolbarButtons];
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
+    
+    // Slider Implementation
+    slider_textSize.minimumValue = 9;
+    slider_textSize.maximumValue = 72;
+    slider_textSize.value = 12;
+    slider_textSize.continuous = YES;
+    
+    [self.view setUserInteractionEnabled:YES];
+    [self.view addSubview:slider_textSize];
+    
+    NSLog(@"%@", self.slider_textSize);
+    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeLeft
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:self.view
+//                              attribute:NSLayoutAttributeLeft
+//                              multiplier:1
+//                              constant:5]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeRight
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:button_done attribute:NSLayoutAttributeRight
+//                              multiplier:1
+//                              constant:10]];
+//    
+//    slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -191,11 +230,11 @@
             size = 7;
         }
     
-        //Update HTML
+        // Update HTML
         NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
         updateHTML = updatedHTML;
         
-        //Reload webview html content
+        // Reload webview html content
         [self openHTML:updateHTML];
     }
     
@@ -214,17 +253,26 @@
     [self.navigationController setToolbarHidden:NO];
 }
 
-- (void)refreshView:(NSNotification *) notification {
-    [self viewDidLoad];
-    [self viewWillAppear:YES];
-}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
--(void)updateColorScheme {}
+-(void)updateColorScheme {
+    [searchBar setBarTintColor:[cp tint_background]];
+    [searchBar setBackgroundColor:[cp tint_background]];
+    [searchBar setTintColor:[cp tint_accent]];
+    
+    [self.navigationController.toolbar setTintColor:[cp tint_accent]];
+    [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
+    
+    NSString *updatedHTML = [NSString
+                             stringWithFormat:@"<body bgcolor=\"grey\"><font color=\"white\">%@</font></body>", updateHTML];
+    
+    [[self view]setBackgroundColor:[cp tint_background]];
+    
+    [self openHTML:updatedHTML];
+
+}
 
 #pragma mark - Action Handlers
 
@@ -307,6 +355,7 @@
 }
 
 // Handle sharing of Page Object and Notebook Object, depending on settings.
+// Should also present an option to view the full page normally.
 - (IBAction)button_actionWasPressed :(id)sender {
     #warning incomplete implementation
 }
@@ -333,34 +382,32 @@
     if (nightModeState) {
         [cp changeColorProfile:@"NightMode"];
         [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Unclicked"]];
-        [self refreshView:nil];
+        [self updateColorScheme];
     } else {
         [cp changeColorProfile:@"Default"];
         [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Clicked"]];
-        [self refreshView:nil];
+        [self updateColorScheme];
     }
 }
 
 // Change Toolbar to slider and adjust the text size based on Slider value.
 - (IBAction)button_textSizeWasPressed:(id)sender {
-    UIBarButtonItem *button_done = [[UIBarButtonItem alloc]
-                                    initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                    target:self
-                                    action:@selector(button_doneWasPressed:)];
+    
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc]
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                                    target:nil
                                    action:nil];
-    [fixedSpace setWidth:10.0f];
+    [fixedSpace setWidth:100.0f];
     
-    NSArray *array_SliderInterface = @[slider_textSize, fixedSpace, button_done];
+    UIBarButtonItem *slider_ConvertedForBarButton = [[UIBarButtonItem alloc] initWithCustomView:slider_textSize];
+    
+    NSArray *array_SliderInterface = @[slider_ConvertedForBarButton, flexibleSpace, button_done];
     [self.navigationController.toolbar setItems:array_SliderInterface animated:YES];
 }
 
 // Switch back to normal state
 - (IBAction)button_expandedSettingsWasPressed:(id)sender {
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
-    [self refreshView:nil];
 }
 
 #pragma mark - Supporting Methods
@@ -369,7 +416,12 @@
 - (IBAction)button_doneWasPressed:(id)sender {
     [userSettings setTextSize:slider_textSize.value];
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
-    [self refreshView:nil];
+}
+
+// Action Method for Text Size slider
+- (IBAction)slider_textSizeValueChanged:(id)sender {
+    [userSettings setTextSize:slider_textSize.value];
+    NSLog(@"%f", userSettings.textSize);
 }
 
 #pragma mark - HTML Handlers
