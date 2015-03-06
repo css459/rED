@@ -22,6 +22,22 @@ Conventions:
 
           logo_NavigationBar
 
+
+```
+#!objective-c
+
+// Comments should look like this (note the SPACE)
+- (id)methodImplementationsShouldLookLikeThis {
+     // No space between first line or last bracket
+     if (ifStatementsAndLoopsShouldLookLikeThis) {
+          // Note the lack of spaces
+     } else {
+          // Note the nested else
+     }
+}
+```
+
+
 Resources:
 
 [Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide)
