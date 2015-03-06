@@ -172,10 +172,10 @@
     slider_textSize.continuous = YES;
     
     [self.view setUserInteractionEnabled:YES];
-    [self.view addSubview:slider_textSize];
+    [self.view addSubview:self.slider_textSize];
     
-    NSLog(@"%@", self.slider_textSize);
-    
+//    self.slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
+//    
 //    [self.view addConstraint:[NSLayoutConstraint
 //                              constraintWithItem:self.slider_textSize
 //                              attribute:NSLayoutAttributeLeft
@@ -192,8 +192,7 @@
 //                              toItem:button_done attribute:NSLayoutAttributeRight
 //                              multiplier:1
 //                              constant:10]];
-//    
-//    slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
+    
 
 }
 
