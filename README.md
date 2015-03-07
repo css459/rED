@@ -37,6 +37,15 @@ Conventions:
 }
 ```
 
+Objective-C Style Guides:
+
+[Ray Wenderlich](https://github.com/raywenderlich/objective-c-style-guide) (ours)
+
+[New York Times](https://github.com/NYTimes/objective-c-style-guide)
+
+[Google](http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml)
+
+[GitHub](https://github.com/github/objective-c-style-guide)
 
 Resources:
 
