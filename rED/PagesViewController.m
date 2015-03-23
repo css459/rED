@@ -27,8 +27,6 @@
     ColorPalette *cp;
     Settings *userSettings;
     
-    UIBarButtonItem *button_done;
-    
     // Button Arrays
     NSArray *array_settingsToolbarButtons;
     NSArray *array_defaultToolbarButtons;
@@ -62,9 +60,13 @@
         savedButtonState = NO;
         nightModeState = NO;
         
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat sliderWidth = .786 * screenRect.size.width;
+        CGRect frame = CGRectMake(0, 0, sliderWidth, 32);
+        
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
-        slider_textSize = [[UISlider alloc] init];
+        slider_textSize = [[UISlider alloc] initWithFrame:frame];
         
         [slider_textSize addTarget:self
                          action:@selector(slider_textSizeValueChanged:)
@@ -173,25 +175,7 @@
     
     [self.view setUserInteractionEnabled:YES];
     [self.view addSubview:self.slider_textSize];
-    
-//    self.slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    [self.view addConstraint:[NSLayoutConstraint
-//                              constraintWithItem:self.slider_textSize
-//                              attribute:NSLayoutAttributeLeft
-//                              relatedBy:NSLayoutRelationEqual
-//                              toItem:self.view
-//                              attribute:NSLayoutAttributeLeft
-//                              multiplier:1
-//                              constant:5]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint
-//                              constraintWithItem:self.slider_textSize
-//                              attribute:NSLayoutAttributeRight
-//                              relatedBy:NSLayoutRelationEqual
-//                              toItem:button_done attribute:NSLayoutAttributeRight
-//                              multiplier:1
-//                              constant:10]];
+    [self.slider_textSize setHidden:YES];
     
     UIMenuItem *highlightRedItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Red Highlight", nil) action:@selector(highlight_red)];
     UIMenuItem *highlightYellowItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Yellow Highlight", nil) action:@selector(highlight_red)];
@@ -396,16 +380,11 @@
 
 // Change Toolbar to slider and adjust the text size based on Slider value.
 - (IBAction)button_textSizeWasPressed:(id)sender {
-    
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                   target:nil
-                                   action:nil];
-    [fixedSpace setWidth:100.0f];
+    [self.slider_textSize setHidden:NO];
     
     UIBarButtonItem *slider_ConvertedForBarButton = [[UIBarButtonItem alloc] initWithCustomView:slider_textSize];
-    
     NSArray *array_SliderInterface = @[slider_ConvertedForBarButton, flexibleSpace, button_done];
+    
     [self.navigationController.toolbar setItems:array_SliderInterface animated:YES];
 }
 
@@ -425,7 +404,6 @@
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
     [userSettings setTextSize:slider_textSize.value];
-    NSLog(@"%f", userSettings.textSize);
 }
 
 #pragma mark - HTML Handlers
