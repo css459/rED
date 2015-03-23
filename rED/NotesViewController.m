@@ -8,20 +8,31 @@
 
 #import "NotesViewController.h"
 #import "PagesViewController.h"
+#import "ColorPalette.h"
 
 @interface NotesViewController ()
 
 @end
 
 @implementation NotesViewController
+{
+    ColorPalette *cp;
+}
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+@synthesize textView;
+
+#pragma mark - Initializers
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        
+        cp = [[ColorPalette alloc] init];
     }
     return self;
 }
+
+#pragma mark - View Handlers
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -38,15 +49,23 @@
     self.navigationItem.hidesBackButton = YES;
     
     // Swipe Declaration
-    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeRight:)];
+    UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self
+                                             action:@selector(gesture_SwipeRight:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
+    
+    [self.navigationController setToolbarHidden:YES];
+    [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+-(void)updateColorScheme {}
+
+#pragma mark - Action Handlers
 
 // Switch to Home
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -54,6 +73,31 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
     PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
+}
+
+// Open up mail view controller with text
+- (IBAction)button_ShareWasPressed:(id)sender {
+    NSString *emailText = [textView text];
+    
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        mailViewController.mailComposeDelegate = self;
+        
+        [mailViewController setSubject:@"My Note"];
+        
+        [mailViewController setMessageBody:emailText isHTML:NO];
+        
+        [self presentViewController:mailViewController animated:YES completion:nil];
+    }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    
+    if (error != nil) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

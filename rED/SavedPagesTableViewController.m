@@ -8,31 +8,42 @@
 
 #import "SavedPagesTableViewController.h"
 #import "PagesViewController.h"
+#import "ColorPalette.h"
 #import "Page.h"
+#import "Settings.h"
 
 @interface SavedPagesTableViewController ()
 {
     NSMutableArray *array_cells;
+    ColorPalette *cp;
     Page *navigatingPage;
+    Settings *userSettings;
     NSInteger indexForDelete;
 }
 @end
 
 @implementation SavedPagesTableViewController
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+#pragma mark - Initializers
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         array_cells = [[NSMutableArray alloc] init];
+        cp = [[ColorPalette alloc] init];
+        userSettings = [Settings sharedSettings];
     }
     return self;
 }
+
+#pragma mark - View Handlers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Implements custom title with formatting
     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
     UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
     UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
     [naviTitle setText:@"Saved Sites"];
@@ -42,6 +53,14 @@
     self.navigationItem.titleView = naviTitle;
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
     self.navigationItem.hidesBackButton = YES;
+    
+    if ([userSettings nightMode]) {
+        [cp changeColorProfile:@"NightMode"];
+        [self updateColorScheme];
+    } else {
+        [cp changeColorProfile:@"Default"];
+        [self updateColorScheme];
+    }
 
     
     // Uncomment the following line to preserve selection between presentations.
@@ -51,7 +70,9 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Swipe Declaration
-    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(gesture_SwipeLeft:)];
+    UISwipeGestureRecognizer * swipeLeft = [[UISwipeGestureRecognizer alloc]
+                                            initWithTarget:self
+                                            action:@selector(gesture_SwipeLeft:)];
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeLeft];
 }
@@ -60,6 +81,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)updateColorScheme {
+    [self.view setBackgroundColor:[cp tint_background]];
+    [self.view setTintColor:[cp tint_accent]];
+}
+
+#pragma mark - Action Handlers
 
 // Switch to Home
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -114,11 +142,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure?"
-                                                        message:@"Deleting this page will remove its Notebook and highlights as well."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Retain"
-                                              otherButtonTitles:@"Delete"];
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Are you sure?"
+                              message:@"Deleting this page will remove its Notebook and highlights as well."
+                              delegate:self
+                              cancelButtonTitle:@"Retain"
+                              otherButtonTitles:@"Delete", nil];
         [alert show];
         indexForDelete = indexPath.row;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

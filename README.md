@@ -10,26 +10,6 @@ Expectations:
 
 * You should learn how to use git and know how commits, pushes, pulls, etc work.
 
-Responsibilities:
-
-* UI and Storyboard: Cole
-
-* Table View(s): Cole
-
-* Custom Object files:
-
-     * Page: Matt
-
-     * Notebook: John
-
-     * Note: John
-
-* Settings: Cole
-
-* Website Conversion: KJ and Matt
-
-* Auto Scroll: KJ
-
 Conventions:
 
 * any image added to cassettes should follow the naming convention: " [img type]_[img name] "
@@ -42,6 +22,37 @@ Conventions:
 
           logo_NavigationBar
 
+
+```
+#!objective-c
+
+// Comments should look like this (note the SPACE)
+- (id)methodImplementationsShouldLookLikeThis {
+     // No space between first line or last bracket
+     if (ifStatementsAndLoopsShouldLookLikeThis) {
+          // Note the lack of spaces
+     } else {
+          // Note the nested else
+     }
+}
+```
+
+Objective-C Style Guides:
+
+[Ray Wenderlich](https://github.com/raywenderlich/objective-c-style-guide) (ours)
+
+[New York Times](https://github.com/NYTimes/objective-c-style-guide)
+
+[Google](http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml)
+
+[GitHub](https://github.com/github/objective-c-style-guide)
+
 Resources:
 
 [Readability Implementation](http://stackoverflow.com/questions/7657553/ios-access-to-safari-reader-feature-through-uiwebview)
+
+[Readability API](https://readability.com/developers/api)
+
+[Parser API Documentation](https://readability.com/developers/api/parser)
+
+[Thesaurus API](http://words.bighugelabs.com/api.php)

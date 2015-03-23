@@ -16,7 +16,7 @@
 
 @interface ColorPalette ()
 {
-    UIColor *default_accent;     // Prev. tint_master_red
+    UIColor *default_accent;
     UIColor *default_text;
     UIColor *default_background;
     UIColor *default_navBar;
@@ -33,9 +33,9 @@
 @end
 
 @implementation ColorPalette
-@synthesize tint_accent, tint_background, tint_text, tint_navBar, tint_switch_thumb;
+@synthesize tint_accent, tint_background, tint_text, tint_navBar, tint_switch_thumb, highlight_blue, highlight_orange, highlight_red, highlight_yellow;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         // Default Mode implementation
@@ -58,6 +58,12 @@
         tint_accent = default_accent;
         tint_navBar = default_navBar;
         tint_switch_thumb = defualt_switch_thumb;
+        
+        // Highlights
+        highlight_yellow = [UIColor colorWithRed:242.0f/255.0f green:240.0f/255.0f blue:165.0f/255.0f alpha:0.7];
+        highlight_blue = [UIColor colorWithRed:201.0f/255.0f green:218.0f/255.0f blue:248.0f/255.0f alpha:0.7];
+        highlight_orange = [UIColor colorWithRed:255.0f/255.0f green:198.0f/255.0f blue:112.0f/255.0f alpha:0.7];
+        highlight_red = [UIColor colorWithRed:255.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:0.7];
     }
     return self;
 }

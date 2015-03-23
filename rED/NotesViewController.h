@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface NotesViewController : UIViewController
+@interface NotesViewController : UIViewController <MFMailComposeViewControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;
+- (IBAction)button_ShareWasPressed:(id)sender;
 
 @end

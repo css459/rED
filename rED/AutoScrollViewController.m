@@ -25,18 +25,23 @@
 @end
 
 @implementation AutoScrollViewController
+@synthesize stepper_ScrollSpeed;
 
 @synthesize webView, scrollButton, scrollView, h, scrollVal, timer;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-    
+        //stepper_ScrollSpeed.maximumValue = ;
+        //stepper_ScrollSpeed.minimumValue = ;
+        //stepper_ScrollSpeed.value = ;
     }
     h = 0;
     scrollVal = 0.0;
     return self;
 }
+
+#pragma mark - View Handlers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -226,9 +231,17 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void)updateColorScheme {}
+
+#pragma mark - Action Handlers
+
 // Switch to Home
 - (IBAction)button_DoneWasPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+// Adjust the scroll speed
+- (IBAction)stepper_ScrollSpeedDidChange:(id)sender {
 }
 
 /*

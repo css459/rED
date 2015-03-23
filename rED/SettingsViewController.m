@@ -9,23 +9,21 @@
 #import "SettingsViewController.h"
 #import "ColorPalette.h"
 #import "Settings.h"
+#import "PagesViewController.h"
 
 @interface SettingsViewController ()
 {
     ColorPalette *cp;
     Settings *userSettings;
-    NSArray *array_TextLabels;
-    NSArray *array_switches;
 }
 @end
 
-// TO DO:
-//  Use the arrays above to implement the Night Mode, not yet finished.
-
 @implementation SettingsViewController
-@synthesize slider_TextSize, label_TextPreview, switch_NightMode, switch_TutorialMode, textField_HomeSite, label_NightMode, label_HomeSite, label_TextSize, label_TutorialMode, textView_Disclaimer, button_Info;
+@synthesize switch_TutorialMode, textField_HomeSite, label_HomeSite, label_TutorialMode, textView_Disclaimer, button_Info;
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+#pragma mark - Initializers
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
@@ -39,9 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // UI array aeclarations
-    array_switches = @[switch_NightMode, switch_TutorialMode];
-    array_TextLabels = @[label_NightMode, label_TutorialMode, label_HomeSite, label_TextPreview, label_TextSize];
+    [self.navigationController setToolbarHidden:YES];
     
     // Implements custom title with formatting
     [self.navigationController setNavigationBarHidden:NO];
@@ -52,32 +48,11 @@
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
-    
-    // Color tints for night mode integration
-//    [self.navigationController.navigationBar setTranslucent:NO];
-    [self.navigationController.navigationBar setTintColor:[cp tint_text]];
-    [self.navigationController.navigationBar setBackgroundColor:[cp tint_navBar]];
-    [self.view setBackgroundColor:[cp tint_background]];
-    [self.view setTintColor:[cp tint_accent]];
-    [slider_TextSize setTintColor:[cp tint_accent]];
-    
-    for (UISwitch *s in array_switches) {
-        [s setTintColor:[cp tint_accent]];
-        [s setThumbTintColor:[cp tint_switch_thumb]];
-        [s setOnTintColor:[cp tint_accent]];
-    }
-    for (UILabel *l in array_TextLabels) {
-        [l setTextColor:[cp tint_text]];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    slider_TextSize.value = [userSettings textSize];
-    switch_NightMode.on = [userSettings nightMode];
     switch_TutorialMode.on = [userSettings tutorialMode];
     textField_HomeSite.text = [userSettings homeSite];
-    
-    label_TextPreview.font = [label_TextPreview.font fontWithSize:[userSettings textSize]];
 }
 
 - (void)refreshView:(NSNotification *) notification {
@@ -89,32 +64,9 @@
     [super didReceiveMemoryWarning];
 }
 
-// Allows user to exit editing
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
-    [super touchesBegan:touches withEvent:event];
-}
+-(void)updateColorScheme {}
 
-#pragma mark - Setting Components
-
-- (IBAction)slider_TextSizeDidChange:(id)sender {
-    double fontSizeAsProportion = slider_TextSize.value;
-    
-    label_TextPreview.font=[label_TextPreview.font fontWithSize:fontSizeAsProportion];
-    [userSettings setTextSize:fontSizeAsProportion];
-}
-
-- (IBAction)switch_NightModeDidChange:(id)sender {
-    
-    if (switch_NightMode.on) {
-        [cp changeColorProfile:@"NightMode"];
-        [userSettings setNightMode:YES];
-    } else {
-        [cp changeColorProfile:@"Default"];
-        [userSettings setNightMode:NO];
-    }
-    [self refreshView:nil];
-}
+#pragma mark - Action Handlers
 
 - (IBAction)switch_TutorialModeDidChange:(id)sender {
     if (switch_TutorialMode.on) {
@@ -124,8 +76,16 @@
     }
 }
 
+- (IBAction)switch_SharingModeDidChange:(id)sender {}
+
 - (IBAction)textField_HomeSiteDidChange:(id)sender {
     [userSettings setHomeSite:textField_HomeSite.text];
+}
+
+// Allows user to exit editing
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 /*

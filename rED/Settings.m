@@ -11,12 +11,13 @@
 @implementation Settings
 @synthesize homeSite, textSize, nightMode, tutorialMode;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         textSize = 25.0;
         nightMode = NO;
         tutorialMode = NO;
+        homeSite = @"about:blank";  // This is sort of a hack 
     }
     return self;
     
