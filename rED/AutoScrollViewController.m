@@ -25,12 +25,16 @@
 @end
 
 @implementation AutoScrollViewController
+@synthesize stepper_ScrollSpeed;
 
 #pragma mark - Initializers
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        //stepper_ScrollSpeed.maximumValue = ;
+        //stepper_ScrollSpeed.minimumValue = ;
+        //stepper_ScrollSpeed.value = ;
     }
     return self;
 }
@@ -53,6 +57,10 @@
 // Switch to Home
 - (IBAction)button_DoneWasPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+// Adjust the scroll speed
+- (IBAction)stepper_ScrollSpeedDidChange:(id)sender {
 }
 
 /*

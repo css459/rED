@@ -22,7 +22,10 @@
 @interface AutoScrollViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_Done;
+@property (weak, nonatomic) IBOutlet UIStepper *stepper_ScrollSpeed;
 
 - (IBAction)button_DoneWasPressed:(id)sender;
+- (IBAction)stepper_ScrollSpeedDidChange:(id)sender;
+
 
 @end
