@@ -37,10 +37,17 @@ Conventions:
 }
 ```
 
+Objective-C Style Guides:
+
+[Ray Wenderlich](https://github.com/raywenderlich/objective-c-style-guide) (ours)
+
+[New York Times](https://github.com/NYTimes/objective-c-style-guide)
+
+[Google](http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml)
+
+[GitHub](https://github.com/github/objective-c-style-guide)
 
 Resources:
-
-[Objective-C Style Guide](https://github.com/raywenderlich/objective-c-style-guide)
 
 [Readability Implementation](http://stackoverflow.com/questions/7657553/ios-access-to-safari-reader-feature-through-uiwebview)
 
