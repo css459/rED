@@ -9,6 +9,8 @@
 #import "NotesViewController.h"
 #import "PagesViewController.h"
 #import "ColorPalette.h"
+#import "Settings.h"
+#import "Section.h"
 
 @interface NotesViewController ()
 
@@ -17,6 +19,7 @@
 @implementation NotesViewController
 {
     ColorPalette *cp;
+    Settings *sharedSettings;
 }
 
 @synthesize textView, button_quotations, button_sections, button_share;
@@ -27,6 +30,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
+        sharedSettings = [Settings sharedSettings];
     }
     return self;
 }
@@ -103,7 +107,7 @@
 
 #pragma mark - Supporting Actions
 
--(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     
     if (error != nil) {
         NSLog(@"%@", [error localizedDescription]);
@@ -111,6 +115,9 @@
     
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
+
+#warning incomplete method implementation
+- (void)loadSection:(Section *)section {}
 
 /*
 #pragma mark - Navigation

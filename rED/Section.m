@@ -18,6 +18,8 @@
 @implementation Section
 @synthesize title, color, textContent, dateCreated;
 
+#pragma mark - Initializers
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -41,4 +43,15 @@
     }
     return self;
 }
+
+#pragma mark - Supporting Actions
+
+- (NSString *)formatDate:(NSDate *)date {
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"MMM dd, yyyy HH:mm"];
+    NSString *dateString = [format stringFromDate:date];
+    
+    return dateString;
+}
+
 @end

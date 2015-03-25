@@ -6,10 +6,15 @@
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-/*
-    The Settings object will maintain a globally accessible singleton
-    that holds the parameters defined in the Settings View Controller
- */
+/* ---<<SINGLETON>>-------------------------------------------------------------
+ 
+    The Settings object will maintain a globally accessible singleton.
+    Therefore, there should only ever be ONE instance of Settings.
+ 
+    The contents of Settings is dynamic and objects 
+    may move in and out of Settings.
+ 
+*///----------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
 

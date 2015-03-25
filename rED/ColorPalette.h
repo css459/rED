@@ -6,21 +6,30 @@
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-/*
-    This class handles the consistency of colors across the application.
-    Colors are simply defined as UIColor properties as called using the getter for that object.
+/* -----------------------------------------------------------------------------
  
-    Section Colors: Colors for the Section objects will be set by cycling though the array_sectionColors
-    object. The color can then be set from the current index of that array. 
+    This class handles the consistency of colors thoughout the application.
  
-    The property names should be fairly explanatory for their purposes but for clarity:
+    Section Colors:
  
-        * tint_accent: used for buttons and elements that require a color that "pops"
+    Property explanations:
+ 
+        * tint_accent: used for buttons and elements that 
+          require a color that "pops"
+ 
         * tint_text: used for all text everywhere
-        * tint_background: used for the background of the view controller and sometimes labels or fields
-          where required
+ 
+        * tint_background: used for the background of the view controller 
+          and sometimes labels or fields where required
+ 
         * tint_switch_thumb: used exclusively for the tops of UISwitches
- */
+ 
+        * highlight_*: the colors used for Highlighting
+ 
+        * array_sectionColors: Colors for the Section objects will be set by
+          cycling though this array.
+ 
+*/// ---------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
