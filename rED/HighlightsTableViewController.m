@@ -34,7 +34,7 @@
     [self.navigationController setNavigationBarHidden:NO];
     UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
     UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
-    [naviTitle setText:@"Highlights from Page"];
+    [naviTitle setText:@"Highlights"];
     [naviTitle setFont:titleFont];
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];

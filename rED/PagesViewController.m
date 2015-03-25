@@ -132,8 +132,11 @@
         array_defaultToolbarButtons = @[button_savePage, flexibleSpace, button_autoScroll, flexibleSpace,
                                         button_action, flexibleSpace, button_defaultSettings];
         
-        array_settingsToolbarButtons = @[button_more, flexibleSpace, button_nightMode, flexibleSpace,
-                                         button_textSize, flexibleSpace, button_expandedSettings];
+//        array_settingsToolbarButtons = @[button_more, flexibleSpace, button_nightMode, flexibleSpace,
+//                                         button_textSize, flexibleSpace, button_expandedSettings];
+        
+        // Night Mode has been pushed back to a later release
+        array_settingsToolbarButtons = @[button_more, flexibleSpace, button_textSize, flexibleSpace, button_expandedSettings];
 
 
         [self getHTML:[userSettings homeSite]];
@@ -186,7 +189,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
     
-    // Codes to adjust text size in UIWebView
+    // Adjusts text size in UIWebView
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
         // Convert settings text size to HTML text size
@@ -221,7 +224,7 @@
         [self openHTML:updateHTML];
     }
     
-    // Codes to change UIWebView to night mode
+    // Changes UIWebView to night mode
     if (htmlContent != nil && [settings nightMode]) {
         NSString *updatedHTML = [NSString
                                  stringWithFormat:@"<body bgcolor=\"grey\"><font color=\"white\">%@</font></body>", updateHTML];
@@ -388,7 +391,7 @@
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
-#pragma mark - Supporting Methods
+#pragma mark - Supporting Actions
 
 // Action for "Done Button" in "textSizeWasPressed" method
 - (IBAction)button_doneWasPressed:(id)sender {
