@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSString *highlightColor;
 @property (nonatomic, strong) NSString *pageHtml;
 @property (nonatomic, strong) NSString *savedHtml;
+//@property (nonatomic) UISlider *slider_textSize;
+@property (nonatomic) UIBarButtonItem *button_done;
 
 // Button Actions
 - (IBAction)button_savePageWasPressed:(id)sender;

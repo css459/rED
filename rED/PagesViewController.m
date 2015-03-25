@@ -50,7 +50,7 @@
 @end
 
 @implementation PagesViewController
-@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML, slider_textSize, highlightColor, pageHtml, savedHtml;
+@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML, slider_textSize, highlightColor, pageHtml, savedHtml, button_done;
 
 #pragma mark - Initalizers
 
@@ -177,10 +177,29 @@
     [self.view addSubview:self.slider_textSize];
     [self.slider_textSize setHidden:YES];
     
+//    self.slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeLeft
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:self.view
+//                              attribute:NSLayoutAttributeLeft
+//                              multiplier:1
+//                              constant:5]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeRight
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:button_done attribute:NSLayoutAttributeRight
+//                              multiplier:1
+//                              constant:10]];
+    
     UIMenuItem *highlightRedItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Red Highlight", nil) action:@selector(highlight_red)];
-    UIMenuItem *highlightYellowItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Yellow Highlight", nil) action:@selector(highlight_red)];
-    UIMenuItem *highlightBlueItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Blue Highlight", nil) action:@selector(highlight_red)];
-    UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Orange Highlight", nil) action:@selector(highlight_red)];
+    UIMenuItem *highlightYellowItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Yellow Highlight", nil) action:@selector(highlight_yellow)];
+    UIMenuItem *highlightBlueItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Blue Highlight", nil) action:@selector(highlight_blue)];
+    UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Orange Highlight", nil) action:@selector(highlight_orange)];
     
     [UIMenuController sharedMenuController].menuItems = @[highlightRedItem, highlightYellowItem, highlightBlueItem , highlightOrangeItem];
 }
@@ -466,7 +485,14 @@
 }
 
 - (void)highlight_yellow {
-    highlightColor = [self hexStringForColor:[cp highlight_yellow]];
+    
+    const CGFloat *components = CGColorGetComponents([UIColor yellowColor].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
     
     if (!pageHtml) {
         pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
@@ -483,7 +509,7 @@
 
 - (void)highlight_red {
     
-    
+    // USE THIS FOR ALL OF THE OTHER HIGHLIGHTING METHODS
     const CGFloat *components = CGColorGetComponents([UIColor redColor].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -507,7 +533,14 @@
 }
 
 - (void)highlight_blue {
-    highlightColor = [self hexStringForColor:[cp highlight_blue]];
+    
+    const CGFloat *components = CGColorGetComponents([UIColor blueColor].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
     
     if (!pageHtml) {
         pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
@@ -522,10 +555,15 @@
     
 }
 
-
 - (void)highlight_orange {
-    highlightColor = [self hexStringForColor:[cp highlight_orange]];
     
+    const CGFloat *components = CGColorGetComponents([UIColor orangeColor].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
     if (!pageHtml) {
         pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
     }
