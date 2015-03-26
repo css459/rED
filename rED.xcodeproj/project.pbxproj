@@ -23,6 +23,7 @@
 		495D67611A8284E700E15853 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67601A8284E700E15853 /* Notebook.m */; };
 		495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67661A828CF000E15853 /* SavedPagesTableViewController.m */; };
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
+		499087851AC2FB6A00904409 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 499087841AC2FB6A00904409 /* Section.m */; };
 		49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEE81A97C9A600B62BB4 /* Highlight.m */; };
 		49C3DEEC1A97DDFB00B62BB4 /* HighlightsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */; };
 		610605F11AC08DB600B84269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610605F01AC08DB600B84269 /* Main.storyboard */; };
@@ -71,6 +72,8 @@
 		495D67661A828CF000E15853 /* SavedPagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedPagesTableViewController.m; sourceTree = "<group>"; };
 		49609ABE1A82DA1C00594EA8 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
 		49609ABF1A82DA1C00594EA8 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
+		499087831AC2FB6A00904409 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		499087841AC2FB6A00904409 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		49C3DEE71A97C9A600B62BB4 /* Highlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Highlight.h; sourceTree = "<group>"; };
 		49C3DEE81A97C9A600B62BB4 /* Highlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Highlight.m; sourceTree = "<group>"; };
 		49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightsTableViewController.h; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 				495D675D1A8284DD00E15853 /* Page.m */,
 				495D675F1A8284E700E15853 /* Notebook.h */,
 				495D67601A8284E700E15853 /* Notebook.m */,
+				499087831AC2FB6A00904409 /* Section.h */,
+				499087841AC2FB6A00904409 /* Section.m */,
 				49C3DEE71A97C9A600B62BB4 /* Highlight.h */,
 				49C3DEE81A97C9A600B62BB4 /* Highlight.m */,
 				49609ABE1A82DA1C00594EA8 /* ColorPalette.h */,
@@ -289,6 +294,7 @@
 				495D67551A82848600E15853 /* NotesViewController.m in Sources */,
 				4906460F1A814425003CD480 /* PagesViewController.m in Sources */,
 				4906460C1A814425003CD480 /* AppDelegate.m in Sources */,
+				499087851AC2FB6A00904409 /* Section.m in Sources */,
 				495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */,
 				490646091A814425003CD480 /* main.m in Sources */,
 				495D675E1A8284DD00E15853 /* Page.m in Sources */,

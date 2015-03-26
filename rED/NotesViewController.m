@@ -9,6 +9,8 @@
 #import "NotesViewController.h"
 #import "PagesViewController.h"
 #import "ColorPalette.h"
+#import "Settings.h"
+#import "Section.h"
 
 @interface NotesViewController ()
 
@@ -17,9 +19,10 @@
 @implementation NotesViewController
 {
     ColorPalette *cp;
+    Settings *sharedSettings;
 }
 
-@synthesize textView;
+@synthesize textView, button_quotations, button_sections, button_share;
 
 #pragma mark - Initializers
 
@@ -27,6 +30,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
+        sharedSettings = [Settings sharedSettings];
     }
     return self;
 }
@@ -52,9 +56,11 @@
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
                                              initWithTarget:self
                                              action:@selector(gesture_SwipeRight:)];
+    
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
     
+    // Toolbar Configuration
     [self.navigationController setToolbarHidden:YES];
     [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
 }
@@ -65,7 +71,7 @@
 
 -(void)updateColorScheme {}
 
-#pragma mark - Action Handlers
+#pragma mark - Gesture Recognizers
 
 // Switch to Home
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -74,6 +80,8 @@
     PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
     [[self navigationController] pushViewController:vc animated:YES];
 }
+
+#pragma mark - Action Handlers
 
 // Open up mail view controller with text
 - (IBAction)button_ShareWasPressed:(id)sender {
@@ -91,7 +99,15 @@
     }
 }
 
--(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+// Sections View Controller called via Storyboard segue
+- (IBAction)button_sectionsWasPressed:(id)sender {}
+
+// Quotations View Controller called via Storyboard segue
+- (IBAction)button_quotationsWasPressed:(id)sender {}
+
+#pragma mark - Supporting Actions
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     
     if (error != nil) {
         NSLog(@"%@", [error localizedDescription]);
@@ -99,6 +115,9 @@
     
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
+
+#warning incomplete method implementation
+- (void)loadSection:(Section *)section {}
 
 /*
 #pragma mark - Navigation

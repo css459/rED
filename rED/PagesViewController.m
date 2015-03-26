@@ -131,9 +131,8 @@
         
         array_defaultToolbarButtons = @[button_savePage, flexibleSpace, button_autoScroll, flexibleSpace,
                                         button_action, flexibleSpace, button_defaultSettings];
-        
-        array_settingsToolbarButtons = @[button_more, flexibleSpace, button_nightMode, flexibleSpace,
-                                         button_textSize, flexibleSpace, button_expandedSettings];
+
+        array_settingsToolbarButtons = @[button_more, flexibleSpace, button_textSize, flexibleSpace, button_expandedSettings];
 
 
         [self getHTML:[userSettings homeSite]];
@@ -186,7 +185,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
     
-    // Codes to adjust text size in UIWebView
+    // Adjusts text size in UIWebView
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
         // Convert settings text size to HTML text size
@@ -221,7 +220,7 @@
         [self openHTML:updateHTML];
     }
     
-    // Codes to change UIWebView to night mode
+    // Changes UIWebView to night mode
     if (htmlContent != nil && [settings nightMode]) {
         NSString *updatedHTML = [NSString
                                  stringWithFormat:@"<body bgcolor=\"grey\"><font color=\"white\">%@</font></body>", updateHTML];
@@ -264,18 +263,12 @@
     savedButtonState = !savedButtonState;
     if (savedButtonState) {
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        // Here, the Page obj should be added to the cell array.
-        if (url != nil) {
-            NSDateFormatter *format = [[NSDateFormatter alloc] init];
-            [format setDateFormat:@"MMM dd, yyyy HH:mm"];
-            NSDate *now = [[NSDate alloc] init];
-            NSString *dateString = [format stringFromDate:now];
-            Notebook *notebook = [[Notebook alloc] init];
         
-            Page *newPage = [[Page alloc] initWithURL:url withHTML:htmlContent withDateSaved:dateString withNoteBook:notebook];
+        if (url != nil) {
+            Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
             [newPage savePage:newPage];
         }
-    
+        
     } else {
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
         // Here, the Page obj should be removed from the cell array.
@@ -337,11 +330,10 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
+#warning incomplete method implementation
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
-- (IBAction)button_actionWasPressed :(id)sender {
-    #warning incomplete implementation
-}
+- (IBAction)button_actionWasPressed :(id)sender {}
 
 // Switch to expanded settings state
 - (IBAction)button_defaultSettingsWasPressed:(id)sender {
@@ -388,7 +380,7 @@
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
-#pragma mark - Supporting Methods
+#pragma mark - Supporting Actions
 
 // Action for "Done Button" in "textSizeWasPressed" method
 - (IBAction)button_doneWasPressed:(id)sender {

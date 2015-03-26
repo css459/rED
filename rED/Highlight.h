@@ -6,18 +6,34 @@
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-/*
- The Hightlight object stores the quotation highlighted on a
- Page.
- What a Highlight object needs:
-    * NSString of quotation in text
-    * UIColor of the highlight color
-        - This color needs to be an appropriate color from Color Palette.
-          These colors will carry the "highlight" prefix
- */
+/* -----------------------------------------------------------------------------
+ 
+     The Hightlight object stores the quotation highlighted on a
+     Page.
+ 
+     A Highlight stores these objects:
+ 
+        * quote: A string of the highlighted quote from Page Default: nil
+ 
+        * color: The color of the highlight, chosen at time of highlighting
+          Default: highlight_yellow
+ 
+        * containingPage: Reference back to the Page object from the web page
+          that the Highlight came from. Default: nil
+ 
+    A Highlight will always occur in a unique circumstance. Therefore, the 
+    Defaut initializer should NEVER be called outside of testing circumstances.
+ 
+ */// --------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "Page.h"
 
 @interface Highlight : NSObject
+
+@property (nonatomic) NSString *quote;
+@property (nonatomic) UIColor *color;
+@property (nonatomic) Page *containingPage;
 
 @end
