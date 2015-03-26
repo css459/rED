@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "Page.h"
 #import "SettingsViewController.h"
+#import "UIMenuItem+CXAImageSupport.h"
 
 @interface PagesViewController ()
 {
@@ -196,12 +197,33 @@
 //                              multiplier:1
 //                              constant:10]];
     
+    UIImage *redIcon = [UIImage imageNamed: @"highlight_Red"];
+    UIImage *yellowIcon = [UIImage imageNamed: @"highlight_Yellow"];
+    UIImage *blueIcon = [UIImage imageNamed: @"highlight_Blue"];
+    UIImage *orangeIcon = [UIImage imageNamed: @"highlight_Orange"];
+    
     UIMenuItem *highlightRedItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Red Highlight", nil) action:@selector(highlight_red)];
     UIMenuItem *highlightYellowItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Yellow Highlight", nil) action:@selector(highlight_yellow)];
     UIMenuItem *highlightBlueItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Blue Highlight", nil) action:@selector(highlight_blue)];
     UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Orange Highlight", nil) action:@selector(highlight_orange)];
     
+    [highlightRedItem cxa_initWithTitle:@"Red Highlight" action:@selector(highlight_red) image:redIcon];
+    [highlightYellowItem cxa_initWithTitle:@"Yellow Highlight" action:@selector(highlight_yellow) image:yellowIcon];
+    [highlightBlueItem cxa_initWithTitle:@"Blue Highlight" action:@selector(highlight_blue) image:blueIcon];
+    [highlightOrangeItem cxa_initWithTitle:@"Orange Highlight" action:@selector(highlight_orange) image:orangeIcon];
+    
     [UIMenuController sharedMenuController].menuItems = @[highlightRedItem, highlightYellowItem, highlightBlueItem , highlightOrangeItem];
+    
+    
+    
+    
+//    - (id)cxa_initWithTitle:(NSString *)title action:(SEL)action image:(UIImage *)image;
+//    - (id)cxa_initWithTitle:(NSString *)title action:(SEL)action settings:(CXAMenuItemSettings *)settings;
+//    - (void)cxa_setImage:(UIImage *)image;
+//    - (void)cxa_setSettings:(CXAMenuItemSettings *)settings;
+
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -486,7 +508,7 @@
 
 - (void)highlight_yellow {
     
-    const CGFloat *components = CGColorGetComponents([UIColor yellowColor].CGColor);
+    const CGFloat *components = CGColorGetComponents([cp highlight_yellow].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
@@ -510,7 +532,7 @@
 - (void)highlight_red {
     
     // USE THIS FOR ALL OF THE OTHER HIGHLIGHTING METHODS
-    const CGFloat *components = CGColorGetComponents([UIColor redColor].CGColor);
+    const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
@@ -534,7 +556,7 @@
 
 - (void)highlight_blue {
     
-    const CGFloat *components = CGColorGetComponents([UIColor blueColor].CGColor);
+    const CGFloat *components = CGColorGetComponents([cp highlight_blue].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
@@ -557,7 +579,7 @@
 
 - (void)highlight_orange {
     
-    const CGFloat *components = CGColorGetComponents([UIColor orangeColor].CGColor);
+    const CGFloat *components = CGColorGetComponents([cp highlight_orange].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
@@ -575,15 +597,6 @@
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
     
-}
-
-- (NSString *)hexStringForColor:(UIColor *)color {
-    const CGFloat *components = CGColorGetComponents(color.CGColor);
-    CGFloat r = components[0];
-    CGFloat g = components[1];
-    CGFloat b = components[2];
-    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
-    return hexString;
 }
 
 @end

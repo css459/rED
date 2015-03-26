@@ -26,6 +26,8 @@
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
 		49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEE81A97C9A600B62BB4 /* Highlight.m */; };
 		49C3DEEC1A97DDFB00B62BB4 /* HighlightsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */; };
+		615926221AC2E770007A8363 /* UIMenuItem+CXAImageSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 615926201AC2E770007A8363 /* UIMenuItem+CXAImageSupport.m */; };
+		615926231AC2E770007A8363 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 615926211AC2E770007A8363 /* LICENSE_UIMenuItem-CXAImageSupport.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,9 @@
 		49C3DEE81A97C9A600B62BB4 /* Highlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Highlight.m; sourceTree = "<group>"; };
 		49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightsTableViewController.h; sourceTree = "<group>"; };
 		49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightsTableViewController.m; sourceTree = "<group>"; };
+		6159261F1AC2E770007A8363 /* UIMenuItem+CXAImageSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIMenuItem+CXAImageSupport.h"; sourceTree = "<group>"; };
+		615926201AC2E770007A8363 /* UIMenuItem+CXAImageSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIMenuItem+CXAImageSupport.m"; sourceTree = "<group>"; };
+		615926211AC2E770007A8363 /* LICENSE_UIMenuItem-CXAImageSupport.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "LICENSE_UIMenuItem-CXAImageSupport.rtf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +161,9 @@
 			children = (
 				4906460A1A814425003CD480 /* AppDelegate.h */,
 				4906460B1A814425003CD480 /* AppDelegate.m */,
+				6159261F1AC2E770007A8363 /* UIMenuItem+CXAImageSupport.h */,
+				615926201AC2E770007A8363 /* UIMenuItem+CXAImageSupport.m */,
+				615926211AC2E770007A8363 /* LICENSE_UIMenuItem-CXAImageSupport.rtf */,
 				490646071A814425003CD480 /* Info.plist */,
 				490646081A814425003CD480 /* main.m */,
 			);
@@ -261,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490646121A814425003CD480 /* Main.storyboard in Resources */,
+				615926231AC2E770007A8363 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */,
 				490646171A814425003CD480 /* LaunchScreen.xib in Resources */,
 				490646141A814425003CD480 /* Images.xcassets in Resources */,
 			);
@@ -280,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				615926221AC2E770007A8363 /* UIMenuItem+CXAImageSupport.m in Sources */,
 				495D67611A8284E700E15853 /* Notebook.m in Sources */,
 				491CEB481A84374600838145 /* ThankYouViewController.m in Sources */,
 				4958887B1A8503F400B8D439 /* Settings.m in Sources */,
