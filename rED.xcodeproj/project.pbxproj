@@ -10,7 +10,6 @@
 		490646091A814425003CD480 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490646081A814425003CD480 /* main.m */; };
 		4906460C1A814425003CD480 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4906460B1A814425003CD480 /* AppDelegate.m */; };
 		4906460F1A814425003CD480 /* PagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4906460E1A814425003CD480 /* PagesViewController.m */; };
-		490646121A814425003CD480 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490646101A814425003CD480 /* Main.storyboard */; };
 		490646141A814425003CD480 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490646131A814425003CD480 /* Images.xcassets */; };
 		490646171A814425003CD480 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490646151A814425003CD480 /* LaunchScreen.xib */; };
 		490646231A814425003CD480 /* Shorecrest_Web_BrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */; };
@@ -26,6 +25,7 @@
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
 		49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEE81A97C9A600B62BB4 /* Highlight.m */; };
 		49C3DEEC1A97DDFB00B62BB4 /* HighlightsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */; };
+		610605F11AC08DB600B84269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610605F01AC08DB600B84269 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 		4906460B1A814425003CD480 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4906460D1A814425003CD480 /* PagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagesViewController.h; sourceTree = "<group>"; };
 		4906460E1A814425003CD480 /* PagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagesViewController.m; sourceTree = "<group>"; };
-		490646111A814425003CD480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		490646131A814425003CD480 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		490646161A814425003CD480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4906461C1A814425003CD480 /* rEDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rEDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +75,7 @@
 		49C3DEE81A97C9A600B62BB4 /* Highlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Highlight.m; sourceTree = "<group>"; };
 		49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightsTableViewController.h; sourceTree = "<group>"; };
 		49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightsTableViewController.m; sourceTree = "<group>"; };
+		610605F01AC08DB600B84269 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +143,7 @@
 				495D675A1A8284BA00E15853 /* SettingsViewController.m */,
 				491CEB461A84374600838145 /* ThankYouViewController.h */,
 				491CEB471A84374600838145 /* ThankYouViewController.m */,
-				490646101A814425003CD480 /* Main.storyboard */,
+				610605F01AC08DB600B84269 /* Main.storyboard */,
 				490646131A814425003CD480 /* Images.xcassets */,
 				490646151A814425003CD480 /* LaunchScreen.xib */,
 				490646061A814425003CD480 /* Supporting Files */,
@@ -260,9 +260,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				490646121A814425003CD480 /* Main.storyboard in Resources */,
 				490646171A814425003CD480 /* LaunchScreen.xib in Resources */,
 				490646141A814425003CD480 /* Images.xcassets in Resources */,
+				610605F11AC08DB600B84269 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,14 +317,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		490646101A814425003CD480 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				490646111A814425003CD480 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		490646151A814425003CD480 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
