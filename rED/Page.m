@@ -8,9 +8,10 @@
 
 #import "Page.h"
 #import "Notebook.h"
+#import "Settings.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray;
 
 #pragma mark - Initalizers
 
@@ -32,6 +33,37 @@
         dateSaved = [NSDate date];
     }
     return self;
+}
+
+#pragma mark - Storage Management
+
+- (BOOL)saveSelfToArray {
+    Settings *userSettings = [Settings sharedSettings];
+    
+    NSUInteger originalCount = userSettings.array_pages.count;
+    [userSettings.array_pages addObject:self];
+    NSUInteger postCount = userSettings.array_pages.count;
+    indexInArray = postCount;
+    
+    if (postCount == (originalCount + 1)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)removeSelfFromArray {
+    Settings *userSettings = [Settings sharedSettings];
+    
+    NSUInteger originalCount = userSettings.array_pages.count;
+    [userSettings.array_pages removeObjectAtIndex:indexInArray];
+    NSUInteger postCount = userSettings.array_pages.count;
+    
+    if (postCount == (originalCount + 1)) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 #pragma mark - Supporting Actions

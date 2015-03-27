@@ -289,25 +289,29 @@
 #pragma mark - Button Actions
 
 // Toggle saving of the Page Object
-#warning this needs fixing
 - (IBAction)button_savePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
     
     Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
+    
     if (url != nil) {
         if (savedButtonState) {
             
-                [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-                [userSettings.array_pages addObject:newPage];
-                NSLog(@"Page Saved - Array count: %lu", (unsigned long)userSettings.array_pages.count);
+            [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+//                [userSettings.array_pages addObject:newPage];
+            NSLog(@"%@", newPage);
+            
+            [newPage saveSelfToArray];
+            NSLog(@"Page Saved - Array count: %lu", (unsigned long)userSettings.array_pages.count);
             
         } else {
             
             if ([newPage checkForEdits] == YES) {
                 // Throw Notification to ask if sure.
             }
+            
             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-            [userSettings.array_pages removeObject:newPage];
+            [newPage removeSelfFromArray];
             NSLog(@"Page Removed - Array count: %lu", (unsigned long)userSettings.array_pages.count);
             
         }
@@ -401,6 +405,8 @@
         NSString *newUrl = [NSString stringWithFormat:@"http://%@", url];
         [self getHTML:newUrl];
     }
+    
+    NSLog(@"%@", url);
 }
 
 - (void)getHTML:(NSString *)URL {

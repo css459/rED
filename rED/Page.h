@@ -42,10 +42,15 @@
 @property (nonatomic) NSString *url;
 @property (nonatomic) NSString *htmlContent;
 @property (nonatomic) NSMutableArray *array_highlightsFromPage;
+@property (nonatomic) NSUInteger indexInArray;
 @property (nonatomic) BOOL pageHasEdits;
 
 // Initializers
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
+
+// Storage Management
+- (BOOL)saveSelfToArray;
+- (BOOL)removeSelfFromArray;
 
 // Supporting Actions
 - (BOOL)checkForEdits;
