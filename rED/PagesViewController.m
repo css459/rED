@@ -258,25 +258,6 @@
 
 #pragma mark - Action Handlers
 
-// Handles toggling of saved button
-- (IBAction)button_SavePage:(id)sender {
-    savedButtonState = !savedButtonState;
-    if (savedButtonState) {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        
-        if (url != nil) {
-            Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
-            [newPage savePage:newPage];
-        }
-        
-    } else {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-        // Here, the Page obj should be removed from the cell array.
-    
-    
-    }
-}
-
 // Allows user to exit editing
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
@@ -308,14 +289,22 @@
 #pragma mark - Button Actions
 
 // Toggle saving of the Page Object
+#warning this needs fixing
 - (IBAction)button_savePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
+    
+    Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
+    
     if (savedButtonState) {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        // Here, the Page obj should be ADDED to the cell array.
+        if (url != nil) {
+            [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+            [userSettings.array_pages addObject:newPage];
+            NSLog(@"Page Saved - Array count: %lu", (unsigned long)userSettings.array_pages.count);
+        }
     } else {
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-        // Here, the Page obj should be REMOVED from the cell array.
+        [userSettings.array_pages removeObject:newPage];
+        NSLog(@"Page Removed - Array count: %lu", (unsigned long)userSettings.array_pages.count);
     }
 }
 

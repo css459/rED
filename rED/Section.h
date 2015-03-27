@@ -15,6 +15,7 @@
      Manager Table View Controller.
      
      A Section stores these objects:
+ 
          *Title: The section title. Default: "New Section"
          
          *Color: The section color which can be seen in the Notebook Manager
@@ -39,6 +40,10 @@
 @property (nonatomic) NSString *textContent;
 @property (nonatomic) NSDate *dateCreated;
 
+// Initializers
+- (instancetype)initWithTitle:(NSString *)ttl;
+
 // Supporting Actions
 - (NSString *)formatDate:(NSDate *)date;
+
 @end

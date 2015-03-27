@@ -8,14 +8,23 @@
 
 #import "HighlightsTableViewController.h"
 #import "ColorPalette.h"
+#import "Highlight.h"
+#import "Notebook.h"
+#import "HighlightTableViewCell.h"
 
 @interface HighlightsTableViewController ()
 {
     ColorPalette *cp;
+    Notebook *sharedNotebook;
+    
+    int sectionsCount;
+    int rowsCount;
+    
 }
 @end
 
 @implementation HighlightsTableViewController
+@synthesize toolbar, segmentedControl_sortingOption;
 
 #pragma mark - Initilizers
 
@@ -23,9 +32,20 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
+        sharedNotebook = [Notebook sharedNotebook];
+        
+        // Model Highlight
+        Highlight *model = [[Highlight alloc] init];
+        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"The New Yorker";
+        model.color = [cp highlight_yellow];
+        [sharedNotebook.array_highlights addObject:model];
+        
     }
     return self;
 }
+
+#pragma mark - View Handlers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +59,10 @@
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
+    
+    // Toolbar Implementation
+    [toolbar setTintColor:[cp tint_accent]];
+//    [toolbar setBarTintColor:[cp tint_background]];
 
 
     // Uncomment the following line to preserve selection between presentations.
@@ -55,37 +79,59 @@
 
 -(void)updateColorScheme {}
 
+#pragma mark - Action Handlers
+
+- (IBAction)segmentedControl_sortingOptionDidChange:(id)sender {
+    switch (self.segmentedControl_sortingOption.selectedSegmentIndex) {
+        case 0:
+            // "From Current Page"
+            
+            break;
+        case 1:
+            // "All Highlights"
+            
+            break;
+        default:
+            break; 
+    } 
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    HighlightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Main_Colored"];
     
-    // Configure the cell...
+    Highlight *highlightAtIndex = [sharedNotebook.array_highlights objectAtIndex:indexPath.row];
+    
+    cell.cellLabel_pageTitle.text = highlightAtIndex.containingPage.title;
+    cell.cellLabel_quotation.text = highlightAtIndex.quote;
+    cell.cellLabel_colorBar.backgroundColor = highlightAtIndex.color;
     
     return cell;
 }
-*/
 
-/*
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
+
 
 /*
 // Override to support editing the table view.

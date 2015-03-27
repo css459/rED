@@ -133,57 +133,82 @@
         <scene sceneID="Pan-mZ-mnU">
             <objects>
                 <tableViewController title="Highlights" id="edx-Pz-AEi" customClass="HighlightsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="0OT-gN-U4x">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="0OT-gN-U4x">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5ko-b6-BjM">
+                        <color key="backgroundColor" white="0.97638888888888886" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ugQ-sY-rwo">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <color key="backgroundColor" white="0.97638888889999997" alpha="1" colorSpace="calibratedWhite"/>
                             <items>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="6oh-ag-40u"/>
-                                <barButtonItem style="plain" id="llB-z5-D4X">
-                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="AqY-Aw-M28">
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="fNC-0K-2PZ"/>
+                                <barButtonItem style="plain" id="vVt-5Q-7x2">
+                                    <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ig7-6E-reK">
                                         <rect key="frame" x="60" y="7.5" width="259" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="From Current Page"/>
                                             <segment title="All Highlights"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="segmentedControl_sortingOptionDidChange:" destination="edx-Pz-AEi" eventType="valueChanged" id="xug-hL-JR0"/>
+                                        </connections>
                                     </segmentedControl>
-                                    <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </barButtonItem>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="sGL-Ow-9Ic"/>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="ybM-w8-0nB"/>
                             </items>
                         </toolbar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_Main_Colored" rowHeight="64" id="bzS-LE-viM">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_Main_Colored" rowHeight="64" id="bzS-LE-viM" customClass="HighlightTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bzS-LE-viM" id="n21-LQ-8rx">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hx-c0-A2S">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hx-c0-A2S">
                                             <rect key="frame" x="581" y="0.0" width="19" height="64"/>
                                             <color key="backgroundColor" red="0.32192862280000001" green="0.82136999310000003" blue="0.1150691529" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="19" id="Nh8-qf-IeY"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="1" height="0.0"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&quot;Quotation&quot;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUJ-ak-1bn">
-                                            <rect key="frame" x="15" y="10" width="130" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Justo magna non pulvinar porttitor nisl orci.&quot;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUJ-ak-1bn">
+                                            <rect key="frame" x="15" y="10" width="524" height="22"/>
                                             <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Page Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxu-mg-4a5">
-                                            <rect key="frame" x="25" y="34" width="114" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxu-mg-4a5">
+                                            <rect key="frame" x="15" y="34" width="114" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="114" id="hMq-eU-IPL"/>
+                                                <constraint firstAttribute="height" constant="21" id="qdI-Wp-GfS"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="8Hx-c0-A2S" secondAttribute="bottom" constant="-8.5" id="75J-Rz-olR"/>
+                                        <constraint firstItem="8Hx-c0-A2S" firstAttribute="leading" secondItem="yUJ-ak-1bn" secondAttribute="trailing" constant="42" id="KeN-zw-VkN"/>
+                                        <constraint firstItem="Uxu-mg-4a5" firstAttribute="top" secondItem="yUJ-ak-1bn" secondAttribute="bottom" constant="2" id="U9e-ff-YW7"/>
+                                        <constraint firstItem="yUJ-ak-1bn" firstAttribute="top" secondItem="n21-LQ-8rx" secondAttribute="topMargin" constant="2" id="Wl7-NJ-OnJ"/>
+                                        <constraint firstItem="Uxu-mg-4a5" firstAttribute="leading" secondItem="n21-LQ-8rx" secondAttribute="leadingMargin" constant="7" id="bio-eI-UbB"/>
+                                        <constraint firstItem="8Hx-c0-A2S" firstAttribute="top" secondItem="n21-LQ-8rx" secondAttribute="top" id="bzk-cd-PU1"/>
+                                        <constraint firstItem="yUJ-ak-1bn" firstAttribute="leading" secondItem="Uxu-mg-4a5" secondAttribute="leading" id="lbL-pv-BPB"/>
+                                        <constraint firstAttribute="trailing" secondItem="8Hx-c0-A2S" secondAttribute="trailing" id="m79-U1-tzl"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellLabel_colorBar" destination="8Hx-c0-A2S" id="qCA-VZ-Oef"/>
+                                    <outlet property="cellLabel_pageTitle" destination="Uxu-mg-4a5" id="nua-dM-hgb"/>
+                                    <outlet property="cellLabel_quotation" destination="yUJ-ak-1bn" id="ISn-TX-UzS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -191,6 +216,10 @@
                             <outlet property="delegate" destination="edx-Pz-AEi" id="a6h-d1-2do"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="segmentedControl_sortingOption" destination="ig7-6E-reK" id="c5e-Sy-ZgZ"/>
+                        <outlet property="toolbar" destination="ugQ-sY-rwo" id="ZW4-ag-SgE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHc-su-Zi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -229,6 +258,8 @@
                                         </stepper>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="F4G-6J-nWJ"/>
+                                    <barButtonItem systemItem="play" id="TY1-ZB-gu6"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Tsz-Lx-K6E"/>
                                     <barButtonItem systemItem="done" id="iPa-FX-mTM">
                                         <connections>
                                             <action selector="button_DoneWasPressed:" destination="3HN-64-yQV" id="hrf-8K-AFv"/>

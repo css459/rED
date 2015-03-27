@@ -36,19 +36,23 @@
 
 @interface ColorPalette : NSObject
 
+// Global Tints
 @property (nonatomic) UIColor *tint_accent;
 @property (nonatomic) UIColor *tint_text;
 @property (nonatomic) UIColor *tint_background;
 @property (nonatomic) UIColor *tint_navBar;
 @property (nonatomic) UIColor *tint_switch_thumb;
 
-@property (nonatomic) const UIColor *highlight_yellow;
-@property (nonatomic) const UIColor *highlight_red;
-@property (nonatomic) const UIColor *highlight_blue;
-@property (nonatomic) const UIColor *highlight_orange;
+// Highlight Colors
+@property (nonatomic) UIColor *highlight_yellow;
+@property (nonatomic) UIColor *highlight_red;
+@property (nonatomic) UIColor *highlight_blue;
+@property (nonatomic) UIColor *highlight_orange;
 
+// Accessible Arrays
 @property (nonatomic) NSArray *array_sectionColors;
 
+// Utility Methods
 - (void)changeColorProfile: (NSString *) colorProfile;
 
 @end

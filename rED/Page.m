@@ -37,9 +37,6 @@
 #pragma mark - Supporting Actions
 
 #warning incomplete method implementation
-- (void)savePage:(Page *)p {}
-
-#warning incomplete method implementation
 - (NSString *)formatTitle {
     return nil;
 }

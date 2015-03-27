@@ -44,7 +44,6 @@
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
 
 // Supporting Actions
-- (void)savePage:(Page *)p;
 - (NSString *)formatDate:(NSDate *)date;
 - (NSString *)formatTitle;
 
