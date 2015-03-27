@@ -10,7 +10,7 @@
 #import "Notebook.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits;
 
 #pragma mark - Initalizers
 
@@ -35,6 +35,16 @@
 }
 
 #pragma mark - Supporting Actions
+
+- (BOOL)checkForEdits {
+    if (array_highlightsFromPage.count > 0) {
+        pageHasEdits = YES;
+        return YES;
+    } else {
+        pageHasEdits = NO;
+        return NO;
+    }
+}
 
 #warning incomplete method implementation
 - (NSString *)formatTitle {

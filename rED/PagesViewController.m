@@ -294,17 +294,23 @@
     savedButtonState = !savedButtonState;
     
     Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
-    
-    if (savedButtonState) {
-        if (url != nil) {
-            [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-            [userSettings.array_pages addObject:newPage];
-            NSLog(@"Page Saved - Array count: %lu", (unsigned long)userSettings.array_pages.count);
+    if (url != nil) {
+        if (savedButtonState) {
+            
+                [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+                [userSettings.array_pages addObject:newPage];
+                NSLog(@"Page Saved - Array count: %lu", (unsigned long)userSettings.array_pages.count);
+            
+        } else {
+            
+            if ([newPage checkForEdits] == YES) {
+                // Throw Notification to ask if sure.
+            }
+            [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+            [userSettings.array_pages removeObject:newPage];
+            NSLog(@"Page Removed - Array count: %lu", (unsigned long)userSettings.array_pages.count);
+            
         }
-    } else {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-        [userSettings.array_pages removeObject:newPage];
-        NSLog(@"Page Removed - Array count: %lu", (unsigned long)userSettings.array_pages.count);
     }
 }
 
@@ -407,6 +413,7 @@
     // Data download block
     [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
         if (data != nil) {
+            
             NSError *error;
             NSMutableDictionary *returnedDict = [NSJSONSerialization
                                                  JSONObjectWithData:data
@@ -421,7 +428,9 @@
                                       cancelButtonTitle:@"Okay"
                                       otherButtonTitles:nil, nil];
                 [alert show];
+                
             } else {
+                
                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
                 
                 // HTML Content property is set to contain the HTML code for the page
@@ -429,6 +438,7 @@
                 
                 // HTML is opened in the UIWebView
                 [self openHTML:htmlContent];
+                
             }
         }
     }];
