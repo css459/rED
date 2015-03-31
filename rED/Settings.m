@@ -9,7 +9,7 @@
 #import "Settings.h"
 
 @implementation Settings
-@synthesize homeSite, textSize, nightMode, tutorialMode, array_pages;
+@synthesize homeSite, textSize, nightMode, tutorialMode, sharingMode, array_pages;
 
 - (instancetype)init {
     self = [super init];
@@ -17,6 +17,7 @@
         textSize = 25.0;
         nightMode = NO;
         tutorialMode = NO;
+        sharingMode = NO;
         homeSite = @"about:blank";  // This is sort of a hack
         
         array_pages = [[NSMutableArray alloc] init];

@@ -23,6 +23,7 @@
 // Application Parameters
 @property BOOL nightMode;
 @property BOOL tutorialMode;
+@property BOOL sharingMode;
 @property double textSize;
 @property (nonatomic) NSString *homeSite;
 

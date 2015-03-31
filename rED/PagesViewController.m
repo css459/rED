@@ -175,8 +175,6 @@
     [self.view setUserInteractionEnabled:YES];
     [self.view addSubview:self.slider_textSize];
     [self.slider_textSize setHidden:YES];
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -304,15 +302,15 @@
             
             // Throw Notification to ask if sure.
             if ([newPage checkForEdits] == NO) {
-                UIAlertController * alert=   [UIAlertController
-                                              alertControllerWithTitle:@"Page Deletion"
-                                              message:@"This Page and its Highlights will br removed from Saved Pages. This cannot be reversed."
-                                              preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alert = [UIAlertController
+                                            alertControllerWithTitle:@"Page Deletion"
+                                            message:@"This Page and its Highlights will br removed from Saved Pages. This cannot be reversed."
+                                            preferredStyle:UIAlertControllerStyleAlert];
                 
-                UIAlertAction* delete = [UIAlertAction
+                UIAlertAction *delete = [UIAlertAction
                                          actionWithTitle:@"Delete"
                                          style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action) {
+                                         handler:^(UIAlertAction *action) {
                                              
                                              [alert dismissViewControllerAnimated:YES completion:nil];
                                              [newPage removeSelfFromArray];
@@ -320,10 +318,10 @@
                                          
                                          }];
                 
-                UIAlertAction* cancel = [UIAlertAction
+                UIAlertAction *cancel = [UIAlertAction
                                          actionWithTitle:@"Cancel"
                                          style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action) {
+                                         handler:^(UIAlertAction *action) {
                                              
                                              [alert dismissViewControllerAnimated:YES completion:nil];
                                              
@@ -354,31 +352,45 @@
 // Should also present an option to view the full page normally.
 - (IBAction)button_actionWasPressed :(id)sender {
     UIAlertController * view=   [UIAlertController
-                                 alertControllerWithTitle:@"My Title"
-                                 message:@"Select you Choice"
+                                 alertControllerWithTitle:nil
+                                 message:nil
                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             //Do some thing here
-                             [view dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
+    UIAlertAction* viewFullPage = [UIAlertAction
+                                   actionWithTitle:@"View Full Page"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       // Get the Full page for viewing
+                                       [view dismissViewControllerAnimated:YES completion:nil];
+                                   }];
+    
+    UIAlertAction* share = [UIAlertAction
+                            actionWithTitle:@"Share"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction *action)
+                            {
+                                // Present Sharing View
+                                if (userSettings.sharingMode) {
+                                    // Share Page AND Notebook
+                                } else {
+                                    // Share Page ONLY
+                                }
+                                [view dismissViewControllerAnimated:YES completion:nil];
+                            }];
+    
     UIAlertAction* cancel = [UIAlertAction
                              actionWithTitle:@"Cancel"
                              style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
+                             handler:^(UIAlertAction *action)
                              {
                                  [view dismissViewControllerAnimated:YES completion:nil];
-                                 
                              }];
     
-    
-    [view addAction:ok];
+    [view addAction:viewFullPage];
+    [view addAction:share];
     [view addAction:cancel];
+    
     [self presentViewController:view animated:YES completion:nil];
 
 }

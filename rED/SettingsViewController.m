@@ -19,7 +19,7 @@
 @end
 
 @implementation SettingsViewController
-@synthesize switch_TutorialMode, textField_HomeSite, label_HomeSite, label_TutorialMode, textView_Disclaimer, button_Info;
+@synthesize switch_TutorialMode, switch_SharingMode, textField_HomeSite, label_HomeSite, label_TutorialMode, textView_Disclaimer, button_Info;
 
 #pragma mark - Initializers
 
@@ -76,7 +76,9 @@
     }
 }
 
-- (IBAction)switch_SharingModeDidChange:(id)sender {}
+- (IBAction)switch_SharingModeDidChange:(id)sender {
+    [userSettings setSharingMode:switch_SharingMode.state];
+}
 
 - (IBAction)textField_HomeSiteDidChange:(id)sender {
     [userSettings setHomeSite:textField_HomeSite.text];
