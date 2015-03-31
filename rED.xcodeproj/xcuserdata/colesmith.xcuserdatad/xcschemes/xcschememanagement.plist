@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>rEd Action Extension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>4906461B1A814425003CD480</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>495D8D621ACB132E00576563</key>
 		<dict>
 			<key>primary</key>
 			<true/>

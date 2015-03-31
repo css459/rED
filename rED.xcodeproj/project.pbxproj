@@ -23,6 +23,9 @@
 		495D675E1A8284DD00E15853 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D675D1A8284DD00E15853 /* Page.m */; };
 		495D67611A8284E700E15853 /* Notebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67601A8284E700E15853 /* Notebook.m */; };
 		495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67661A828CF000E15853 /* SavedPagesTableViewController.m */; };
+		495D8D691ACB132E00576563 /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D8D681ACB132E00576563 /* ActionViewController.m */; };
+		495D8D6B1ACB132E00576563 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8D6A1ACB132E00576563 /* MainInterface.storyboard */; };
+		495D8D6E1ACB132E00576563 /* rEd Action Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 495D8D631ACB132E00576563 /* rEd Action Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
 		499087851AC2FB6A00904409 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 499087841AC2FB6A00904409 /* Section.m */; };
 		49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */; };
@@ -38,7 +41,28 @@
 			remoteGlobalIDString = 490646021A814425003CD480;
 			remoteInfo = "Shorecrest Web Browser";
 		};
+		495D8D6C1ACB132E00576563 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 490645FB1A814425003CD480 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 495D8D621ACB132E00576563;
+			remoteInfo = "rEd Action Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		495D8D721ACB132E00576563 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				495D8D6E1ACB132E00576563 /* rEd Action Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		490646031A814425003CD480 /* rED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rED.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +96,11 @@
 		495D67601A8284E700E15853 /* Notebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notebook.m; sourceTree = "<group>"; };
 		495D67651A828CF000E15853 /* SavedPagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedPagesTableViewController.h; sourceTree = "<group>"; };
 		495D67661A828CF000E15853 /* SavedPagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedPagesTableViewController.m; sourceTree = "<group>"; };
+		495D8D631ACB132E00576563 /* rEd Action Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "rEd Action Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		495D8D661ACB132E00576563 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495D8D671ACB132E00576563 /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
+		495D8D681ACB132E00576563 /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
+		495D8D6A1ACB132E00576563 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		49609ABE1A82DA1C00594EA8 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
 		49609ABF1A82DA1C00594EA8 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
 		499087831AC2FB6A00904409 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
@@ -99,6 +128,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		495D8D601ACB132E00576563 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -107,6 +143,7 @@
 			children = (
 				490646051A814425003CD480 /* rED */,
 				4906461F1A814425003CD480 /* rEDTests */,
+				495D8D641ACB132E00576563 /* rED Action Extension */,
 				490646041A814425003CD480 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,6 +153,7 @@
 			children = (
 				490646031A814425003CD480 /* rED.app */,
 				4906461C1A814425003CD480 /* rEDTests.xctest */,
+				495D8D631ACB132E00576563 /* rEd Action Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +196,26 @@
 			isa = PBXGroup;
 			children = (
 				490646211A814425003CD480 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		495D8D641ACB132E00576563 /* rED Action Extension */ = {
+			isa = PBXGroup;
+			children = (
+				495D8D671ACB132E00576563 /* ActionViewController.h */,
+				495D8D681ACB132E00576563 /* ActionViewController.m */,
+				495D8D6A1ACB132E00576563 /* MainInterface.storyboard */,
+				495D8D651ACB132E00576563 /* Supporting Files */,
+			);
+			name = "rED Action Extension";
+			path = "rEd Action Extension";
+			sourceTree = "<group>";
+		};
+		495D8D651ACB132E00576563 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				495D8D661ACB132E00576563 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -223,10 +281,12 @@
 				490645FF1A814425003CD480 /* Sources */,
 				490646001A814425003CD480 /* Frameworks */,
 				490646011A814425003CD480 /* Resources */,
+				495D8D721ACB132E00576563 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				495D8D6D1ACB132E00576563 /* PBXTargetDependency */,
 			);
 			name = rED;
 			productName = "Shorecrest Web Browser";
@@ -251,6 +311,23 @@
 			productReference = 4906461C1A814425003CD480 /* rEDTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		495D8D621ACB132E00576563 /* rEd Action Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 495D8D711ACB132E00576563 /* Build configuration list for PBXNativeTarget "rEd Action Extension" */;
+			buildPhases = (
+				495D8D5F1ACB132E00576563 /* Sources */,
+				495D8D601ACB132E00576563 /* Frameworks */,
+				495D8D611ACB132E00576563 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "rEd Action Extension";
+			productName = "rEd Action Extension";
+			productReference = 495D8D631ACB132E00576563 /* rEd Action Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -267,6 +344,10 @@
 					4906461B1A814425003CD480 = {
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 490646021A814425003CD480;
+					};
+					495D8D621ACB132E00576563 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 3MVWTC9ZKZ;
 					};
 				};
 			};
@@ -285,6 +366,7 @@
 			targets = (
 				490646021A814425003CD480 /* rED */,
 				4906461B1A814425003CD480 /* rEDTests */,
+				495D8D621ACB132E00576563 /* rEd Action Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -304,6 +386,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		495D8D611ACB132E00576563 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495D8D6B1ACB132E00576563 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +432,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		495D8D5F1ACB132E00576563 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				495D8D691ACB132E00576563 /* ActionViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -349,6 +447,11 @@
 			isa = PBXTargetDependency;
 			target = 490646021A814425003CD480 /* rED */;
 			targetProxy = 4906461D1A814425003CD480 /* PBXContainerItemProxy */;
+		};
+		495D8D6D1ACB132E00576563 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 495D8D621ACB132E00576563 /* rEd Action Extension */;
+			targetProxy = 495D8D6C1ACB132E00576563 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -506,6 +609,33 @@
 			};
 			name = Release;
 		};
+		495D8D6F1ACB132E00576563 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "rEd Action Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		495D8D701ACB132E00576563 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "rEd Action Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -535,6 +665,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		495D8D711ACB132E00576563 /* Build configuration list for PBXNativeTarget "rEd Action Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				495D8D6F1ACB132E00576563 /* Debug */,
+				495D8D701ACB132E00576563 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
