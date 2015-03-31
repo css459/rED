@@ -291,29 +291,49 @@
 // Toggle saving of the Page Object
 - (IBAction)button_savePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
-    
+
     Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
     
     if (url != nil) {
         if (savedButtonState) {
             
             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-//                [userSettings.array_pages addObject:newPage];
-            NSLog(@"%@", newPage);
-            
             [newPage saveSelfToArray];
-            NSLog(@"Page Saved - Array count: %lu", (unsigned long)userSettings.array_pages.count);
             
         } else {
             
-            if ([newPage checkForEdits] == YES) {
-                // Throw Notification to ask if sure.
+            // Throw Notification to ask if sure.
+            if ([newPage checkForEdits] == NO) {
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@"Page Deletion"
+                                              message:@"This Page and its Highlights will br removed from Saved Pages. This cannot be reversed."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* delete = [UIAlertAction
+                                         actionWithTitle:@"Delete"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action) {
+                                             
+                                             [alert dismissViewControllerAnimated:YES completion:nil];
+                                             [newPage removeSelfFromArray];
+                                             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+                                         
+                                         }];
+                
+                UIAlertAction* cancel = [UIAlertAction
+                                         actionWithTitle:@"Cancel"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action) {
+                                             
+                                             [alert dismissViewControllerAnimated:YES completion:nil];
+                                             
+                                         }];
+                
+                [alert addAction:delete];
+                [alert addAction:cancel];
+                
+                [self presentViewController:alert animated:YES completion:nil];
             }
-            
-            [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-            [newPage removeSelfFromArray];
-            NSLog(@"Page Removed - Array count: %lu", (unsigned long)userSettings.array_pages.count);
-            
         }
     }
 }
@@ -332,7 +352,36 @@
 #warning incomplete method implementation
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
-- (IBAction)button_actionWasPressed :(id)sender {}
+- (IBAction)button_actionWasPressed :(id)sender {
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:@"My Title"
+                                 message:@"Select you Choice"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    
+    [view addAction:ok];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
+
+}
 
 // Switch to expanded settings state
 - (IBAction)button_defaultSettingsWasPressed:(id)sender {
