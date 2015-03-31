@@ -33,6 +33,7 @@
 
 @property int scrollSpeed;
 
+// Just an FYI, these are supposed to be UIBarButtonItems
 @property (weak, nonatomic) IBOutlet UIToolbar *stopButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *fastButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *slowButton;
