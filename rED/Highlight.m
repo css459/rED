@@ -8,6 +8,7 @@
 
 #import "Highlight.h"
 #import "ColorPalette.h"
+#import "Page.h"
 
 @interface Highlight ()
 {
@@ -16,11 +17,25 @@
 @end
 
 @implementation Highlight
+@synthesize quote, color, containingPage;
+
+#pragma mark - Initializers
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        cp = [[ColorPalette alloc] init];
+        Page *placeHolderPage = [[Page alloc] init];
+        self = [self initWithQuote:@"No Quote" color:[UIColor blackColor] page:placeHolderPage];
+    }
+    return self;
+}
+
+- (instancetype)initWithQuote:(NSString *)qo color:(UIColor *)col page:(Page *)pg {
+    self = [super init];
+    if (self) {
+        quote = qo;
+        color = col;
+        containingPage = pg;
     }
     return self;
 }

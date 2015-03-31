@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,34 +10,38 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" misplaced="YES" placeholder="URL" translatesAutoresizingMaskIntoConstraints="NO" id="qga-tO-JfF">
+                <searchBar contentMode="redraw" placeholder="URL" translatesAutoresizingMaskIntoConstraints="NO" id="qga-tO-JfF">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="56b-dS-7Yq"/>
+                    </constraints>
                     <color key="tintColor" red="0.1539937609" green="0.1539937609" blue="0.1539937609" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nyu-LT-XPn">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nyu-LT-XPn">
                     <rect key="frame" x="0.0" y="436" width="480" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Dnr-cM-UnO"/>
+                    </constraints>
                     <items/>
                 </toolbar>
-                <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-86-JMA">
+                <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-86-JMA">
                     <rect key="frame" x="90" y="117" width="301" height="245"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Nyu-LT-XPn" firstAttribute="top" secondItem="9o9-86-JMA" secondAttribute="bottom" constant="74" id="28b-fx-dwF"/>
-                <constraint firstItem="9o9-86-JMA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="90" id="7IZ-gw-Vos"/>
-                <constraint firstItem="qga-tO-JfF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7zw-FO-d9m"/>
-                <constraint firstAttribute="trailing" secondItem="qga-tO-JfF" secondAttribute="trailing" id="OcY-Kx-ji8"/>
-                <constraint firstItem="Nyu-LT-XPn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="S6r-hu-H7R"/>
-                <constraint firstItem="qga-tO-JfF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VBU-my-cvz"/>
-                <constraint firstAttribute="bottom" secondItem="Nyu-LT-XPn" secondAttribute="bottom" id="evL-VS-Jks"/>
-                <constraint firstAttribute="trailing" secondItem="Nyu-LT-XPn" secondAttribute="trailing" id="gDw-IN-0BX"/>
-                <constraint firstAttribute="centerY" secondItem="9o9-86-JMA" secondAttribute="centerY" id="iQN-lG-1ZF"/>
-                <constraint firstItem="9o9-86-JMA" firstAttribute="top" secondItem="qga-tO-JfF" secondAttribute="bottom" constant="73" id="oOJ-i6-hF6"/>
-                <constraint firstAttribute="trailing" secondItem="9o9-86-JMA" secondAttribute="trailing" constant="89" id="rtc-eo-HPO"/>
-                <constraint firstAttribute="centerX" secondItem="9o9-86-JMA" secondAttribute="centerX" id="zG3-AN-JkC"/>
+                <constraint firstItem="9o9-86-JMA" firstAttribute="centerX" secondItem="qga-tO-JfF" secondAttribute="centerX" id="0JA-LA-VlA"/>
+                <constraint firstAttribute="trailing" secondItem="qga-tO-JfF" secondAttribute="trailing" id="9Tk-RI-8Am"/>
+                <constraint firstItem="Nyu-LT-XPn" firstAttribute="trailing" secondItem="qga-tO-JfF" secondAttribute="trailing" id="K2F-Yp-ZTD"/>
+                <constraint firstAttribute="bottom" secondItem="Nyu-LT-XPn" secondAttribute="bottom" id="Ltg-rV-ozj"/>
+                <constraint firstItem="9o9-86-JMA" firstAttribute="top" secondItem="qga-tO-JfF" secondAttribute="bottom" constant="73" id="Os4-kY-abH"/>
+                <constraint firstItem="9o9-86-JMA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="90" id="PeM-aA-9vd"/>
+                <constraint firstItem="Nyu-LT-XPn" firstAttribute="leading" secondItem="qga-tO-JfF" secondAttribute="leading" id="cDY-g9-LDL"/>
+                <constraint firstItem="qga-tO-JfF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dn5-2v-2pj"/>
+                <constraint firstItem="Nyu-LT-XPn" firstAttribute="top" secondItem="9o9-86-JMA" secondAttribute="bottom" constant="74" id="fAD-Py-T8R"/>
+                <constraint firstItem="Nyu-LT-XPn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uZb-78-2eq"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

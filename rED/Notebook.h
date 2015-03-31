@@ -35,4 +35,6 @@
 @property (nonatomic) NSMutableArray *array_highlights;
 @property (nonatomic) Section *lastLoadedSection;
 
++ (Notebook *)sharedNotebook;
+
 @end

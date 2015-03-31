@@ -258,25 +258,6 @@
 
 #pragma mark - Action Handlers
 
-// Handles toggling of saved button
-- (IBAction)button_SavePage:(id)sender {
-    savedButtonState = !savedButtonState;
-    if (savedButtonState) {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        
-        if (url != nil) {
-            Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
-            [newPage savePage:newPage];
-        }
-        
-    } else {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-        // Here, the Page obj should be removed from the cell array.
-    
-    
-    }
-}
-
 // Allows user to exit editing
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
@@ -310,12 +291,30 @@
 // Toggle saving of the Page Object
 - (IBAction)button_savePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
-    if (savedButtonState) {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        // Here, the Page obj should be ADDED to the cell array.
-    } else {
-        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-        // Here, the Page obj should be REMOVED from the cell array.
+    
+    Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
+    
+    if (url != nil) {
+        if (savedButtonState) {
+            
+            [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+//                [userSettings.array_pages addObject:newPage];
+            NSLog(@"%@", newPage);
+            
+            [newPage saveSelfToArray];
+            NSLog(@"Page Saved - Array count: %lu", (unsigned long)userSettings.array_pages.count);
+            
+        } else {
+            
+            if ([newPage checkForEdits] == YES) {
+                // Throw Notification to ask if sure.
+            }
+            
+            [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+            [newPage removeSelfFromArray];
+            NSLog(@"Page Removed - Array count: %lu", (unsigned long)userSettings.array_pages.count);
+            
+        }
     }
 }
 
@@ -406,6 +405,8 @@
         NSString *newUrl = [NSString stringWithFormat:@"http://%@", url];
         [self getHTML:newUrl];
     }
+    
+    NSLog(@"%@", url);
 }
 
 - (void)getHTML:(NSString *)URL {
@@ -418,6 +419,7 @@
     // Data download block
     [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
         if (data != nil) {
+            
             NSError *error;
             NSMutableDictionary *returnedDict = [NSJSONSerialization
                                                  JSONObjectWithData:data
@@ -432,7 +434,9 @@
                                       cancelButtonTitle:@"Okay"
                                       otherButtonTitles:nil, nil];
                 [alert show];
+                
             } else {
+                
                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
                 
                 // HTML Content property is set to contain the HTML code for the page
@@ -440,6 +444,7 @@
                 
                 // HTML is opened in the UIWebView
                 [self openHTML:htmlContent];
+                
             }
         }
     }];

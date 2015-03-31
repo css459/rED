@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 // HTML Properties
-@property (weak, nonatomic) NSString *url;
+@property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) NSString *htmlContent;
 @property (strong, nonatomic) NSString *updateHTML;
 @property (weak, nonatomic) NSDictionary *htmlDictionary;

@@ -8,9 +8,10 @@
 
 #import "Page.h"
 #import "Notebook.h"
+#import "Settings.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray;
 
 #pragma mark - Initalizers
 
@@ -34,10 +35,48 @@
     return self;
 }
 
+#pragma mark - Storage Management
+
+- (BOOL)saveSelfToArray {
+    Settings *userSettings = [Settings sharedSettings];
+    
+    NSUInteger originalCount = userSettings.array_pages.count;
+    [userSettings.array_pages addObject:self];
+    NSUInteger postCount = userSettings.array_pages.count;
+    indexInArray = postCount;
+    
+    if (postCount == (originalCount + 1)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)removeSelfFromArray {
+    Settings *userSettings = [Settings sharedSettings];
+    
+    NSUInteger originalCount = userSettings.array_pages.count;
+    [userSettings.array_pages removeObjectAtIndex:indexInArray];
+    NSUInteger postCount = userSettings.array_pages.count;
+    
+    if (postCount == (originalCount + 1)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 #pragma mark - Supporting Actions
 
-#warning incomplete method implementation
-- (void)savePage:(Page *)p {}
+- (BOOL)checkForEdits {
+    if (array_highlightsFromPage.count > 0) {
+        pageHasEdits = YES;
+        return YES;
+    } else {
+        pageHasEdits = NO;
+        return NO;
+    }
+}
 
 #warning incomplete method implementation
 - (NSString *)formatTitle {

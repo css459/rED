@@ -24,6 +24,7 @@
 		495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67661A828CF000E15853 /* SavedPagesTableViewController.m */; };
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
 		499087851AC2FB6A00904409 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 499087841AC2FB6A00904409 /* Section.m */; };
+		49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */; };
 		49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEE81A97C9A600B62BB4 /* Highlight.m */; };
 		49C3DEEC1A97DDFB00B62BB4 /* HighlightsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */; };
 		610605F11AC08DB600B84269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610605F01AC08DB600B84269 /* Main.storyboard */; };
@@ -74,6 +75,8 @@
 		49609ABF1A82DA1C00594EA8 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
 		499087831AC2FB6A00904409 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
 		499087841AC2FB6A00904409 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		49AADB8D1AC466E90077147E /* HighlightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightTableViewCell.h; sourceTree = "<group>"; };
+		49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightTableViewCell.m; sourceTree = "<group>"; };
 		49C3DEE71A97C9A600B62BB4 /* Highlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Highlight.h; sourceTree = "<group>"; };
 		49C3DEE81A97C9A600B62BB4 /* Highlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Highlight.m; sourceTree = "<group>"; };
 		49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightsTableViewController.h; sourceTree = "<group>"; };
@@ -120,37 +123,12 @@
 		490646051A814425003CD480 /* rED */ = {
 			isa = PBXGroup;
 			children = (
-				495D675C1A8284DD00E15853 /* Page.h */,
-				495D675D1A8284DD00E15853 /* Page.m */,
-				495D675F1A8284E700E15853 /* Notebook.h */,
-				495D67601A8284E700E15853 /* Notebook.m */,
-				499087831AC2FB6A00904409 /* Section.h */,
-				499087841AC2FB6A00904409 /* Section.m */,
-				49C3DEE71A97C9A600B62BB4 /* Highlight.h */,
-				49C3DEE81A97C9A600B62BB4 /* Highlight.m */,
-				49609ABE1A82DA1C00594EA8 /* ColorPalette.h */,
-				49609ABF1A82DA1C00594EA8 /* ColorPalette.m */,
-				495888791A8503F400B8D439 /* Settings.h */,
-				4958887A1A8503F400B8D439 /* Settings.m */,
-				4906460D1A814425003CD480 /* PagesViewController.h */,
-				4906460E1A814425003CD480 /* PagesViewController.m */,
-				495D67651A828CF000E15853 /* SavedPagesTableViewController.h */,
-				495D67661A828CF000E15853 /* SavedPagesTableViewController.m */,
-				495D67531A82848600E15853 /* NotesViewController.h */,
-				495D67541A82848600E15853 /* NotesViewController.m */,
-				49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */,
-				49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */,
-				492646691A9932E0005FFCB1 /* NotebookManagerTableViewController.h */,
-				4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */,
-				495D67561A82849200E15853 /* AutoScrollViewController.h */,
-				495D67571A82849200E15853 /* AutoScrollViewController.m */,
-				495D67591A8284BA00E15853 /* SettingsViewController.h */,
-				495D675A1A8284BA00E15853 /* SettingsViewController.m */,
-				491CEB461A84374600838145 /* ThankYouViewController.h */,
-				491CEB471A84374600838145 /* ThankYouViewController.m */,
-				610605F01AC08DB600B84269 /* Main.storyboard */,
-				490646131A814425003CD480 /* Images.xcassets */,
+				49AADB901AC4674A0077147E /* Object Files */,
+				49AADB911AC4676A0077147E /* View Controllers */,
+				49AADB921AC4677C0077147E /* Custom Table Cells */,
+				490646101A814425003CD480 /* Main.storyboard */,
 				490646151A814425003CD480 /* LaunchScreen.xib */,
+				490646131A814425003CD480 /* Images.xcassets */,
 				490646061A814425003CD480 /* Supporting Files */,
 			);
 			path = rED;
@@ -182,6 +160,61 @@
 				490646211A814425003CD480 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49AADB901AC4674A0077147E /* Object Files */ = {
+			isa = PBXGroup;
+			children = (
+				495D675C1A8284DD00E15853 /* Page.h */,
+				495D675D1A8284DD00E15853 /* Page.m */,
+				495D675F1A8284E700E15853 /* Notebook.h */,
+				495D67601A8284E700E15853 /* Notebook.m */,
+				499087831AC2FB6A00904409 /* Section.h */,
+				499087841AC2FB6A00904409 /* Section.m */,
+				49C3DEE71A97C9A600B62BB4 /* Highlight.h */,
+				49C3DEE81A97C9A600B62BB4 /* Highlight.m */,
+				49609ABE1A82DA1C00594EA8 /* ColorPalette.h */,
+				49609ABF1A82DA1C00594EA8 /* ColorPalette.m */,
+				495888791A8503F400B8D439 /* Settings.h */,
+				4958887A1A8503F400B8D439 /* Settings.m */,
+			);
+			name = "Object Files";
+			sourceTree = "<group>";
+		};
+		49AADB911AC4676A0077147E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4906460D1A814425003CD480 /* PagesViewController.h */,
+				4906460E1A814425003CD480 /* PagesViewController.m */,
+				495D67651A828CF000E15853 /* SavedPagesTableViewController.h */,
+				495D67661A828CF000E15853 /* SavedPagesTableViewController.m */,
+				495D67531A82848600E15853 /* NotesViewController.h */,
+				495D67541A82848600E15853 /* NotesViewController.m */,
+				49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */,
+				49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */,
+				492646691A9932E0005FFCB1 /* NotebookManagerTableViewController.h */,
+				4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */,
+				495D67561A82849200E15853 /* AutoScrollViewController.h */,
+				495D67571A82849200E15853 /* AutoScrollViewController.m */,
+				495D67591A8284BA00E15853 /* SettingsViewController.h */,
+				495D675A1A8284BA00E15853 /* SettingsViewController.m */,
+				491CEB461A84374600838145 /* ThankYouViewController.h */,
+				491CEB471A84374600838145 /* ThankYouViewController.m */,
+				610605F01AC08DB600B84269 /* Main.storyboard */,
+				490646131A814425003CD480 /* Images.xcassets */,
+				490646151A814425003CD480 /* LaunchScreen.xib */,
+				490646061A814425003CD480 /* Supporting Files */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		49AADB921AC4677C0077147E /* Custom Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				49AADB8D1AC466E90077147E /* HighlightTableViewCell.h */,
+				49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */,
+			);
+			name = "Custom Table Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */,
 				495D67611A8284E700E15853 /* Notebook.m in Sources */,
 				491CEB481A84374600838145 /* ThankYouViewController.m in Sources */,
 				4958887B1A8503F400B8D439 /* Settings.m in Sources */,
