@@ -27,8 +27,11 @@
         * dateSaved: Date object of the current date. No default, set at time 
           time of initialization.
  
+        * indexInArray: Allows us to properly track down a page in the array
+          with a unique identifier. Default: nil
+ 
         * pageHasEdits: The page is highlighted or otherwise appended from
-          its orginal state from the web page it came from.
+          its orginal state from the web page it came from. Default: False
  
  */// --------------------------------------------------------------------------
 
@@ -48,7 +51,7 @@
 // Initializers
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
 
-// Storage Management
+// Data Management
 - (BOOL)saveSelfToArray;
 - (BOOL)removeSelfFromArray;
 
