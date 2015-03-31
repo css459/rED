@@ -27,6 +27,9 @@
         * dateSaved: Date object of the current date. No default, set at time 
           time of initialization.
  
+        * pageHasEdits: The page is highlighted or otherwise appended from
+          its orginal state from the web page it came from.
+ 
  */// --------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
@@ -39,12 +42,18 @@
 @property (nonatomic) NSString *url;
 @property (nonatomic) NSString *htmlContent;
 @property (nonatomic) NSMutableArray *array_highlightsFromPage;
+@property (nonatomic) NSUInteger indexInArray;
+@property (nonatomic) BOOL pageHasEdits;
 
 // Initializers
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
 
+// Storage Management
+- (BOOL)saveSelfToArray;
+- (BOOL)removeSelfFromArray;
+
 // Supporting Actions
-- (void)savePage:(Page *)p;
+- (BOOL)checkForEdits;
 - (NSString *)formatDate:(NSDate *)date;
 - (NSString *)formatTitle;
 

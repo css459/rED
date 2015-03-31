@@ -20,10 +20,14 @@
 
 @interface Settings : NSObject
 
+// Application Parameters
 @property BOOL nightMode;
 @property BOOL tutorialMode;
 @property double textSize;
 @property (nonatomic) NSString *homeSite;
+
+// Object Storage
+@property (strong, nonatomic) NSMutableArray *array_pages;  // Here, we will save pages.
 
 +(Settings *)sharedSettings;
 

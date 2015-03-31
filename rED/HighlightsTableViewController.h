@@ -10,5 +10,10 @@
 
 @interface HighlightsTableViewController : UITableViewController
 
+// Toolbar Properties
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl_sortingOption;
+
+- (IBAction)segmentedControl_sortingOptionDidChange:(id)sender;
 
 @end

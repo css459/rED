@@ -33,7 +33,7 @@
     return self;
 }
 
-- (instancetype)initWithTitle: (NSString *)ttl {
+- (instancetype)initWithTitle:(NSString *)ttl {
     self = [super init];
     if (self) {
         title = ttl;
