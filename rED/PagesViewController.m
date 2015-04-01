@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "Page.h"
 #import "SettingsViewController.h"
+#import "UIMenuItem+CXAImageSupport.h"
 
 @interface PagesViewController ()
 {
@@ -50,7 +51,7 @@
 @end
 
 @implementation PagesViewController
-@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML, slider_textSize, button_done;
+@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML, slider_textSize, highlightColor, pageHtml, savedHtml, button_done;
 
 #pragma mark - Initalizers
 
