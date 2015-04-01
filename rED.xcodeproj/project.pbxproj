@@ -26,6 +26,10 @@
 		495D8D691ACB132E00576563 /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D8D681ACB132E00576563 /* ActionViewController.m */; };
 		495D8D6B1ACB132E00576563 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8D6A1ACB132E00576563 /* MainInterface.storyboard */; };
 		495D8D6E1ACB132E00576563 /* rEd Action Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 495D8D631ACB132E00576563 /* rEd Action Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		495D8D761ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 495D8D731ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf */; };
+		495D8D771ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 495D8D731ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf */; };
+		495D8D781ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D8D751ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m */; };
+		495D8D791ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D8D751ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m */; };
 		49609AC01A82DA1C00594EA8 /* ColorPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 49609ABF1A82DA1C00594EA8 /* ColorPalette.m */; };
 		499087851AC2FB6A00904409 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 499087841AC2FB6A00904409 /* Section.m */; };
 		49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */; };
@@ -101,6 +105,9 @@
 		495D8D671ACB132E00576563 /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
 		495D8D681ACB132E00576563 /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
 		495D8D6A1ACB132E00576563 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		495D8D731ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "LICENSE_UIMenuItem-CXAImageSupport.rtf"; sourceTree = "<group>"; };
+		495D8D741ACC66AA00576563 /* UIMenuItem+CXAImageSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIMenuItem+CXAImageSupport.h"; sourceTree = "<group>"; };
+		495D8D751ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIMenuItem+CXAImageSupport.m"; sourceTree = "<group>"; };
 		49609ABE1A82DA1C00594EA8 /* ColorPalette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPalette.h; sourceTree = "<group>"; };
 		49609ABF1A82DA1C00594EA8 /* ColorPalette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPalette.m; sourceTree = "<group>"; };
 		499087831AC2FB6A00904409 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
@@ -179,6 +186,9 @@
 				4906460B1A814425003CD480 /* AppDelegate.m */,
 				490646071A814425003CD480 /* Info.plist */,
 				490646081A814425003CD480 /* main.m */,
+				495D8D731ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf */,
+				495D8D741ACC66AA00576563 /* UIMenuItem+CXAImageSupport.h */,
+				495D8D751ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -377,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490646121A814425003CD480 /* Main.storyboard in Resources */,
+				495D8D761ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */,
 				490646171A814425003CD480 /* LaunchScreen.xib in Resources */,
 				490646141A814425003CD480 /* Images.xcassets in Resources */,
 			);
@@ -394,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				495D8D6B1ACB132E00576563 /* MainInterface.storyboard in Resources */,
+				495D8D771ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +432,7 @@
 				495D675E1A8284DD00E15853 /* Page.m in Sources */,
 				49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */,
 				49C3DEEC1A97DDFB00B62BB4 /* HighlightsTableViewController.m in Sources */,
+				495D8D781ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m in Sources */,
 				495D675B1A8284BA00E15853 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495D8D791ACC66AA00576563 /* UIMenuItem+CXAImageSupport.m in Sources */,
 				495D8D691ACB132E00576563 /* ActionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

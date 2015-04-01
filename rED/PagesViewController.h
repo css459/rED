@@ -22,7 +22,11 @@
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 
 // Supporting Properties
-@property (nonatomic) UISlider *slider_textSize;
+@property (strong, nonatomic) UISlider *slider_textSize;
+@property (nonatomic, strong) NSString *highlightColor;
+@property (nonatomic, strong) NSString *pageHtml;
+@property (nonatomic, strong) NSString *savedHtml;
+//@property (nonatomic) UISlider *slider_textSize;
 @property (nonatomic) UIBarButtonItem *button_done;
 
 // Button Actions
@@ -47,6 +51,12 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)sB;
 - (void)getHTML:(NSString *)URL;
 - (void)openHTML:(NSString *)html;
+
+// Highlighting Methods
+- (void)highlight_red;
+- (void)highlight_yellow;
+- (void)highlight_blue;
+- (void)highlight_orange;
 
 @end
 

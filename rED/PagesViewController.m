@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "Page.h"
 #import "SettingsViewController.h"
+#import "UIMenuItem+CXAImageSupport.h"
 
 @interface PagesViewController ()
 {
@@ -50,7 +51,7 @@
 @end
 
 @implementation PagesViewController
-@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML, slider_textSize, button_done;
+@synthesize searchBar, webView, url, htmlContent, htmlDictionary, updateHTML, slider_textSize, highlightColor, pageHtml, savedHtml, button_done;
 
 #pragma mark - Initalizers
 
@@ -175,6 +176,54 @@
     [self.view setUserInteractionEnabled:YES];
     [self.view addSubview:self.slider_textSize];
     [self.slider_textSize setHidden:YES];
+    
+//    self.slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeLeft
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:self.view
+//                              attribute:NSLayoutAttributeLeft
+//                              multiplier:1
+//                              constant:5]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:self.slider_textSize
+//                              attribute:NSLayoutAttributeRight
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:button_done attribute:NSLayoutAttributeRight
+//                              multiplier:1
+//                              constant:10]];
+    
+    
+    UIImage *redIcon = [UIImage imageNamed: @"highlight_Red"];
+    UIImage *yellowIcon = [UIImage imageNamed: @"highlight_Yellow"];
+    UIImage *blueIcon = [UIImage imageNamed: @"highlight_Blue"];
+    UIImage *orangeIcon = [UIImage imageNamed: @"highlight_Orange"];
+    
+    UIMenuItem *highlightRedItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Red Highlight", nil) action:@selector(highlight_red)];
+    UIMenuItem *highlightYellowItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Yellow Highlight", nil) action:@selector(highlight_yellow)];
+    UIMenuItem *highlightBlueItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Blue Highlight", nil) action:@selector(highlight_blue)];
+    UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Orange Highlight", nil) action:@selector(highlight_orange)];
+    
+    [highlightRedItem cxa_initWithTitle:@"Red Highlight" action:@selector(highlight_red) image:redIcon];
+    [highlightYellowItem cxa_initWithTitle:@"Yellow Highlight" action:@selector(highlight_yellow) image:yellowIcon];
+    [highlightBlueItem cxa_initWithTitle:@"Blue Highlight" action:@selector(highlight_blue) image:blueIcon];
+    [highlightOrangeItem cxa_initWithTitle:@"Orange Highlight" action:@selector(highlight_orange) image:orangeIcon];
+    
+    [UIMenuController sharedMenuController].menuItems = @[highlightRedItem, highlightYellowItem, highlightBlueItem , highlightOrangeItem];
+    
+    
+    
+    
+//    - (id)cxa_initWithTitle:(NSString *)title action:(SEL)action image:(UIImage *)image;
+//    - (id)cxa_initWithTitle:(NSString *)title action:(SEL)action settings:(CXAMenuItemSettings *)settings;
+//    - (void)cxa_setImage:(UIImage *)image;
+//    - (void)cxa_setSettings:(CXAMenuItemSettings *)settings;
+
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -451,6 +500,101 @@
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
     [userSettings setTextSize:slider_textSize.value];
+}
+
+#pragma mark - Highlighting Methods
+
+- (void)highlight_yellow {
+    
+    const CGFloat *components = CGColorGetComponents([cp highlight_yellow].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+}
+
+- (void)highlight_red {
+    
+    // USE THIS FOR ALL OF THE OTHER HIGHLIGHTING METHODS
+    const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    
+    
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+}
+
+- (void)highlight_blue {
+    
+    const CGFloat *components = CGColorGetComponents([cp highlight_blue].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+}
+
+- (void)highlight_orange {
+    
+    const CGFloat *components = CGColorGetComponents([cp highlight_orange].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
 }
 
 #pragma mark - HTML Handlers
