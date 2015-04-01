@@ -142,13 +142,31 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Are you sure?"
-                              message:@"Deleting this page will remove its Notebook and highlights as well."
-                              delegate:self
-                              cancelButtonTitle:@"Retain"
-                              otherButtonTitles:@"Delete", nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Page Deletion"
+                                    message:@"This Page and its Highlights will br removed from Saved Pages. This cannot be reversed."
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *delete = [UIAlertAction
+                                 actionWithTitle:@"Delete"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+        
+        UIAlertAction *cancel = [UIAlertAction
+                                 actionWithTitle:@"Cancel"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+        
+        [alert addAction:delete];
+        [alert addAction:cancel];
         indexForDelete = indexPath.row;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {

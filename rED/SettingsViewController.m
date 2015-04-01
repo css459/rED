@@ -52,6 +52,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     switch_TutorialMode.on = [userSettings tutorialMode];
+    switch_SharingMode.on = [userSettings sharingMode];
     textField_HomeSite.text = [userSettings homeSite];
 }
 
