@@ -502,6 +502,13 @@
     [userSettings setTextSize:slider_textSize.value];
 }
 
+#pragma mark - Highlighting Methods
+
+- (void)highlight_yellow {}
+- (void)highlight_red {}
+- (void)highlight_orange {}
+- (void)highlight_blue {}
+
 #pragma mark - HTML Handlers
 
 // Called when URL search button is pressed
