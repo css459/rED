@@ -47,6 +47,8 @@
 @property (nonatomic) NSMutableArray *array_highlightsFromPage;
 @property (nonatomic) NSUInteger indexInArray;
 @property (nonatomic) BOOL pageHasEdits;
+@property (weak, nonatomic) NSDictionary *htmlDictionary;
+@property (strong, nonatomic) NSString *articleTitle;
 
 // Initializers
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;

@@ -9,9 +9,10 @@
 #import "Page.h"
 #import "Notebook.h"
 #import "Settings.h"
+#import "AppDelegate.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle;
 
 #pragma mark - Initalizers
 
@@ -90,10 +91,46 @@
     }
 }
 
-#warning incomplete method implementation
 - (NSString *)formatTitle {
     // Grab the Page title from the web page at URL
-    return nil;
+    // URLString is the URL from which the data is downloaded from
+    NSString *URLString = [NSString stringWithFormat:@"https://www.readability.com/api/content/v1/parser?url=%@&token=79df0f9969a83dfb8759ba33c4530d6d04ffe87f", url];
+    
+    // NSString is converted to a NSURL
+    NSURL *websiteUrl = [NSURL URLWithString:URLString];
+    
+    // Data download block
+    [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
+        if (data != nil) {
+            
+            NSError *error;
+            NSMutableDictionary *returnedDict = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:kNilOptions
+                                                 error:&error];
+            if (error != nil) {
+                NSLog(@"%@",[error localizedDescription]);
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Uh-Oh!"
+                                      message:@"The URL you requested is not compatible with rED :("
+                                      delegate:nil
+                                      cancelButtonTitle:@"Okay"
+                                      otherButtonTitles:nil, nil];
+                [alert show];
+                
+            } else {
+                
+                self.htmlDictionary = [returnedDict objectForKey:@"title"];
+                
+                // HTML Content property is set to contain the HTML code for the page
+                articleTitle = [[self htmlDictionary] description];
+                
+            }
+        }
+    }];
+    
+    NSLog(@"Article Title: %@:", articleTitle);
+    return articleTitle;
 }
 
 - (NSString *)formatDate:(NSDate *)date {
