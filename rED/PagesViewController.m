@@ -504,10 +504,98 @@
 
 #pragma mark - Highlighting Methods
 
-- (void)highlight_yellow {}
-- (void)highlight_red {}
-- (void)highlight_orange {}
-- (void)highlight_blue {}
+- (void)highlight_yellow {
+    
+    const CGFloat *components = CGColorGetComponents([cp highlight_yellow].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+}
+
+- (void)highlight_red {
+    
+    // USE THIS FOR ALL OF THE OTHER HIGHLIGHTING METHODS
+    const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    
+    
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+}
+
+- (void)highlight_blue {
+    
+    const CGFloat *components = CGColorGetComponents([cp highlight_blue].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+}
+
+- (void)highlight_orange {
+    
+    const CGFloat *components = CGColorGetComponents([cp highlight_orange].CGColor);
+    CGFloat r = components[0];
+    CGFloat g = components[1];
+    CGFloat b = components[2];
+    NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    highlightColor = hexString;
+    if (!pageHtml) {
+        pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    }
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    NSString *insertSpan = [NSString stringWithFormat:@"var range = window.getSelection().getRangeAt(0);var selectionContents   = range.extractContents(); var span = document.createElement(\"span\"); span.appendChild(selectionContents); span.setAttribute(\"class\",\"uiWebviewHighlight\"); span.style.backgroundColor  = \"#%@\"; span.setAttribute(\"id\", \"%@\");range.insertNode(span);",highlightColor, uuid];
+    
+    [webView stringByEvaluatingJavaScriptFromString:insertSpan];
+    
+    savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+}
 
 #pragma mark - HTML Handlers
 
