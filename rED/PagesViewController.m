@@ -197,6 +197,7 @@
 //                              multiplier:1
 //                              constant:10]];
     
+    
     UIImage *redIcon = [UIImage imageNamed: @"highlight_Red"];
     UIImage *yellowIcon = [UIImage imageNamed: @"highlight_Yellow"];
     UIImage *blueIcon = [UIImage imageNamed: @"highlight_Blue"];
