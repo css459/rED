@@ -354,6 +354,7 @@
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="dm8-DN-vS0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="1O3-3f-zmQ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dm8-DN-vS0" secondAttribute="bottom" constant="1" id="2VC-PO-KjA"/>

@@ -28,6 +28,10 @@
     ColorPalette *cp;
     Settings *userSettings;
     
+    // View Controller Instances
+    SavedPagesTableViewController *savedPagesVC;
+    NotesViewController *notesVC;
+    
     // Button Arrays
     NSArray *array_settingsToolbarButtons;
     NSArray *array_defaultToolbarButtons;
@@ -68,6 +72,16 @@
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
         slider_textSize = [[UISlider alloc] initWithFrame:frame];
+        
+        NSString * storyboardName = @"Main";
+        UIStoryboard *storyboard = [UIStoryboard
+                                    storyboardWithName:storyboardName
+                                    bundle:[NSBundle bundleForClass:[self class]]];
+        
+         savedPagesVC = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
+
+         notesVC = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
+        
         
         [slider_textSize addTarget:self
                          action:@selector(slider_textSizeValueChanged:)
@@ -135,7 +149,6 @@
 
         array_settingsToolbarButtons = @[button_more, flexibleSpace, button_textSize, flexibleSpace, button_expandedSettings];
 
-
         [self getHTML:[userSettings homeSite]];
     }
     return self;
@@ -176,26 +189,6 @@
     [self.view setUserInteractionEnabled:YES];
     [self.view addSubview:self.slider_textSize];
     [self.slider_textSize setHidden:YES];
-    
-//    self.slider_textSize.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    [self.view addConstraint:[NSLayoutConstraint
-//                              constraintWithItem:self.slider_textSize
-//                              attribute:NSLayoutAttributeLeft
-//                              relatedBy:NSLayoutRelationEqual
-//                              toItem:self.view
-//                              attribute:NSLayoutAttributeLeft
-//                              multiplier:1
-//                              constant:5]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint
-//                              constraintWithItem:self.slider_textSize
-//                              attribute:NSLayoutAttributeRight
-//                              relatedBy:NSLayoutRelationEqual
-//                              toItem:button_done attribute:NSLayoutAttributeRight
-//                              multiplier:1
-//                              constant:10]];
-    
     
     UIImage *redIcon = [UIImage imageNamed: @"highlight_Red"];
     UIImage *yellowIcon = [UIImage imageNamed: @"highlight_Yellow"];
@@ -313,24 +306,24 @@
 
 // Switch to Notebook
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard
-                                storyboardWithName:storyboardName
-                                bundle:[NSBundle bundleForClass:[self class]]];
-    
-    NotesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
-    [[self navigationController] pushViewController:vc animated:YES];
+//    NSString * storyboardName = @"Main";
+//    UIStoryboard *storyboard = [UIStoryboard
+//                                storyboardWithName:storyboardName
+//                                bundle:[NSBundle bundleForClass:[self class]]];
+//    
+//    NotesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
+    [[self navigationController] pushViewController:notesVC animated:YES];
 }
 
 // Switch to Saved Pages
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard
-                                storyboardWithName:storyboardName
-                                bundle:[NSBundle bundleForClass:[self class]]];
-    
-    SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
-    [[self navigationController] pushViewController:vc animated:YES];
+//    NSString * storyboardName = @"Main";
+//    UIStoryboard *storyboard = [UIStoryboard
+//                                storyboardWithName:storyboardName
+//                                bundle:[NSBundle bundleForClass:[self class]]];
+//    
+//    SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
+    [[self navigationController] pushViewController:savedPagesVC animated:YES];
 }
 
 #pragma mark - Button Actions
@@ -538,7 +531,6 @@
     
     highlightColor = hexString;
     
-    
     if (!pageHtml) {
         pageHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
     }
@@ -549,7 +541,6 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
-    
 }
 
 - (void)highlight_blue {
@@ -572,7 +563,6 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
-    
 }
 
 - (void)highlight_orange {
@@ -594,7 +584,10 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
-    
+}
+
+- (IBAction)gesture_testSwipe:(id)sender {
+    NSLog(@"hello");
 }
 
 #pragma mark - HTML Handlers
@@ -661,4 +654,13 @@
     //Loads UIWebView with HTML
     [webView loadHTMLString:html baseURL:nil];
 }
+
+
+#pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
 @end
