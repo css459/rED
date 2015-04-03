@@ -33,10 +33,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        //        stepper_ScrollSpeed.maximumValue = 5.0;
-        //        stepper_ScrollSpeed.minimumValue = 0.0;
-        //        [stepper_ScrollSpeed setValue:5.0 ];
-        //            NSLog(@"before button pressed:%ld",(long)[stepper_ScrollSpeed value]);
+
     }
 
     scrollVal = 0.0f;
@@ -114,15 +111,13 @@
 // Adjust the scroll speed
 - (IBAction)stepper_ScrollSpeedDidChange:(UIStepper *)sender {
     
-    NSInteger value = .05*stepper_ScrollSpeed.value + .05;
-    
+    float value = -.1*stepper_ScrollSpeed.value + .5;
+
     [timer invalidate];
     timer = nil;
-    
+
     timer = [NSTimer scheduledTimerWithTimeInterval:value target:self selector:@selector(scroll) userInfo:nil repeats:YES];
-    
-    NSLog(@"button pressed:%ld",(long)stepper_ScrollSpeed.value);
-    
+
 }
 
 
