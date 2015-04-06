@@ -41,22 +41,15 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_Done;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper_ScrollSpeed;
 
-@property int h;
 
 - (IBAction)button_DoneWasPressed:(id)sender;
 - (IBAction)stepper_ScrollSpeedDidChange:(id)sender;
 
-
 -(void)scroll;
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event inView:(UIView *)view;
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event inView:(UIView *)view;
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event inView:(UIView *)view;
 
--(void)didSwipe:(UISwipeGestureRecognizer*)swipe;
 
 @end
-
 
 
 //UIButtonHidden

@@ -136,10 +136,12 @@
 
 // Switch to Home
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
-    NSString * storyboardName = @"Main";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
-    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
-    [[self navigationController] pushViewController:vc animated:YES];
+//    NSString * storyboardName = @"Main";
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
+//    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
+//    [[self navigationController] pushViewController:vc animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - Action Handlers

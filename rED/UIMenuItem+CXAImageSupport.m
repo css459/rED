@@ -4,7 +4,6 @@
 //
 //  Copyright (c) 2013 CHEN Xian'an <xianan.chen@gmail.com>. All rights reserved.
 //  UIMenuItem+CXAImageSupport is released under the MIT license. In short, it's royalty-free but you must you keep the copyright notice in your code or software distribution.
-//
 
 #import "UIMenuItem+CXAImageSupport.h"
 #import <objc/runtime.h>
@@ -164,7 +163,7 @@ static void newDrawTextInRect(UILabel *self, SEL _cmd, CGRect rect)
   point.y = ceilf(point.y - size.height/2);
   
   BOOL drawsShadow = ![titleSettingsPairs[self.text] shadowDisabled];
-  CGContextRef context;
+  CGContextRef context = NULL;
   if (drawsShadow){
     context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
