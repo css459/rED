@@ -40,19 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    // Implements custom title with formatting
-//    [self.navigationController setNavigationBarHidden:NO];
-//    UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
-//    UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
-//    [naviTitle setText:@"Notebook"];
-//    [naviTitle setFont:titleFont];
-//    [naviTitle setTextColor:[UIColor darkTextColor]];
-//    [naviTitle sizeToFit];
-//    self.navigationItem.titleView = naviTitle;
-//    [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
-//    self.navigationItem.hidesBackButton = YES;
-    
-    // Swipe Declaration
+     //Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
                                              initWithTarget:self
                                              action:@selector(gesture_SwipeRight:)];
@@ -72,9 +60,9 @@
     CGRect titleFrame = CGRectMake(0, 2, 200, 24);
     titleView = [[UILabel alloc] initWithFrame:titleFrame];
     titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont boldSystemFontOfSize:20];
+    titleView.font = [UIFont systemFontOfSize:20];
     titleView.textAlignment = NSTextAlignmentCenter;
-    titleView.textColor = [UIColor whiteColor];
+    titleView.textColor = [UIColor blackColor];
     titleView.shadowColor = [UIColor darkGrayColor];
     titleView.shadowOffset = CGSizeMake(0, -1);
     titleView.text = @"TITLE";
@@ -84,9 +72,9 @@
     CGRect subtitleFrame = CGRectMake(0, 24, 200, 44-24);
     subtitleView = [[UILabel alloc] initWithFrame:subtitleFrame];
     subtitleView.backgroundColor = [UIColor clearColor];
-    subtitleView.font = [UIFont boldSystemFontOfSize:13];
+    subtitleView.font = [UIFont systemFontOfSize:13];
     subtitleView.textAlignment = NSTextAlignmentCenter;
-    subtitleView.textColor = [UIColor whiteColor];
+    subtitleView.textColor = [UIColor blackColor];
     subtitleView.shadowColor = [UIColor darkGrayColor];
     subtitleView.shadowOffset = CGSizeMake(0, -1);
     subtitleView.text = @"SUBTITLE";

@@ -24,7 +24,7 @@
                                     <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="No" id="DgU-QE-Yy7"/>
+                                    <navigationItem title="Notebook" id="DgU-QE-Yy7"/>
                                 </items>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCR-VW-AWB">
