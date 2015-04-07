@@ -42,14 +42,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
     
     // Implements custom title with formatting
-    UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
     UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
-    
-    [self.navigationController setNavigationBarHidden:NO];
-    [naviTitle setText:@" "];
-    
     UILabel *label_notebook = [[UILabel alloc] initWithFrame:CGRectZero];
     UILabel *label_section = [[UILabel alloc] initWithFrame:CGRectZero];
     
@@ -69,7 +65,7 @@
     UIBarButtonItem *label_sectionBBI = [[UIBarButtonItem alloc] initWithCustomView:label_section];
     [self.navigationItem setRightBarButtonItem:label_sectionBBI];
     
-    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     // Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
