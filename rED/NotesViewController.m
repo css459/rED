@@ -119,7 +119,10 @@
 }
 
 #warning incomplete method implementation
-- (void)loadSection:(Section *)section {}
+- (void)loadSection:(Section *)section {
+
+
+ }
 
 /*
 #pragma mark - Navigation
