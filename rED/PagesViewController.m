@@ -389,7 +389,7 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
-#warning incomplete method implementation
+#warning incomplete: sharing and full page viewing
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
 - (IBAction)button_actionWasPressed :(id)sender {

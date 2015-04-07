@@ -20,6 +20,13 @@
     return self;
 }
 
+- (NSArray *)aggregateHighlightsFromPages {
+    NSMutableArray *array_intake;
+    NSMutableArray *array_sortedReturn;
+    
+    return array_sortedReturn;
+}
+
 + (Notebook *)sharedNotebook {
     static Notebook *sharedNotebook = nil;
     if (!sharedNotebook) {

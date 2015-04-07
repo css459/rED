@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Notes-->
+        <!--Notes View Controller-->
         <scene sceneID="d9C-9f-vkh">
             <objects>
-                <viewController storyboardIdentifier="NotesViewController" title="Notes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vfo-5Y-0bf" customClass="NotesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vfo-5Y-0bf" customClass="NotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hXY-vc-wqZ"/>
                         <viewControllerLayoutGuide type="bottom" id="1mZ-e3-HgM"/>
@@ -24,7 +24,7 @@
                                     <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Notebook" id="DgU-QE-Yy7"/>
+                                    <navigationItem id="DgU-QE-Yy7"/>
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tas-pW-STP">
@@ -61,6 +61,18 @@
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ci-cV-Qvv">
+                                <rect key="frame" x="16" y="11" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Section" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxB-Cl-eLg">
+                                <rect key="frame" x="509" y="11" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
