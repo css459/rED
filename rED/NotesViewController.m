@@ -44,7 +44,30 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     
-     //Swipe Declaration
+    // Implements custom title with formatting
+    UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
+    UILabel *label_notebook = [[UILabel alloc] initWithFrame:CGRectZero];
+    UILabel *label_section = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [label_notebook setText:@"Notebook"];
+    [label_notebook setFont:titleFont];
+    [label_notebook setTextColor:[UIColor darkTextColor]];
+    [label_notebook sizeToFit];
+    
+    UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
+    [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
+
+    [label_section setText:@"Section"];
+    [label_section setFont:titleFont];
+    [label_section setTextColor:[UIColor darkTextColor]];
+    [label_section sizeToFit];
+    
+    UIBarButtonItem *label_sectionBBI = [[UIBarButtonItem alloc] initWithCustomView:label_section];
+    [self.navigationItem setRightBarButtonItem:label_sectionBBI];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+    // Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
                                              initWithTarget:self
                                              action:@selector(gesture_SwipeRight:)];

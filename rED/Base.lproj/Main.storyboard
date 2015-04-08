@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Notes View Controller-->
@@ -17,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1f2-RN-fWI">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1f2-RN-fWI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <textAttributes key="titleTextAttributes">
@@ -27,7 +28,7 @@
                                     <navigationItem id="DgU-QE-Yy7"/>
                                 </items>
                             </navigationBar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCR-VW-AWB">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kCR-VW-AWB">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
@@ -54,25 +55,30 @@
                                 <color key="tintColor" red="0.98994302489999997" green="0.041526058349999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tas-pW-STP">
-                                <rect key="frame" x="32" y="71" width="536" height="485"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ci-cV-Qvv">
+                                <rect key="frame" x="16" y="11" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Section" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxB-Cl-eLg">
+                                <rect key="frame" x="509" y="11" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Tas-pW-STP" firstAttribute="top" secondItem="1f2-RN-fWI" secondAttribute="bottom" constant="26" id="2qH-UI-Fea"/>
-                            <constraint firstItem="Tas-pW-STP" firstAttribute="leading" secondItem="M53-ML-4ND" secondAttribute="leadingMargin" constant="16" id="4WE-45-HRB"/>
+                            <constraint firstAttribute="top" secondItem="1f2-RN-fWI" secondAttribute="bottom" constant="26" id="2qH-UI-Fea"/>
+                            <constraint firstAttribute="leading" secondItem="M53-ML-4ND" secondAttribute="leadingMargin" constant="16" id="4WE-45-HRB"/>
                             <constraint firstItem="1f2-RN-fWI" firstAttribute="leading" secondItem="M53-ML-4ND" secondAttribute="leadingMargin" constant="-16" id="6b2-8b-lmW"/>
                             <constraint firstItem="1f2-RN-fWI" firstAttribute="top" secondItem="M53-ML-4ND" secondAttribute="topMargin" id="89T-h6-Se4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1f2-RN-fWI" secondAttribute="trailing" constant="-16" id="dxe-4z-tjv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Tas-pW-STP" secondAttribute="trailing" constant="16" id="h9s-v5-HJe"/>
+                            <constraint firstAttribute="trailingMargin" secondAttribute="trailing" constant="16" id="h9s-v5-HJe"/>
                             <constraint firstItem="1mZ-e3-HgM" firstAttribute="top" secondItem="kCR-VW-AWB" secondAttribute="bottom" id="lUD-7M-jnx"/>
                             <constraint firstItem="kCR-VW-AWB" firstAttribute="leading" secondItem="M53-ML-4ND" secondAttribute="leadingMargin" constant="-16" id="mgU-1F-mX1"/>
-                            <constraint firstItem="kCR-VW-AWB" firstAttribute="top" secondItem="Tas-pW-STP" secondAttribute="bottom" constant="1" id="nOd-zU-olt"/>
+                            <constraint firstItem="kCR-VW-AWB" firstAttribute="top" secondAttribute="bottom" constant="1" id="nOd-zU-olt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kCR-VW-AWB" secondAttribute="trailing" constant="-16" id="o24-Rg-TXd"/>
                         </constraints>
                     </view>
@@ -80,7 +86,6 @@
                         <outlet property="button_quotations" destination="AFv-kV-Kfx" id="A1c-gC-7aj"/>
                         <outlet property="button_sections" destination="Vu0-Nb-edj" id="yPe-Kf-giE"/>
                         <outlet property="button_share" destination="FMi-9O-G6y" id="bkk-Dl-GVl"/>
-                        <outlet property="textView" destination="Tas-pW-STP" id="Q0V-C5-F2Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ck-a8-CJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
