@@ -11,6 +11,7 @@
 #import "ColorPalette.h"
 #import "Settings.h"
 #import "Section.h"
+#import "Notebook.h"
 
 @interface NotesViewController ()
 
@@ -20,6 +21,7 @@
 {
     ColorPalette *cp;
     Settings *sharedSettings;
+    Notebook *sharedNotebook;
 }
 
 @synthesize textView, button_quotations, button_sections, button_share, titleView, subtitleView;
@@ -31,6 +33,7 @@
     if (self) {
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
+        sharedNotebook = [Notebook sharedNotebook];
     }
     return self;
 }
@@ -39,6 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
     
      //Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
@@ -168,7 +172,10 @@
 }
 
 #warning incomplete method implementation
-- (void)loadSection:(Section *)section {}
+- (void)loadSection:(Section *)section {
+
+
+ }
 
 /*
 #pragma mark - Navigation

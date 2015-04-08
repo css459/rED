@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Notes-->
+        <!--Notes View Controller-->
         <scene sceneID="d9C-9f-vkh">
             <objects>
-                <viewController storyboardIdentifier="NotesViewController" title="Notes" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vfo-5Y-0bf" customClass="NotesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vfo-5Y-0bf" customClass="NotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hXY-vc-wqZ"/>
                         <viewControllerLayoutGuide type="bottom" id="1mZ-e3-HgM"/>
@@ -24,7 +24,7 @@
                                     <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Notebook" id="DgU-QE-Yy7"/>
+                                    <navigationItem id="DgU-QE-Yy7"/>
                                 </items>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCR-VW-AWB">
@@ -85,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ck-a8-CJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355" y="454"/>
+            <point key="canvasLocation" x="1355" y="459"/>
         </scene>
         <!--Notebook Tabs-->
         <scene sceneID="fRK-kk-W88">

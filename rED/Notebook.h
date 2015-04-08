@@ -35,6 +35,8 @@
 @property (nonatomic) NSMutableArray *array_highlights;
 @property (nonatomic) Section *lastLoadedSection;
 
+- (NSArray *)aggregateHighlightsFromPages;
+
 + (Notebook *)sharedNotebook;
 
 @end
