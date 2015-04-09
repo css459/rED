@@ -24,9 +24,13 @@
     BOOL savedButtonState;
     BOOL nightModeState;
     
+    // Slider Variables
+    double previousSize;
+    
     // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
+    
     
     // View Controller Instances
     SavedPagesTableViewController *savedPagesVC;
@@ -49,6 +53,8 @@
     UIBarButtonItem *button_expandedSettings;
     
     UIBarButtonItem *flexibleSpace;
+    
+    
     
     
 }
@@ -492,7 +498,69 @@
 
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
+//    NSLog(@"Before change: %f", slider_textSize.value);
     [userSettings setTextSize:slider_textSize.value];
+    NSLog(@"slider_textSize.value = %f", slider_textSize.value);
+    
+    
+    Settings *settings = [Settings sharedSettings];
+    if (htmlContent != nil) {
+        // Convert settings text size to HTML text size
+        double size = [settings textSize];
+        if (size >= 1 && size < 11) {
+            size = 1;
+        }
+        if (size >= 11 && size < 21) {
+            size = 2;
+        }
+        if (size >= 21 && size < 31) {
+            size = 3;
+        }
+        if (size >= 31 && size < 41) {
+            size = 4;
+        }
+        if (size >= 41 && size < 51) {
+            size = 5;
+        }
+        if (size >= 51 && size < 61) {
+            size = 6;
+        }
+        if (size >= 61) {
+            size = 7;
+        }
+        NSLog(@"Size = %g", size);
+        
+        if (previousSize != size) {
+                    
+            // Update HTML
+            NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
+            updateHTML = updatedHTML;
+            
+            // Reload webview html content
+            [self openHTML:updateHTML];
+            previousSize = size;
+            
+        }
+    }
+/*
+ Only changes between a few text sizes
+ Chages text size:
+ 9.0 Works
+ 20-21
+ 30-31
+ 
+ 
+ Where it reverts to max text size:
+ 
+ 10-11
+ 20-21
+ 31-40
+ 50-51
+ 61-72
+ **/
+    
+    
+    
 }
 
 #pragma mark - Highlighting Methods
