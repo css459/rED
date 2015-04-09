@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_sections;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_share;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_quotations;
+@property (nonatomic, strong) UILabel *titleView;
+@property (nonatomic, strong) UILabel *subtitleView;
 
 // Supporting Properties
 @property (nonatomic) Section *loadedSection;
