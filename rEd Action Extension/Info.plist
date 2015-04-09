@@ -33,7 +33,7 @@
 			<key>NSExtensionActivationRule</key>
 			<dict>
 				<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-				<string>NSExtensionActivationSupportsWebURLWithMaxCount</string>
+				<integer>99999999999</integer>
 			</dict>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
