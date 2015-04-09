@@ -35,6 +35,7 @@
 
 @interface Section : NSObject
 
+// Section Parameters
 @property (nonatomic) UIColor *color;
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *textContent;

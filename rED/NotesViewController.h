@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "Section.h"
 
 @interface NotesViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
@@ -16,6 +17,12 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_sections;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_share;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_quotations;
+
+// Supporting Properties
+@property (nonatomic) Section *loadedSection;
+
+// Supporting Actions
+- (void)loadSection:(Section *)section;
 
 // Gesture Recognizers
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;

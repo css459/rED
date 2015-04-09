@@ -24,7 +24,7 @@
     Notebook *sharedNotebook;
 }
 
-@synthesize textView, button_quotations, button_sections, button_share;
+@synthesize textView, button_quotations, button_sections, button_share, loadedSection;
 
 #pragma mark - Initializers
 
@@ -34,6 +34,7 @@
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
         sharedNotebook = [Notebook sharedNotebook];
+        [self loadSection:[sharedNotebook lastLoadedSection]];
     }
     return self;
 }
@@ -57,7 +58,8 @@
     UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
     [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
 
-    [label_section setText:@"Section"];
+    [label_section setText:@"Section"];     // This should be dynamic
+    [label_section setText:loadedSection];
     [label_section setFont:titleFont];
     [label_section setTextColor:[UIColor darkTextColor]];
     [label_section sizeToFit];
@@ -135,8 +137,8 @@
 
 #warning incomplete method implementation
 - (void)loadSection:(Section *)section {
-
-
+    loadedSection = section;
+    NSLog(@"Loaded Section: %@", loadedSection.title);
  }
 
 /*
