@@ -19,20 +19,20 @@
          * Title: The section title. Default: "New Section"
          
          * Color: The section color which can be seen in the Notebook Manager
-         Default: "paselRed" (array_sectionColor index 0)
+           Default: "paselRed" (array_sectionColor index 0)
          
          * textContent: A String formatted and displayed through
-         the Text View in NotesView Controller. Default: @""
+           the Text View in NotesView Controller. Default: @""
          
          * dateCreated: A Date object used to store the date created.
-         This has no default and will be populated at the instance the 
-         Section object is initialized.
+           This has no default and will be populated at the instance the
+           Section object is initialized.
  
-         * indexInSectionArray: unique identifier to match Section objects even
-         when they are not referenced in context of the sections array (in Notebook).
+         * indexInArray: unique identifier to match Section objects even
+           when they are not referenced in context of the sections array (in Notebook).
  
          * isLastLoadedSection: the section is the last one presented by the Notes
-         View Controller.
+           View Controller.
  
  */// --------------------------------------------------------------------------
 

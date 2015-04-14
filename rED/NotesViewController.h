@@ -24,7 +24,7 @@
 @property (nonatomic) Section *loadedSection;
 
 // Section Handlers
-- (void)loadSection:(Section *)section;
+- (void)loadSection:(NSUInteger)sectionAtIndex;
 - (void)saveSectionChanges;
 
 // Gesture Recognizers

@@ -11,6 +11,8 @@
 @implementation Settings
 @synthesize homeSite, textSize, nightMode, tutorialMode, sharingMode, array_pages;
 
+#pragma mark - Initializers
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -26,17 +28,15 @@
     
 }
 
-+ (Settings *)sharedSettings {
+#pragma mark - Singleton Methods
+
++ (id)sharedSettings {
     static Settings *sharedSettings = nil;
-    if (!sharedSettings) {
-        sharedSettings = [[super allocWithZone:nil] init];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedSettings = [[self alloc] init];
+    });
     return sharedSettings;
 }
-
-+ (id)allocWithZone:(struct _NSZone *)zone {
-    return [self sharedSettings];
-}
-
 
 @end

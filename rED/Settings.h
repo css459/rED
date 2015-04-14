@@ -30,6 +30,7 @@
 // Object Storage
 @property (strong, nonatomic) NSMutableArray *array_pages;  // Here, we will save pages.
 
-+(Settings *)sharedSettings;
+// Singleton Methods
++ (id)sharedSettings;
 
 @end

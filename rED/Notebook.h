@@ -31,13 +31,15 @@
 
 @interface Notebook : NSObject
 
-@property (nonatomic) NSMutableArray *array_sections;
-@property (nonatomic) NSMutableArray *array_highlights;
-@property (nonatomic) Section *lastLoadedSection;     // This needs to be removed
+// Object Storage
+@property (nonatomic, strong) NSMutableArray *array_sections;
+@property (nonatomic, strong) NSMutableArray *array_highlights;
+@property int indexOfLastLoadedSection;
 
-
+// Utility Methods
 - (NSArray *)aggregateHighlightsFromPages;
 
-+ (Notebook *)sharedNotebook;
+// Singleton Methods
++ (id)sharedNotebook;
 
 @end

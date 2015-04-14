@@ -34,7 +34,9 @@
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
         sharedNotebook = [Notebook sharedNotebook];
-        [self loadSection:[sharedNotebook lastLoadedSection]];
+        
+        int sectionID = [sharedNotebook indexOfLastLoadedSection];
+        [self loadSection:sectionID];
     }
     return self;
 }
@@ -141,16 +143,16 @@
 
 #pragma mark - Section Handlers
 
-- (void)loadSection:(Section *)section {
-//    loadedSection = section;
-//    NSLog(@"Loaded Section: %@", loadedSection.title);
-//    
-//    textView.text = loadedSection.textContent;
-    
+- (void)loadSection:(NSUInteger)sectionAtIndex {
+    Section *sectionForLoad = [sharedNotebook.array_sections objectAtIndex:sectionAtIndex];
+    loadedSection = sectionForLoad;
+    NSLog(@"Loaded Section: %@", loadedSection.title);
+    textView.text = loadedSection.textContent;
+    [self viewDidLoad];
 }
 
 - (void)saveSectionChanges {
-    [sharedNotebook.lastLoadedSection setTextContent:textView.text];
+    [sharedNotebook.array_sections replaceObjectAtIndex:loadedSection.indexInArray withObject:loadedSection];
 }
 
 /*

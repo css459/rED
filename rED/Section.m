@@ -13,6 +13,7 @@
 @interface Section ()
 {
     ColorPalette *cp;
+    Notebook *sharedNotebook;
 }
 @end
 
@@ -29,9 +30,10 @@
 - (instancetype)initWithTitle:(NSString *)ttl {
     self = [super init];
     if (self) {
+        sharedNotebook = [Notebook sharedNotebook];
         title = ttl;
         color = [cp.array_sectionColors objectAtIndex:0];
-        textContent = @"";
+        textContent = @"(Placeholder)";
         dateCreated = [NSDate date];
         isLastLoadedSection = NO;
     }
@@ -41,7 +43,6 @@
 #pragma mark - Section Saving
 
 - (BOOL)saveSection{
-    Notebook *sharedNotebook = [Notebook sharedNotebook];
     NSUInteger originalCount;
     NSUInteger postCount;
     
@@ -61,7 +62,6 @@
 }
 
 - (BOOL)removeSection{
-    Notebook *sharedNotebook = [Notebook sharedNotebook];
     NSUInteger originalCount;
     NSUInteger postCount;
     

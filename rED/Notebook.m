@@ -19,7 +19,9 @@
 @end
 
 @implementation Notebook
-@synthesize array_highlights, array_sections, lastLoadedSection;
+@synthesize array_highlights, array_sections, indexOfLastLoadedSection;
+
+#pragma mark - Initializers
 
 - (instancetype)init {
     self = [super init];
@@ -30,10 +32,13 @@
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
         [rootSection saveSection];
+        indexOfLastLoadedSection = 0;
         
     }
     return self;
 }
+
+#pragma mark - Utility Methods
 
 - (NSArray *)aggregateHighlightsFromPages {
     NSMutableArray *array_intake;
@@ -49,22 +54,19 @@
         return array_intake;
         
     } else {
-        
         return nil;
-        
     }
 }
 
-+ (Notebook *)sharedNotebook {
+#pragma mark - Singleton Methods
+
++ (id)sharedNotebook {
     static Notebook *sharedNotebook = nil;
-    if (!sharedNotebook) {
-        sharedNotebook = [[super allocWithZone:nil] init];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedNotebook = [[self alloc] init];
+    });
     return sharedNotebook;
-}
-
-+ (id)allocWithZone:(struct _NSZone *)zone {
-    return [self sharedNotebook];
 }
 
 @end
