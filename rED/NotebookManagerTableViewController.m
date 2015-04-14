@@ -40,9 +40,8 @@
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
-
     
-    // Uncomment the following line to preserve selection between presentations.
+        // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -61,12 +60,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
+    
+    
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
+    
+    
     return 0;
 }
 
