@@ -48,6 +48,10 @@
     [naviTitle setTextColor:[cp tint_text]];
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
+    
+    [switch_TutorialMode setOn:[userSettings tutorialMode]];
+    [switch_SharingMode setOn:[userSettings sharingMode]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,7 +82,11 @@
 }
 
 - (IBAction)switch_SharingModeDidChange:(id)sender {
-    [userSettings setSharingMode:switch_SharingMode.state];
+    if (switch_SharingMode.on) {
+        [userSettings setSharingMode:YES];
+    } else {
+        [userSettings setSharingMode:NO];
+    }
 }
 
 - (IBAction)textField_HomeSiteDidChange:(id)sender {

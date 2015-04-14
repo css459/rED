@@ -24,7 +24,7 @@
     Notebook *sharedNotebook;
 }
 
-@synthesize textView, button_quotations, button_sections, button_share, titleView, subtitleView;
+@synthesize textView, button_quotations, button_sections, button_share, loadedSection;
 
 #pragma mark - Initializers
 
@@ -34,6 +34,7 @@
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
         sharedNotebook = [Notebook sharedNotebook];
+        [self loadSection:[sharedNotebook lastLoadedSection]];
     }
     return self;
 }
@@ -57,7 +58,8 @@
     UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
     [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
 
-    [label_section setText:@"Section"];
+    [label_section setText:@"Section"];     // This should be dynamic
+    [label_section setText:loadedSection.title];
     [label_section setFont:titleFont];
     [label_section setTextColor:[UIColor darkTextColor]];
     [label_section sizeToFit];
@@ -78,67 +80,6 @@
     // Toolbar Configuration
     [self.navigationController setToolbarHidden:YES];
     [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
-    
-    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 200, 44);
-    UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
-    _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
-    _headerTitleSubtitleView.autoresizesSubviews = YES;
-    
-    CGRect titleFrame = CGRectMake(0, 2, 200, 24);
-    titleView = [[UILabel alloc] initWithFrame:titleFrame];
-    titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont systemFontOfSize:20];
-    titleView.textAlignment = NSTextAlignmentCenter;
-    titleView.textColor = [UIColor blackColor];
-    titleView.shadowColor = [UIColor darkGrayColor];
-    titleView.shadowOffset = CGSizeMake(0, -1);
-    titleView.text = @"TITLE";
-    titleView.adjustsFontSizeToFitWidth = YES;
-    [_headerTitleSubtitleView addSubview:titleView];
-    
-    CGRect subtitleFrame = CGRectMake(0, 24, 200, 44-24);
-    subtitleView = [[UILabel alloc] initWithFrame:subtitleFrame];
-    subtitleView.backgroundColor = [UIColor clearColor];
-    subtitleView.font = [UIFont systemFontOfSize:13];
-    subtitleView.textAlignment = NSTextAlignmentCenter;
-    subtitleView.textColor = [UIColor blackColor];
-    subtitleView.shadowColor = [UIColor darkGrayColor];
-    subtitleView.shadowOffset = CGSizeMake(0, -1);
-    subtitleView.text = @"SUBTITLE";
-    subtitleView.adjustsFontSizeToFitWidth = YES;
-    [_headerTitleSubtitleView addSubview:subtitleView];
-    
-    _headerTitleSubtitleView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin |
-                                                 UIViewAutoresizingFlexibleRightMargin |
-                                                 UIViewAutoresizingFlexibleTopMargin |
-                                                 UIViewAutoresizingFlexibleBottomMargin);
-    
-    self.navigationItem.titleView = _headerTitleSubtitleView;
-}
-
--(void) setHeaderTitle:(NSString*)headerTitle andSubtitle:(NSString*)headerSubtitle {
-    assert(self.navigationItem.titleView != nil);
-    UIView* headerTitleSubtitleView = self.navigationItem.titleView;
-    titleView = [headerTitleSubtitleView.subviews objectAtIndex:0];
-    subtitleView = [headerTitleSubtitleView.subviews objectAtIndex:1];
-    assert((titleView != nil) && (subtitleView != nil) && ([titleView isKindOfClass:[UILabel class]]) && ([subtitleView isKindOfClass:[UILabel class]]));
-    titleView.text = headerTitle;
-    subtitleView.text = headerSubtitle;
-}
-
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self adjustLabelsForOrientation:toInterfaceOrientation];
-}
-
-- (void) adjustLabelsForOrientation:(UIInterfaceOrientation)orientation {
-    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
-        titleView.font = [UIFont boldSystemFontOfSize:16];
-        subtitleView.font = [UIFont boldSystemFontOfSize:11];
-    }
-    else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        titleView.font = [UIFont boldSystemFontOfSize:20];
-        subtitleView.font = [UIFont boldSystemFontOfSize:13];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -196,8 +137,8 @@
 
 #warning incomplete method implementation
 - (void)loadSection:(Section *)section {
-
-
+    loadedSection = section;
+    NSLog(@"Loaded Section: %@", loadedSection.title);
  }
 
 /*

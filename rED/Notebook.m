@@ -10,6 +10,7 @@
 #import "Highlight.h"
 #import "Page.h"
 #import "Settings.h"
+#import "Section.h"
 
 @interface Notebook ()
 {
@@ -26,6 +27,10 @@
         array_highlights = [[NSMutableArray alloc] init];
         array_sections = [[NSMutableArray alloc] init];
         usersettings = [Settings sharedSettings];
+        
+        Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
+        lastLoadedSection = rootSection;
+        [array_sections addObject:rootSection];
         
     }
     return self;

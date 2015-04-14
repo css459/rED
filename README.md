@@ -56,3 +56,9 @@ Resources:
 [Parser API Documentation](https://readability.com/developers/api/parser)
 
 [Thesaurus API](http://words.bighugelabs.com/api.php)
+
+Action Extension Resources:
+
+[App Extension Keys](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/SystemExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW10)
+
+[Simple App Extension Tutorial](http://code.tutsplus.com/tutorials/ios-8-how-to-build-a-simple-action-extension--cms-22794)
