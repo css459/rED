@@ -386,6 +386,7 @@
                                 bundle:[NSBundle bundleForClass:[self class]]];
     
     AutoScrollViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AutoScrollViewController"];
+    [vc openWebsiteWithAutoscroll:htmlContent];
     [[self navigationController] pushViewController:vc animated:YES];
 }
 

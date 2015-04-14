@@ -26,7 +26,7 @@
 
 @implementation AutoScrollViewController
 
-@synthesize stepper_ScrollSpeed, scrollVal, scrollSpeed, scrollView, timer, webView;
+@synthesize stepper_ScrollSpeed, scrollVal, scrollSpeed, scrollView, timer, webView, HTML;
 
 #pragma mark - Initializers
 
@@ -50,10 +50,7 @@
     [stepper_ScrollSpeed setValue:-0.05];
     NSLog(@"before button pressed:%ld",(long)[stepper_ScrollSpeed value]);
     
-    NSString *urlAddress = @"http://www.reddit.com/";
-    NSURL *url = [NSURL URLWithString:urlAddress];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:requestObj];
+    [webView loadHTMLString:HTML baseURL:nil];
     
     [self.navigationController setToolbarHidden:YES];
     
@@ -120,7 +117,11 @@
 
 }
 
-
+- (void)openWebsiteWithAutoscroll:(NSString *)html
+{
+    HTML = html;
+    [self viewDidLoad];
+}
 
 /*
  #pragma mark - Navigation
