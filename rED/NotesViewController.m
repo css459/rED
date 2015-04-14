@@ -11,6 +11,7 @@
 #import "ColorPalette.h"
 #import "Settings.h"
 #import "Section.h"
+#import "Notebook.h"
 
 @interface NotesViewController ()
 
@@ -20,9 +21,10 @@
 {
     ColorPalette *cp;
     Settings *sharedSettings;
+    Notebook *sharedNotebook;
 }
 
-@synthesize textView, button_quotations, button_sections, button_share;
+@synthesize textView, button_quotations, button_sections, button_share, loadedSection;
 
 #pragma mark - Initializers
 
@@ -31,6 +33,8 @@
     if (self) {
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
+        sharedNotebook = [Notebook sharedNotebook];
+        [self loadSection:[sharedNotebook lastLoadedSection]];
     }
     return self;
 }
@@ -39,18 +43,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
     
     // Implements custom title with formatting
-    [self.navigationController setNavigationBarHidden:NO];
-    UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
     UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
-    [naviTitle setText:@"Notebook"];
-    [naviTitle setFont:titleFont];
-    [naviTitle setTextColor:[UIColor darkTextColor]];
-    [naviTitle sizeToFit];
-    self.navigationItem.titleView = naviTitle;
-    [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
-    self.navigationItem.hidesBackButton = YES;
+    UILabel *label_notebook = [[UILabel alloc] initWithFrame:CGRectZero];
+    UILabel *label_section = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [label_notebook setText:@"Notebook"];
+    [label_notebook setFont:titleFont];
+    [label_notebook setTextColor:[UIColor darkTextColor]];
+    [label_notebook sizeToFit];
+    
+    UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
+    [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
+
+    [label_section setText:@"Section"];     // This should be dynamic
+    [label_section setText:loadedSection.title];
+    [label_section setFont:titleFont];
+    [label_section setTextColor:[UIColor darkTextColor]];
+    [label_section sizeToFit];
+    
+    UIBarButtonItem *label_sectionBBI = [[UIBarButtonItem alloc] initWithCustomView:label_section];
+    [self.navigationItem setRightBarButtonItem:label_sectionBBI];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     // Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
@@ -120,8 +137,8 @@
 
 #warning incomplete method implementation
 - (void)loadSection:(Section *)section {
-
-
+    loadedSection = section;
+    NSLog(@"Loaded Section: %@", loadedSection.title);
  }
 
 /*

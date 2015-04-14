@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 #import "Settings.h"
 
-@interface PagesViewController : UIViewController <UISearchBarDelegate>
+@interface PagesViewController : UIViewController <UISearchBarDelegate, MFMailComposeViewControllerDelegate>
 
 // Web Viewing Properties
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;

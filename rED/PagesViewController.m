@@ -395,7 +395,7 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
-#warning incomplete method implementation
+#warning incomplete: sharing and full page viewing
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
 - (IBAction)button_actionWasPressed :(id)sender {
@@ -411,6 +411,12 @@
                                    {
                                        // Get the Full page for viewing
                                        [view dismissViewControllerAnimated:YES completion:nil];
+                                       
+                                       if (url != nil)
+                                       {
+                                           [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+
+                                       }
                                    }];
     
     UIAlertAction* share = [UIAlertAction
@@ -421,8 +427,31 @@
                                 // Present Sharing View
                                 if (userSettings.sharingMode) {
                                     // Share Page AND Notebook
+                                    
+                                    if ([MFMailComposeViewController canSendMail]) {
+                                        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+                                        mailViewController.mailComposeDelegate = self;
+                                        
+                                        [mailViewController setSubject:@"Share Page AND Notebook"];
+                                        
+                                        [mailViewController setMessageBody:@"You have share Page AND Notebook!" isHTML:NO];
+                                        
+                                        [self presentViewController:mailViewController animated:YES completion:nil];
+                                    }
+                                    
                                 } else {
                                     // Share Page ONLY
+                                    
+                                    if ([MFMailComposeViewController canSendMail]) {
+                                        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+                                        mailViewController.mailComposeDelegate = self;
+                                        
+                                        [mailViewController setSubject:@"Share Page ONLY"];
+                                        
+                                        [mailViewController setMessageBody:@"You have share Page ONLY!" isHTML:NO];
+                                        
+                                        [self presentViewController:mailViewController animated:YES completion:nil];
+                                    }
                                 }
                                 [view dismissViewControllerAnimated:YES completion:nil];
                             }];
@@ -441,6 +470,15 @@
     
     [self presentViewController:view animated:YES completion:nil];
 
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    
+    if (error != nil) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Switch to expanded settings state
@@ -680,6 +718,7 @@
             } else {
                 
                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
+                self.url = [returnedDict objectForKey:@"url"];
                 
                 // HTML Content property is set to contain the HTML code for the page
                 self.htmlContent = [[self htmlDictionary] description];
