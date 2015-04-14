@@ -147,11 +147,6 @@
 //    
 //    textView.text = loadedSection.textContent;
     
-    int sectionIndex = section.indexInSectionArray;
-    section.isLastLoadedSection = YES;
-    NSLog(@"Loaded Section: %@", loadedSection.title);
-    
-    textView.text = 
 }
 
 - (void)saveSectionChanges {

@@ -40,7 +40,7 @@
 
 #pragma mark - Section Saving
 
-- (BOOL)createSection{
+- (BOOL)saveSection{
     Notebook *sharedNotebook = [Notebook sharedNotebook];
     NSUInteger originalCount;
     NSUInteger postCount;

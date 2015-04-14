@@ -29,7 +29,7 @@
         usersettings = [Settings sharedSettings];
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
-        [array_sections addObject:rootSection];
+        [rootSection saveSection];
         
     }
     return self;

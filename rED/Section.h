@@ -53,7 +53,7 @@
 - (instancetype)initWithTitle:(NSString *)ttl;
 
 // Section Saving
-- (BOOL)createSection;
+- (BOOL)saveSection;
 - (BOOL)removeSection;
 
 // Utility Methods
