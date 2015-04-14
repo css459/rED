@@ -26,7 +26,7 @@
 
 @implementation AutoScrollViewController
 
-@synthesize stepper_ScrollSpeed, scrollVal, scrollSpeed, scrollView, timer, webView;
+@synthesize stepper_ScrollSpeed, scrollVal, scrollSpeed, scrollView, timer, webView, buttonpressed, stopButton, toolBar;
 
 #pragma mark - Initializers
 
@@ -50,22 +50,64 @@
     [stepper_ScrollSpeed setValue:-0.05];
     NSLog(@"before button pressed:%ld",(long)[stepper_ScrollSpeed value]);
     
+
+    
     NSString *urlAddress = @"http://www.reddit.com/";
     NSURL *url = [NSURL URLWithString:urlAddress];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestObj];
     
+    buttonpressed = NO;
+    stepper_ScrollSpeed.userInteractionEnabled = NO;
     [self.navigationController setToolbarHidden:YES];
+    
     
 }
 
 
 -(IBAction)stopButtonWasPressed:(id)sender
 {
+    buttonpressed = !buttonpressed;
+
     
-    [timer invalidate];
-    timer = nil;
-    
+    if (buttonpressed) {
+        //start scrolling
+        
+        float value = -.1*stepper_ScrollSpeed.value + .5;
+        timer = [NSTimer scheduledTimerWithTimeInterval:value target:self selector:@selector(scroll) userInfo:nil repeats:YES];
+        
+        stepper_ScrollSpeed.userInteractionEnabled = YES;
+//        stopButton.style = UIBarButtonSystemItemPause;
+//        [stopButton setStyle:UIBarButtonSystemItemPause];
+        
+
+        
+//        UIBarButtonItem *playButton = [toolBar.items objectAtIndex:2];
+        
+        UIBarButtonItem *pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(stopButtonWasPressed:)];
+
+        NSMutableArray *array_toolBarObjects = [NSMutableArray arrayWithArray:toolBar.items];
+        [array_toolBarObjects replaceObjectAtIndex:2 withObject:pauseButton];
+        toolBar.items = array_toolBarObjects;
+        
+    }else{
+        //stop scrolling
+        
+        
+        stepper_ScrollSpeed.userInteractionEnabled = NO;
+        [timer invalidate];
+        timer = nil;
+        
+//        UIBarButtonItem *playButton = [toolBar.items objectAtIndex:2];
+        UIBarButtonItem *playButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(stopButtonWasPressed:)];
+
+        NSMutableArray *array_toolBarObjects = [NSMutableArray arrayWithArray:toolBar.items];
+        [array_toolBarObjects replaceObjectAtIndex:2 withObject:playButton];
+        toolBar.items = array_toolBarObjects;
+        
+        
+    }
+
 }
 
 //This will be called every second
