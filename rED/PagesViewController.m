@@ -498,11 +498,9 @@
 
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
-//    NSLog(@"Before change: %f", slider_textSize.value);
     [userSettings setTextSize:slider_textSize.value];
-    NSLog(@"slider_textSize.value = %f", slider_textSize.value);
     
-    
+    // MAKE THIS INTO A METHOD
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
         // Convert settings text size to HTML text size
@@ -528,7 +526,6 @@
         if (size >= 61) {
             size = 7;
         }
-        NSLog(@"Size = %g", size);
         
         if (previousSize != size) {
                     
@@ -542,25 +539,6 @@
             
         }
     }
-/*
- Only changes between a few text sizes
- Chages text size:
- 9.0 Works
- 20-21
- 30-31
- 
- 
- Where it reverts to max text size:
- 
- 10-11
- 20-21
- 31-40
- 50-51
- 61-72
- **/
-    
-    
-    
 }
 
 #pragma mark - Highlighting Methods
@@ -589,8 +567,6 @@
 }
 
 - (void)highlight_red {
-    
-    // USE THIS FOR ALL OF THE OTHER HIGHLIGHTING METHODS
     const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
