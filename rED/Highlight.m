@@ -40,4 +40,11 @@
     return self;
 }
 
+#warning Incomplete Method Implementation
+- (NSString *)formatQuotationForInjection {
+    NSString *stringForReturn;
+    
+    
+    return stringForReturn;
+}
 @end

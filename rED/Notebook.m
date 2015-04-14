@@ -16,8 +16,8 @@
 {
     Settings *usersettings;
 }
-
 @end
+
 @implementation Notebook
 @synthesize array_highlights, array_sections, lastLoadedSection;
 
@@ -29,7 +29,6 @@
         usersettings = [Settings sharedSettings];
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
-        lastLoadedSection = rootSection;
         [array_sections addObject:rootSection];
         
     }

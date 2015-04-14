@@ -36,4 +36,6 @@
 @property (nonatomic) UIColor *color;
 @property (nonatomic) Page *containingPage;
 
+- (NSString *)formatQuotationForInjection;
+
 @end

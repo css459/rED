@@ -389,7 +389,6 @@
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
-#warning incomplete: sharing and full page viewing
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
 - (IBAction)button_actionWasPressed :(id)sender {
@@ -622,10 +621,6 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
-}
-
-- (IBAction)gesture_testSwipe:(id)sender {
-    NSLog(@"hello");
 }
 
 #pragma mark - HTML Handlers

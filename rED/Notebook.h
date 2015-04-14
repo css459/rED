@@ -33,7 +33,8 @@
 
 @property (nonatomic) NSMutableArray *array_sections;
 @property (nonatomic) NSMutableArray *array_highlights;
-@property (nonatomic) Section *lastLoadedSection;
+@property (nonatomic) Section *lastLoadedSection;     // This needs to be removed
+
 
 - (NSArray *)aggregateHighlightsFromPages;
 

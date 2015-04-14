@@ -58,7 +58,7 @@
     UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
     [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
 
-    [label_section setText:@"Section"];     // This should be dynamic
+    [label_section setText:loadedSection.title];
     [label_section setText:loadedSection.title];
     [label_section setFont:titleFont];
     [label_section setTextColor:[UIColor darkTextColor]];
@@ -80,6 +80,10 @@
     // Toolbar Configuration
     [self.navigationController setToolbarHidden:YES];
     [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self saveSectionChanges];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,11 +139,24 @@
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-#warning incomplete method implementation
+#pragma mark - Section Handlers
+
 - (void)loadSection:(Section *)section {
-    loadedSection = section;
+//    loadedSection = section;
+//    NSLog(@"Loaded Section: %@", loadedSection.title);
+//    
+//    textView.text = loadedSection.textContent;
+    
+    int sectionIndex = section.indexInSectionArray;
+    section.isLastLoadedSection = YES;
     NSLog(@"Loaded Section: %@", loadedSection.title);
- }
+    
+    textView.text = 
+}
+
+- (void)saveSectionChanges {
+    [sharedNotebook.lastLoadedSection setTextContent:textView.text];
+}
 
 /*
 #pragma mark - Navigation
