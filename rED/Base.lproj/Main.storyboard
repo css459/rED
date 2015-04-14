@@ -316,7 +316,9 @@
                     <connections>
                         <outlet property="button_Done" destination="iPa-FX-mTM" id="4EH-bA-Lui"/>
                         <outlet property="stepper_ScrollSpeed" destination="zaR-8t-fK1" id="bkU-zS-Cue"/>
-                        <outlet property="webView" destination="0w2-yg-zHG" id="W3F-m2-A8V"/>
+                        <outlet property="stopButton" destination="TY1-ZB-gu6" id="upf-ca-eG0"/>
+                        <outlet property="toolBar" destination="u0u-eo-7Sw" id="gFB-PC-uZm"/>
+                        <outlet property="webView" destination="0w2-yg-zHG" id="tXp-JW-Ujx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irb-zi-8Q1" userLabel="First Responder" sceneMemberID="firstResponder"/>

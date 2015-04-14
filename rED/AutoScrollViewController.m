@@ -26,7 +26,7 @@
 
 @implementation AutoScrollViewController
 
-@synthesize stepper_ScrollSpeed, scrollVal, scrollSpeed, scrollView, timer, webView, HTML;
+@synthesize stepper_ScrollSpeed, scrollVal, scrollSpeed, scrollView, timer, webView, buttonpressed, stopButton, toolBar, HTML;
 
 #pragma mark - Initializers
 
