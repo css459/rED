@@ -84,6 +84,11 @@
     [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [self saveSectionChanges];
 }
@@ -151,8 +156,6 @@
     NSLog(@"Saving Section: %@ at index: %lu", loadedSection.title, (unsigned long)indexOfSection);
     
     [sharedNotebook.array_sections replaceObjectAtIndex:indexOfSection withObject:loadedSection];
-//    [sharedNotebook removeSection:loadedSection];
-//    [sharedNotebook saveSection:loadedSection];
 }
 
 /*
