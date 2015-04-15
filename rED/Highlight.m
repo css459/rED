@@ -40,11 +40,9 @@
     return self;
 }
 
-#warning Incomplete Method Implementation
 - (NSString *)formatQuotationForInjection {
     NSString *stringForReturn;
-    
-    
+    stringForReturn = [NSString stringWithFormat:@"\"%@\" - %@", quote, containingPage.title];
     return stringForReturn;
 }
 @end

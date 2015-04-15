@@ -23,6 +23,7 @@
     // States
     BOOL savedButtonState;
     BOOL nightModeState;
+    BOOL isViewingFullPage;
     
     // Utility Objects
     ColorPalette *cp;
@@ -149,6 +150,11 @@
         array_settingsToolbarButtons = @[button_more, flexibleSpace, button_textSize, flexibleSpace, button_expandedSettings];
 
         [self getHTML:[userSettings homeSite]];
+        
+        // ----------------------DIAGNOSTIC AREA----------------------
+        // Here is a good place to test any methods you've created
+        // -----------------------------------------------------------
+         
     }
     return self;
 }
@@ -391,13 +397,14 @@
 
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
+#warning please complete the viewCondensedPage Alert Action
 - (IBAction)button_actionWasPressed :(id)sender {
     UIAlertController * view=   [UIAlertController
                                  alertControllerWithTitle:nil
                                  message:nil
                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction* viewFullPage = [UIAlertAction
+    UIAlertAction *viewFullPage = [UIAlertAction
                                    actionWithTitle:@"View Full Page"
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction *action)
@@ -410,17 +417,28 @@
                                            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 
                                        }
+                                       isViewingFullPage = YES;
                                    }];
     
-    UIAlertAction* share = [UIAlertAction
+    UIAlertAction *viewCondensedPage = [UIAlertAction
+                                        actionWithTitle:@"View Condensed Page"
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction *action)
+                                        {
+                                           // View the page the rED way
+                                            
+                                            isViewingFullPage = NO;
+                                        }];
+    
+    UIAlertAction *share = [UIAlertAction
                             actionWithTitle:@"Share"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action)
                             {
                                 // Present Sharing View
                                 if (userSettings.sharingMode) {
-                                    // Share Page AND Notebook
                                     
+                                    // Share Page AND Notebook
                                     if ([MFMailComposeViewController canSendMail]) {
                                         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
                                         mailViewController.mailComposeDelegate = self;
@@ -433,8 +451,8 @@
                                     }
                                     
                                 } else {
-                                    // Share Page ONLY
                                     
+                                    // Share Page ONLY
                                     if ([MFMailComposeViewController canSendMail]) {
                                         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
                                         mailViewController.mailComposeDelegate = self;
@@ -457,9 +475,15 @@
                                  [view dismissViewControllerAnimated:YES completion:nil];
                              }];
     
-    [view addAction:viewFullPage];
-    [view addAction:share];
-    [view addAction:cancel];
+    if (isViewingFullPage) {
+        [view addAction:viewCondensedPage];
+        [view addAction:share];
+        [view addAction:cancel];
+    } else {
+        [view addAction:viewFullPage];
+        [view addAction:share];
+        [view addAction:cancel];
+    }
     
     [self presentViewController:view animated:YES completion:nil];
 
