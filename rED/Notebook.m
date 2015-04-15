@@ -59,6 +59,8 @@
     }
 }
 
+#pragma mark - Section Data Management
+
 - (BOOL)saveSection:(Section *)section {
     NSUInteger originalCount;
     NSUInteger postCount;

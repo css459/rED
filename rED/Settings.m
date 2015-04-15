@@ -7,6 +7,7 @@
 //
 
 #import "Settings.h"
+#import "Page.h"
 
 @implementation Settings
 @synthesize homeSite, textSize, nightMode, tutorialMode, sharingMode, array_pages;
@@ -38,5 +39,45 @@
     });
     return sharedSettings;
 }
+
+# pragma mark - Page Data Management
+
+- (BOOL)savePage:(Page *)page {
+    NSUInteger originalCount;
+    NSUInteger postCount;
+    
+    originalCount = self.array_pages.count;
+    [self.array_pages addObject:self];
+    postCount = self.array_pages.count;
+    page.indexInArray = postCount - 1;
+    
+    if (postCount == (originalCount + 1)) {
+        NSLog(@"Page Saved Successfully - Array count: %lu", (unsigned long)self.array_pages.count);
+        return YES;
+    } else {
+        NSLog(@"PAGE SAVE FAILED - Array count: %lu", (unsigned long)self.array_pages.count);
+        return NO;
+    }
+}
+
+- (BOOL)removePage:(Page *)page {
+    NSUInteger originalCount;
+    NSUInteger postCount;
+    
+    if (self.array_pages != 0) {
+        originalCount = self.array_pages.count;
+        [self.array_pages removeObjectAtIndex:page.indexInArray];
+        postCount = self.array_pages.count;
+    }
+    
+    if (postCount == (originalCount - 1)) {
+        NSLog(@"Page Removed Successfully - Array count: %lu", (unsigned long)self.array_pages.count);
+        return YES;
+    } else {
+        NSLog(@"PAGE REMOVAL FAILED - Array count: %lu", (unsigned long)self.array_pages.count);
+        return NO;
+    }
+}
+
 
 @end

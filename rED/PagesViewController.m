@@ -336,7 +336,7 @@
         if (savedButtonState) {
             
             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-            [newPage saveSelfToArray];
+            [userSettings savePage:newPage];
             
         } else {
             
@@ -353,7 +353,7 @@
                                          handler:^(UIAlertAction *action) {
                                              
                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                             [newPage removeSelfFromArray];
+                                             [userSettings removePage:newPage];
                                              [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
                                          
                                          }];
@@ -373,6 +373,8 @@
                 [self presentViewController:alert animated:YES completion:nil];
             }
         }
+    } else {
+        savedButtonState = NO;
     }
 }
 

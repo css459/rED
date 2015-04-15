@@ -39,6 +39,7 @@
 // Utility Methods
 - (NSArray *)aggregateHighlightsFromPages;
 
+// Section Data Management
 - (BOOL)saveSection:(Section *)section;
 - (BOOL)removeSection:(Section *)section;
 
