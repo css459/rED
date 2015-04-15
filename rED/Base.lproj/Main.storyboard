@@ -74,6 +74,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="krT-RH-9zg">
+                                <rect key="frame" x="16" y="74" width="568" height="482"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -82,18 +89,24 @@
                             <constraint firstAttribute="trailing" secondItem="kCR-VW-AWB" secondAttribute="trailing" id="Af9-5h-TyR"/>
                             <constraint firstItem="7Ci-cV-Qvv" firstAttribute="top" secondItem="M53-ML-4ND" secondAttribute="topMargin" constant="11" id="EPo-eb-dmi"/>
                             <constraint firstItem="1f2-RN-fWI" firstAttribute="leading" secondItem="kCR-VW-AWB" secondAttribute="leading" id="Egm-SD-RHy"/>
+                            <constraint firstItem="krT-RH-9zg" firstAttribute="leading" secondItem="7Ci-cV-Qvv" secondAttribute="leading" id="Fny-3b-AT9"/>
                             <constraint firstItem="1f2-RN-fWI" firstAttribute="top" secondItem="M53-ML-4ND" secondAttribute="top" id="J8V-lP-Zjd"/>
                             <constraint firstItem="kxB-Cl-eLg" firstAttribute="firstBaseline" secondItem="7Ci-cV-Qvv" secondAttribute="firstBaseline" id="N8T-zA-ssh"/>
+                            <constraint firstItem="krT-RH-9zg" firstAttribute="top" secondItem="1f2-RN-fWI" secondAttribute="bottom" constant="30" id="O9R-iW-DYF"/>
                             <constraint firstItem="7Ci-cV-Qvv" firstAttribute="baseline" secondItem="kxB-Cl-eLg" secondAttribute="baseline" id="Rz4-z1-haD"/>
+                            <constraint firstItem="krT-RH-9zg" firstAttribute="centerY" secondItem="M53-ML-4ND" secondAttribute="centerY" constant="15" id="YHy-Xe-7wg"/>
                             <constraint firstItem="1f2-RN-fWI" firstAttribute="trailing" secondItem="kCR-VW-AWB" secondAttribute="trailing" id="ZNw-GN-B9b"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kxB-Cl-eLg" secondAttribute="trailing" constant="16" id="gR3-3s-kXf"/>
+                            <constraint firstItem="krT-RH-9zg" firstAttribute="centerX" secondItem="1f2-RN-fWI" secondAttribute="centerX" id="hbY-be-DCA"/>
                             <constraint firstItem="kCR-VW-AWB" firstAttribute="leading" secondItem="M53-ML-4ND" secondAttribute="leading" id="k0l-XW-3Py"/>
+                            <constraint firstItem="kCR-VW-AWB" firstAttribute="top" secondItem="krT-RH-9zg" secondAttribute="bottom" id="wLC-cX-bsW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="button_quotations" destination="AFv-kV-Kfx" id="A1c-gC-7aj"/>
                         <outlet property="button_sections" destination="Vu0-Nb-edj" id="yPe-Kf-giE"/>
                         <outlet property="button_share" destination="FMi-9O-G6y" id="bkk-Dl-GVl"/>
+                        <outlet property="textView" destination="krT-RH-9zg" id="MfF-9T-NeZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ck-a8-CJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -382,7 +395,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_Main" rowHeight="153" id="zJj-gB-mKF">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_Main" rowHeight="153" id="zJj-gB-mKF" customClass="SavedPageTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zJj-gB-mKF" id="mES-wL-yG2">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -426,6 +439,11 @@
                                         <constraint firstItem="nQC-ET-pjV" firstAttribute="top" secondItem="mES-wL-yG2" secondAttribute="topMargin" constant="2" id="flL-fl-hID"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label_dateAdded" destination="fjR-bb-Inh" id="3jq-IS-3oR"/>
+                                    <outlet property="label_savePage" destination="nQC-ET-pjV" id="lZX-KA-FQi"/>
+                                    <outlet property="textView_pagePreview" destination="dxc-dk-baL" id="PZy-A8-0Dp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
