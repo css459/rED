@@ -31,7 +31,8 @@
         usersettings = [Settings sharedSettings];
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
-        [rootSection saveSection];
+        [self saveSection:rootSection];
+        
         indexOfLastLoadedSection = 0;
         
     }
@@ -55,6 +56,45 @@
         
     } else {
         return nil;
+    }
+}
+
+- (BOOL)saveSection:(Section *)section {
+    NSUInteger originalCount;
+    NSUInteger postCount;
+    
+    originalCount = self.array_sections.count;
+    [self.array_sections addObject:section];
+    postCount = self.array_sections.count;
+    
+    section.indexInArray = postCount;
+    
+    if (postCount == (originalCount + 1)) {
+        NSLog(@"Section Saved Successfully - Array count: %lu", (unsigned long)self.array_sections.count);
+        return YES;
+    } else {
+        NSLog(@"SECTION SAVE FAILED - Array count: %lu", (unsigned long)self.array_sections.count);
+        return NO;
+    }
+
+}
+
+- (BOOL)removeSection:(Section *)section {
+    NSUInteger originalCount;
+    NSUInteger postCount;
+    
+    if (self.array_sections != 0) {
+        originalCount = self.array_sections.count;
+        [self.array_sections removeObjectAtIndex:section.indexInArray];
+        postCount = self.array_sections.count;
+    }
+    
+    if (postCount == (originalCount - 1)) {
+        NSLog(@"Section Removed Successfully - Array count: %lu", (unsigned long)self.array_sections.count);
+        return YES;
+    } else {
+        NSLog(@"SECTION REMOVAL FAILED - Array count: %lu", (unsigned long)self.array_sections.count);
+        return NO;
     }
 }
 

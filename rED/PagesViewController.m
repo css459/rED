@@ -78,9 +78,8 @@
                                     storyboardWithName:storyboardName
                                     bundle:[NSBundle bundleForClass:[self class]]];
         
-         savedPagesVC = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
-
-         notesVC = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
+        savedPagesVC = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
+        notesVC = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
         
         
         [slider_textSize addTarget:self
@@ -195,10 +194,21 @@
     UIImage *blueIcon = [UIImage imageNamed: @"highlight_Blue"];
     UIImage *orangeIcon = [UIImage imageNamed: @"highlight_Orange"];
     
-    UIMenuItem *highlightRedItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Red Highlight", nil) action:@selector(highlight_red)];
-    UIMenuItem *highlightYellowItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Yellow Highlight", nil) action:@selector(highlight_yellow)];
-    UIMenuItem *highlightBlueItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Blue Highlight", nil) action:@selector(highlight_blue)];
-    UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc] initWithTitle:NSLocalizedString(@"Orange Highlight", nil) action:@selector(highlight_orange)];
+    UIMenuItem *highlightRedItem = [[UIMenuItem alloc]
+                                    initWithTitle:NSLocalizedString(@"Red Highlight", nil)
+                                    action:@selector(highlight_red)];
+    
+    UIMenuItem *highlightYellowItem = [[UIMenuItem alloc]
+                                       initWithTitle:NSLocalizedString(@"Yellow Highlight", nil)
+                                       action:@selector(highlight_yellow)];
+    
+    UIMenuItem *highlightBlueItem = [[UIMenuItem alloc]
+                                     initWithTitle:NSLocalizedString(@"Blue Highlight", nil)
+                                     action:@selector(highlight_blue)];
+    
+    UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc]
+                                       initWithTitle:NSLocalizedString(@"Orange Highlight", nil)
+                                       action:@selector(highlight_orange)];
     
     [highlightRedItem cxa_initWithTitle:@"Red Highlight" action:@selector(highlight_red) image:redIcon];
     [highlightYellowItem cxa_initWithTitle:@"Yellow Highlight" action:@selector(highlight_yellow) image:yellowIcon];
@@ -306,23 +316,11 @@
 
 // Switch to Notebook
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
-//    NSString * storyboardName = @"Main";
-//    UIStoryboard *storyboard = [UIStoryboard
-//                                storyboardWithName:storyboardName
-//                                bundle:[NSBundle bundleForClass:[self class]]];
-//    
-//    NotesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
     [[self navigationController] pushViewController:notesVC animated:YES];
 }
 
 // Switch to Saved Pages
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
-//    NSString * storyboardName = @"Main";
-//    UIStoryboard *storyboard = [UIStoryboard
-//                                storyboardWithName:storyboardName
-//                                bundle:[NSBundle bundleForClass:[self class]]];
-//    
-//    SavedPagesTableViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
     [[self navigationController] pushViewController:savedPagesVC animated:YES];
 }
 

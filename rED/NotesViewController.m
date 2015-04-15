@@ -148,7 +148,6 @@
     loadedSection = sectionForLoad;
     NSLog(@"Loaded Section: %@", loadedSection.title);
     textView.text = loadedSection.textContent;
-    [self viewDidLoad];
 }
 
 - (void)saveSectionChanges {

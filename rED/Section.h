@@ -52,10 +52,6 @@
 // Initializers
 - (instancetype)initWithTitle:(NSString *)ttl;
 
-// Section Saving
-- (BOOL)saveSection;
-- (BOOL)removeSection;
-
 // Utility Methods
 - (NSString *)formatDate:(NSDate *)date;
 

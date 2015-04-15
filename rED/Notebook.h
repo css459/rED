@@ -39,6 +39,9 @@
 // Utility Methods
 - (NSArray *)aggregateHighlightsFromPages;
 
+- (BOOL)saveSection:(Section *)section;
+- (BOOL)removeSection:(Section *)section;
+
 // Singleton Methods
 + (id)sharedNotebook;
 
