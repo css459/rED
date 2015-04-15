@@ -66,8 +66,7 @@
     originalCount = self.array_sections.count;
     [self.array_sections addObject:section];
     postCount = self.array_sections.count;
-    
-    section.indexInArray = postCount;
+    section.indexInArray = postCount - 1;
     
     if (postCount == (originalCount + 1)) {
         NSLog(@"Section Saved Successfully - Array count: %lu", (unsigned long)self.array_sections.count);

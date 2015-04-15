@@ -98,10 +98,6 @@
 
 // Switch to Home
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
-//    NSString * storyboardName = @"Main";
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
-//    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
-//    [[self navigationController] pushViewController:vc animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -151,7 +147,12 @@
 }
 
 - (void)saveSectionChanges {
-    [sharedNotebook.array_sections replaceObjectAtIndex:loadedSection.indexInArray withObject:loadedSection];
+    NSUInteger indexOfSection = loadedSection.indexInArray;
+    NSLog(@"Saving Section: %@ at index: %lu", loadedSection.title, (unsigned long)indexOfSection);
+    
+    [sharedNotebook.array_sections replaceObjectAtIndex:indexOfSection withObject:loadedSection];
+//    [sharedNotebook removeSection:loadedSection];
+//    [sharedNotebook saveSection:loadedSection];
 }
 
 /*
