@@ -91,11 +91,6 @@
 
 // Switch to Home
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer {
-//    NSString * storyboardName = @"Main";
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
-//    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
-//    [[self navigationController] pushViewController:vc animated:YES];
-
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

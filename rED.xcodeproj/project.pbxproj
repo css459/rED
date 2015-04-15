@@ -15,6 +15,7 @@
 		490646231A814425003CD480 /* Shorecrest_Web_BrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */; };
 		4908C6621ACECDCB006170DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4908C6601ACECDCB006170DC /* Main.storyboard */; };
 		4908C6631ACECDCB006170DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4908C6601ACECDCB006170DC /* Main.storyboard */; };
+		490A87991ADEAE680002ED79 /* SavedPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 490A87981ADEAE680002ED79 /* SavedPageTableViewCell.m */; };
 		491CEB481A84374600838145 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491CEB471A84374600838145 /* ThankYouViewController.m */; };
 		4926466B1A9932E0005FFCB1 /* NotebookManagerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */; };
 		4958887B1A8503F400B8D439 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958887A1A8503F400B8D439 /* Settings.m */; };
@@ -83,6 +84,8 @@
 		490646211A814425003CD480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		490646221A814425003CD480 /* Shorecrest_Web_BrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shorecrest_Web_BrowserTests.m; sourceTree = "<group>"; };
 		4908C6611ACECDCB006170DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		490A87971ADEAE680002ED79 /* SavedPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedPageTableViewCell.h; sourceTree = "<group>"; };
+		490A87981ADEAE680002ED79 /* SavedPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedPageTableViewCell.m; sourceTree = "<group>"; };
 		491CEB461A84374600838145 /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		491CEB471A84374600838145 /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
 		492646691A9932E0005FFCB1 /* NotebookManagerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookManagerTableViewController.h; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 			children = (
 				49AADB8D1AC466E90077147E /* HighlightTableViewCell.h */,
 				49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */,
+				490A87971ADEAE680002ED79 /* SavedPageTableViewCell.h */,
+				490A87981ADEAE680002ED79 /* SavedPageTableViewCell.m */,
 			);
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */,
+				490A87991ADEAE680002ED79 /* SavedPageTableViewCell.m in Sources */,
 				495D67611A8284E700E15853 /* Notebook.m in Sources */,
 				491CEB481A84374600838145 /* ThankYouViewController.m in Sources */,
 				4958887B1A8503F400B8D439 /* Settings.m in Sources */,
