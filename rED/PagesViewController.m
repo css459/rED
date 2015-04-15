@@ -507,7 +507,9 @@
 
 // Switch to expanded settings state
 - (IBAction)button_defaultSettingsWasPressed:(id)sender {
-    [self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
+    // This button has changed function due to text size deprecation
+    //[self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
+    [self button_moreWasPressed:nil];
 }
 
 // Present the Settings View Controller
