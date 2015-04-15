@@ -16,10 +16,12 @@
 {
     Settings *usersettings;
 }
-
 @end
+
 @implementation Notebook
-@synthesize array_highlights, array_sections, lastLoadedSection;
+@synthesize array_highlights, array_sections, indexOfLastLoadedSection;
+
+#pragma mark - Initializers
 
 - (instancetype)init {
     self = [super init];
@@ -29,12 +31,15 @@
         usersettings = [Settings sharedSettings];
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
-        lastLoadedSection = rootSection;
-        [array_sections addObject:rootSection];
+        [self saveSection:rootSection];
+        
+        indexOfLastLoadedSection = 0;
         
     }
     return self;
 }
+
+#pragma mark - Utility Methods
 
 - (NSArray *)aggregateHighlightsFromPages {
     NSMutableArray *array_intake;
@@ -50,22 +55,59 @@
         return array_intake;
         
     } else {
-        
         return nil;
-        
     }
 }
 
-+ (Notebook *)sharedNotebook {
+#pragma mark - Section Data Management
+
+- (BOOL)saveSection:(Section *)section {
+    NSUInteger originalCount;
+    NSUInteger postCount;
+    
+    originalCount = self.array_sections.count;
+    [self.array_sections addObject:section];
+    postCount = self.array_sections.count;
+    section.indexInArray = postCount - 1;
+    
+    if (postCount == (originalCount + 1)) {
+        NSLog(@"Section Saved Successfully - Array count: %lu", (unsigned long)self.array_sections.count);
+        return YES;
+    } else {
+        NSLog(@"SECTION SAVE FAILED - Array count: %lu", (unsigned long)self.array_sections.count);
+        return NO;
+    }
+
+}
+
+- (BOOL)removeSection:(Section *)section {
+    NSUInteger originalCount;
+    NSUInteger postCount;
+    
+    if (self.array_sections != 0) {
+        originalCount = self.array_sections.count;
+        [self.array_sections removeObjectAtIndex:section.indexInArray];
+        postCount = self.array_sections.count;
+    }
+    
+    if (postCount == (originalCount - 1)) {
+        NSLog(@"Section Removed Successfully - Array count: %lu", (unsigned long)self.array_sections.count);
+        return YES;
+    } else {
+        NSLog(@"SECTION REMOVAL FAILED - Array count: %lu", (unsigned long)self.array_sections.count);
+        return NO;
+    }
+}
+
+#pragma mark - Singleton Methods
+
++ (id)sharedNotebook {
     static Notebook *sharedNotebook = nil;
-    if (!sharedNotebook) {
-        sharedNotebook = [[super allocWithZone:nil] init];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedNotebook = [[self alloc] init];
+    });
     return sharedNotebook;
-}
-
-+ (id)allocWithZone:(struct _NSZone *)zone {
-    return [self sharedNotebook];
 }
 
 @end

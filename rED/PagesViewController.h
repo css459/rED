@@ -59,8 +59,5 @@
 - (void)highlight_blue;
 - (void)highlight_orange;
 
-
-- (IBAction)gesture_testSwipe:(id)sender;
-
 @end
 

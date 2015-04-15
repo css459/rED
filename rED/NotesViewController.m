@@ -34,7 +34,9 @@
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
         sharedNotebook = [Notebook sharedNotebook];
-        [self loadSection:[sharedNotebook lastLoadedSection]];
+        
+        int sectionID = [sharedNotebook indexOfLastLoadedSection];
+        [self loadSection:sectionID];
     }
     return self;
 }
@@ -58,7 +60,7 @@
     UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
     [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
 
-    [label_section setText:@"Section"];     // This should be dynamic
+    [label_section setText:loadedSection.title];
     [label_section setText:loadedSection.title];
     [label_section setFont:titleFont];
     [label_section setTextColor:[UIColor darkTextColor]];
@@ -82,6 +84,15 @@
     [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self saveSectionChanges];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -92,10 +103,6 @@
 
 // Switch to Home
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
-//    NSString * storyboardName = @"Main";
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle bundleForClass:[self class]]];
-//    PagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PagesViewController"];
-//    [[self navigationController] pushViewController:vc animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -135,11 +142,21 @@
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
-#warning incomplete method implementation
-- (void)loadSection:(Section *)section {
-    loadedSection = section;
+#pragma mark - Section Handlers
+
+- (void)loadSection:(NSUInteger)sectionAtIndex {
+    Section *sectionForLoad = [sharedNotebook.array_sections objectAtIndex:sectionAtIndex];
+    loadedSection = sectionForLoad;
     NSLog(@"Loaded Section: %@", loadedSection.title);
- }
+    textView.text = loadedSection.textContent;
+}
+
+- (void)saveSectionChanges {
+    NSUInteger indexOfSection = loadedSection.indexInArray;
+    NSLog(@"Saving Section: %@ at index: %lu", loadedSection.title, (unsigned long)indexOfSection);
+    
+    [sharedNotebook.array_sections replaceObjectAtIndex:indexOfSection withObject:loadedSection];
+}
 
 /*
 #pragma mark - Navigation

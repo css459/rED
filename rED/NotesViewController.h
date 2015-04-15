@@ -23,8 +23,9 @@
 // Supporting Properties
 @property (nonatomic) Section *loadedSection;
 
-// Supporting Actions
-- (void)loadSection:(Section *)section;
+// Section Handlers
+- (void)loadSection:(NSUInteger)sectionAtIndex;
+- (void)saveSectionChanges;
 
 // Gesture Recognizers
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer;

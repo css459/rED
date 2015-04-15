@@ -16,17 +16,23 @@
      
      A Section stores these objects:
  
-         *Title: The section title. Default: "New Section"
+         * Title: The section title. Default: "New Section"
          
-         *Color: The section color which can be seen in the Notebook Manager
-         Default: "paselRed" (array_sectionColor index 0)
+         * Color: The section color which can be seen in the Notebook Manager
+           Default: "paselRed" (array_sectionColor index 0)
          
-         *textContent: A String formatted and displayed through 
-         the Text View in NotesView Controller. Default: @""
+         * textContent: A String formatted and displayed through
+           the Text View in NotesView Controller. Default: @""
          
-         *dateCreated: A Date object used to store the date created. 
-         This has no default and will be populated at the instance the 
-         Section object is initialized.
+         * dateCreated: A Date object used to store the date created.
+           This has no default and will be populated at the instance the
+           Section object is initialized.
+ 
+         * indexInArray: unique identifier to match Section objects even
+           when they are not referenced in context of the sections array (in Notebook).
+ 
+         * isLastLoadedSection: the section is the last one presented by the Notes
+           View Controller.
  
  */// --------------------------------------------------------------------------
 
@@ -40,11 +46,13 @@
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *textContent;
 @property (nonatomic) NSDate *dateCreated;
+@property (nonatomic) NSUInteger indexInArray;
+@property (nonatomic) BOOL isLastLoadedSection;
 
 // Initializers
 - (instancetype)initWithTitle:(NSString *)ttl;
 
-// Supporting Actions
+// Utility Methods
 - (NSString *)formatDate:(NSDate *)date;
 
 @end

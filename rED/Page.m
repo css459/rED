@@ -36,49 +36,6 @@
     return self;
 }
 
-#pragma mark - Data Management
-
-// Properly saves a page, returns a status check per operation
-- (BOOL)saveSelfToArray {
-    Settings *userSettings = [Settings sharedSettings];
-    NSUInteger originalCount;
-    NSUInteger postCount;
-    
-    originalCount = userSettings.array_pages.count;
-    [userSettings.array_pages addObject:self];
-    postCount = userSettings.array_pages.count;
-    indexInArray = postCount;
-    
-    if (postCount == (originalCount + 1)) {
-        NSLog(@"Page Saved Successfully - Array count: %lu", (unsigned long)userSettings.array_pages.count);
-        return YES;
-    } else {
-        NSLog(@"PAGE SAVE FAILED - Array count: %lu", (unsigned long)userSettings.array_pages.count);
-        return NO;
-    }
-}
-
-// Properly removes a page, returns a status check per operation
-- (BOOL)removeSelfFromArray {
-    Settings *userSettings = [Settings sharedSettings];
-    NSUInteger originalCount;
-    NSUInteger postCount;
-    
-    if (userSettings.array_pages != 0) {
-        originalCount = userSettings.array_pages.count;
-        [userSettings.array_pages removeObjectAtIndex:indexInArray];
-        postCount = userSettings.array_pages.count;
-    }
-    
-    if (postCount == (originalCount - 1)) {
-        NSLog(@"Page Removed Successfully - Array count: %lu", (unsigned long)userSettings.array_pages.count);
-        return YES;
-    } else {
-        NSLog(@"PAGE REMOVAL FAILED - Array count: %lu", (unsigned long)userSettings.array_pages.count);
-        return NO;
-    }
-}
-
 #pragma mark - Supporting Actions
 
 - (BOOL)checkForEdits {

@@ -53,10 +53,6 @@
 // Initializers
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
 
-// Data Management
-- (BOOL)saveSelfToArray;
-- (BOOL)removeSelfFromArray;
-
 // Supporting Actions
 - (BOOL)checkForEdits;
 - (NSString *)formatDate:(NSDate *)date;

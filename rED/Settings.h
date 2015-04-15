@@ -17,6 +17,7 @@
 *///----------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
+#import "Page.h"
 
 @interface Settings : NSObject
 
@@ -30,6 +31,11 @@
 // Object Storage
 @property (strong, nonatomic) NSMutableArray *array_pages;  // Here, we will save pages.
 
-+(Settings *)sharedSettings;
+// Page Data Management
+- (BOOL)savePage:(Page *)page;
+- (BOOL)removePage:(Page *)page;
+
+// Singleton Methods
++ (id)sharedSettings;
 
 @end
