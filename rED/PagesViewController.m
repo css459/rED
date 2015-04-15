@@ -392,6 +392,7 @@
                                 bundle:[NSBundle bundleForClass:[self class]]];
     
     AutoScrollViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AutoScrollViewController"];
+    [vc openWebsiteWithAutoscroll:htmlContent];
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
@@ -679,6 +680,7 @@
     } else {
         NSString *newUrl = [NSString stringWithFormat:@"http://%@", url];
         [self getHTML:newUrl];
+        url = newUrl;
     }
     
     NSLog(@"%@", url);

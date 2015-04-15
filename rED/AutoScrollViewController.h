@@ -44,11 +44,13 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *scrollButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_Done;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper_ScrollSpeed;
+@property (weak, nonatomic) NSString *HTML;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
 - (IBAction)button_DoneWasPressed:(id)sender;
 - (IBAction)stepper_ScrollSpeedDidChange:(id)sender;
+- (void)openWebsiteWithAutoscroll:(NSString *)html;
 
 -(void)scroll;
 
