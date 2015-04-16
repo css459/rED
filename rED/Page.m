@@ -12,18 +12,12 @@
 #import "AppDelegate.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title;
 
 #pragma mark - Initalizers
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        url = nil;
-        htmlContent = nil;
-        dateSaved = [NSDate date];
-    }
-    return self;
+    return [self initWithURL:nil html:nil];
 }
 
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML {
@@ -32,6 +26,7 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
+        title = [self formatTitle];
     }
     return self;
 }
@@ -90,10 +85,10 @@
     return articleTitle;
 }
 
-- (NSString *)formatDate:(NSDate *)date {
+- (NSString *)formatDate {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MMM dd, yyyy HH:mm"];
-    NSString *dateString = [format stringFromDate:date];
+    NSString *dateString = [format stringFromDate:dateSaved];
     
     return dateString;
 }

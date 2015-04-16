@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1f2-RN-fWI">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="20"/>
@@ -75,7 +75,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="krT-RH-9zg">
-                                <rect key="frame" x="16" y="74" width="568" height="482"/>
+                                <rect key="frame" x="16" y="75" width="568" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -99,7 +99,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="kxB-Cl-eLg" secondAttribute="trailing" constant="16" id="gR3-3s-kXf"/>
                             <constraint firstItem="krT-RH-9zg" firstAttribute="centerX" secondItem="1f2-RN-fWI" secondAttribute="centerX" id="hbY-be-DCA"/>
                             <constraint firstItem="kCR-VW-AWB" firstAttribute="leading" secondItem="M53-ML-4ND" secondAttribute="leading" id="k0l-XW-3Py"/>
-                            <constraint firstItem="kCR-VW-AWB" firstAttribute="top" secondItem="krT-RH-9zg" secondAttribute="bottom" id="wLC-cX-bsW"/>
+                            <constraint firstItem="kCR-VW-AWB" firstAttribute="top" secondItem="krT-RH-9zg" secondAttribute="bottom" constant="1" id="wLC-cX-bsW"/>
                         </constraints>
                     </view>
                     <connections>
@@ -199,7 +199,7 @@
                             </items>
                         </toolbar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_Main_Colored" rowHeight="64" id="bzS-LE-viM" customClass="HighlightTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_Highlight" rowHeight="64" id="bzS-LE-viM" customClass="HighlightTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bzS-LE-viM" id="n21-LQ-8rx">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -361,6 +361,7 @@
                                 <rect key="frame" x="32" y="65" width="536" height="490"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -395,7 +396,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_Main" rowHeight="153" id="zJj-gB-mKF" customClass="SavedPageTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_SavedPage" rowHeight="153" id="zJj-gB-mKF" customClass="SavedPageTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zJj-gB-mKF" id="mES-wL-yG2">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -427,22 +428,34 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
+                                        <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbW-4f-e1h">
+                                            <rect key="frame" x="13" y="69" width="575" height="208"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="208" id="Aet-Xm-Rcz"/>
+                                            </constraints>
+                                            <dataDetectorType key="dataDetectorTypes"/>
+                                        </webView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="fjR-bb-Inh" firstAttribute="top" secondItem="nQC-ET-pjV" secondAttribute="bottom" constant="2" id="1Qw-bG-UNH"/>
                                         <constraint firstItem="dxc-dk-baL" firstAttribute="centerX" secondItem="mES-wL-yG2" secondAttribute="centerX" id="1X0-Az-a9a"/>
+                                        <constraint firstItem="fbW-4f-e1h" firstAttribute="leading" secondItem="dxc-dk-baL" secondAttribute="leading" id="1mj-Oo-J0S"/>
                                         <constraint firstItem="nQC-ET-pjV" firstAttribute="leading" secondItem="fjR-bb-Inh" secondAttribute="leading" id="2nt-SX-d3E"/>
                                         <constraint firstItem="dxc-dk-baL" firstAttribute="top" secondItem="fjR-bb-Inh" secondAttribute="bottom" constant="8" symbolic="YES" id="3Lw-fT-Gqw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="dxc-dk-baL" secondAttribute="trailing" constant="4" id="FO2-gy-eUj"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="dxc-dk-baL" secondAttribute="bottom" constant="-7.5" id="Ppm-04-SEL"/>
                                         <constraint firstItem="nQC-ET-pjV" firstAttribute="leading" secondItem="mES-wL-yG2" secondAttribute="leadingMargin" constant="7" id="cbj-is-z0k"/>
                                         <constraint firstItem="nQC-ET-pjV" firstAttribute="top" secondItem="mES-wL-yG2" secondAttribute="topMargin" constant="2" id="flL-fl-hID"/>
+                                        <constraint firstItem="fbW-4f-e1h" firstAttribute="trailing" secondItem="dxc-dk-baL" secondAttribute="trailing" id="yHH-b2-XTi"/>
+                                        <constraint firstItem="fbW-4f-e1h" firstAttribute="top" secondItem="fjR-bb-Inh" secondAttribute="bottom" constant="15" id="z78-w0-Amt"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="label_dateAdded" destination="fjR-bb-Inh" id="3jq-IS-3oR"/>
                                     <outlet property="label_savePage" destination="nQC-ET-pjV" id="lZX-KA-FQi"/>
                                     <outlet property="textView_pagePreview" destination="dxc-dk-baL" id="PZy-A8-0Dp"/>
+                                    <outlet property="webView" destination="fbW-4f-e1h" id="oZB-JO-bh8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -350,7 +350,7 @@
             if ([newPage checkForEdits] == NO) {
                 UIAlertController *alert = [UIAlertController
                                             alertControllerWithTitle:@"Page Deletion"
-                                            message:@"This Page and its Highlights will br removed from Saved Pages. This cannot be reversed."
+                                            message:@"This Page and its Highlights will be removed from Saved Pages. This cannot be reversed."
                                             preferredStyle:UIAlertControllerStyleAlert];
                 
                 UIAlertAction *delete = [UIAlertAction
