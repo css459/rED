@@ -356,7 +356,7 @@
             if ([newPage checkForEdits] == NO) {
                 UIAlertController *alert = [UIAlertController
                                             alertControllerWithTitle:@"Page Deletion"
-                                            message:@"This Page and its Highlights will br removed from Saved Pages. This cannot be reversed."
+                                            message:@"This Page and its Highlights will be removed from Saved Pages. This cannot be reversed."
                                             preferredStyle:UIAlertControllerStyleAlert];
                 
                 UIAlertAction *delete = [UIAlertAction
@@ -404,7 +404,6 @@
 
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
-#warning please complete the viewCondensedPage Alert Action
 - (IBAction)button_actionWasPressed :(id)sender {
     UIAlertController * view=   [UIAlertController
                                  alertControllerWithTitle:nil
@@ -434,6 +433,10 @@
                                         {
                                            // View the page the rED way
                                             
+                                            if (url != nil)
+                                            {
+                                                [self getHTML:url];
+                                            }
                                             isViewingFullPage = NO;
                                         }];
     

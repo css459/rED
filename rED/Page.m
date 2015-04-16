@@ -32,6 +32,8 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
+        
+        NSLog(@"INITWITHURLRECEIVED: %@", url);
     }
     return self;
 }
