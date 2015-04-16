@@ -26,7 +26,9 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
-        title = [self formatTitle];
+        
+        NSLog(@"INITWITHURLRECEIVED: %@", url);
+        [self formatTitle];
     }
     return self;
 }
@@ -90,7 +92,7 @@
     NSLog(@"Article title: %@", articleTitle);
 }
 
-- (NSString *)formatDate {
+- (NSString *)formatDate:(NSDate *)date {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MMM dd, yyyy HH:mm"];
     NSString *dateString = [format stringFromDate:dateSaved];
