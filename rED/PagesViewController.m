@@ -25,9 +25,13 @@
     BOOL nightModeState;
     BOOL isViewingFullPage;
     
+    // Slider Variables
+    double previousSize;
+    
     // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
+    
     
     // View Controller Instances
     SavedPagesTableViewController *savedPagesVC;
@@ -50,6 +54,8 @@
     UIBarButtonItem *button_expandedSettings;
     
     UIBarButtonItem *flexibleSpace;
+    
+    
     
     
 }
@@ -392,12 +398,12 @@
                                 bundle:[NSBundle bundleForClass:[self class]]];
     
     AutoScrollViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AutoScrollViewController"];
+    [vc openWebsiteWithAutoscroll:htmlContent];
     [[self navigationController] pushViewController:vc animated:YES];
 }
 
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
-#warning please complete the viewCondensedPage Alert Action
 - (IBAction)button_actionWasPressed :(id)sender {
     UIAlertController * view=   [UIAlertController
                                  alertControllerWithTitle:nil
@@ -427,6 +433,10 @@
                                         {
                                            // View the page the rED way
                                             
+                                            if (url != nil)
+                                            {
+                                                [self getHTML:url];
+                                            }
                                             isViewingFullPage = NO;
                                         }];
     
@@ -500,7 +510,9 @@
 
 // Switch to expanded settings state
 - (IBAction)button_defaultSettingsWasPressed:(id)sender {
-    [self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
+    // This button has changed function due to text size deprecation
+    //[self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
+    [self button_moreWasPressed:nil];
 }
 
 // Present the Settings View Controller
@@ -554,6 +566,46 @@
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
     [userSettings setTextSize:slider_textSize.value];
+    
+    // MAKE THIS INTO A METHOD
+    Settings *settings = [Settings sharedSettings];
+    if (htmlContent != nil) {
+        // Convert settings text size to HTML text size
+        double size = [settings textSize];
+        if (size >= 1 && size < 11) {
+            size = 1;
+        }
+        if (size >= 11 && size < 21) {
+            size = 2;
+        }
+        if (size >= 21 && size < 31) {
+            size = 3;
+        }
+        if (size >= 31 && size < 41) {
+            size = 4;
+        }
+        if (size >= 41 && size < 51) {
+            size = 5;
+        }
+        if (size >= 51 && size < 61) {
+            size = 6;
+        }
+        if (size >= 61) {
+            size = 7;
+        }
+        
+        if (previousSize != size) {
+                    
+            // Update HTML
+            NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
+            updateHTML = updatedHTML;
+            
+            // Reload webview html content
+            [self openHTML:updateHTML];
+            previousSize = size;
+            
+        }
+    }
 }
 
 #pragma mark - Highlighting Methods
@@ -582,8 +634,6 @@
 }
 
 - (void)highlight_red {
-    
-    // USE THIS FOR ALL OF THE OTHER HIGHLIGHTING METHODS
     const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -659,6 +709,7 @@
     } else {
         NSString *newUrl = [NSString stringWithFormat:@"http://%@", url];
         [self getHTML:newUrl];
+        url = newUrl;
     }
     
     NSLog(@"%@", url);

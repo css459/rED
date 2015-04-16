@@ -33,17 +33,24 @@
 
 @property int scrollSpeed;
 
+@property BOOL buttonpressed;
+
+@property (weak, nonatomic) NSArray *bBIArray;
+
 // Just an FYI, these are supposed to be UIBarButtonItems
-@property (weak, nonatomic) IBOutlet UIToolbar *stopButton;
-@property (weak, nonatomic) IBOutlet UIToolbar *fastButton;
-@property (weak, nonatomic) IBOutlet UIToolbar *slowButton;
-@property (weak, nonatomic) IBOutlet UIToolbar *scrollButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *stopButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *fastButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *slowButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *scrollButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_Done;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper_ScrollSpeed;
+@property (weak, nonatomic) NSString *HTML;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 
 - (IBAction)button_DoneWasPressed:(id)sender;
 - (IBAction)stepper_ScrollSpeedDidChange:(id)sender;
+- (void)openWebsiteWithAutoscroll:(NSString *)html;
 
 -(void)scroll;
 
