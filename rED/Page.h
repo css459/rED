@@ -55,7 +55,7 @@
 
 // Supporting Actions
 - (BOOL)checkForEdits;
-- (NSString *)formatDate;
 - (void)formatTitle;
+- (NSString *)formatDate;
 
 @end

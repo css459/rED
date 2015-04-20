@@ -47,7 +47,7 @@
     NSUInteger postCount;
     
     originalCount = self.array_pages.count;
-    [self.array_pages addObject:self];
+    [self.array_pages addObject:page];
     postCount = self.array_pages.count;
     page.indexInArray = postCount - 1;
     

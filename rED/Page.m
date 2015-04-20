@@ -86,13 +86,14 @@
     
 }
 
-- (void)modifyArticleTitle:(NSString *)title
+- (void)modifyArticleTitle:(NSString *)ttl
 {
-    articleTitle = title;
+    articleTitle = ttl;
+    title = ttl;
     NSLog(@"Article title: %@", articleTitle);
 }
 
-- (NSString *)formatDate:(NSDate *)date {
+- (NSString *)formatDate {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MMM dd, yyyy HH:mm"];
     NSString *dateString = [format stringFromDate:dateSaved];

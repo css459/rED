@@ -110,7 +110,7 @@
     SavedPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_SavedPage"];
     navigatingPage = [sharedSettings.array_pages objectAtIndex:indexPath.row];
     NSString *page_title = navigatingPage.title;
-    NSString *page_date = [navigatingPage formatDate];
+    NSString *page_date = [NSString stringWithFormat:@"Date Captured: %@", [navigatingPage formatDate]];
     NSString *page_htmlContent = navigatingPage.htmlContent;
     
     cell.label_savePage.text = page_title;
