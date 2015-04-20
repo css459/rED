@@ -22,6 +22,11 @@ Conventions:
 
           logo_NavigationBar
 
+Submission:
+
+* Someone needs to make sure we are in compliance.
+
+* [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
 
 ```
 #!objective-c
