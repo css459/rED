@@ -31,10 +31,6 @@
     if (self) {
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
-        
-        Page *dummyPage = [[Page alloc] init];
-        dummyPage.title = @"Test title";
-        [sharedSettings.array_pages addObject:dummyPage];
     }
     return self;
 }
@@ -130,41 +126,41 @@
 */
 
 
-//// Override to support editing the table view.
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        UIAlertController *alert = [UIAlertController
-//                                    alertControllerWithTitle:@"Page Deletion"
-//                                    message:@"This Page and its Highlights will be removed from Saved Pages. This cannot be reversed."
-//                                    preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction *delete = [UIAlertAction
-//                                 actionWithTitle:@"Delete"
-//                                 style:UIAlertActionStyleDefault
-//                                 handler:^(UIAlertAction *action) {
-//                                     
-//                                     [alert dismissViewControllerAnimated:YES completion:nil];
-//                                     
-//                                 }];
-//        
-//        UIAlertAction *cancel = [UIAlertAction
-//                                 actionWithTitle:@"Cancel"
-//                                 style:UIAlertActionStyleDefault
-//                                 handler:^(UIAlertAction *action) {
-//                                     
-//                                     [alert dismissViewControllerAnimated:YES completion:nil];
-//                                     
-//                                 }];
-//        
-//        [alert addAction:delete];
-//        [alert addAction:cancel];
-//        indexForDelete = indexPath.row;
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }   
-//}
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Page Deletion"
+                                    message:@"This Page and its Highlights will be removed from Saved Pages. This cannot be reversed."
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *delete = [UIAlertAction
+                                 actionWithTitle:@"Delete"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+        
+        UIAlertAction *cancel = [UIAlertAction
+                                 actionWithTitle:@"Cancel"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+        
+        [alert addAction:delete];
+        [alert addAction:cancel];
+        indexForDelete = indexPath.row;
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == [alertView cancelButtonIndex]){

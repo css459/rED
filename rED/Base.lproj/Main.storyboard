@@ -262,7 +262,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHc-su-Zi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2060" y="453"/>
+            <point key="canvasLocation" x="2061" y="459"/>
         </scene>
         <!--Auto Scroll-->
         <scene sceneID="Y5C-6J-lID">
