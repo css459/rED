@@ -275,7 +275,7 @@
         }
     
         // Update HTML
-        NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
+        NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  htmlContent];
         updateHTML = updatedHTML;
         
         // Reload webview html content
