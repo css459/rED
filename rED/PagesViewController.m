@@ -279,7 +279,10 @@
         updateHTML = updatedHTML;
         
         // Reload webview html content
-        [self openHTML:updateHTML];
+        if (updateHTML != nil)
+        {
+            [self openHTML:updateHTML];
+        }
     }
     
     // Changes UIWebView to night mode
@@ -601,7 +604,10 @@
             updateHTML = updatedHTML;
             
             // Reload webview html content
-            [self openHTML:updateHTML];
+            if (updateHTML != nil)
+            {
+                [self openHTML:updateHTML];
+            }
             previousSize = size;
             
         }
@@ -760,8 +766,15 @@
 #pragma mark - UIWebView Handlers
 
 - (void)openHTML:(NSString *)html {
+    // Set appropiate text size
+    NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  html];
+    html = updatedHTML;
+    
     //Loads UIWebView with HTML
-    [webView loadHTMLString:html baseURL:nil];
+    if (html != nil)
+    {
+        [webView loadHTMLString:html baseURL:nil];
+    }
 }
 
 
