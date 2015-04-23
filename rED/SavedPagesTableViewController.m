@@ -23,6 +23,7 @@
 @end
 
 @implementation SavedPagesTableViewController
+@synthesize referenceToRootViewController, presentingTableView;
 
 #pragma mark - Initializers
 
@@ -52,12 +53,8 @@
     self.navigationItem.titleView = naviTitle;
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
     self.navigationItem.hidesBackButton = YES;
-
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // Edit Button
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Swipe Declaration
@@ -100,10 +97,10 @@
     return sharedSettings.array_pages.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SavedPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_SavedPage"];
+    
     navigatingPage = [sharedSettings.array_pages objectAtIndex:indexPath.row];
     NSString *page_title = navigatingPage.title;
     NSString *page_date = [NSString stringWithFormat:@"Date Captured: %@", [navigatingPage formatDate]];
@@ -113,18 +110,11 @@
     cell.label_dateAdded.text = page_date;
     [cell.webView loadHTMLString:page_htmlContent baseURL:nil];
     
+    // Autoscrolling for Cell
+    //[cell autoScrollInvocation];
+    
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,6 +132,12 @@
                                      
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                      
+                                     Page *pageForRemoval = [sharedSettings.array_pages objectAtIndex:indexForDelete];
+                                     [sharedSettings removePage:pageForRemoval];
+                                     
+                                     indexForDelete = indexPath.row;
+                                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                                     
                                  }];
         
         UIAlertAction *cancel = [UIAlertAction
@@ -155,37 +151,15 @@
         
         [alert addAction:delete];
         [alert addAction:cancel];
-        indexForDelete = indexPath.row;
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [self presentViewController:alert animated:YES completion:nil];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {}
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == [alertView cancelButtonIndex]){
-        //cancel clicked ...do your action
-    }else{
-        //reset clicked
-//        [array_cells removeObjectAtIndex:indexForDelete];
-        Page *pageForRemoval = [sharedSettings.array_pages objectAtIndex:indexForDelete];
-        [sharedSettings removePage:pageForRemoval];
-    }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Page *pageAtIndexPath = [sharedSettings.array_pages objectAtIndex:indexPath.row];
+    [referenceToRootViewController loadPageFromSavedData:pageAtIndexPath];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

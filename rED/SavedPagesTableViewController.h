@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PagesViewController.h"
 
 @interface SavedPagesTableViewController : UITableViewController
 
+@property (nonatomic) PagesViewController *referenceToRootViewController;
+@property (strong, nonatomic) IBOutlet UITableView *presentingTableView;
+
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
