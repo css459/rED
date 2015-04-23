@@ -45,4 +45,12 @@
     stringForReturn = [NSString stringWithFormat:@"\"%@\" - %@", quote, containingPage.title];
     return stringForReturn;
 }
+
+#pragma mark - Archiving
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:quote forKey:@"quote"];
+    [aCoder encodeObject:color forKey:@"color"];
+    [aCoder encodeObject:containingPage forKey:@"containingPage"];
+}
 @end

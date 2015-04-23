@@ -90,4 +90,15 @@
     return dateString;
 }
 
+#pragma mark - Archiving
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:color forKey:@"color"];
+    [aCoder encodeObject:title forKey:@"title"];
+    [aCoder encodeObject:textContent forKey:@"textContent"];
+    [aCoder encodeObject:dateCreated forKey:@"dateCreated"];
+    [aCoder encodeInteger:indexInArray forKey:@"indexInArray"];
+    [aCoder encodeBool:isLastLoadedSection forKey:@"isLastLoadedSection"];
+}
+
 @end

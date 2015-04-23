@@ -101,4 +101,18 @@
     return dateString;
 }
 
+#pragma mark - Archiving
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:dateSaved forKey:@"dateSaved"];
+    [aCoder encodeObject:title forKey:@"title"];
+    [aCoder encodeObject:url forKey:@"url"];
+    [aCoder encodeObject:htmlContent forKey:@"htmlContent"];
+    [aCoder encodeObject:array_highlightsFromPage forKey:@"array_highlightsFromPage"];
+    [aCoder encodeInteger:indexInArray forKey:@"indexInArray"];
+    [aCoder encodeBool:pageHasEdits forKey:@"pageHasEdits"];
+    [aCoder encodeObject:htmlDictionary forKey:@"htmlDictionary"];
+    [aCoder encodeObject:articleTitle forKey:@"articleTitle"];
+}
+
 @end

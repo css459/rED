@@ -79,5 +79,14 @@
     }
 }
 
+#pragma mark - Archiving
 
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeBool:nightMode forKey:@"nightMode"];
+    [aCoder encodeBool:tutorialMode forKey:@"tutorialMode"];
+    [aCoder encodeBool:sharingMode forKey:@"sharingMode"];
+    [aCoder encodeDouble:textSize forKey:@"textSize"];
+    [aCoder encodeObject:homeSite forKey:@"homeSite"];
+    [aCoder encodeObject:array_pages forKey:@"array_pages"];
+}
 @end

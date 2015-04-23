@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "Settings.h"
+#import "Notebook.h"
 
 @interface AppDelegate ()
 
@@ -71,6 +73,18 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    Settings *sharedSettings = [Settings sharedSettings];
+    Notebook *sharedNotebook = [Notebook sharedNotebook];
+    NSArray *array_wrapperForSave = @[sharedSettings, sharedNotebook];
+    
+    NSArray *archivePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePathForArray = [archivePath objectAtIndex:0];
+    NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"UserDataBundle.archive"];
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:array_wrapperForSave toFile:directoryForArray];
+    
+    NSLog(@"Data Archive Status: %d", success);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

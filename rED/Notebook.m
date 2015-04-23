@@ -110,4 +110,12 @@
     return sharedNotebook;
 }
 
+#pragma mark - Archiving
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:array_highlights forKey:@"array_highlights"];
+    [aCoder encodeObject:array_sections forKey:@"array_sections"];
+    [aCoder encodeInt:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
+}
+
 @end

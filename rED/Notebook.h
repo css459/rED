@@ -29,12 +29,15 @@
 #import <Foundation/Foundation.h>
 #import "Section.h"
 
-@interface Notebook : NSObject
+@interface Notebook : NSObject <NSCoding>
 
 // Object Storage
 @property (nonatomic, strong) NSMutableArray *array_sections;
 @property (nonatomic, strong) NSMutableArray *array_highlights;
 @property int indexOfLastLoadedSection;
+
+// Initializers
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
 // Utility Methods
 - (NSArray *)aggregateHighlightsFromPages;
@@ -45,5 +48,8 @@
 
 // Singleton Methods
 + (id)sharedNotebook;
+
+// Archiving
+- (void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end
