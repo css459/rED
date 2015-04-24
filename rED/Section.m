@@ -38,6 +38,19 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        color = [aDecoder decodeObjectForKey:@"color"];
+        title = [aDecoder decodeObjectForKey:@"title"];
+        textContent = [aDecoder decodeObjectForKey:@"textContent"];
+        dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+        indexInArray = [aDecoder decodeIntegerForKey:@"indexInArray"];
+        isLastLoadedSection = [aDecoder decodeBoolForKey:@"isLastLoadedSection"];
+    }
+    return self;
+}
+
 //#pragma mark - Section Saving
 //
 //- (BOOL)saveSection{

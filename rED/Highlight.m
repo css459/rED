@@ -40,6 +40,16 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        quote = [aDecoder decodeObjectForKey:@"quote"];
+        color = [aDecoder decodeObjectForKey:@"color"];
+        containingPage = [aDecoder decodeObjectForKey:@"containingPage"];
+    }
+    return self;
+}
+
 - (NSString *)formatQuotationForInjection {
     NSString *stringForReturn;
     stringForReturn = [NSString stringWithFormat:@"\"%@\" - %@", quote, containingPage.title];

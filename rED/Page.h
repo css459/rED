@@ -61,4 +61,5 @@
 
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
+
 @end

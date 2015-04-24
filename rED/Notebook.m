@@ -35,6 +35,19 @@
         
         indexOfLastLoadedSection = 0;
         
+        self = [self accessArchivedInstance];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+
+        array_sections = [aDecoder decodeObjectForKey:@"array_sections"];
+        array_highlights = [aDecoder decodeObjectForKey:@"array_highlights"];
+        indexOfLastLoadedSection = [aDecoder decodeIntForKey:@"indexOfLastLoadedSection"];
+        
     }
     return self;
 }
@@ -107,6 +120,7 @@
     dispatch_once(&onceToken, ^{
         sharedNotebook = [[self alloc] init];
     });
+    
     return sharedNotebook;
 }
 
@@ -116,6 +130,20 @@
     [aCoder encodeObject:array_highlights forKey:@"array_highlights"];
     [aCoder encodeObject:array_sections forKey:@"array_sections"];
     [aCoder encodeInt:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
+}
+
+- (Notebook *)accessArchivedInstance {
+    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+    NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"UserDataBundle.archive"];
+
+    
+    NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
+    Notebook *returnInstance = [array_archivedSingletons objectAtIndex:1];
+    
+    NSLog(@"Notebook Instance awaking from Archive");
+    
+    return returnInstance;
 }
 
 @end

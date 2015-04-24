@@ -11,7 +11,10 @@
 #import "Notebook.h"
 
 @interface AppDelegate ()
-
+{
+    NSString *archivePath;
+    
+}
 @end
 
 @implementation AppDelegate
@@ -78,13 +81,23 @@
     Notebook *sharedNotebook = [Notebook sharedNotebook];
     NSArray *array_wrapperForSave = @[sharedSettings, sharedNotebook];
     
-    NSArray *archivePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *archivePathForArray = [archivePath objectAtIndex:0];
+    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
     NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"UserDataBundle.archive"];
+    archivePath = directoryForArray;
     
-    BOOL success = [NSKeyedArchiver archiveRootObject:array_wrapperForSave toFile:directoryForArray];
+    BOOL success = [NSKeyedArchiver archiveRootObject:array_wrapperForSave toFile:archivePath];
     
     NSLog(@"Data Archive Status: %d", success);
+    
+//    Notebook *sharedNotebook = [Notebook sharedNotebook];
+//    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+//    NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"sharedNotebook.archive"];
+//    archivePath = directoryForArray;
+//    
+//    BOOL success = [NSKeyedArchiver archiveRootObject:sharedNotebook toFile:archivePath];
+//    NSLog(@"Data Archive Status: %d", success);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

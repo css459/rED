@@ -17,6 +17,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        
+        self = [self accessArchivedInstance];
         textSize = 25.0;
         nightMode = NO;
         tutorialMode = NO;
@@ -29,15 +31,19 @@
     
 }
 
-#pragma mark - Singleton Methods
-
-+ (id)sharedSettings {
-    static Settings *sharedSettings = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedSettings = [[self alloc] init];
-    });
-    return sharedSettings;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        
+        nightMode = [aDecoder decodeBoolForKey:@"nightMode"];
+        tutorialMode = [aDecoder decodeBoolForKey:@"tutorialMode"];
+        sharingMode = [aDecoder decodeBoolForKey:@"sharingMode"];
+        textSize = [aDecoder decodeDoubleForKey:@"textSize"];
+        homeSite = [aDecoder decodeObjectForKey:@"homeSite"];
+        array_pages = [aDecoder decodeObjectForKey:@"array_pages"];
+        
+    }
+    return self;
 }
 
 # pragma mark - Page Data Management
@@ -79,6 +85,18 @@
     }
 }
 
+#pragma mark - Singleton Methods
+
++ (id)sharedSettings {
+    static Settings *sharedSettings = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedSettings = [[self alloc] init];
+    });
+    
+    return sharedSettings;
+}
+
 #pragma mark - Archiving
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -89,4 +107,18 @@
     [aCoder encodeObject:homeSite forKey:@"homeSite"];
     [aCoder encodeObject:array_pages forKey:@"array_pages"];
 }
+
+- (Settings *)accessArchivedInstance {
+    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+    NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"UserDataBundle.archive"];
+    
+    NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
+    Settings *returnInstance = [array_archivedSingletons objectAtIndex:0];
+    
+    NSLog(@"Settings Instance awaking from Archive");
+    
+    return returnInstance;
+}
+
 @end
