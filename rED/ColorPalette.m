@@ -84,6 +84,8 @@
     return self;
 }
 
+#pragma mark - Supporting Methods
+
 - (void)changeColorProfile:(NSString *)colorProfile {
     if ([colorProfile isEqualToString:@"Default"]) {
         tint_accent = default_accent;

@@ -52,7 +52,7 @@
 // Accessible Arrays
 @property (nonatomic) NSArray *array_sectionColors;
 
-// Utility Methods
+// Supporting Methods
 - (void)changeColorProfile: (NSString *) colorProfile;
 
 @end

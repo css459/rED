@@ -39,7 +39,7 @@
 // Initializers
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
-// Utility Methods
+// Supporting Methods
 - (NSArray *)aggregateHighlightsFromPages;
 
 // Section Data Management

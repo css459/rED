@@ -19,7 +19,6 @@
 
 @implementation AppDelegate
 
-
 +(void)downloadDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *))completionHandler {
     // Instantiate a session configuration object.
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];

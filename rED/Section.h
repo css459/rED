@@ -53,7 +53,7 @@
 - (instancetype)initWithTitle:(NSString *)ttl;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
-// Utility Methods
+// Supporting Methods
 - (NSString *)formatDate:(NSDate *)date;
 
 // Archiving

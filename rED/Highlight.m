@@ -50,6 +50,8 @@
     return self;
 }
 
+#pragma mark - Supporting Methods
+
 - (NSString *)formatQuotationForInjection {
     NSString *stringForReturn;
     stringForReturn = [NSString stringWithFormat:@"\"%@\" - %@", quote, containingPage.title];

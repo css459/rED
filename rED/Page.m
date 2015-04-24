@@ -36,7 +36,6 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        
         dateSaved = [aDecoder decodeObjectForKey:@"dateSaved"];
         title = [aDecoder decodeObjectForKey:@"title"];
         url = [aDecoder decodeObjectForKey:@"url"];
@@ -46,12 +45,11 @@
         pageHasEdits = [aDecoder decodeBoolForKey:@"pageHasEdits"];
         htmlDictionary = [aDecoder decodeObjectForKey:@"htmlDictionary"];
         articleTitle = [aDecoder decodeObjectForKey:@"articleTitle"];
-
     }
     return self;
 }
 
-#pragma mark - Supporting Actions
+#pragma mark - Supporting Methods
 
 - (BOOL)checkForEdits {
     if (array_highlightsFromPage.count > 0) {

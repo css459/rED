@@ -49,7 +49,7 @@
     return self;
 }
 
-#pragma mark - Utility Methods
+#pragma mark - Supporting Methods
 
 - (NSArray *)aggregateHighlightsFromPages {
     NSMutableArray *array_intake;

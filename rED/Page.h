@@ -54,7 +54,7 @@
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
-// Supporting Actions
+// Supporting Methods
 - (BOOL)checkForEdits;
 - (void)formatTitle;
 - (NSString *)formatDate;

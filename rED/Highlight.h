@@ -39,6 +39,7 @@
 // Initializers
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
+// Supporting Methods
 - (NSString *)formatQuotationForInjection;
 
 // Archiving
