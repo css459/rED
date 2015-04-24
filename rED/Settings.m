@@ -17,31 +17,27 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
-        self = [self accessArchivedInstance];
         textSize = 25.0;
         nightMode = NO;
         tutorialMode = NO;
         sharingMode = NO;
         homeSite = @"about:blank";  // This is sort of a hack
-        
         array_pages = [[NSMutableArray alloc] init];
+        
+        self = [self accessArchivedInstance];
     }
     return self;
-    
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        
         nightMode = [aDecoder decodeBoolForKey:@"nightMode"];
         tutorialMode = [aDecoder decodeBoolForKey:@"tutorialMode"];
         sharingMode = [aDecoder decodeBoolForKey:@"sharingMode"];
         textSize = [aDecoder decodeDoubleForKey:@"textSize"];
         homeSite = [aDecoder decodeObjectForKey:@"homeSite"];
         array_pages = [aDecoder decodeObjectForKey:@"array_pages"];
-        
     }
     return self;
 }
@@ -75,7 +71,6 @@
         [self.array_pages removeObjectAtIndex:page.indexInArray];
         postCount = self.array_pages.count;
     }
-    
     if (postCount == (originalCount - 1)) {
         NSLog(@"Page Removed Successfully - Array count: %lu", (unsigned long)self.array_pages.count);
         return YES;

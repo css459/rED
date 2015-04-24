@@ -29,11 +29,10 @@
         array_highlights = [[NSMutableArray alloc] init];
         array_sections = [[NSMutableArray alloc] init];
         usersettings = [Settings sharedSettings];
+        indexOfLastLoadedSection = 0;
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
         [self saveSection:rootSection];
-        
-        indexOfLastLoadedSection = 0;
         
         self = [self accessArchivedInstance];
     }
@@ -43,11 +42,9 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-
         array_sections = [aDecoder decodeObjectForKey:@"array_sections"];
         array_highlights = [aDecoder decodeObjectForKey:@"array_highlights"];
         indexOfLastLoadedSection = [aDecoder decodeIntForKey:@"indexOfLastLoadedSection"];
-        
     }
     return self;
 }
@@ -64,6 +61,7 @@
                 [array_intake addObject:h];
             }
         }
+        
         NSLog(@"Aggregated Pages Count: %lu", (unsigned long)array_intake.count);
         return array_intake;
         
@@ -90,7 +88,6 @@
         NSLog(@"SECTION SAVE FAILED - Array count: %lu", (unsigned long)self.array_sections.count);
         return NO;
     }
-
 }
 
 - (BOOL)removeSection:(Section *)section {
@@ -102,7 +99,6 @@
         [self.array_sections removeObjectAtIndex:section.indexInArray];
         postCount = self.array_sections.count;
     }
-    
     if (postCount == (originalCount - 1)) {
         NSLog(@"Section Removed Successfully - Array count: %lu", (unsigned long)self.array_sections.count);
         return YES;
