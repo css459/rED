@@ -19,6 +19,8 @@
 		491CEB481A84374600838145 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491CEB471A84374600838145 /* ThankYouViewController.m */; };
 		4926466B1A9932E0005FFCB1 /* NotebookManagerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */; };
 		4958887B1A8503F400B8D439 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958887A1A8503F400B8D439 /* Settings.m */; };
+		49591A641AEBEB81004971EC /* SectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49591A631AEBEB81004971EC /* SectionTableViewCell.m */; };
+		49591A671AEBFE3E004971EC /* AddSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49591A661AEBFE3E004971EC /* AddSectionViewController.m */; };
 		495D67551A82848600E15853 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67541A82848600E15853 /* NotesViewController.m */; };
 		495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D67571A82849200E15853 /* AutoScrollViewController.m */; };
 		495D675B1A8284BA00E15853 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495D675A1A8284BA00E15853 /* SettingsViewController.m */; };
@@ -92,6 +94,10 @@
 		4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebookManagerTableViewController.m; sourceTree = "<group>"; };
 		495888791A8503F400B8D439 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		4958887A1A8503F400B8D439 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		49591A621AEBEB81004971EC /* SectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionTableViewCell.h; sourceTree = "<group>"; };
+		49591A631AEBEB81004971EC /* SectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionTableViewCell.m; sourceTree = "<group>"; };
+		49591A651AEBFE3E004971EC /* AddSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSectionViewController.h; sourceTree = "<group>"; };
+		49591A661AEBFE3E004971EC /* AddSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSectionViewController.m; sourceTree = "<group>"; };
 		495D67531A82848600E15853 /* NotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesViewController.h; sourceTree = "<group>"; };
 		495D67541A82848600E15853 /* NotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesViewController.m; sourceTree = "<group>"; };
 		495D67561A82849200E15853 /* AutoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoScrollViewController.h; sourceTree = "<group>"; };
@@ -266,6 +272,8 @@
 				49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */,
 				492646691A9932E0005FFCB1 /* NotebookManagerTableViewController.h */,
 				4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */,
+				49591A651AEBFE3E004971EC /* AddSectionViewController.h */,
+				49591A661AEBFE3E004971EC /* AddSectionViewController.m */,
 				495D67561A82849200E15853 /* AutoScrollViewController.h */,
 				495D67571A82849200E15853 /* AutoScrollViewController.m */,
 				495D67591A8284BA00E15853 /* SettingsViewController.h */,
@@ -283,6 +291,8 @@
 				49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */,
 				490A87971ADEAE680002ED79 /* SavedPageTableViewCell.h */,
 				490A87981ADEAE680002ED79 /* SavedPageTableViewCell.m */,
+				49591A621AEBEB81004971EC /* SectionTableViewCell.h */,
+				49591A631AEBEB81004971EC /* SectionTableViewCell.m */,
 			);
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
@@ -433,9 +443,11 @@
 				495D67581A82849200E15853 /* AutoScrollViewController.m in Sources */,
 				495D67551A82848600E15853 /* NotesViewController.m in Sources */,
 				4906460F1A814425003CD480 /* PagesViewController.m in Sources */,
+				49591A671AEBFE3E004971EC /* AddSectionViewController.m in Sources */,
 				4906460C1A814425003CD480 /* AppDelegate.m in Sources */,
 				499087851AC2FB6A00904409 /* Section.m in Sources */,
 				495D67671A828CF000E15853 /* SavedPagesTableViewController.m in Sources */,
+				49591A641AEBEB81004971EC /* SectionTableViewCell.m in Sources */,
 				490646091A814425003CD480 /* main.m in Sources */,
 				495D675E1A8284DD00E15853 /* Page.m in Sources */,
 				49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */,

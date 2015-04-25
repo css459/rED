@@ -65,8 +65,7 @@
         highlight_orange = [UIColor colorWithRed:255.0f/255.0f green:198.0f/255.0f blue:112.0f/255.0f alpha:0.7];
         highlight_red = [UIColor colorWithRed:255.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:0.7];
         
-        // Section Colors 
-        array_sectionColors = [[NSArray alloc] init];
+        // Section Colors
         UIColor *pastelRed = [[UIColor alloc] initWithRed:242.0/255.0 green:110.0/255.0 blue:93.0/255.0 alpha:1];
         UIColor *pastelBlue = [[UIColor alloc] initWithRed:123.0/255.0 green:188.0/255.0 blue:231.0/255.0 alpha:1];
         UIColor *pastelGreen = [[UIColor alloc] initWithRed:141.0/255 green:202.0/255 blue:131.0/255 alpha:1];
@@ -78,8 +77,9 @@
         UIColor *tan = [[UIColor alloc] initWithRed:132.0/255 green:203.0/255 blue:74.0/255 alpha:1];
         UIColor *od = [[UIColor alloc] initWithRed:53.0/255 green:104.0/255 blue:74.0/255 alpha:1];
         
-        array_sectionColors = @[pastelRed, pastelBlue, pastelGreen, pastelOrange, pastelPurple,
-                                pastelYellow, navyBlue, deepPurple, tan, od];
+        NSArray *array_sectionColorsMediate = @[pastelRed, pastelBlue, pastelGreen, pastelOrange, pastelPurple,
+                                                pastelYellow, navyBlue, deepPurple, tan, od];
+        array_sectionColors = [[NSArray alloc] initWithArray:array_sectionColorsMediate];
     }
     return self;
 }

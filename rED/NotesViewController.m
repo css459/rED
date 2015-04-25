@@ -8,22 +8,21 @@
 
 #import "NotesViewController.h"
 #import "PagesViewController.h"
+#import "NotebookManagerTableViewController.h"
 #import "ColorPalette.h"
 #import "Settings.h"
 #import "Section.h"
 #import "Notebook.h"
 
 @interface NotesViewController ()
-
-@end
-
-@implementation NotesViewController
 {
     ColorPalette *cp;
     Settings *sharedSettings;
     Notebook *sharedNotebook;
 }
+@end
 
+@implementation NotesViewController
 @synthesize textView, button_quotations, button_sections, button_share, loadedSection;
 
 #pragma mark - Initializers
@@ -35,7 +34,7 @@
         sharedSettings = [Settings sharedSettings];
         sharedNotebook = [Notebook sharedNotebook];
         
-        int sectionID = [sharedNotebook indexOfLastLoadedSection];
+        NSUInteger sectionID = [sharedNotebook indexOfLastLoadedSection];
         [self loadSection:sectionID];
     }
     return self;
@@ -46,29 +45,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
-    
-    // Implements custom title with formatting
-    UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
-    UILabel *label_notebook = [[UILabel alloc] initWithFrame:CGRectZero];
-    UILabel *label_section = [[UILabel alloc] initWithFrame:CGRectZero];
-    
-    [label_notebook setText:@"Notebook"];
-    [label_notebook setFont:titleFont];
-    [label_notebook setTextColor:[UIColor darkTextColor]];
-    [label_notebook sizeToFit];
-    
-    UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
-    [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
-
-    [label_section setText:loadedSection.title];
-    [label_section setText:loadedSection.title];
-    [label_section setFont:titleFont];
-    [label_section setTextColor:[UIColor darkTextColor]];
-    [label_section sizeToFit];
-    
-    UIBarButtonItem *label_sectionBBI = [[UIBarButtonItem alloc] initWithCustomView:label_section];
-    [self.navigationItem setRightBarButtonItem:label_sectionBBI];
-    
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     // Swipe Declaration
@@ -87,6 +63,27 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
+    
+    // Implements custom title with formatting
+    UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
+    UILabel *label_notebook = [[UILabel alloc] initWithFrame:CGRectZero];
+    UILabel *label_section = [[UILabel alloc] initWithFrame:CGRectZero];
+    
+    [label_notebook setText:@"Notebook"];
+    [label_notebook setFont:titleFont];
+    [label_notebook setTextColor:[UIColor darkTextColor]];
+    [label_notebook sizeToFit];
+    
+    UIBarButtonItem *label_notebookBBI = [[UIBarButtonItem alloc] initWithCustomView:label_notebook];
+    [self.navigationItem setLeftBarButtonItem:label_notebookBBI];
+    
+    [label_section setText:loadedSection.title];
+    [label_section setFont:titleFont];
+    [label_section setTextColor:[UIColor darkTextColor]];
+    [label_section sizeToFit];
+    
+    UIBarButtonItem *label_sectionBBI = [[UIBarButtonItem alloc] initWithCustomView:label_section];
+    [self.navigationItem setRightBarButtonItem:label_sectionBBI];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -95,6 +92,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+// Allows user to exit editing
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 -(void)updateColorScheme {}
@@ -146,9 +149,15 @@
 
 - (void)loadSection:(NSUInteger)sectionAtIndex {
     Section *sectionForLoad = [sharedNotebook.array_sections objectAtIndex:sectionAtIndex];
+    
     loadedSection = sectionForLoad;
+    sharedNotebook.indexOfLastLoadedSection = loadedSection.indexInArray;
+    loadedSection.isLastLoadedSection = YES;
+    
     NSLog(@"Loaded Section: %@", loadedSection.title);
     textView.text = loadedSection.textContent;
+    
+    [self viewWillAppear:YES];
 }
 
 - (void)saveSectionChanges {
@@ -158,13 +167,13 @@
     [sharedNotebook.array_sections replaceObjectAtIndex:indexOfSection withObject:loadedSection];
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"segue_toNotebookManager"]) {
+        NotebookManagerTableViewController *vc = [segue destinationViewController];
+        vc.referenceToNotesViewController = self;
+    }
 }
-*/
+
 @end

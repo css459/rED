@@ -44,7 +44,7 @@
     if (self) {
         array_sections = [aDecoder decodeObjectForKey:@"array_sections"];
         array_highlights = [aDecoder decodeObjectForKey:@"array_highlights"];
-        indexOfLastLoadedSection = [aDecoder decodeIntForKey:@"indexOfLastLoadedSection"];
+        indexOfLastLoadedSection = [aDecoder decodeIntegerForKey:@"indexOfLastLoadedSection"];
     }
     return self;
 }
@@ -125,7 +125,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:array_highlights forKey:@"array_highlights"];
     [aCoder encodeObject:array_sections forKey:@"array_sections"];
-    [aCoder encodeInt:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
+    [aCoder encodeInteger:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
 }
 
 - (Notebook *)accessArchivedInstance {

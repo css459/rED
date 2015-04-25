@@ -34,7 +34,7 @@
 // Object Storage
 @property (nonatomic, strong) NSMutableArray *array_sections;
 @property (nonatomic, strong) NSMutableArray *array_highlights;
-@property int indexOfLastLoadedSection;
+@property NSUInteger indexOfLastLoadedSection;
 
 // Initializers
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;

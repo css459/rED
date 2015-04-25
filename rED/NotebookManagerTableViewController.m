@@ -7,16 +7,26 @@
 //
 
 #import "NotebookManagerTableViewController.h"
+#import "AddSectionViewController.h"
+#import "NotesViewController.h"
+#import "SectionTableViewCell.h"
 #import "ColorPalette.h"
+#import "Notebook.h"
+#import "Section.h"
 
 @interface NotebookManagerTableViewController ()
 {
     ColorPalette *cp;
+    Notebook *sharedNotebook;
+    Section *sectionAtIndexPath;
+    
+    AddSectionViewController *addSectionVC;
 }
 
 @end
 
 @implementation NotebookManagerTableViewController
+@synthesize referenceToNotesViewController;
 
 #pragma mark - Initializers
 
@@ -24,6 +34,15 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         cp = [[ColorPalette alloc] init];
+        sharedNotebook = [Notebook sharedNotebook];
+        
+        // Branching View Controller Initializations
+        NSString * storyboardName = @"Main";
+        UIStoryboard *storyboard = [UIStoryboard
+                                    storyboardWithName:storyboardName
+                                    bundle:[NSBundle bundleForClass:[self class]]];
+        
+        addSectionVC = [storyboard instantiateViewControllerWithIdentifier:@"AddSectionViewController"];
     }
     return self;
 }
@@ -41,81 +60,109 @@
     [naviTitle sizeToFit];
     self.navigationItem.titleView = naviTitle;
     
-        // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Add Section Button
+    UIBarButtonItem *button_add = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                   target:self
+                                   action:@selector(button_addWasPressed:)];
+    self.navigationItem.rightBarButtonItem = button_add;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)updateColorScheme {}
 
+#pragma mark - Action Handlers
+
+// Present the Add Section View Controller
+- (IBAction)button_addWasPressed:(id)sender {
+    [[self navigationController] pushViewController:addSectionVC animated:YES];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    
-    
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    
-    
-    return 0;
+    return sharedNotebook.array_sections.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    SectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Section"];
     
-    // Configure the cell...
+    sectionAtIndexPath = [sharedNotebook.array_sections objectAtIndex:indexPath.row];
+    NSString *sectionTitle = sectionAtIndexPath.title;
+    UIColor *sectionColor = sectionAtIndexPath.color;
+    
+    cell.label_sectionTitle.text = sectionTitle;
+    cell.label_sectionColor.backgroundColor= sectionColor;
     
     return cell;
 }
-*/
 
-/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [referenceToNotesViewController loadSection:sectionAtIndexPath.indexInArray];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    
+    // Do not allow last section to be deleted.
+    if (sharedNotebook.array_sections.count < 2) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
-*/
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Section Deletion"
+                                    message:@"This Section will be deleted from your Notebook. This cannot be reversed."
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *delete = [UIAlertAction
+                                 actionWithTitle:@"Delete"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                     NSUInteger indexForDelete = indexPath.row;
+                                     Section *sectionForDelete = [sharedNotebook.array_sections objectAtIndex:indexForDelete];
+                                     [sharedNotebook removeSection:sectionForDelete];
+                                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                                     
+                                 }];
+        
+        UIAlertAction *cancel = [UIAlertAction
+                                 actionWithTitle:@"Cancel"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction *action) {
+                                     
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                 }];
+        
+        [alert addAction:delete];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {}
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

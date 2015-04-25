@@ -13,6 +13,7 @@
 @interface Section ()
 {
     ColorPalette *cp;
+    int arrayIndexForColorCycle;
 }
 @end
 
@@ -59,6 +60,16 @@
     NSString *dateString = [format stringFromDate:date];
     
     return dateString;
+}
+
+- (void)cycleColors {
+    if (arrayIndexForColorCycle == 9) {
+        arrayIndexForColorCycle = -1;
+    }
+    arrayIndexForColorCycle++;
+    self.color = [cp.array_sectionColors objectAtIndex:arrayIndexForColorCycle];
+    NSLog(@"count: %lu", (unsigned long)cp.array_sectionColors.count);
+    NSLog(@"color at index: %@", [cp.array_sectionColors objectAtIndex:arrayIndexForColorCycle]);
 }
 
 #pragma mark - Archiving

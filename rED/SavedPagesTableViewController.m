@@ -16,7 +16,7 @@
 @interface SavedPagesTableViewController ()
 {
     ColorPalette *cp;
-    Page *navigatingPage;
+    Page *pageAtIndexPath;
     Settings *sharedSettings;
     NSUInteger indexForDelete;
 }
@@ -101,10 +101,10 @@
     
     SavedPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_SavedPage"];
     
-    navigatingPage = [sharedSettings.array_pages objectAtIndex:indexPath.row];
-    NSString *page_title = navigatingPage.title;
-    NSString *page_date = [NSString stringWithFormat:@"Date Captured: %@", [navigatingPage formatDate]];
-    NSString *page_htmlContent = navigatingPage.htmlContent;
+    pageAtIndexPath = [sharedSettings.array_pages objectAtIndex:indexPath.row];
+    NSString *page_title = pageAtIndexPath.title;
+    NSString *page_date = [NSString stringWithFormat:@"Date Captured: %@", [pageAtIndexPath formatDate]];
+    NSString *page_htmlContent = pageAtIndexPath.htmlContent;
     
     cell.label_savePage.text = page_title;
     cell.label_dateAdded.text = page_date;
@@ -132,10 +132,10 @@
                                      
                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                      
+                                     indexForDelete = indexPath.row;
                                      Page *pageForRemoval = [sharedSettings.array_pages objectAtIndex:indexForDelete];
                                      [sharedSettings removePage:pageForRemoval];
                                      
-                                     indexForDelete = indexPath.row;
                                      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                                      
                                  }];
@@ -156,7 +156,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Page *pageAtIndexPath = [sharedSettings.array_pages objectAtIndex:indexPath.row];
     [referenceToRootViewController loadPageFromSavedData:pageAtIndexPath];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

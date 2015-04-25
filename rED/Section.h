@@ -55,6 +55,7 @@
 
 // Supporting Methods
 - (NSString *)formatDate:(NSDate *)date;
+- (void)cycleColors;
 
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
