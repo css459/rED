@@ -33,9 +33,6 @@
         cp = [[ColorPalette alloc] init];
         sharedSettings = [Settings sharedSettings];
         sharedNotebook = [Notebook sharedNotebook];
-        
-        NSUInteger sectionID = [sharedNotebook indexOfLastLoadedSection];
-        [self loadSection:sectionID];
     }
     return self;
 }
@@ -46,6 +43,9 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+    NSUInteger sectionID = [sharedNotebook indexOfLastLoadedSection];
+    [self loadSection:sectionID];
     
     // Swipe Declaration
     UISwipeGestureRecognizer * swipeRight = [[UISwipeGestureRecognizer alloc]
@@ -148,6 +148,8 @@
 #pragma mark - Section Handlers
 
 - (void)loadSection:(NSUInteger)sectionAtIndex {
+    NSLog(@"Accessing Section at index: %lu", (unsigned long)sectionAtIndex);
+    
     Section *sectionForLoad = [sharedNotebook.array_sections objectAtIndex:sectionAtIndex];
     
     loadedSection = sectionForLoad;

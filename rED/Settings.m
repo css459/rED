@@ -45,8 +45,9 @@
 # pragma mark - Page Data Management
 
 - (BOOL)savePage:(Page *)page {
-    NSUInteger originalCount;
-    NSUInteger postCount;
+    NSLog(@"bip");
+    NSUInteger originalCount = 0;
+    NSUInteger postCount = 0;
     
     originalCount = self.array_pages.count;
     [self.array_pages addObject:page];
@@ -63,14 +64,20 @@
 }
 
 - (BOOL)removePage:(Page *)page {
-    NSUInteger originalCount;
-    NSUInteger postCount;
+    NSUInteger originalCount = 0;
+    NSUInteger postCount = 0;
     
     if (self.array_pages != 0) {
         originalCount = self.array_pages.count;
         [self.array_pages removeObjectAtIndex:page.indexInArray];
         postCount = self.array_pages.count;
     }
+    
+    // Refresh the stored indexes for the Section objects
+    for (NSUInteger i = 0; i < array_pages.count; i++) {
+        [[array_pages objectAtIndex:i] setIndexInArray:i];
+    }
+    
     if (postCount == (originalCount - 1)) {
         NSLog(@"Page Removed Successfully - Array count: %lu", (unsigned long)self.array_pages.count);
         return YES;

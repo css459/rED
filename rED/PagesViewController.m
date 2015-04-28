@@ -282,7 +282,7 @@
 //    }
     
     [self.navigationController setToolbarHidden:NO];
-    [self checkForSavingInconsistencies];
+//    [self checkForSavingInconsistencies];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -331,8 +331,11 @@
 - (IBAction)button_savePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
 
-    newPage = [[Page alloc] initWithURL:url html:htmlContent];
-    
+    // Populate the Page object for saving
+    newPage.url = url;
+    newPage.htmlContent = htmlContent;
+    newPage.htmlDictionary = htmlDictionary;
+
     if (url != nil) {
         if (savedButtonState) {
             

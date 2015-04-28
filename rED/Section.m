@@ -63,6 +63,8 @@
 }
 
 - (void)cycleColors {
+    cp = [[ColorPalette alloc] init];
+    
     if (arrayIndexForColorCycle == 9) {
         arrayIndexForColorCycle = -1;
     }

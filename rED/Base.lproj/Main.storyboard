@@ -128,27 +128,31 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hTS-6L-elg" id="b1I-nE-ub3">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3o-SX-f7p">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3o-SX-f7p">
                                             <rect key="frame" x="581" y="0.0" width="19" height="64"/>
                                             <color key="backgroundColor" red="0.32192862280000001" green="0.82136999310000003" blue="0.1150691529" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="19" id="5vq-ib-5J2"/>
+                                                <constraint firstAttribute="width" constant="19" id="eCO-Jt-5F2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="1" height="0.0"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Section Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSS-CY-oE8">
-                                            <rect key="frame" x="8" y="21" width="554" height="22"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSS-CY-oE8">
+                                            <rect key="frame" x="8" y="21" width="561" height="22"/>
                                             <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="p3o-SX-f7p" firstAttribute="centerY" secondItem="DSS-CY-oE8" secondAttribute="centerY" id="R6u-77-GRM"/>
-                                        <constraint firstItem="p3o-SX-f7p" firstAttribute="leading" secondItem="DSS-CY-oE8" secondAttribute="trailing" constant="19" id="VNv-JI-hso"/>
+                                        <constraint firstItem="p3o-SX-f7p" firstAttribute="leading" secondItem="DSS-CY-oE8" secondAttribute="trailing" constant="12" id="4xa-tV-7ES"/>
+                                        <constraint firstAttribute="trailing" secondItem="p3o-SX-f7p" secondAttribute="trailing" id="Sfq-l0-mpk"/>
+                                        <constraint firstItem="p3o-SX-f7p" firstAttribute="centerY" secondItem="DSS-CY-oE8" secondAttribute="centerY" id="Yp9-NC-eu8"/>
+                                        <constraint firstItem="DSS-CY-oE8" firstAttribute="top" secondItem="b1I-nE-ub3" secondAttribute="topMargin" constant="13" id="hAa-4U-26z"/>
+                                        <constraint firstItem="p3o-SX-f7p" firstAttribute="top" secondItem="b1I-nE-ub3" secondAttribute="top" id="on8-Ac-b5X"/>
+                                        <constraint firstItem="DSS-CY-oE8" firstAttribute="leading" secondItem="b1I-nE-ub3" secondAttribute="leadingMargin" id="yXd-92-9XH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

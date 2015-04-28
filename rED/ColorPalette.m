@@ -6,12 +6,6 @@
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-/*
-    NOTE:
-    The ColorPalette will need new methods to change tints to Night Mode
-    This will mean a greater degree of consistency in tints will be required.
- */
-
 #import "ColorPalette.h"
 
 @interface ColorPalette ()
@@ -77,9 +71,9 @@
         UIColor *tan = [[UIColor alloc] initWithRed:132.0/255 green:203.0/255 blue:74.0/255 alpha:1];
         UIColor *od = [[UIColor alloc] initWithRed:53.0/255 green:104.0/255 blue:74.0/255 alpha:1];
         
-        NSArray *array_sectionColorsMediate = @[pastelRed, pastelBlue, pastelGreen, pastelOrange, pastelPurple,
-                                                pastelYellow, navyBlue, deepPurple, tan, od];
-        array_sectionColors = [[NSArray alloc] initWithArray:array_sectionColorsMediate];
+        array_sectionColors = @[pastelRed, pastelBlue, pastelGreen, pastelOrange, pastelPurple,
+                                pastelYellow, navyBlue, deepPurple, tan, od];
+        
     }
     return self;
 }

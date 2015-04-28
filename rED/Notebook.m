@@ -14,7 +14,7 @@
 
 @interface Notebook ()
 {
-    Settings *usersettings;
+    Settings *sharedSettings;
 }
 @end
 
@@ -28,7 +28,7 @@
     if (self) {
         array_highlights = [[NSMutableArray alloc] init];
         array_sections = [[NSMutableArray alloc] init];
-        usersettings = [Settings sharedSettings];
+        sharedSettings = [Settings sharedSettings];
         indexOfLastLoadedSection = 0;
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
@@ -54,9 +54,9 @@
 - (NSArray *)aggregateHighlightsFromPages {
     NSMutableArray *array_intake;
     
-    if (usersettings.array_pages.count != 0) {
+    if (sharedSettings.array_pages.count != 0) {
         
-        for (Page *p in [usersettings array_pages]) {
+        for (Page *p in [sharedSettings array_pages]) {
             for (Highlight *h in p.array_highlightsFromPage) {
                 [array_intake addObject:h];
             }
@@ -73,8 +73,8 @@
 #pragma mark - Section Data Management
 
 - (BOOL)saveSection:(Section *)section {
-    NSUInteger originalCount;
-    NSUInteger postCount;
+    NSUInteger originalCount = 0;
+    NSUInteger postCount = 0;
     
     originalCount = self.array_sections.count;
     [self.array_sections addObject:section];
@@ -91,14 +91,20 @@
 }
 
 - (BOOL)removeSection:(Section *)section {
-    NSUInteger originalCount;
-    NSUInteger postCount;
+    NSUInteger originalCount = 0;
+    NSUInteger postCount = 0;
     
     if (self.array_sections != 0) {
         originalCount = self.array_sections.count;
         [self.array_sections removeObjectAtIndex:section.indexInArray];
         postCount = self.array_sections.count;
     }
+    
+    // Refresh the stored indexes for the Section objects
+    for (NSUInteger i = 0; i < array_sections.count; i++) {
+        [[array_sections objectAtIndex:i] setIndexInArray:i];
+    }
+    
     if (postCount == (originalCount - 1)) {
         NSLog(@"Section Removed Successfully - Array count: %lu", (unsigned long)self.array_sections.count);
         return YES;
