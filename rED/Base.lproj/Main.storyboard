@@ -218,22 +218,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press to change color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpc-ah-qKW">
-                                <rect key="frame" x="216" y="438" width="168" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="9i5-D8-t5h"/>
-                                    <constraint firstAttribute="width" constant="168" id="Lev-xx-fxN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-FX-tdh">
-                                <rect key="frame" x="209" y="300" width="183" height="113"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-FX-tdh">
+                                <rect key="frame" x="209" y="258" width="183" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="183" id="Anu-h2-YKd"/>
                                 </constraints>
-                                <state key="normal" image="asset_sectionFolder">
+                                <state key="normal" image="logo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -251,6 +241,16 @@
                                     <action selector="textField_sectionNameDidChange:" destination="TcS-pn-bll" eventType="editingDidEnd" id="1id-Tw-92b"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press to change color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cpc-ah-qKW">
+                                <rect key="frame" x="216" y="449" width="168" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="9i5-D8-t5h"/>
+                                    <constraint firstAttribute="width" constant="168" id="Lev-xx-fxN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -263,17 +263,17 @@
                             <constraint firstItem="h5M-zT-pQN" firstAttribute="top" secondItem="Mxv-Hg-XEt" secondAttribute="bottom" constant="120" id="JzD-cv-D8f"/>
                             <constraint firstItem="YrG-Se-cwf" firstAttribute="top" secondItem="VEX-jm-iiM" secondAttribute="bottom" constant="3" id="LYO-VB-Wqk"/>
                             <constraint firstItem="h5M-zT-pQN" firstAttribute="leading" secondItem="VEX-jm-iiM" secondAttribute="leading" id="ShK-4y-ErK"/>
-                            <constraint firstItem="Cpc-ah-qKW" firstAttribute="top" secondItem="4hp-FX-tdh" secondAttribute="bottom" constant="25" id="Sni-xR-jbf"/>
+                            <constraint firstItem="Cpc-ah-qKW" firstAttribute="top" secondItem="4hp-FX-tdh" secondAttribute="bottom" constant="21" id="Sni-xR-jbf"/>
                             <constraint firstItem="OiL-55-Yc4" firstAttribute="leading" secondItem="eAx-gn-g0h" secondAttribute="leading" id="Stm-R1-GWk"/>
                             <constraint firstItem="YrG-Se-cwf" firstAttribute="top" secondItem="h5M-zT-pQN" secondAttribute="bottom" constant="8" symbolic="YES" id="UEg-bA-IVJ"/>
                             <constraint firstItem="Cpc-ah-qKW" firstAttribute="centerX" secondItem="4hp-FX-tdh" secondAttribute="centerX" id="UsV-Qm-3qw"/>
-                            <constraint firstItem="4hp-FX-tdh" firstAttribute="top" secondItem="OiL-55-Yc4" secondAttribute="bottom" constant="84" id="W9Z-2w-4lu"/>
+                            <constraint firstItem="4hp-FX-tdh" firstAttribute="top" secondItem="OiL-55-Yc4" secondAttribute="bottom" constant="42" id="W9Z-2w-4lu"/>
                             <constraint firstItem="YrG-Se-cwf" firstAttribute="leading" secondItem="VEX-jm-iiM" secondAttribute="leading" id="cKH-rq-JnK"/>
                             <constraint firstItem="eAx-gn-g0h" firstAttribute="trailing" secondItem="YrG-Se-cwf" secondAttribute="trailing" id="fqw-uG-XB6"/>
                             <constraint firstItem="eAx-gn-g0h" firstAttribute="trailing" secondItem="OiL-55-Yc4" secondAttribute="trailing" id="gFP-Tg-UDG"/>
                             <constraint firstItem="VEX-jm-iiM" firstAttribute="trailing" secondItem="h5M-zT-pQN" secondAttribute="trailing" id="m9b-8T-y7u"/>
                             <constraint firstItem="4hp-FX-tdh" firstAttribute="centerX" secondItem="g2U-jd-2v1" secondAttribute="centerX" id="nhu-Tg-Shr"/>
-                            <constraint firstItem="nT1-Ne-n5X" firstAttribute="top" secondItem="Cpc-ah-qKW" secondAttribute="bottom" constant="141" id="oV6-2E-4ev"/>
+                            <constraint firstItem="nT1-Ne-n5X" firstAttribute="top" secondItem="Cpc-ah-qKW" secondAttribute="bottom" constant="130" id="oV6-2E-4ev"/>
                             <constraint firstItem="OiL-55-Yc4" firstAttribute="top" secondItem="YrG-Se-cwf" secondAttribute="bottom" constant="8" symbolic="YES" id="uWD-J5-Rf0"/>
                         </constraints>
                     </view>
@@ -1077,7 +1077,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="asset_sectionFolder" width="793" height="521"/>
+        <image name="logo" width="1024" height="1024"/>
         <image name="logo_Shorecrest" width="512" height="512"/>
         <image name="toolbar_Quotations" width="22" height="22"/>
     </resources>

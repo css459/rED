@@ -34,7 +34,7 @@
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
         [self saveSection:rootSection];
         
-        self = [self accessArchivedInstance];
+//        self = [self accessArchivedInstance];     // This causes some huge issues.
     }
     return self;
 }
