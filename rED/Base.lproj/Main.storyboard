@@ -117,7 +117,7 @@
         <!--Notebook Tabs-->
         <scene sceneID="fRK-kk-W88">
             <objects>
-                <tableViewController title="Notebook Tabs" id="4NK-s4-tNx" customClass="NotebookManagerTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NotebookManagerTableViewController" title="Notebook Tabs" id="4NK-s4-tNx" customClass="NotebookManagerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="Fjt-54-OaF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -289,7 +289,7 @@
         <!--Highlights-->
         <scene sceneID="Pan-mZ-mnU">
             <objects>
-                <tableViewController title="Highlights" id="edx-Pz-AEi" customClass="HighlightsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HighlightsTableViewController" title="Highlights" id="edx-Pz-AEi" customClass="HighlightsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="0OT-gN-U4x">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1060,7 +1060,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9Xj-9L-ICH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cK4-bP-TMC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NotesViewControllerNavigation" automaticallyAdjustsScrollViewInsets="NO" id="cK4-bP-TMC" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eV6-CT-ZHQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
