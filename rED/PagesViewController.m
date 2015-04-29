@@ -267,6 +267,19 @@
         if (size >= 61) {
             size = 7;
         }
+    
+        // Update HTML
+        if (htmlContent != nil)
+        {
+            NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  htmlContent];
+            updateHTML = updatedHTML;
+        }
+        
+        // Reload webview html content
+        if (updateHTML != nil)
+        {
+            [self openHTML:updateHTML];
+        }
     }
     
 //    // Changes UIWebView to night mode

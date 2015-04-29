@@ -39,7 +39,6 @@
 		49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */; };
 		49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEE81A97C9A600B62BB4 /* Highlight.m */; };
 		49C3DEEC1A97DDFB00B62BB4 /* HighlightsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */; };
-		6112B6E01AE6C2090026AB54 /* rEDExtensionJavaScript.js in Resources */ = {isa = PBXBuildFile; fileRef = 6112B6DF1AE6C2090026AB54 /* rEDExtensionJavaScript.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,7 +128,6 @@
 		49C3DEE81A97C9A600B62BB4 /* Highlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Highlight.m; sourceTree = "<group>"; };
 		49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightsTableViewController.h; sourceTree = "<group>"; };
 		49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightsTableViewController.m; sourceTree = "<group>"; };
-		6112B6DF1AE6C2090026AB54 /* rEDExtensionJavaScript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = rEDExtensionJavaScript.js; path = ../rEDExtensionJavaScript.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +158,6 @@
 		490645FA1A814425003CD480 = {
 			isa = PBXGroup;
 			children = (
-				6112B6DF1AE6C2090026AB54 /* rEDExtensionJavaScript.js */,
 				490646051A814425003CD480 /* rED */,
 				4906461F1A814425003CD480 /* rEDTests */,
 				495D8D641ACB132E00576563 /* rED Action Extension */,
@@ -423,7 +420,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6112B6E01AE6C2090026AB54 /* rEDExtensionJavaScript.js in Resources */,
 				4908C6631ACECDCB006170DC /* Main.storyboard in Resources */,
 				495D8D6B1ACB132E00576563 /* MainInterface.storyboard in Resources */,
 				495D8D771ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */,
