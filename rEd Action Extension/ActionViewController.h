@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActionViewController : UIViewController
+@interface ActionViewController : UIViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 

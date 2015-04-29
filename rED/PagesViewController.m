@@ -786,8 +786,11 @@
 
 - (void)openHTML:(NSString *)html {
     // Set appropiate text size
-    NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  html];
-    html = updatedHTML;
+    if (html != nil)
+    {
+        NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  html];
+        html = updatedHTML;
+    }
     
     //Loads UIWebView with HTML
     if (html != nil)
