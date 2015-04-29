@@ -51,6 +51,5 @@
 
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
-- (Notebook *)accessArchivedInstance;
 
 @end

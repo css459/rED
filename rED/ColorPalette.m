@@ -73,7 +73,6 @@
         
         array_sectionColors = @[pastelRed, pastelBlue, pastelGreen, pastelOrange, pastelPurple,
                                 pastelYellow, navyBlue, deepPurple, tan, od];
-        
     }
     return self;
 }

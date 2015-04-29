@@ -140,18 +140,4 @@
     [aCoder encodeInteger:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
 }
 
-//- (Notebook *)accessArchivedInstance {
-//    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
-//    NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
-//
-//    
-//    NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
-//    Notebook *returnInstance = [array_archivedSingletons objectAtIndex:1];
-//    
-//    NSLog(@"Notebook Instance awaking from Archive");
-//    
-//    return returnInstance;
-//}
-
 @end

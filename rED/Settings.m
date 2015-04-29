@@ -116,17 +116,4 @@
     [aCoder encodeObject:array_pages forKey:@"array_pages"];
 }
 
-- (Settings *)accessArchivedInstance {
-    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
-    NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
-    
-    NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
-    Settings *returnInstance = [array_archivedSingletons objectAtIndex:0];
-    
-    NSLog(@"Settings Instance awaking from Archive");
-    
-    return returnInstance;
-}
-
 @end

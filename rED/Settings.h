@@ -41,6 +41,5 @@
 
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
-- (Settings *)accessArchivedInstance;
 
 @end
