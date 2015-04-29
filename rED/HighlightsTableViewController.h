@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl_sortingOption;
 
+// Action Handlers
 - (IBAction)segmentedControl_sortingOptionDidChange:(id)sender;
 
 @end

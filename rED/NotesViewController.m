@@ -127,7 +127,6 @@
         mailViewController.mailComposeDelegate = self;
         
         [mailViewController setSubject:@"My Note"];
-        
         [mailViewController setMessageBody:emailText isHTML:NO];
         
         [self presentViewController:mailViewController animated:YES completion:nil];

@@ -236,6 +236,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     // Hides the Navigation Bar on appearance
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -244,6 +245,7 @@
     // Adjusts text size in UIWebView
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
+        
         // Convert settings text size to HTML text size
         double size = [settings textSize];
         if (size >= 1 && size <= 10) {
@@ -508,7 +510,6 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    
     if (error != nil) {
         NSLog(@"%@", [error localizedDescription]);
     }
@@ -518,6 +519,7 @@
 
 // Switch to expanded settings state
 - (IBAction)button_defaultSettingsWasPressed:(id)sender {
+    
     // This button has changed function due to text size deprecation
     //[self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
     [self button_moreWasPressed:nil];
@@ -537,6 +539,7 @@
 // Toggle Night Mode
 - (IBAction)button_nightModeWasPressed:(id)sender {
     nightModeState = !nightModeState;
+    
     if (nightModeState) {
         [cp changeColorProfile:@"NightMode"];
         [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Unclicked"]];
@@ -575,9 +578,9 @@
 - (IBAction)slider_textSizeValueChanged:(id)sender {
     [userSettings setTextSize:slider_textSize.value];
     
-    // MAKE THIS INTO A METHOD
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
+        
         // Convert settings text size to HTML text size
         double size = [settings textSize];
         if (size >= 1 && size < 11) {
@@ -614,7 +617,6 @@
                 [self openHTML:updateHTML];
             }
             previousSize = size;
-            
         }
     }
 }
@@ -649,7 +651,6 @@
 #pragma mark - Highlighting Methods
 
 - (void)highlight_yellow {
-    
     const CGFloat *components = CGColorGetComponents([cp highlight_yellow].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -693,7 +694,6 @@
 }
 
 - (void)highlight_blue {
-    
     const CGFloat *components = CGColorGetComponents([cp highlight_blue].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -715,7 +715,6 @@
 }
 
 - (void)highlight_orange {
-    
     const CGFloat *components = CGColorGetComponents([cp highlight_orange].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -754,6 +753,7 @@
 }
 
 - (void)getHTML:(NSString *)URL {
+    
     // URLString is the URL from which the data is downloaded from
     NSString *URLString = [NSString stringWithFormat:@"https://www.readability.com/api/content/v1/parser?url=%@&token=79df0f9969a83dfb8759ba33c4530d6d04ffe87f", URL];
     
@@ -763,7 +763,6 @@
     // Data download block
     [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
         if (data != nil) {
-            
             NSError *error;
             NSMutableDictionary *returnedDict = [NSJSONSerialization
                                                  JSONObjectWithData:data
@@ -771,6 +770,7 @@
                                                  error:&error];
             if (error != nil) {
                 NSLog(@"%@",[error localizedDescription]);
+                
                 UIAlertView *alert = [[UIAlertView alloc]
                                       initWithTitle:@"Uh-Oh!"
                                       message:@"The URL you requested is not compatible with rED :("
@@ -780,7 +780,6 @@
                 [alert show];
                 
             } else {
-                
                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
                 self.url = [returnedDict objectForKey:@"url"];
                 
@@ -789,7 +788,6 @@
                 
                 // HTML is opened in the UIWebView
                 [self openHTML:htmlContent];
-                
             }
         }
     }];
@@ -798,6 +796,7 @@
 #pragma mark - UIWebView Handlers
 
 - (void)openHTML:(NSString *)html {
+    
     // Set appropiate text size
     if (html != nil)
     {
@@ -812,4 +811,5 @@
     }
     [self resetViewForNewPage];
 }
+
 @end

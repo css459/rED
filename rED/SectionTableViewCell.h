@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SectionTableViewCell : UITableViewCell
+
+// Cell Properties
 @property (weak, nonatomic) IBOutlet UILabel *label_sectionTitle;
 @property (weak, nonatomic) IBOutlet UILabel *label_sectionColor;
 

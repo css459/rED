@@ -98,7 +98,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     SavedPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_SavedPage"];
     
     pageAtIndexPath = [sharedSettings.array_pages objectAtIndex:indexPath.row];
@@ -169,4 +168,5 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 @end

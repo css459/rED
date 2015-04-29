@@ -13,7 +13,6 @@
 @interface AppDelegate ()
 {
     NSString *archivePath;
-    
 }
 @end
 
@@ -55,7 +54,6 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
     NSString *urlParameter = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"URL PARAMETER: %@", urlParameter);
     
@@ -100,7 +98,6 @@
     BOOL success = [NSKeyedArchiver archiveRootObject:array_wrapperForSave toFile:archivePath];
     
     NSLog(@"Data Archive Status: %d", success);
-    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
