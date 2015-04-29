@@ -41,9 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
+    // Initial Section Loading
     NSUInteger sectionID = [sharedNotebook indexOfLastLoadedSection];
     [self loadSection:sectionID];
     
@@ -55,12 +54,18 @@
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
     
+    // Navigation Bar Configuration
+    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    
     // Toolbar Configuration
     [self.navigationController setToolbarHidden:YES];
     [self.navigationController.toolbar setBarTintColor:[cp tint_background]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    // Toolbar Configuration
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
     
@@ -86,6 +91,7 @@
     [self.navigationItem setRightBarButtonItem:label_sectionBBI];
 }
 
+// Saves the changes to the Notebook upon dismissal
 - (void)viewWillDisappear:(BOOL)animated {
     [self saveSectionChanges];
 }
@@ -166,6 +172,7 @@
     NSUInteger indexOfSection = loadedSection.indexInArray;
     NSLog(@"Saving Section: %@ at index: %lu", loadedSection.title, (unsigned long)indexOfSection);
     
+    loadedSection.textContent = textView.text;
     [sharedNotebook.array_sections replaceObjectAtIndex:indexOfSection withObject:loadedSection];
 }
 
