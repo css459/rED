@@ -23,8 +23,6 @@
         sharingMode = NO;
         homeSite = @"about:blank";  // This is sort of a hack
         array_pages = [[NSMutableArray alloc] init];
-        
-        self = [self accessArchivedInstance];
     }
     return self;
 }
@@ -93,7 +91,15 @@
     static Settings *sharedSettings = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedSettings = [[self alloc] init];
+        NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+        NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:directoryForArray]) {
+            NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
+            sharedSettings = [array_archivedSingletons objectAtIndex:0];
+        } else {
+            sharedSettings = [[self alloc] init];
+        }
     });
     
     return sharedSettings;
@@ -113,7 +119,7 @@
 - (Settings *)accessArchivedInstance {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
-    NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"UserDataBundle.archive"];
+    NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
     
     NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
     Settings *returnInstance = [array_archivedSingletons objectAtIndex:0];

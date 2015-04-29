@@ -33,8 +33,6 @@
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
         [self saveSection:rootSection];
-        
-//        self = [self accessArchivedInstance];     // This causes some huge issues.
     }
     return self;
 }
@@ -120,7 +118,15 @@
     static Notebook *sharedNotebook = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedNotebook = [[self alloc] init];
+        NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+        NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:directoryForArray]) {
+            NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
+            sharedNotebook = [array_archivedSingletons objectAtIndex:1];
+        } else {
+            sharedNotebook = [[self alloc] init];
+        }
     });
     
     return sharedNotebook;
@@ -134,18 +140,18 @@
     [aCoder encodeInteger:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
 }
 
-- (Notebook *)accessArchivedInstance {
-    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
-    NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"UserDataBundle.archive"];
-
-    
-    NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
-    Notebook *returnInstance = [array_archivedSingletons objectAtIndex:1];
-    
-    NSLog(@"Notebook Instance awaking from Archive");
-    
-    return returnInstance;
-}
+//- (Notebook *)accessArchivedInstance {
+//    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+//    NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
+//
+//    
+//    NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
+//    Notebook *returnInstance = [array_archivedSingletons objectAtIndex:1];
+//    
+//    NSLog(@"Notebook Instance awaking from Archive");
+//    
+//    return returnInstance;
+//}
 
 @end

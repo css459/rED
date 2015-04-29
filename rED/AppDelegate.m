@@ -78,11 +78,15 @@
     
     Settings *sharedSettings = [Settings sharedSettings];
     Notebook *sharedNotebook = [Notebook sharedNotebook];
+    
+    NSLog(@"Settings for save: %@", sharedSettings);
+    NSLog(@"Notebook for save: %@", sharedNotebook);
+    
     NSArray *array_wrapperForSave = @[sharedSettings, sharedNotebook];
     
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
-    NSString *directoryForArray = [archivePathForArray stringByAppendingString:@"UserDataBundle.archive"];
+    NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
     archivePath = directoryForArray;
     
     BOOL success = [NSKeyedArchiver archiveRootObject:array_wrapperForSave toFile:archivePath];
