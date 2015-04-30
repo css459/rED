@@ -17,6 +17,7 @@
 		4908C6631ACECDCB006170DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4908C6601ACECDCB006170DC /* Main.storyboard */; };
 		490A87991ADEAE680002ED79 /* SavedPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 490A87981ADEAE680002ED79 /* SavedPageTableViewCell.m */; };
 		491CEB481A84374600838145 /* ThankYouViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491CEB471A84374600838145 /* ThankYouViewController.m */; };
+		4925E9111AF1B27D006626ED /* EditSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4925E9101AF1B27D006626ED /* EditSectionViewController.m */; };
 		4926466B1A9932E0005FFCB1 /* NotebookManagerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */; };
 		4958887B1A8503F400B8D439 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958887A1A8503F400B8D439 /* Settings.m */; };
 		49591A641AEBEB81004971EC /* SectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49591A631AEBEB81004971EC /* SectionTableViewCell.m */; };
@@ -90,6 +91,8 @@
 		490A87981ADEAE680002ED79 /* SavedPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedPageTableViewCell.m; sourceTree = "<group>"; };
 		491CEB461A84374600838145 /* ThankYouViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThankYouViewController.h; sourceTree = "<group>"; };
 		491CEB471A84374600838145 /* ThankYouViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThankYouViewController.m; sourceTree = "<group>"; };
+		4925E90F1AF1B27D006626ED /* EditSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSectionViewController.h; sourceTree = "<group>"; };
+		4925E9101AF1B27D006626ED /* EditSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSectionViewController.m; sourceTree = "<group>"; };
 		492646691A9932E0005FFCB1 /* NotebookManagerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotebookManagerTableViewController.h; sourceTree = "<group>"; };
 		4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotebookManagerTableViewController.m; sourceTree = "<group>"; };
 		495888791A8503F400B8D439 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -274,6 +277,8 @@
 				4926466A1A9932E0005FFCB1 /* NotebookManagerTableViewController.m */,
 				49591A651AEBFE3E004971EC /* AddSectionViewController.h */,
 				49591A661AEBFE3E004971EC /* AddSectionViewController.m */,
+				4925E90F1AF1B27D006626ED /* EditSectionViewController.h */,
+				4925E9101AF1B27D006626ED /* EditSectionViewController.m */,
 				495D67561A82849200E15853 /* AutoScrollViewController.h */,
 				495D67571A82849200E15853 /* AutoScrollViewController.m */,
 				495D67591A8284BA00E15853 /* SettingsViewController.h */,
@@ -433,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4925E9111AF1B27D006626ED /* EditSectionViewController.m in Sources */,
 				49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */,
 				490A87991ADEAE680002ED79 /* SavedPageTableViewCell.m in Sources */,
 				495D67611A8284E700E15853 /* Notebook.m in Sources */,

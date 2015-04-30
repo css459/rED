@@ -9,6 +9,7 @@
 #import "NotesViewController.h"
 #import "PagesViewController.h"
 #import "NotebookManagerTableViewController.h"
+#import "EditSectionViewController.h"
 #import "ColorPalette.h"
 #import "Settings.h"
 #import "Section.h"
@@ -181,6 +182,11 @@
     if ([[segue identifier] isEqualToString:@"segue_toNotebookManager"]) {
         NotebookManagerTableViewController *vc = [segue destinationViewController];
         vc.referenceToNotesViewController = self;
+    }
+    
+    if ([[segue identifier] isEqualToString:@"segue_toEditSection"]) {
+        EditSectionViewController *vc2 = [segue destinationViewController];
+        vc2.indexOfSectionForEdit = loadedSection.indexInArray;
     }
 }
 

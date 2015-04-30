@@ -70,8 +70,6 @@
     }
     arrayIndexForColorCycle++;
     self.color = [cp.array_sectionColors objectAtIndex:arrayIndexForColorCycle];
-    NSLog(@"count: %lu", (unsigned long)cp.array_sectionColors.count);
-    NSLog(@"color at index: %@", [cp.array_sectionColors objectAtIndex:arrayIndexForColorCycle]);
 }
 
 #pragma mark - Archiving
