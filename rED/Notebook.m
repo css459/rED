@@ -140,4 +140,6 @@
     [aCoder encodeInteger:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
 }
 
+- (void)generateFileForSharing {}
+
 @end

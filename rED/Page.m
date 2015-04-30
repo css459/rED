@@ -131,4 +131,6 @@
     [aCoder encodeObject:articleTitle forKey:@"articleTitle"];
 }
 
+- (void)generateFileForSharing {}
+
 @end

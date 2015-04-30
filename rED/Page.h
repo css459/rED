@@ -61,5 +61,6 @@
 
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
+- (void)generateFileForSharing;
 
 @end

@@ -51,5 +51,8 @@
 
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
+- (void)generateFileForSharing;
+- (void)importRecievedSectionToArray;
+- (void)importSectionsFromRecievedNotebookToArray;
 
 @end

@@ -84,4 +84,6 @@
     [aCoder encodeBool:isLastLoadedSection forKey:@"isLastLoadedSection"];
 }
 
+- (void)generateFileForSharing {}
+
 @end
