@@ -28,6 +28,11 @@ Submission:
 
 * [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
 
+"To-do" list for first update after initial release:
+
+* Today Extension
+
+
 ```
 #!objective-c
 
