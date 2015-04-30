@@ -32,7 +32,7 @@
     // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
-    Page *newPage;
+    Page *currentPage;
     
     
     // View Controller Instances
@@ -80,7 +80,7 @@
         // Misc Object Initializations
         cp = [[ColorPalette alloc] init];
         userSettings = [Settings sharedSettings];
-        newPage = [[Page alloc] initWithURL:url html:htmlContent];
+        currentPage = [[Page alloc] initWithURL:url html:htmlContent];
         slider_textSize = [[UISlider alloc] initWithFrame:frame];
         
         // View Controller Initializations
@@ -346,21 +346,21 @@
     savedButtonState = !savedButtonState;
 
     // Populate the Page object for saving
-    newPage.url = url;
-    newPage.htmlContent = htmlContent;
-    newPage.htmlDictionary = htmlDictionary;
+    currentPage.url = url;
+    currentPage.htmlContent = htmlContent;
+    currentPage.htmlDictionary = htmlDictionary;
 
     if (url != nil) {
         if (savedButtonState) {
             
             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-            [userSettings savePage:newPage];
+            [userSettings savePage:currentPage];
             [savedPagesVC.presentingTableView reloadData];
             
         } else {
             
             // Throw Notification to ask if sure.
-            if ([newPage checkForEdits] == NO) {
+            if ([currentPage checkForEdits] == NO) {
                 UIAlertController *alert = [UIAlertController
                                             alertControllerWithTitle:@"Page Deletion"
                                             message:@"This Page and its Highlights will be removed from Saved Pages. This cannot be reversed."
@@ -373,7 +373,7 @@
                                              
                                              [alert dismissViewControllerAnimated:YES completion:nil];
                                              [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-                                             [userSettings removePage:newPage];
+                                             [userSettings removePage:currentPage];
                                              [savedPagesVC.presentingTableView reloadData];
                                          
                                          }];
@@ -444,7 +444,7 @@
                                             if (url != nil)
                                             {
 #warning Highlights aren't being preserved when we do this
-                                                [self openHTML:newPage.htmlContent];
+                                                [self openHTML:currentPage.htmlContent];
                                             }
                                             isViewingFullPage = NO;
                                         }];
@@ -623,7 +623,7 @@
 // Makes sure that the page is not saved if the page was removed
 - (void)checkForSavingInconsistencies {
     Settings *sharedSettings = [Settings sharedSettings];
-    if (![sharedSettings.array_pages containsObject:newPage]) {
+    if (![sharedSettings.array_pages containsObject:currentPage]) {
         NSLog(@"New Page inconsistent - Not a Saved Page");
         savedButtonState = NO;
         button_savePage.image = [UIImage imageNamed:@"toolbar_Save_Unclicked"];
@@ -631,8 +631,8 @@
     }
 }
 
-- (void)resetViewForNewPage {
-    newPage = [[Page alloc] initWithURL:url html:htmlContent];
+- (void)resetViewForCurrentPage {
+    currentPage = [[Page alloc] initWithURL:url html:htmlContent];
     savedButtonState = NO;
     button_savePage.image = [UIImage imageNamed:@"toolbar_Save_Unclicked"];
 }
@@ -642,7 +642,7 @@
     url = pageToLoad.url;
     htmlContent = pageToLoad.htmlContent;
     searchBar.text = url;
-    newPage = pageToLoad;
+    currentPage = pageToLoad;
     
     [self openHTML:htmlContent];
 }
@@ -808,7 +808,7 @@
     {
         [webView loadHTMLString:html baseURL:nil];
     }
-    [self resetViewForNewPage];
+    [self resetViewForCurrentPage];
 }
 
 @end

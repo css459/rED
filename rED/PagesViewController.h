@@ -43,7 +43,7 @@
 - (IBAction)button_doneWasPressed:(id)sender;
 - (IBAction)slider_textSizeValueChanged:(id)sender;
 - (void)checkForSavingInconsistencies;
-- (void)resetViewForNewPage;
+- (void)resetViewForCurrentPage;
 - (void)loadPageFromSavedData:(Page *)pageToLoad;
 
 // Gesture Handlers
