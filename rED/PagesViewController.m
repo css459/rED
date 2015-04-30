@@ -192,7 +192,6 @@
         
         // Load Home Site
         [self getHTML:[userSettings homeSite]];
-        
     }
     return self;
 }

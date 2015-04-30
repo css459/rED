@@ -30,9 +30,10 @@
 - (instancetype)initWithTitle:(NSString *)ttl {
     self = [super init];
     if (self) {
+        cp = [[ColorPalette alloc] init];
         title = ttl;
         color = [cp.array_sectionColors objectAtIndex:0];
-        textContent = @"(Placeholder)";
+        textContent = @"Welcome to your new section. You may begin typing here.";
         dateCreated = [NSDate date];
         isLastLoadedSection = NO;
     }
