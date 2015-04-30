@@ -17,6 +17,7 @@
 #import "Page.h"
 #import "SettingsViewController.h"
 #import "UIMenuItem+CXAImageSupport.h"
+#import "Highlight.h"
 
 @interface PagesViewController ()
 {
@@ -31,8 +32,7 @@
     // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
-    
-    
+        
     // View Controller Instances
     SavedPagesTableViewController *savedPagesVC;
     NotesViewController *notesVC;
@@ -628,14 +628,33 @@
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
     
+    // save the highlight
+    //[self highlightIsMade];
+    
+    // if the button_savePage isn't pressed, press it to save the page
+    if (savedButtonState == NO) {
+        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [userSettings savePage:newPage];
+    }
+
 }
 
 - (void)highlight_red {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
+    NSLog(@"%@", highlightQuote);
+    
     const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
     NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    
+    
+    
     
     highlightColor = hexString;
     
@@ -649,6 +668,21 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+    
+    
+    // if the button_savePage isn't pressed, press it to save the page
+    if (savedButtonState == NO) {
+        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [userSettings savePage:newPage];
+    }
+    
+    // save the highlight
+    // find out what the variable for the current page is
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_red]) /*currentPage:( the current page )*/];
+    
 }
 
 - (void)highlight_blue {
@@ -671,6 +705,15 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+    // if the button_savePage isn't pressed, press it to save the page
+    if (savedButtonState == NO) {
+        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [userSettings savePage:newPage];
+    }
+
 }
 
 - (void)highlight_orange {
@@ -692,6 +735,15 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+    // if the button_savePage isn't pressed, press it to save the page
+    if (savedButtonState == NO) {
+        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [userSettings savePage:newPage];
+    }
+
 }
 
 #pragma mark - HTML Handlers
@@ -761,6 +813,21 @@
     [webView loadHTMLString:html baseURL:nil];
 }
 
+// saves highlights to array_highlightsFromPage (page) and array_highlights (notebook)
+- (void)highlightIsMadeWithQuote:(NSString *)quote color:(UIColor *)color page:(Page *)currentPage {
+    
+    Highlight *newHighlight = [[Highlight alloc] init];
+    [newHighlight setQuote: quote];
+    [newHighlight setColor: color];
+    [newHighlight setContainingPage: currentPage];
+    
+    [currentPage.array_highlightsFromPage addObject:newHighlight];
+//    [nb.array_highlights addObject:newHighlight];
+    
+}
+
+// make a method that removes highlights ( both text/color and the saved highlight in the highlight array of pages (make a new array) )
+
 
 #pragma mark - Navigation
  
@@ -769,4 +836,5 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
  }
+
 @end

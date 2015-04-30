@@ -58,6 +58,6 @@
 - (void)highlight_yellow;
 - (void)highlight_blue;
 - (void)highlight_orange;
+- (void)highlightIsMadeWithQuote:(NSString *)quote color:(UIColor *)color page:(Page *)currentPage;
 
 @end
-

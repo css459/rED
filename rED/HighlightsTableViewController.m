@@ -19,7 +19,6 @@
     
     int sectionsCount;
     int rowsCount;
-    
 }
 @end
 
@@ -81,14 +80,24 @@
 
 #pragma mark - Action Handlers
 
+
+// array highlights
+// aggrogate highlights from pages
+// takes every page and makes an nsarray of the highlights
+
 - (IBAction)segmentedControl_sortingOptionDidChange:(id)sender {
     switch (self.segmentedControl_sortingOption.selectedSegmentIndex) {
         case 0:
             // "From Current Page"
+            // array_pages at indexpath.row
+            
             
             break;
         case 1:
             // "All Highlights"
+            // [sharedNotebook aggregateHighlightsFromPages];
+            
+            
             
             break;
         default:
@@ -119,7 +128,6 @@
         return rowsCount;
     }    
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HighlightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Main_Colored"];
