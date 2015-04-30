@@ -14,5 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_savePage;
 @property (weak, nonatomic) IBOutlet UILabel *label_dateAdded;
 @property (weak, nonatomic) IBOutlet UITextView *textView_pagePreview;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+//-(void)autoScrollInvocation;
 
 @end

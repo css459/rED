@@ -38,7 +38,7 @@
 #import <Foundation/Foundation.h>
 #import "Notebook.h"
 
-@interface Page : NSObject
+@interface Page : NSObject <NSCoding>
 
 @property (nonatomic) NSDate *dateSaved;
 @property (nonatomic) NSString *title;
@@ -52,10 +52,14 @@
 
 // Initializers
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
-// Supporting Actions
+// Supporting Methods
 - (BOOL)checkForEdits;
-- (NSString *)formatDate:(NSDate *)date;
-- (NSString *)formatTitle;
+- (void)formatTitle;
+- (NSString *)formatDate;
+
+// Archiving
+- (void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end

@@ -12,18 +12,12 @@
 #import "AppDelegate.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title;
 
 #pragma mark - Initalizers
 
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        url = nil;
-        htmlContent = nil;
-        dateSaved = [NSDate date];
-    }
-    return self;
+    return [self initWithURL:nil html:nil];
 }
 
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML {
@@ -32,11 +26,30 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
+        
+        NSLog(@"INITWITHURLRECEIVED: %@", url);
+        [self formatTitle];
     }
     return self;
 }
 
-#pragma mark - Supporting Actions
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        dateSaved = [aDecoder decodeObjectForKey:@"dateSaved"];
+        title = [aDecoder decodeObjectForKey:@"title"];
+        url = [aDecoder decodeObjectForKey:@"url"];
+        htmlContent = [aDecoder decodeObjectForKey:@"htmlContent"];
+        array_highlightsFromPage = [aDecoder decodeObjectForKey:@"array_highlightsFromPage"];
+        indexInArray = [aDecoder decodeIntegerForKey:@"indexInArray"];
+        pageHasEdits = [aDecoder decodeBoolForKey:@"pageHasEdits"];
+        htmlDictionary = [aDecoder decodeObjectForKey:@"htmlDictionary"];
+        articleTitle = [aDecoder decodeObjectForKey:@"articleTitle"];
+    }
+    return self;
+}
+
+#pragma mark - Supporting Methods
 
 - (BOOL)checkForEdits {
     if (array_highlightsFromPage.count > 0) {
@@ -48,7 +61,7 @@
     }
 }
 
-- (NSString *)formatTitle {
+- (void)formatTitle {
     // Grab the Page title from the web page at URL
     // URLString is the URL from which the data is downloaded from
     NSString *URLString = [NSString stringWithFormat:@"https://www.readability.com/api/content/v1/parser?url=%@&token=79df0f9969a83dfb8759ba33c4530d6d04ffe87f", url];
@@ -82,20 +95,40 @@
                 // HTML Content property is set to contain the HTML code for the page
                 articleTitle = [[self htmlDictionary] description];
                 
+                [self modifyArticleTitle:articleTitle];
             }
         }
     }];
     
-    NSLog(@"Article Title: %@:", articleTitle);
-    return articleTitle;
 }
 
-- (NSString *)formatDate:(NSDate *)date {
+- (void)modifyArticleTitle:(NSString *)ttl
+{
+    articleTitle = ttl;
+    title = ttl;
+    NSLog(@"Article title: %@", articleTitle);
+}
+
+- (NSString *)formatDate {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MMM dd, yyyy HH:mm"];
-    NSString *dateString = [format stringFromDate:date];
+    NSString *dateString = [format stringFromDate:dateSaved];
     
     return dateString;
+}
+
+#pragma mark - Archiving
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:dateSaved forKey:@"dateSaved"];
+    [aCoder encodeObject:title forKey:@"title"];
+    [aCoder encodeObject:url forKey:@"url"];
+    [aCoder encodeObject:htmlContent forKey:@"htmlContent"];
+    [aCoder encodeObject:array_highlightsFromPage forKey:@"array_highlightsFromPage"];
+    [aCoder encodeInteger:indexInArray forKey:@"indexInArray"];
+    [aCoder encodeBool:pageHasEdits forKey:@"pageHasEdits"];
+    [aCoder encodeObject:htmlDictionary forKey:@"htmlDictionary"];
+    [aCoder encodeObject:articleTitle forKey:@"articleTitle"];
 }
 
 @end

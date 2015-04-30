@@ -130,7 +130,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HighlightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Main_Colored"];
+    HighlightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Highlight"];
     
     Highlight *highlightAtIndex = [sharedNotebook.array_highlights objectAtIndex:indexPath.row];
     

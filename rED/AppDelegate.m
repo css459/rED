@@ -7,13 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "Settings.h"
+#import "Notebook.h"
 
 @interface AppDelegate ()
-
+{
+    NSString *archivePath;
+}
 @end
 
 @implementation AppDelegate
-
 
 +(void)downloadDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *))completionHandler {
     // Instantiate a session configuration object.
@@ -51,6 +54,9 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSString *urlParameter = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"URL PARAMETER: %@", urlParameter);
+    
     if (url){
         NSString *str = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"The file contained: %@",str);
@@ -60,6 +66,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSDictionary *website = [launchOptions objectForKey:@"UIApplicationLaunchOptionsURLKey"];
+    NSString *returnedWebsite = [website description];
+    NSLog(@"****** %@", returnedWebsite);
+    
     return YES;
 }
 
@@ -71,6 +81,23 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    Settings *sharedSettings = [Settings sharedSettings];
+    Notebook *sharedNotebook = [Notebook sharedNotebook];
+    
+    NSLog(@"Settings for save: %@", sharedSettings);
+    NSLog(@"Notebook for save: %@", sharedNotebook);
+    
+    NSArray *array_wrapperForSave = @[sharedSettings, sharedNotebook];
+    
+    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+    NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
+    archivePath = directoryForArray;
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:array_wrapperForSave toFile:archivePath];
+    
+    NSLog(@"Data Archive Status: %d", success);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

@@ -13,6 +13,7 @@
 @interface Section ()
 {
     ColorPalette *cp;
+    int arrayIndexForColorCycle;
 }
 @end
 
@@ -38,47 +39,18 @@
     return self;
 }
 
-//#pragma mark - Section Saving
-//
-//- (BOOL)saveSection{
-//    Notebook *sharedNotebook = [Notebook sharedNotebook];
-//    NSUInteger originalCount;
-//    NSUInteger postCount;
-//    
-//    originalCount = sharedNotebook.array_sections.count;
-//    [sharedNotebook.array_sections addObject:self];
-//    postCount = sharedNotebook.array_sections.count;
-//    indexInArray = postCount;
-//    
-//    if (postCount == (originalCount + 1)) {
-//        NSLog(@"Section Saved Successfully - Array count: %lu", (unsigned long)sharedNotebook.array_sections.count);
-//        return YES;
-//    } else {
-//        NSLog(@"SECTION SAVE FAILED - Array count: %lu", (unsigned long)sharedNotebook.array_sections.count);
-//        return NO;
-//    }
-//
-//}
-//
-//- (BOOL)removeSection{
-//    Notebook *sharedNotebook = [Notebook sharedNotebook];
-//    NSUInteger originalCount;
-//    NSUInteger postCount;
-//    
-//    if (sharedNotebook.array_sections != 0) {
-//        originalCount = sharedNotebook.array_sections.count;
-//        [sharedNotebook.array_sections removeObjectAtIndex:indexInArray];
-//        postCount = sharedNotebook.array_sections.count;
-//    }
-//    
-//    if (postCount == (originalCount - 1)) {
-//        NSLog(@"Section Removed Successfully - Array count: %lu", (unsigned long)sharedNotebook.array_sections.count);
-//        return YES;
-//    } else {
-//        NSLog(@"SECTION REMOVAL FAILED - Array count: %lu", (unsigned long)sharedNotebook.array_sections.count);
-//        return NO;
-//    }
-//}
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        color = [aDecoder decodeObjectForKey:@"color"];
+        title = [aDecoder decodeObjectForKey:@"title"];
+        textContent = [aDecoder decodeObjectForKey:@"textContent"];
+        dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+        indexInArray = [aDecoder decodeIntegerForKey:@"indexInArray"];
+        isLastLoadedSection = [aDecoder decodeBoolForKey:@"isLastLoadedSection"];
+    }
+    return self;
+}
 
 #pragma mark - Supporting Actions
 
@@ -88,6 +60,27 @@
     NSString *dateString = [format stringFromDate:date];
     
     return dateString;
+}
+
+- (void)cycleColors {
+    cp = [[ColorPalette alloc] init];
+    
+    if (arrayIndexForColorCycle == 9) {
+        arrayIndexForColorCycle = -1;
+    }
+    arrayIndexForColorCycle++;
+    self.color = [cp.array_sectionColors objectAtIndex:arrayIndexForColorCycle];
+}
+
+#pragma mark - Archiving
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:color forKey:@"color"];
+    [aCoder encodeObject:title forKey:@"title"];
+    [aCoder encodeObject:textContent forKey:@"textContent"];
+    [aCoder encodeObject:dateCreated forKey:@"dateCreated"];
+    [aCoder encodeInteger:indexInArray forKey:@"indexInArray"];
+    [aCoder encodeBool:isLastLoadedSection forKey:@"isLastLoadedSection"];
 }
 
 @end

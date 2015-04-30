@@ -11,27 +11,27 @@
 #import "ColorPalette.h"
 #import "Page.h"
 #import "Settings.h"
+#import "SavedPageTableViewCell.h"
 
 @interface SavedPagesTableViewController ()
 {
-    NSMutableArray *array_cells;
     ColorPalette *cp;
-    Page *navigatingPage;
-    Settings *userSettings;
-    NSInteger indexForDelete;
+    Page *pageAtIndexPath;
+    Settings *sharedSettings;
+    NSUInteger indexForDelete;
 }
 @end
 
 @implementation SavedPagesTableViewController
+@synthesize referenceToRootViewController, presentingTableView;
 
 #pragma mark - Initializers
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        array_cells = [[NSMutableArray alloc] init];
         cp = [[ColorPalette alloc] init];
-        userSettings = [Settings sharedSettings];
+        sharedSettings = [Settings sharedSettings];
     }
     return self;
 }
@@ -54,19 +54,7 @@
     [self.navigationController.navigationBar setBarTintColor: [UIColor whiteColor]];
     self.navigationItem.hidesBackButton = YES;
     
-    if ([userSettings nightMode]) {
-        [cp changeColorProfile:@"NightMode"];
-        [self updateColorScheme];
-    } else {
-        [cp changeColorProfile:@"Default"];
-        [self updateColorScheme];
-    }
-
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // Edit Button
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Swipe Declaration
@@ -77,15 +65,17 @@
     [self.view addGestureRecognizer:swipeLeft];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setToolbarHidden:YES];
+    NSLog(@"Expected cell count from pages array: %lu", (unsigned long)sharedSettings.array_pages.count);
 }
 
--(void)updateColorScheme {
-    [self.view setBackgroundColor:[cp tint_background]];
-    [self.view setTintColor:[cp tint_accent]];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
+
+-(void)updateColorScheme {}
 
 #pragma mark - Action Handlers
 
@@ -99,42 +89,31 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    // Our sections should be arranged by subject
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [array_cells count];
+    return sharedSettings.array_pages.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"simpleCell" forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SimpleCell"];
-    }
-    navigatingPage = [array_cells objectAtIndex:indexPath.row];
+    SavedPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_SavedPage"];
     
-//    NSString *cell_Title = [[array_cells objectAtIndex:[indexPath row]] title];
-//    NSString *cell_Subtitle = [[array_cells objectAtIndex:[indexPath row]] dateAdded];
+    pageAtIndexPath = [sharedSettings.array_pages objectAtIndex:indexPath.row];
+    NSString *page_title = pageAtIndexPath.title;
+    NSString *page_date = [NSString stringWithFormat:@"Date Captured: %@", [pageAtIndexPath formatDate]];
+    NSString *page_htmlContent = pageAtIndexPath.htmlContent;
     
-//    cell.textLabel.text = cell_Title;
-//    cell.detailTextLabel.text = cell_Subtitle;
-//    cell.accessoryView.tintColor = [cp color_master_tan];
+    cell.label_savePage.text = page_title;
+    cell.label_dateAdded.text = page_date;
+    [cell.webView loadHTMLString:page_htmlContent baseURL:nil];
+    
+    // Autoscrolling for Cell
+    //[cell autoScrollInvocation];
     
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,7 +121,7 @@
         // Delete the row from the data source
         UIAlertController *alert = [UIAlertController
                                     alertControllerWithTitle:@"Page Deletion"
-                                    message:@"This Page and its Highlights will br removed from Saved Pages. This cannot be reversed."
+                                    message:@"This Page and its Highlights will be removed from Saved Pages. This cannot be reversed."
                                     preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *delete = [UIAlertAction
@@ -151,6 +130,12 @@
                                  handler:^(UIAlertAction *action) {
                                      
                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                     indexForDelete = indexPath.row;
+                                     Page *pageForRemoval = [sharedSettings.array_pages objectAtIndex:indexForDelete];
+                                     [sharedSettings removePage:pageForRemoval];
+                                     
+                                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                                      
                                  }];
         
@@ -165,35 +150,14 @@
         
         [alert addAction:delete];
         [alert addAction:cancel];
-        indexForDelete = indexPath.row;
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [self presentViewController:alert animated:YES completion:nil];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {}
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == [alertView cancelButtonIndex]){
-        //cancel clicked ...do your action
-    }else{
-        //reset clicked
-        [array_cells removeObjectAtIndex:indexForDelete];
-    }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [referenceToRootViewController loadPageFromSavedData:pageAtIndexPath];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
@@ -204,4 +168,5 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 @end

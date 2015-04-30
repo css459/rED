@@ -12,13 +12,13 @@
 
 @interface NotesViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
-// IBOutlets
+// UI Element Properties
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_sections;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_share;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *button_quotations;
-@property (nonatomic, strong) UILabel *titleView;
-@property (nonatomic, strong) UILabel *subtitleView;
+@property (strong, nonatomic) UILabel *titleView;
+@property (strong, nonatomic) UILabel *subtitleView;
 
 // Supporting Properties
 @property (nonatomic) Section *loadedSection;

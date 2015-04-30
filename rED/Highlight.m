@@ -40,9 +40,29 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        quote = [aDecoder decodeObjectForKey:@"quote"];
+        color = [aDecoder decodeObjectForKey:@"color"];
+        containingPage = [aDecoder decodeObjectForKey:@"containingPage"];
+    }
+    return self;
+}
+
+#pragma mark - Supporting Methods
+
 - (NSString *)formatQuotationForInjection {
     NSString *stringForReturn;
     stringForReturn = [NSString stringWithFormat:@"\"%@\" - %@", quote, containingPage.title];
     return stringForReturn;
+}
+
+#pragma mark - Archiving
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:quote forKey:@"quote"];
+    [aCoder encodeObject:color forKey:@"color"];
+    [aCoder encodeObject:containingPage forKey:@"containingPage"];
 }
 @end

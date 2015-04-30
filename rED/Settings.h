@@ -19,7 +19,7 @@
 #import <Foundation/Foundation.h>
 #import "Page.h"
 
-@interface Settings : NSObject
+@interface Settings : NSObject <NSCoding>
 
 // Application Parameters
 @property BOOL nightMode;
@@ -27,9 +27,10 @@
 @property BOOL sharingMode;
 @property double textSize;
 @property (nonatomic) NSString *homeSite;
+@property (strong, nonatomic) NSMutableArray *array_pages;
 
-// Object Storage
-@property (strong, nonatomic) NSMutableArray *array_pages;  // Here, we will save pages.
+// Initializers
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
 // Page Data Management
 - (BOOL)savePage:(Page *)page;
@@ -37,5 +38,8 @@
 
 // Singleton Methods
 + (id)sharedSettings;
+
+// Archiving
+- (void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end
