@@ -140,7 +140,6 @@
     [aCoder encodeInteger:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
 }
 
-#warning Incomplete method implementation
 - (NSString *)generateFileForSharing {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePath = [archiveDirectory objectAtIndex:1]; // What would this be?
