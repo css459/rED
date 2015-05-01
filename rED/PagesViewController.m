@@ -459,9 +459,6 @@
                                     
                                     // Share Page AND Notebook
                                     {
-#warning need file names!
-                                        NSString *pageFile = @"";
-                                        NSString *notebookFile = @"";
                                         
                                         NSString *emailTitle = @"My Page and Notebook";
                                         NSString *messageBody = @"Hey, check this out!";
@@ -471,14 +468,9 @@
                                         [mc setSubject:emailTitle];
                                         [mc setMessageBody:messageBody isHTML:NO];
                                         
-                                        // Determine the file name and extension
-                                        NSArray *pageFilePart = [pageFile componentsSeparatedByString:@"."];
-                                        NSString *pageFileName = [pageFilePart objectAtIndex:0];
-                                        NSString *pageExtension = [pageFilePart objectAtIndex:1];
-                                        
-                                        NSArray *notebookFilePart = [notebookFile componentsSeparatedByString:@"."];
+                                        // Determine the file name
+                                        NSString *pageFileName = 
                                         NSString *notebookFileName = [notebookFilePart objectAtIndex:0];
-                                        NSString *notebookExtension = [notebookFilePart objectAtIndex:1];
                                         
                                         // Get the resource path and read the file using NSData
                                         NSString *pageFilePath = [[NSBundle mainBundle] pathForResource:pageFileName ofType:pageExtension];
