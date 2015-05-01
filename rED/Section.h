@@ -45,6 +45,7 @@
 @property (nonatomic) UIColor *color;
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *textContent;
+@property (nonatomic) NSString *fileName;
 @property (nonatomic) NSDate *dateCreated;
 @property (nonatomic) NSUInteger indexInArray;
 @property (nonatomic) BOOL isLastLoadedSection;
