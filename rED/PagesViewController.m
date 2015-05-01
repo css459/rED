@@ -460,8 +460,8 @@
                                     // Share Page AND Notebook
                                     {
                                         
-                                        NSString *emailTitle = @"My Page and Notebook";
-                                        NSString *messageBody = @"Hey, check this out!";
+                                        NSString *emailTitle = @"Your Page and Notebook from rED";
+                                        NSString *messageBody = @"Open this file in rED to view its contents.";
                                         
                                         MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
                                         mc.mailComposeDelegate = self;
@@ -494,10 +494,10 @@
                                 } else {
                                     
                                     // Share Page ONLY
-                                    NSString *pageFile = @"";
+                                    NSString *pageFile = currentPage.title;
                                     
-                                    NSString *emailTitle = @"My Page";
-                                    NSString *messageBody = @"Hey, check this out!";
+                                    NSString *emailTitle = @"Your Page from rED";
+                                    NSString *messageBody = @"Open this file in rED to view its contents.";
                                     
                                     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
                                     mc.mailComposeDelegate = self;

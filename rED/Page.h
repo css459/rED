@@ -44,6 +44,7 @@
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *url;
 @property (nonatomic) NSString *htmlContent;
+@property (nonatomic) NSString *fileName;
 @property (nonatomic) NSMutableArray *array_highlightsFromPage;
 @property (nonatomic) NSUInteger indexInArray;
 @property (nonatomic) BOOL pageHasEdits;
