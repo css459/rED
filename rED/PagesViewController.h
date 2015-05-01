@@ -44,7 +44,7 @@
 - (IBAction)slider_textSizeValueChanged:(id)sender;
 - (void)checkForSavingInconsistencies;
 - (void)resetViewForCurrentPage;
-- (void)loadPageFromSavedData:(Page *)pageToLoad;
+- (void)loadPage:(Page *)pageToLoad;
 
 // Gesture Handlers
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;

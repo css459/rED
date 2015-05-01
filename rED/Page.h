@@ -47,6 +47,7 @@
 @property (nonatomic) NSMutableArray *array_highlightsFromPage;
 @property (nonatomic) NSUInteger indexInArray;
 @property (nonatomic) BOOL pageHasEdits;
+@property (nonatomic) BOOL isLastLoadedPage;
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 @property (strong, nonatomic) NSString *articleTitle;
 

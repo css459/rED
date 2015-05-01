@@ -31,7 +31,7 @@
     
     // Utility Objects
     ColorPalette *cp;
-    Settings *userSettings;
+    Settings *sharedSettings;
     Page *currentPage;
     
     
@@ -79,7 +79,7 @@
         
         // Misc Object Initializations
         cp = [[ColorPalette alloc] init];
-        userSettings = [Settings sharedSettings];
+        sharedSettings = [Settings sharedSettings];
         currentPage = [[Page alloc] initWithURL:url html:htmlContent];
         slider_textSize = [[UISlider alloc] initWithFrame:frame];
         
@@ -191,7 +191,19 @@
         array_settingsToolbarButtons = @[button_more, flexibleSpace, button_textSize, flexibleSpace, button_expandedSettings];
         
         // Load Home Site
-        [self getHTML:[userSettings homeSite]];
+        Page *lastLoadedPage = [[Page alloc] init];
+        for (Page *p in sharedSettings.array_pages) {
+            if (p.isLastLoadedPage) {
+                lastLoadedPage = p;
+            } else {
+                lastLoadedPage = nil;
+            }
+        }
+        if (lastLoadedPage) {
+            [self loadPage:lastLoadedPage];
+        } else {
+        [self getHTML:[sharedSettings homeSite]];
+        }
     }
     return self;
 }
@@ -231,7 +243,6 @@
     [self.view setUserInteractionEnabled:YES];
     [self.view addSubview:self.slider_textSize];
     [self.slider_textSize setHidden:YES];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -354,7 +365,7 @@
         if (savedButtonState) {
             
             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-            [userSettings savePage:currentPage];
+            [sharedSettings savePage:currentPage];
             [savedPagesVC.presentingTableView reloadData];
             
         } else {
@@ -373,7 +384,7 @@
                                              
                                              [alert dismissViewControllerAnimated:YES completion:nil];
                                              [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-                                             [userSettings removePage:currentPage];
+                                             [sharedSettings removePage:currentPage];
                                              [savedPagesVC.presentingTableView reloadData];
                                          
                                          }];
@@ -413,10 +424,10 @@
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
 - (IBAction)button_actionWasPressed :(id)sender {
-    UIAlertController * view=   [UIAlertController
-                                 alertControllerWithTitle:nil
-                                 message:nil
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController * view = [UIAlertController
+                                alertControllerWithTitle:nil
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *viewFullPage = [UIAlertAction
                                    actionWithTitle:@"View Full Page"
@@ -426,10 +437,8 @@
                                        // Get the Full page for viewing
                                        [view dismissViewControllerAnimated:YES completion:nil];
                                        
-                                       if (url != nil)
-                                       {
+                                       if (url != nil) {
                                            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-
                                        }
                                        isViewingFullPage = YES;
                                    }];
@@ -441,8 +450,7 @@
                                         {
                                            // View the page the rED way
                                             
-                                            if (url != nil)
-                                            {
+                                            if (url != nil) {
 #warning Highlights aren't being preserved when we do this
                                                 [self openHTML:currentPage.htmlContent];
                                             }
@@ -455,7 +463,7 @@
                             handler:^(UIAlertAction *action)
                             {
                                 // Present Sharing View
-                                if (userSettings.sharingMode) {
+                                if (sharedSettings.sharingMode) {
                                     
                                     // Share Page AND Notebook
                                     if ([MFMailComposeViewController canSendMail]) {
@@ -569,13 +577,13 @@
 
 // Action for "Done Button" in "textSizeWasPressed" method
 - (IBAction)button_doneWasPressed:(id)sender {
-    [userSettings setTextSize:slider_textSize.value];
+    [sharedSettings setTextSize:slider_textSize.value];
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
-    [userSettings setTextSize:slider_textSize.value];
+    [sharedSettings setTextSize:slider_textSize.value];
     
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
@@ -622,7 +630,6 @@
 
 // Makes sure that the page is not saved if the page was removed
 - (void)checkForSavingInconsistencies {
-    Settings *sharedSettings = [Settings sharedSettings];
     if (![sharedSettings.array_pages containsObject:currentPage]) {
         NSLog(@"New Page inconsistent - Not a Saved Page");
         savedButtonState = NO;
@@ -637,12 +644,21 @@
     button_savePage.image = [UIImage imageNamed:@"toolbar_Save_Unclicked"];
 }
 
-- (void)loadPageFromSavedData:(Page *)pageToLoad {
+- (void)loadPage:(Page *)pageToLoad {
+    
+    // Clear the lastLoadedPages
+    for (Page *p in sharedSettings.array_pages) {
+        if (p.isLastLoadedPage) {
+            p.isLastLoadedPage = NO;
+        }
+    }
+    
     NSLog(@"Page Loaded: %@", pageToLoad.title);
     url = pageToLoad.url;
     htmlContent = pageToLoad.htmlContent;
     searchBar.text = url;
     currentPage = pageToLoad;
+    pageToLoad.isLastLoadedPage = YES;
     
     [self openHTML:htmlContent];
 }
@@ -797,15 +813,13 @@
 - (void)openHTML:(NSString *)html {
     
     // Set appropiate text size
-    if (html != nil)
-    {
+    if (html != nil) {
         NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  html];
         html = updatedHTML;
     }
     
     //Loads UIWebView with HTML
-    if (html != nil)
-    {
+    if (html != nil) {
         [webView loadHTMLString:html baseURL:nil];
     }
     [self resetViewForCurrentPage];

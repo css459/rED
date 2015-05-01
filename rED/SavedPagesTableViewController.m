@@ -155,7 +155,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [referenceToRootViewController loadPageFromSavedData:pageAtIndexPath];
+    [referenceToRootViewController loadPage:pageAtIndexPath];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

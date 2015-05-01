@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title, isLastLoadedPage;
 
 #pragma mark - Initalizers
 
@@ -26,6 +26,8 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
+        pageHasEdits = NO;
+        isLastLoadedPage = NO;
         
         NSLog(@"INITWITHURLRECEIVED: %@", url);
         [self formatTitle];
@@ -43,6 +45,7 @@
         array_highlightsFromPage = [aDecoder decodeObjectForKey:@"array_highlightsFromPage"];
         indexInArray = [aDecoder decodeIntegerForKey:@"indexInArray"];
         pageHasEdits = [aDecoder decodeBoolForKey:@"pageHasEdits"];
+        isLastLoadedPage = [aDecoder decodeBoolForKey:@"isLastLoadedPage"];
         htmlDictionary = [aDecoder decodeObjectForKey:@"htmlDictionary"];
         articleTitle = [aDecoder decodeObjectForKey:@"articleTitle"];
     }
@@ -127,6 +130,7 @@
     [aCoder encodeObject:array_highlightsFromPage forKey:@"array_highlightsFromPage"];
     [aCoder encodeInteger:indexInArray forKey:@"indexInArray"];
     [aCoder encodeBool:pageHasEdits forKey:@"pageHasEdits"];
+    [aCoder encodeBool:isLastLoadedPage forKey:@"isLastLoadedPage"];
     [aCoder encodeObject:htmlDictionary forKey:@"htmlDictionary"];
     [aCoder encodeObject:articleTitle forKey:@"articleTitle"];
 }
