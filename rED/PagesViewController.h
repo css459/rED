@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MessageUI.h>
 #import "Settings.h"
 
 @interface PagesViewController : UIViewController <UISearchBarDelegate, MFMailComposeViewControllerDelegate>
