@@ -33,7 +33,9 @@
     // Utility Objects
     ColorPalette *cp;
     Settings *userSettings;
-        
+    Page *newPage;
+    Notebook *nb;
+    
     // View Controller Instances
     SavedPagesTableViewController *savedPagesVC;
     NotesViewController *notesVC;
@@ -444,6 +446,7 @@
                                             if (url != nil)
                                             {
 #warning Highlights aren't being preserved when we do this
+// I think we need to programatically set any highlighted text when we load the page
                                                 [self openHTML:newPage.htmlContent];
                                             }
                                             isViewingFullPage = NO;
@@ -650,6 +653,10 @@
 #pragma mark - Highlighting Methods
 
 - (void)highlight_yellow {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
+    
     const CGFloat *components = CGColorGetComponents([cp highlight_yellow].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -669,33 +676,27 @@
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
     
-    // save the highlight
-    //[self highlightIsMade];
-    
     // if the button_savePage isn't pressed, press it to save the page
     if (savedButtonState == NO) {
-        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         [userSettings savePage:newPage];
     }
-
+    
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_yellow])];
 }
 
 - (void)highlight_red {
     
     [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
     NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
-    NSLog(@"%@", highlightQuote);
     
     const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
     CGFloat b = components[2];
     NSString *hexString=[NSString stringWithFormat:@"%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
-    
-    
-    
     
     highlightColor = hexString;
     
@@ -710,23 +711,23 @@
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
     
-    
-    
-    // if the button_savePage isn't pressed, press it to save the page
+    // If button_savePage isn't pressed, then press it to save the page
     if (savedButtonState == NO) {
-        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         [userSettings savePage:newPage];
     }
     
-    // save the highlight
-    // find out what the variable for the current page is
-    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_red]) /*currentPage:( the current page )*/];
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_red])];
     
 }
 
 - (void)highlight_blue {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
+    
     const CGFloat *components = CGColorGetComponents([cp highlight_blue].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -748,15 +749,20 @@
     
     // if the button_savePage isn't pressed, press it to save the page
     if (savedButtonState == NO) {
-        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         [userSettings savePage:newPage];
     }
-
+    
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_blue])];
 }
 
 - (void)highlight_orange {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
+    
     const CGFloat *components = CGColorGetComponents([cp highlight_orange].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -777,12 +783,14 @@
     
     // if the button_savePage isn't pressed, press it to save the page
     if (savedButtonState == NO) {
-        Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
         [userSettings savePage:newPage];
     }
 
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_orange])];
+    
 }
 
 #pragma mark - HTML Handlers
@@ -864,20 +872,23 @@
 }
 
 // saves highlights to array_highlightsFromPage (page) and array_highlights (notebook)
-- (void)highlightIsMadeWithQuote:(NSString *)quote color:(UIColor *)color page:(Page *)currentPage {
+- (void)highlightIsMadeWithQuote:(NSString *)quote color:(UIColor *)color {
     
+    // Creates the highlight
     Highlight *newHighlight = [[Highlight alloc] init];
     [newHighlight setQuote: quote];
     [newHighlight setColor: color];
-    [newHighlight setContainingPage: currentPage];
+    [newHighlight setContainingPage: newPage];
     
-    [currentPage.array_highlightsFromPage addObject:newHighlight];
-//    [nb.array_highlights addObject:newHighlight];
+    [newPage.array_highlightsFromPage addObject:newHighlight]; // Saves the highlight to the page's array of highlights
+    [nb.array_highlights addObject:newHighlight]; // Saves the highlight to the notebook's array of highlights
+    
+    NSLog(@"Page Highlight Count: %lu", [newPage.array_highlightsFromPage count]);
+    NSLog(@"Notebook Highlight Count: %lu", [nb.array_highlights count]);
     
 }
 
 // make a method that removes highlights ( both text/color and the saved highlight in the highlight array of pages (make a new array) )
-
 
 #pragma mark - Navigation
  
