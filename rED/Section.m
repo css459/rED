@@ -84,6 +84,16 @@
     [aCoder encodeBool:isLastLoadedSection forKey:@"isLastLoadedSection"];
 }
 
-- (void)generateFileForSharing {}
+- (NSString *)generateFileForSharing {
+    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePath = [archiveDirectory objectAtIndex:1]; // What would this be?
+    NSString *fileName = [NSString stringWithFormat:@"%@.redsection", self.title];
+    NSString *directoryOfSavedSection = [archivePath stringByAppendingPathComponent:fileName];
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedSection];
+    NSLog(@"Section file creation completed with status: %d", success);
+    
+    return directoryOfSavedSection;
+}
 
 @end

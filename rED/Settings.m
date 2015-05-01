@@ -116,4 +116,6 @@
     [aCoder encodeObject:array_pages forKey:@"array_pages"];
 }
 
+- (void)importRecievedPageToArray {}
+
 @end

@@ -41,6 +41,6 @@
 
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
-- (void)importRecievedPageToArray'
+- (void)importRecievedPageToArray;
 
 @end

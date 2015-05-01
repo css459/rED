@@ -140,6 +140,20 @@
     [aCoder encodeInteger:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
 }
 
-- (void)generateFileForSharing {}
+#warning Incomplete method implementation
+- (NSString *)generateFileForSharing {
+    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePath = [archiveDirectory objectAtIndex:1]; // What would this be?
+    NSString *directoryOfSavedNotebook = [archivePath stringByAppendingPathComponent:@"Notebook.rednotebook"];
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedNotebook];
+    NSLog(@"Notebook file creation completed with status: %d", success);
+
+    return directoryOfSavedNotebook;
+}
+
+- (void)importRecievedSectionToArray {}
+
+- (void)importSectionsFromRecievedNotebookToArray {}
 
 @end

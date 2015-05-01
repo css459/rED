@@ -131,6 +131,16 @@
     [aCoder encodeObject:articleTitle forKey:@"articleTitle"];
 }
 
-- (void)generateFileForSharing {}
+- (NSString *)generateFileForSharing {
+    NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *archivePath = [archiveDirectory objectAtIndex:0]; // What would this be?
+    NSString *fileName = [NSString stringWithFormat:@"%@.redpage", self.title];
+    NSString *directoryOfSavedPage = [archivePath stringByAppendingPathComponent:fileName];
+    
+    BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedPage];
+    NSLog(@"Page file creation completed with status: %d", success);
+    
+    return directoryOfSavedPage;
+}
 
 @end
