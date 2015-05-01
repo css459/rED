@@ -458,30 +458,77 @@
                                 if (userSettings.sharingMode) {
                                     
                                     // Share Page AND Notebook
-                                    if ([MFMailComposeViewController canSendMail]) {
-                                        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-                                        mailViewController.mailComposeDelegate = self;
+                                    {
+#warning need file names!
+                                        NSString *pageFile = @"";
+                                        NSString *notebookFile = @"";
                                         
-                                        [mailViewController setSubject:@"Share Page AND Notebook"];
+                                        NSString *emailTitle = @"My Page and Notebook";
+                                        NSString *messageBody = @"Hey, check this out!";
                                         
-                                        [mailViewController setMessageBody:@"You have share Page AND Notebook!" isHTML:NO];
+                                        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+                                        mc.mailComposeDelegate = self;
+                                        [mc setSubject:emailTitle];
+                                        [mc setMessageBody:messageBody isHTML:NO];
                                         
-                                        [self presentViewController:mailViewController animated:YES completion:nil];
+                                        // Determine the file name and extension
+                                        NSArray *pageFilePart = [pageFile componentsSeparatedByString:@"."];
+                                        NSString *pageFileName = [pageFilePart objectAtIndex:0];
+                                        NSString *pageExtension = [pageFilePart objectAtIndex:1];
+                                        
+                                        NSArray *notebookFilePart = [notebookFile componentsSeparatedByString:@"."];
+                                        NSString *notebookFileName = [notebookFilePart objectAtIndex:0];
+                                        NSString *notebookExtension = [notebookFilePart objectAtIndex:1];
+                                        
+                                        // Get the resource path and read the file using NSData
+                                        NSString *pageFilePath = [[NSBundle mainBundle] pathForResource:pageFileName ofType:pageExtension];
+                                        NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
+                                        
+                                        NSString *notebookFilePath = [[NSBundle mainBundle] pathForResource:notebookFileName ofType:notebookExtension];
+                                        NSData *notebookFileData = [NSData dataWithContentsOfFile:notebookFilePath];
+                                        
+                                        // Define the MIME types
+                                        NSString *pageMimeType = @"application/redpage";
+                                        NSString *notebookMimeType = @"application/rednotebook";
+                                        
+                                        // Add attachments
+                                        [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFileName];
+                                        [mc addAttachmentData:notebookFileData mimeType:notebookMimeType fileName:notebookFileName];
+                                        
+                                        // Present mail view controller on screen
+                                        [self presentViewController:mc animated:YES completion:NULL];
                                     }
                                     
                                 } else {
                                     
                                     // Share Page ONLY
-                                    if ([MFMailComposeViewController canSendMail]) {
-                                        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-                                        mailViewController.mailComposeDelegate = self;
-                                        
-                                        [mailViewController setSubject:@"Share Page ONLY"];
-                                        
-                                        [mailViewController setMessageBody:@"You have share Page ONLY!" isHTML:NO];
-                                        
-                                        [self presentViewController:mailViewController animated:YES completion:nil];
-                                    }
+                                    NSString *pageFile = @"";
+                                    
+                                    NSString *emailTitle = @"My Page";
+                                    NSString *messageBody = @"Hey, check this out!";
+                                    
+                                    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+                                    mc.mailComposeDelegate = self;
+                                    [mc setSubject:emailTitle];
+                                    [mc setMessageBody:messageBody isHTML:NO];
+                                    
+                                    // Determine the file name and extension
+                                    NSArray *pageFilePart = [pageFile componentsSeparatedByString:@"."];
+                                    NSString *pageFileName = [pageFilePart objectAtIndex:0];
+                                    NSString *pageExtension = [pageFilePart objectAtIndex:1];
+                                    
+                                    // Get the resource path and read the file using NSData
+                                    NSString *pageFilePath = [[NSBundle mainBundle] pathForResource:pageFileName ofType:pageExtension];
+                                    NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
+                                    
+                                    // Define the MIME type
+                                    NSString *pageMimeType = @"application/redpage";
+                                    
+                                    // Add attachment
+                                    [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFileName];
+                                    
+                                    // Present mail view controller on screen
+                                    [self presentViewController:mc animated:YES completion:NULL];
                                 }
                                 [view dismissViewControllerAnimated:YES completion:nil];
                             }];
