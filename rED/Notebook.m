@@ -19,7 +19,7 @@
 @end
 
 @implementation Notebook
-@synthesize array_highlights, array_sections, indexOfLastLoadedSection;
+@synthesize array_highlights, array_sections, indexOfLastLoadedSection, fileName;
 
 #pragma mark - Initializers
 
@@ -43,6 +43,7 @@
         array_sections = [aDecoder decodeObjectForKey:@"array_sections"];
         array_highlights = [aDecoder decodeObjectForKey:@"array_highlights"];
         indexOfLastLoadedSection = [aDecoder decodeIntegerForKey:@"indexOfLastLoadedSection"];
+        fileName = [aDecoder decodeObjectForKey:@"fileName"];
     }
     return self;
 }
@@ -142,8 +143,11 @@
 
 - (NSString *)generateFileForSharing {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *archivePath = [archiveDirectory objectAtIndex:1]; // What would this be?
-    NSString *directoryOfSavedNotebook = [archivePath stringByAppendingPathComponent:@"Notebook.rednotebook"];
+    NSString *archivePath = [archiveDirectory objectAtIndex:0]; // What would this be?
+    NSString *fileID = @"Notebook.rednotebook";
+    NSString *directoryOfSavedNotebook = [archivePath stringByAppendingPathComponent:fileID];
+    
+    fileName = fileID;
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedNotebook];
     NSLog(@"Notebook file creation completed with status: %d", success);

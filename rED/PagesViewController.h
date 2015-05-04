@@ -27,7 +27,7 @@
 @property (strong, nonatomic) NSString *highlightColor;
 @property (strong, nonatomic) NSString *pageHtml;
 @property (strong, nonatomic) NSString *savedHtml;
-@property (nonatomic) UIBarButtonItem *button_done;
+@property (strong, nonatomic) UIBarButtonItem *button_done;
 
 // Button Actions
 - (IBAction)button_savePageWasPressed:(id)sender;

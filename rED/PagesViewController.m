@@ -459,7 +459,7 @@
                                     
                                     // Share Page AND Notebook
                                     {
-#warning need file names!
+#warning please update this code to take advantage of the generateFile methods
                                         NSString *pageFile = currentPage.title;
                                         NSString *notebookFile = @"Notebook";
                                         
