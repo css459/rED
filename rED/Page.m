@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title, fileName;
 
 #pragma mark - Initalizers
 
@@ -41,6 +41,7 @@
         title = [aDecoder decodeObjectForKey:@"title"];
         url = [aDecoder decodeObjectForKey:@"url"];
         htmlContent = [aDecoder decodeObjectForKey:@"htmlContent"];
+        fileName = [aDecoder decodeObjectForKey:@"fileName"];
         array_highlightsFromPage = [aDecoder decodeObjectForKey:@"array_highlightsFromPage"];
         indexInArray = [aDecoder decodeIntegerForKey:@"indexInArray"];
         pageHasEdits = [aDecoder decodeBoolForKey:@"pageHasEdits"];
@@ -103,8 +104,7 @@
     
 }
 
-- (void)modifyArticleTitle:(NSString *)ttl
-{
+- (void)modifyArticleTitle:(NSString *)ttl {
     articleTitle = ttl;
     title = ttl;
     NSLog(@"Article title: %@", articleTitle);
@@ -125,6 +125,7 @@
     [aCoder encodeObject:title forKey:@"title"];
     [aCoder encodeObject:url forKey:@"url"];
     [aCoder encodeObject:htmlContent forKey:@"htmlContent"];
+    [aCoder encodeObject:fileName forKey:@"fileName"];
     [aCoder encodeObject:array_highlightsFromPage forKey:@"array_highlightsFromPage"];
     [aCoder encodeInteger:indexInArray forKey:@"indexInArray"];
     [aCoder encodeBool:pageHasEdits forKey:@"pageHasEdits"];
@@ -135,8 +136,10 @@
 - (NSString *)generateFileForSharing {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePath = [archiveDirectory objectAtIndex:0]; // What would this be?
-    NSString *fileName = [NSString stringWithFormat:@"%@.redpage", self.title];
-    NSString *directoryOfSavedPage = [archivePath stringByAppendingPathComponent:fileName];
+    NSString *fileID = [NSString stringWithFormat:@"%@.redpage", self.title];
+    NSString *directoryOfSavedPage = [archivePath stringByAppendingPathComponent:fileID];
+    
+    fileID = fileName;
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedPage];
     NSLog(@"Page file creation completed with status: %d", success);
