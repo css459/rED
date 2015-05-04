@@ -31,7 +31,8 @@
     
     // Utility Objects
     ColorPalette *cp;
-    Settings *userSettings;
+    Settings *sharedSettings;
+    Notebook *sharedNotebook;
     Page *currentPage;
     
     
@@ -79,7 +80,8 @@
         
         // Misc Object Initializations
         cp = [[ColorPalette alloc] init];
-        userSettings = [Settings sharedSettings];
+        sharedSettings = [Settings sharedSettings];
+        sharedNotebook = [Notebook sharedNotebook];
         currentPage = [[Page alloc] initWithURL:url html:htmlContent];
         slider_textSize = [[UISlider alloc] initWithFrame:frame];
         
@@ -191,7 +193,7 @@
         array_settingsToolbarButtons = @[button_more, flexibleSpace, button_textSize, flexibleSpace, button_expandedSettings];
         
         // Load Home Site
-        [self getHTML:[userSettings homeSite]];
+        [self getHTML:[sharedSettings homeSite]];
     }
     return self;
 }
@@ -354,7 +356,7 @@
         if (savedButtonState) {
             
             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-            [userSettings savePage:currentPage];
+            [sharedSettings savePage:currentPage];
             [savedPagesVC.presentingTableView reloadData];
             
         } else {
@@ -373,7 +375,7 @@
                                              
                                              [alert dismissViewControllerAnimated:YES completion:nil];
                                              [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
-                                             [userSettings removePage:currentPage];
+                                             [sharedSettings removePage:currentPage];
                                              [savedPagesVC.presentingTableView reloadData];
                                          
                                          }];
@@ -449,22 +451,40 @@
                                             isViewingFullPage = NO;
                                         }];
     
+    // ------------------------------------------------------------------------
+    
+    // Please Optimize the code using this information
+    // Any unsued code should be removed
+    // You can use this for both sharing modes since I moved it up here
+    
+    // This will get the file name. ie: "page.redpage"
+    NSString *pageFile = currentPage.fileName;
+    NSString *notebookFile = sharedNotebook.fileName;
+    
+    // This will get the file path. ie: /Users/someone/docs/page.redpage
+    NSString *pageFilePath = [currentPage generateFileForSharing];
+    NSString *notebookFilePath = [sharedNotebook generateFileForSharing];
+    
+    // What the email should say
+    NSString *emailTitle = @"Your Page and Notebook from rED";
+    NSString *messageBody = @"Open this file in rED to view its contents.";
+    
+    // ------------------------------------------------------------------------
+    
     UIAlertAction *share = [UIAlertAction
                             actionWithTitle:@"Share"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action)
                             {
                                 // Present Sharing View
-                                if (userSettings.sharingMode) {
+                                if (sharedSettings.sharingMode) {
                                     
                                     // Share Page AND Notebook
                                     {
-#warning please update this code to take advantage of the generateFile methods
-                                        NSString *pageFile = currentPage.title;
-                                        NSString *notebookFile = @"Notebook";
                                         
-                                        NSString *emailTitle = @"Your Page and Notebook from rED";
-                                        NSString *messageBody = @"Open this file in rED to view its contents.";
+#warning please update this code to take advantage of the generateFile methods
+                                        
+
                                         
                                         MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
                                         mc.mailComposeDelegate = self;
@@ -616,13 +636,13 @@
 
 // Action for "Done Button" in "textSizeWasPressed" method
 - (IBAction)button_doneWasPressed:(id)sender {
-    [userSettings setTextSize:slider_textSize.value];
+    [sharedSettings setTextSize:slider_textSize.value];
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
-    [userSettings setTextSize:slider_textSize.value];
+    [sharedSettings setTextSize:slider_textSize.value];
     
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
