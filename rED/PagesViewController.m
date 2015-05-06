@@ -198,6 +198,8 @@
     return self;
 }
 
+
+
 #pragma mark - View Handlers
 
 - (void)viewDidLoad {
@@ -899,3 +901,9 @@
  }
 
 @end
+
+// Saved Sites Bug Notes
+// If you don't select any, one is already highlighted by default but when you swipe back it goes back to the page you were just on
+// No matter which you select, it loads the most recently added page
+
+
