@@ -10,7 +10,9 @@
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<array>
+				<string>rED Logo.png</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>rED Page</string>
 			<key>CFBundleTypeRole</key>
@@ -26,7 +28,9 @@
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<array>
+				<string>rED Logo 2.png</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>rED Notebook</string>
 			<key>CFBundleTypeRole</key>
@@ -42,7 +46,9 @@
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<array>
+				<string>rED Logo 3.png</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>rED Section</string>
 			<key>CFBundleTypeRole</key>

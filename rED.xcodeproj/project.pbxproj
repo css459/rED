@@ -40,6 +40,9 @@
 		49AADB8F1AC466EA0077147E /* HighlightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AADB8E1AC466E90077147E /* HighlightTableViewCell.m */; };
 		49C3DEE91A97C9A600B62BB4 /* Highlight.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEE81A97C9A600B62BB4 /* Highlight.m */; };
 		49C3DEEC1A97DDFB00B62BB4 /* HighlightsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */; };
+		49EB08321AFBF5AA004FA02F /* rED Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EB08311AFBF5AA004FA02F /* rED Logo.png */; };
+		49EB08341AFBF5E1004FA02F /* rED Logo 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EB08331AFBF5E1004FA02F /* rED Logo 2.png */; };
+		49EB08361AFBF5ED004FA02F /* rED Logo 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EB08351AFBF5ED004FA02F /* rED Logo 3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +134,9 @@
 		49C3DEE81A97C9A600B62BB4 /* Highlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Highlight.m; sourceTree = "<group>"; };
 		49C3DEEA1A97DDFB00B62BB4 /* HighlightsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightsTableViewController.h; sourceTree = "<group>"; };
 		49C3DEEB1A97DDFB00B62BB4 /* HighlightsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightsTableViewController.m; sourceTree = "<group>"; };
+		49EB08311AFBF5AA004FA02F /* rED Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rED Logo.png"; sourceTree = "<group>"; };
+		49EB08331AFBF5E1004FA02F /* rED Logo 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rED Logo 2.png"; sourceTree = "<group>"; };
+		49EB08351AFBF5ED004FA02F /* rED Logo 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rED Logo 3.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,7 @@
 				490646051A814425003CD480 /* rED */,
 				4906461F1A814425003CD480 /* rEDTests */,
 				495D8D641ACB132E00576563 /* rED Action Extension */,
+				49EB08371AFBF61F004FA02F /* rED Logos For Custom Files */,
 				490646041A814425003CD480 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -302,6 +309,16 @@
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
 		};
+		49EB08371AFBF61F004FA02F /* rED Logos For Custom Files */ = {
+			isa = PBXGroup;
+			children = (
+				49EB08351AFBF5ED004FA02F /* rED Logo 3.png */,
+				49EB08331AFBF5E1004FA02F /* rED Logo 2.png */,
+				49EB08311AFBF5AA004FA02F /* rED Logo.png */,
+			);
+			name = "rED Logos For Custom Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -407,9 +424,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49EB08321AFBF5AA004FA02F /* rED Logo.png in Resources */,
 				495D8D761ACC66AA00576563 /* LICENSE_UIMenuItem-CXAImageSupport.rtf in Resources */,
 				490646171A814425003CD480 /* LaunchScreen.xib in Resources */,
+				49EB08341AFBF5E1004FA02F /* rED Logo 2.png in Resources */,
 				490646141A814425003CD480 /* Images.xcassets in Resources */,
+				49EB08361AFBF5ED004FA02F /* rED Logo 3.png in Resources */,
 				4908C6621ACECDCB006170DC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
