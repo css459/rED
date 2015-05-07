@@ -481,23 +481,14 @@
                                     
                                     // Share Page AND Notebook
                                     {
-                                        NSString *pageFile = currentPage.title;
-                                        NSString *notebookFile = @"Notebook";
-                                        
-#warning please update this code to take advantage of the generateFile methods
-                                        
-
-                                        
                                         MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
                                         mc.mailComposeDelegate = self;
                                         [mc setSubject:emailTitle];
                                         [mc setMessageBody:messageBody isHTML:NO];
                                         
-                                        // Get the resource path and read the file using NSData
-                                        NSString *pageFilePath = [currentPage generateFileForSharing];
+                                        // Create NSData
                                         NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
                                         
-                                        NSString *notebookFilePath = [currentPage generateFileForSharing];
                                         NSData *notebookFileData = [NSData dataWithContentsOfFile:notebookFilePath];
                                         
                                         // Define the MIME types
@@ -515,18 +506,12 @@
                                 } else {
                                     
                                     // Share Page ONLY
-                                    NSString *pageFile = currentPage.title;
-                                    
-                                    NSString *emailTitle = @"Your Page from rED";
-                                    NSString *messageBody = @"Open this file in rED to view its contents.";
-                                    
                                     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
                                     mc.mailComposeDelegate = self;
                                     [mc setSubject:emailTitle];
                                     [mc setMessageBody:messageBody isHTML:NO];
                                     
-                                    // Get the resource path and read the file using NSData
-                                    NSString *pageFilePath = [currentPage generateFileForSharing];
+                                    // Create NSData
                                     NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
                                     
                                     // Define the MIME type
