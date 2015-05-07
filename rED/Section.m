@@ -18,7 +18,7 @@
 @end
 
 @implementation Section
-@synthesize title, color, textContent, dateCreated, isLastLoadedSection, indexInArray;
+@synthesize title, color, textContent, dateCreated, isLastLoadedSection, indexInArray, fileName;
 
 #pragma mark - Initializers
 
@@ -49,6 +49,7 @@
         dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
         indexInArray = [aDecoder decodeIntegerForKey:@"indexInArray"];
         isLastLoadedSection = [aDecoder decodeBoolForKey:@"isLastLoadedSection"];
+        fileName = [aDecoder decodeObjectForKey:@"fileName"];
     }
     return self;
 }
@@ -82,13 +83,16 @@
     [aCoder encodeObject:dateCreated forKey:@"dateCreated"];
     [aCoder encodeInteger:indexInArray forKey:@"indexInArray"];
     [aCoder encodeBool:isLastLoadedSection forKey:@"isLastLoadedSection"];
+    [aCoder encodeObject:fileName forKey:@"fileName"];
 }
 
 - (NSString *)generateFileForSharing {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *archivePath = [archiveDirectory objectAtIndex:1]; // What would this be?
-    NSString *fileName = [NSString stringWithFormat:@"%@.redsection", self.title];
-    NSString *directoryOfSavedSection = [archivePath stringByAppendingPathComponent:fileName];
+    NSString *archivePath = [archiveDirectory objectAtIndex:0]; // What would this be?
+    NSString *fileID = [NSString stringWithFormat:@"%@.redsection", self.title];
+    NSString *directoryOfSavedSection = [archivePath stringByAppendingPathComponent:fileID];
+    
+    fileName = fileID;
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedSection];
     NSLog(@"Section file creation completed with status: %d", success);

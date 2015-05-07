@@ -6,15 +6,7 @@
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-/* ---<<SINGLETON>>-------------------------------------------------------------
- 
-    The Settings object will maintain a globally accessible singleton.
-    Therefore, there should only ever be ONE instance of Settings.
- 
-    The contents of Settings is dynamic and objects 
-    may move in and out of Settings.
- 
-*///----------------------------------------------------------------------------
+// <<SINGLETON>>
 
 #import <Foundation/Foundation.h>
 #import "Page.h"
@@ -22,12 +14,12 @@
 @interface Settings : NSObject <NSCoding>
 
 // Application Parameters
-@property BOOL nightMode;
-@property BOOL tutorialMode;
-@property BOOL sharingMode;
-@property double textSize;
-@property (nonatomic) NSString *homeSite;
-@property (strong, nonatomic) NSMutableArray *array_pages;
+@property BOOL nightMode;                                       // BOOL flag to initiate app-wide night color change
+@property BOOL tutorialMode;                                    // BOOL flag to initiate app-wide tutorial presenting
+@property BOOL sharingMode;                                     // BOOL flag to designate sharing Notebooks with Pages
+@property double textSize;                                      // The text size for the presented simplified web page text
+@property (nonatomic) NSString *homeSite;                       // The site that loads when no other page is instructed to load
+@property (strong, nonatomic) NSMutableArray *array_pages;      // The array of all saved Page objects
 
 // Initializers
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;
