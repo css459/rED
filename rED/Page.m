@@ -26,6 +26,7 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
+        array_highlightsFromPage = [[NSMutableArray alloc] init];
         pageHasEdits = NO;
         isLastLoadedPage = NO;
         

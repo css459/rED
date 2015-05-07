@@ -32,8 +32,8 @@
     
     // Utility Objects
     ColorPalette *cp;
-    Settings *userSettings;
-    Page *newPage;
+    Settings *sharedSettings;
+    Page *currentPage;
     Notebook *nb;
     
     // View Controller Instances
@@ -83,6 +83,7 @@
         sharedSettings = [Settings sharedSettings];
         currentPage = [[Page alloc] initWithURL:url html:htmlContent];
         slider_textSize = [[UISlider alloc] initWithFrame:frame];
+        nb = [[Notebook alloc] init]; // TEMPERARY SOLUTION :D
         
         // View Controller Initializations
         NSString * storyboardName = @"Main";
@@ -208,8 +209,6 @@
     }
     return self;
 }
-
-
 
 #pragma mark - View Handlers
 
@@ -456,7 +455,7 @@
                                             if (url != nil) {
 #warning Highlights aren't being preserved when we do this
 // I think we need to programatically set any highlighted text when we load the page
-                                                [self openHTML:newPage.htmlContent];
+                                                [self openHTML:currentPage.htmlContent];
                                             }
                                             isViewingFullPage = NO;
                                         }];
@@ -697,7 +696,7 @@
     if (savedButtonState == NO) {
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        [userSettings savePage:newPage];
+        [sharedSettings savePage:currentPage];
     }
     
     // Save the Highlight
@@ -732,7 +731,7 @@
     if (savedButtonState == NO) {
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        [userSettings savePage:newPage];
+        [sharedSettings savePage:currentPage];
     }
     
     // Save the Highlight
@@ -768,7 +767,7 @@
     if (savedButtonState == NO) {
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        [userSettings savePage:newPage];
+        [sharedSettings savePage:currentPage];
     }
     
     // Save the Highlight
@@ -802,7 +801,7 @@
     if (savedButtonState == NO) {
         savedButtonState = YES;
         [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-        [userSettings savePage:newPage];
+        [sharedSettings savePage:currentPage];
     }
 
     // Save the Highlight
@@ -893,12 +892,12 @@
     Highlight *newHighlight = [[Highlight alloc] init];
     [newHighlight setQuote: quote];
     [newHighlight setColor: color];
-    [newHighlight setContainingPage: newPage];
+    [newHighlight setContainingPage: currentPage];
     
-    [newPage.array_highlightsFromPage addObject:newHighlight]; // Saves the highlight to the page's array of highlights
+    [currentPage.array_highlightsFromPage addObject:newHighlight]; // Saves the highlight to the page's array of highlights
     [nb.array_highlights addObject:newHighlight]; // Saves the highlight to the notebook's array of highlights
-    
-    NSLog(@"Page Highlight Count: %lu", [newPage.array_highlightsFromPage count]);
+        
+    NSLog(@"Page Highlight Count: %lu", [currentPage.array_highlightsFromPage count]);
     NSLog(@"Notebook Highlight Count: %lu", [nb.array_highlights count]);
     
 }
@@ -911,6 +910,7 @@
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+ // Give yourself a high five because you're awesome :)
  }
 
 @end
