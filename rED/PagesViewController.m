@@ -459,6 +459,8 @@
                                     
                                     // Share Page AND Notebook
                                     {
+                                        NSString *pageFile = currentPage.title;
+                                        NSString *notebookFile = @"Notebook";
                                         
                                         NSString *emailTitle = @"Your Page and Notebook from rED";
                                         NSString *messageBody = @"Open this file in rED to view its contents.";
@@ -468,15 +470,11 @@
                                         [mc setSubject:emailTitle];
                                         [mc setMessageBody:messageBody isHTML:NO];
                                         
-                                        // Determine the file name
-                                        NSString *pageFileName = 
-                                        NSString *notebookFileName = [notebookFilePart objectAtIndex:0];
-                                        
                                         // Get the resource path and read the file using NSData
-                                        NSString *pageFilePath = [[NSBundle mainBundle] pathForResource:pageFileName ofType:pageExtension];
+                                        NSString *pageFilePath = [currentPage generateFileForSharing];
                                         NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
                                         
-                                        NSString *notebookFilePath = [[NSBundle mainBundle] pathForResource:notebookFileName ofType:notebookExtension];
+                                        NSString *notebookFilePath = [currentPage generateFileForSharing];
                                         NSData *notebookFileData = [NSData dataWithContentsOfFile:notebookFilePath];
                                         
                                         // Define the MIME types
@@ -484,8 +482,8 @@
                                         NSString *notebookMimeType = @"application/rednotebook";
                                         
                                         // Add attachments
-                                        [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFileName];
-                                        [mc addAttachmentData:notebookFileData mimeType:notebookMimeType fileName:notebookFileName];
+                                        [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFile];
+                                        [mc addAttachmentData:notebookFileData mimeType:notebookMimeType fileName:notebookFile];
                                         
                                         // Present mail view controller on screen
                                         [self presentViewController:mc animated:YES completion:NULL];
@@ -504,20 +502,15 @@
                                     [mc setSubject:emailTitle];
                                     [mc setMessageBody:messageBody isHTML:NO];
                                     
-                                    // Determine the file name and extension
-                                    NSArray *pageFilePart = [pageFile componentsSeparatedByString:@"."];
-                                    NSString *pageFileName = [pageFilePart objectAtIndex:0];
-                                    NSString *pageExtension = [pageFilePart objectAtIndex:1];
-                                    
                                     // Get the resource path and read the file using NSData
-                                    NSString *pageFilePath = [[NSBundle mainBundle] pathForResource:pageFileName ofType:pageExtension];
+                                    NSString *pageFilePath = [currentPage generateFileForSharing];
                                     NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
                                     
                                     // Define the MIME type
                                     NSString *pageMimeType = @"application/redpage";
                                     
                                     // Add attachment
-                                    [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFileName];
+                                    [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFile];
                                     
                                     // Present mail view controller on screen
                                     [self presentViewController:mc animated:YES completion:NULL];
