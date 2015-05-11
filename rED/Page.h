@@ -58,4 +58,6 @@
 - (void)formatTitle;
 - (NSString *)formatDate;
 
++(id)sharedPage;
+
 @end

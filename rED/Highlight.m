@@ -36,6 +36,7 @@
         quote = qo;
         color = col;
         containingPage = pg;
+    
     }
     return self;
 }

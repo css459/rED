@@ -26,7 +26,7 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
-        
+        array_highlightsFromPage = [[NSMutableArray alloc]init];
         NSLog(@"INITWITHURLRECEIVED: %@", url);
         [self formatTitle];
     }
@@ -99,6 +99,15 @@
     NSString *dateString = [format stringFromDate:dateSaved];
     
     return dateString;
+}
+
++(id)sharedPage {
+    static Page *sharedPage = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedPage = [[self alloc]init]; });
+    
+    return sharedPage;
 }
 
 @end

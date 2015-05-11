@@ -11,11 +11,13 @@
 #import "Highlight.h"
 #import "Notebook.h"
 #import "HighlightTableViewCell.h"
+#import "Page.h"
 
 @interface HighlightsTableViewController ()
 {
     ColorPalette *cp;
     Notebook *sharedNotebook;
+    Page *sharedPage;
     
     int sectionsCount;
     int rowsCount;
@@ -37,10 +39,63 @@
         // Model Highlight
         Highlight *model = [[Highlight alloc] init];
         model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
-        model.containingPage.title = @"The New Yorker";
+        model.containingPage.title = @"New York Times";
         model.color = [cp highlight_yellow];
+        
         [sharedNotebook.array_highlights addObject:model];
         
+        model = [[Highlight alloc]init];
+        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"Chicago Tribune";
+        model.color = [cp highlight_blue];
+        
+        [sharedNotebook.array_highlights addObject:model];
+        
+        model = [[Highlight alloc]init];
+        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"Yo Mama";
+        model.color = [cp highlight_red];
+        
+        [sharedNotebook.array_highlights addObject:model];
+        
+        model = [[Highlight alloc]init];
+        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"Washington Post";
+        model.color = [cp highlight_orange];
+        
+        [sharedNotebook.array_highlights addObject:model];
+        
+        NSLog(@"array_highlights Contents: %@",sharedNotebook.array_highlights);
+        
+        sharedPage = [[Page alloc]init];
+        
+//        Highlight *pageModel = [[Highlight alloc]init];
+        
+        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"Washington Post";
+        model.color = [cp highlight_blue];
+        
+        [sharedPage.array_highlightsFromPage addObject:model];
+        
+        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"Boston Times";
+        model.color = [cp highlight_orange];
+        
+        [sharedPage.array_highlightsFromPage addObject:model];
+        
+        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"The Guardian";
+        model.color = [cp highlight_red];
+        
+        [sharedPage.array_highlightsFromPage addObject:model];
+        
+        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.containingPage.title = @"BBC";
+        model.color = [cp highlight_yellow];
+
+        [sharedPage.array_highlightsFromPage addObject:model];
+        
+        NSLog(@"array_highlightsFromPage Contents: %@",sharedPage.array_highlightsFromPage);
     }
     return self;
 }
@@ -81,19 +136,29 @@
 
 #pragma mark - Action Handlers
 
+
 - (IBAction)segmentedControl_sortingOptionDidChange:(id)sender {
-    switch (self.segmentedControl_sortingOption.selectedSegmentIndex) {
-        case 0:
-            // "From Current Page"
-            
-            break;
-        case 1:
-            // "All Highlights"
-            
-            break;
-        default:
-            break; 
-    } 
+//    switch (self.segmentedControl_sortingOption.selectedSegmentIndex) {
+//        case 0:
+//            // "From Current Page"
+//            // Displays tableView of highlights from current page
+//            // John is currently making method for this ^^
+//            
+//            break;
+//        case 1:
+//            // "All Highlights"
+//            // Displays tableView of all highlights
+//
+//
+//         
+//            break;
+//        default:
+//            break; 
+//    }
+    
+    
+    
+    [[self tableView] reloadData];
 }
 
 #pragma mark - Table view data source
@@ -114,7 +179,7 @@
     // Return the number of rows in the section.
     
     if (segmentedControl_sortingOption) {
-        return 1;
+        return 4;
     } else {
         return rowsCount;
     }    
@@ -123,12 +188,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HighlightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Highlight"];
+    Highlight *allHighlightsAtIndex = [sharedNotebook.array_highlights objectAtIndex:indexPath.row];
+    Highlight *pageHighlightsAtIndex = [sharedPage.array_highlightsFromPage objectAtIndex:indexPath.row];
     
-    Highlight *highlightAtIndex = [sharedNotebook.array_highlights objectAtIndex:indexPath.row];
-    
-    cell.cellLabel_pageTitle.text = highlightAtIndex.containingPage.title;
-    cell.cellLabel_quotation.text = highlightAtIndex.quote;
-    cell.cellLabel_colorBar.backgroundColor = highlightAtIndex.color;
+    switch (self.segmentedControl_sortingOption.selectedSegmentIndex) {
+        case 0:
+            
+            cell.cellLabel_pageTitle.text = pageHighlightsAtIndex.containingPage.title;
+            cell.cellLabel_quotation.text = pageHighlightsAtIndex.quote;
+            cell.cellLabel_colorBar.backgroundColor = pageHighlightsAtIndex.color;
+            break;
+            
+        case 1:
+
+            cell.cellLabel_pageTitle.text = allHighlightsAtIndex.containingPage.title;
+            cell.cellLabel_quotation.text = allHighlightsAtIndex.quote;
+            cell.cellLabel_colorBar.backgroundColor = allHighlightsAtIndex.color;
+        
+            break;
+            
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -177,5 +258,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
 
 @end
