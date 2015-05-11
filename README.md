@@ -22,6 +22,16 @@ Conventions:
 
           logo_NavigationBar
 
+Submission:
+
+* Someone needs to make sure we are in compliance.
+
+* [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
+
+"To-do" list for first update after initial release:
+
+* Today Extension
+
 
 ```
 #!objective-c

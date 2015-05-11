@@ -21,7 +21,6 @@
     
     int sectionsCount;
     int rowsCount;
-    
 }
 @end
 
@@ -184,7 +183,6 @@
         return rowsCount;
     }    
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HighlightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Highlight"];

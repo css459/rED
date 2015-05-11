@@ -24,10 +24,9 @@
 
 // Supporting Properties
 @property (strong, nonatomic) UISlider *slider_textSize;
-@property (nonatomic, strong) NSString *highlightColor;
-@property (nonatomic, strong) NSString *pageHtml;
-@property (nonatomic, strong) NSString *savedHtml;
-//@property (nonatomic) UISlider *slider_textSize;
+@property (strong, nonatomic) NSString *highlightColor;
+@property (strong, nonatomic) NSString *pageHtml;
+@property (strong, nonatomic) NSString *savedHtml;
 @property (nonatomic) UIBarButtonItem *button_done;
 
 // Button Actions
@@ -40,9 +39,12 @@
 - (IBAction)button_textSizeWasPressed:(id)sender;
 - (IBAction)button_expandedSettingsWasPressed:(id)sender;
 
-// Supporting Actions
+// Supporting Methods
 - (IBAction)button_doneWasPressed:(id)sender;
 - (IBAction)slider_textSizeValueChanged:(id)sender;
+- (void)checkForSavingInconsistencies;
+- (void)resetViewForCurrentPage;
+- (void)loadPage:(Page *)pageToLoad;
 
 // Gesture Handlers
 - (void)gesture_SwipeLeft:(UISwipeGestureRecognizer*)gestureRecognizer;
@@ -58,6 +60,6 @@
 - (void)highlight_yellow;
 - (void)highlight_blue;
 - (void)highlight_orange;
+- (void)highlightIsMadeWithQuote:(NSString *)quote color:(UIColor *)color;
 
 @end
-

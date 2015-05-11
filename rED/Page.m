@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 @implementation Page
-@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title;
+@synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title, isLastLoadedPage;
 
 #pragma mark - Initalizers
 
@@ -33,7 +33,24 @@
     return self;
 }
 
-#pragma mark - Supporting Actions
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        dateSaved = [aDecoder decodeObjectForKey:@"dateSaved"];
+        title = [aDecoder decodeObjectForKey:@"title"];
+        url = [aDecoder decodeObjectForKey:@"url"];
+        htmlContent = [aDecoder decodeObjectForKey:@"htmlContent"];
+        array_highlightsFromPage = [aDecoder decodeObjectForKey:@"array_highlightsFromPage"];
+        indexInArray = [aDecoder decodeIntegerForKey:@"indexInArray"];
+        pageHasEdits = [aDecoder decodeBoolForKey:@"pageHasEdits"];
+        isLastLoadedPage = [aDecoder decodeBoolForKey:@"isLastLoadedPage"];
+        htmlDictionary = [aDecoder decodeObjectForKey:@"htmlDictionary"];
+        articleTitle = [aDecoder decodeObjectForKey:@"articleTitle"];
+    }
+    return self;
+}
+
+#pragma mark - Supporting Methods
 
 - (BOOL)checkForEdits {
     if (array_highlightsFromPage.count > 0) {

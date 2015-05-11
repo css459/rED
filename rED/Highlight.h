@@ -30,13 +30,20 @@
 #import <UIKit/UIKit.h>
 #import "Page.h"
 
-@interface Highlight : NSObject
+@interface Highlight : NSObject <NSCoding>
 
 @property (nonatomic) NSString *quote;
 @property (nonatomic) UIColor *color;
 
 @property (nonatomic) Page *containingPage;
 
+// Initializers
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
+
+// Supporting Methods
 - (NSString *)formatQuotationForInjection;
+
+// Archiving
+- (void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end

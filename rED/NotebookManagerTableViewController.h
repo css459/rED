@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NotesViewController.h"
 
 @interface NotebookManagerTableViewController : UITableViewController
+
+@property (nonatomic) NotesViewController *referenceToNotesViewController;
+
+- (IBAction)button_addWasPressed:(id)sender;
 
 @end

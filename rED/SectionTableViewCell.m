@@ -1,15 +1,15 @@
 //
-//  HighlightTableViewCell.m
+//  SectionTableViewCell.m
 //  rED
 //
-//  Created by Cole Smith on 3/26/15.
+//  Created by Cole Smith on 4/25/15.
 //  Copyright (c) 2015 Shorecrest Preparatory. All rights reserved.
 //
 
-#import "HighlightTableViewCell.h"
+#import "SectionTableViewCell.h"
 
-@implementation HighlightTableViewCell
-@synthesize cellLabel_colorBar, cellLabel_pageTitle, cellLabel_quotation;
+@implementation SectionTableViewCell
+@synthesize label_sectionColor, label_sectionTitle;
 
 - (void)awakeFromNib {}
 

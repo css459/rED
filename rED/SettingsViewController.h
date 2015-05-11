@@ -10,19 +10,19 @@
 
 @interface SettingsViewController : UIViewController
 
+// UI Element Properties
 @property (weak, nonatomic) IBOutlet UILabel *label_TutorialMode;
 @property (weak, nonatomic) IBOutlet UILabel *label_HomeSite;
-
 @property (weak, nonatomic) IBOutlet UITextView *textView_Disclaimer;
 @property (weak, nonatomic) IBOutlet UITextField *textField_HomeSite;
-
 @property (weak, nonatomic) IBOutlet UISwitch *switch_TutorialMode;
 @property (weak, nonatomic) IBOutlet UISwitch *switch_SharingMode;
-
 @property (weak, nonatomic) IBOutlet UIButton *button_Info;
 
+// HTML Properties
 @property (weak, nonatomic) NSString *currentURL;
 
+// Action Handlers
 - (IBAction)textField_HomeSiteDidChange:(id)sender;
 - (IBAction)switch_TutorialModeDidChange:(id)sender;
 - (IBAction)switch_SharingModeDidChange:(id)sender;

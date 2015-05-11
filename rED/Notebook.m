@@ -14,7 +14,7 @@
 
 @interface Notebook ()
 {
-    Settings *usersettings;
+    Settings *sharedSettings;
 }
 @end
 
@@ -28,29 +28,38 @@
     if (self) {
         array_highlights = [[NSMutableArray alloc] init];
         array_sections = [[NSMutableArray alloc] init];
-        usersettings = [Settings sharedSettings];
+        sharedSettings = [Settings sharedSettings];
+        indexOfLastLoadedSection = 0;
         
         Section *rootSection = [[Section alloc] initWithTitle:@"Main Tab"];
         [self saveSection:rootSection];
-        
-        indexOfLastLoadedSection = 0;
-        
     }
     return self;
 }
 
-#pragma mark - Utility Methods
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        array_sections = [aDecoder decodeObjectForKey:@"array_sections"];
+        array_highlights = [aDecoder decodeObjectForKey:@"array_highlights"];
+        indexOfLastLoadedSection = [aDecoder decodeIntegerForKey:@"indexOfLastLoadedSection"];
+    }
+    return self;
+}
+
+#pragma mark - Supporting Methods
 
 - (NSArray *)aggregateHighlightsFromPages {
     NSMutableArray *array_intake;
     
-    if (usersettings.array_pages.count != 0) {
+    if (sharedSettings.array_pages.count != 0) {
         
-        for (Page *p in [usersettings array_pages]) {
+        for (Page *p in [sharedSettings array_pages]) {
             for (Highlight *h in p.array_highlightsFromPage) {
                 [array_intake addObject:h];
             }
         }
+        
         NSLog(@"Aggregated Pages Count: %lu", (unsigned long)array_intake.count);
         return array_intake;
         
@@ -62,8 +71,8 @@
 #pragma mark - Section Data Management
 
 - (BOOL)saveSection:(Section *)section {
-    NSUInteger originalCount;
-    NSUInteger postCount;
+    NSUInteger originalCount = 0;
+    NSUInteger postCount = 0;
     
     originalCount = self.array_sections.count;
     [self.array_sections addObject:section];
@@ -77,17 +86,21 @@
         NSLog(@"SECTION SAVE FAILED - Array count: %lu", (unsigned long)self.array_sections.count);
         return NO;
     }
-
 }
 
 - (BOOL)removeSection:(Section *)section {
-    NSUInteger originalCount;
-    NSUInteger postCount;
+    NSUInteger originalCount = 0;
+    NSUInteger postCount = 0;
     
     if (self.array_sections != 0) {
         originalCount = self.array_sections.count;
         [self.array_sections removeObjectAtIndex:section.indexInArray];
         postCount = self.array_sections.count;
+    }
+    
+    // Refresh the stored indexes for the Section objects
+    for (NSUInteger i = 0; i < array_sections.count; i++) {
+        [[array_sections objectAtIndex:i] setIndexInArray:i];
     }
     
     if (postCount == (originalCount - 1)) {
@@ -105,8 +118,17 @@
     static Notebook *sharedNotebook = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedNotebook = [[self alloc] init];
+        NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+        NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:directoryForArray]) {
+            NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
+            sharedNotebook = [array_archivedSingletons objectAtIndex:1];
+        } else {
+            sharedNotebook = [[self alloc] init];
+        }
     });
+    
     return sharedNotebook;
 }
 

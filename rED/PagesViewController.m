@@ -13,10 +13,12 @@
 #import "SettingsViewController.h"
 #import "AutoScrollViewController.h"
 #import "Settings.h"
+#import "Notebook.h"
 #import "AppDelegate.h"
 #import "Page.h"
 #import "SettingsViewController.h"
 #import "UIMenuItem+CXAImageSupport.h"
+#import "Highlight.h"
 
 @interface PagesViewController ()
 {
@@ -30,8 +32,9 @@
     
     // Utility Objects
     ColorPalette *cp;
-    Settings *userSettings;
-    
+    Settings *sharedSettings;
+    Page *currentPage;
+    Notebook *nb;
     
     // View Controller Instances
     SavedPagesTableViewController *savedPagesVC;
@@ -54,10 +57,6 @@
     UIBarButtonItem *button_expandedSettings;
     
     UIBarButtonItem *flexibleSpace;
-    
-    
-    
-    
 }
 @end
 
@@ -69,17 +68,24 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        
+        // Boolean State Declarations
         savedButtonState = NO;
         nightModeState = NO;
         
+        // Screen Bounds Retrieval
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat sliderWidth = .786 * screenRect.size.width;
         CGRect frame = CGRectMake(0, 0, sliderWidth, 32);
         
+        // Misc Object Initializations
         cp = [[ColorPalette alloc] init];
-        userSettings = [Settings sharedSettings];
+        sharedSettings = [Settings sharedSettings];
+        currentPage = [[Page alloc] initWithURL:url html:htmlContent];
         slider_textSize = [[UISlider alloc] initWithFrame:frame];
+        nb = [[Notebook alloc] init]; // TEMPERARY SOLUTION :D
         
+        // View Controller Initializations
         NSString * storyboardName = @"Main";
         UIStoryboard *storyboard = [UIStoryboard
                                     storyboardWithName:storyboardName
@@ -88,7 +94,7 @@
         savedPagesVC = [storyboard instantiateViewControllerWithIdentifier:@"SavedPagesTableViewController"];
         notesVC = [storyboard instantiateViewControllerWithIdentifier:@"NotesViewController"];
         
-        
+        // Button Initializations
         [slider_textSize addTarget:self
                          action:@selector(slider_textSizeValueChanged:)
                          forControlEvents:UIControlEventValueChanged];
@@ -150,17 +156,56 @@
                          target:nil
                          action:nil];
         
+        // Highlight Initalizations
+        UIImage *redIcon = [UIImage imageNamed: @"highlight_Red"];
+        UIImage *yellowIcon = [UIImage imageNamed: @"highlight_Yellow"];
+        UIImage *blueIcon = [UIImage imageNamed: @"highlight_Blue"];
+        UIImage *orangeIcon = [UIImage imageNamed: @"highlight_Orange"];
+        
+        UIMenuItem *highlightRedItem = [[UIMenuItem alloc]
+                                        initWithTitle:NSLocalizedString(@"Red Highlight", nil)
+                                        action:@selector(highlight_red)];
+        
+        UIMenuItem *highlightYellowItem = [[UIMenuItem alloc]
+                                           initWithTitle:NSLocalizedString(@"Yellow Highlight", nil)
+                                           action:@selector(highlight_yellow)];
+        
+        UIMenuItem *highlightBlueItem = [[UIMenuItem alloc]
+                                         initWithTitle:NSLocalizedString(@"Blue Highlight", nil)
+                                         action:@selector(highlight_blue)];
+        
+        UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc]
+                                           initWithTitle:NSLocalizedString(@"Orange Highlight", nil)
+                                           action:@selector(highlight_orange)];
+        
+        [highlightRedItem cxa_initWithTitle:@"Red Highlight" action:@selector(highlight_red) image:redIcon];
+        [highlightYellowItem cxa_initWithTitle:@"Yellow Highlight" action:@selector(highlight_yellow) image:yellowIcon];
+        [highlightBlueItem cxa_initWithTitle:@"Blue Highlight" action:@selector(highlight_blue) image:blueIcon];
+        [highlightOrangeItem cxa_initWithTitle:@"Orange Highlight" action:@selector(highlight_orange) image:orangeIcon];
+        
+        [UIMenuController sharedMenuController].menuItems = @[highlightRedItem, highlightYellowItem,
+                                                              highlightBlueItem , highlightOrangeItem];
+        
+        // Array Population
         array_defaultToolbarButtons = @[button_savePage, flexibleSpace, button_autoScroll, flexibleSpace,
                                         button_action, flexibleSpace, button_defaultSettings];
 
         array_settingsToolbarButtons = @[button_more, flexibleSpace, button_textSize, flexibleSpace, button_expandedSettings];
-
-        [self getHTML:[userSettings homeSite]];
         
-        // ----------------------DIAGNOSTIC AREA----------------------
-        // Here is a good place to test any methods you've created
-        // -----------------------------------------------------------
-         
+        // Load Home Site
+        Page *lastLoadedPage = [[Page alloc] init];
+        for (Page *p in sharedSettings.array_pages) {
+            if (p.isLastLoadedPage) {
+                lastLoadedPage = p;
+            } else {
+                lastLoadedPage = nil;
+            }
+        }
+        if (lastLoadedPage) {
+            [self loadPage:lastLoadedPage];
+        } else {
+        [self getHTML:[sharedSettings homeSite]];
+        }
     }
     return self;
 }
@@ -200,48 +245,10 @@
     [self.view setUserInteractionEnabled:YES];
     [self.view addSubview:self.slider_textSize];
     [self.slider_textSize setHidden:YES];
-    
-    UIImage *redIcon = [UIImage imageNamed: @"highlight_Red"];
-    UIImage *yellowIcon = [UIImage imageNamed: @"highlight_Yellow"];
-    UIImage *blueIcon = [UIImage imageNamed: @"highlight_Blue"];
-    UIImage *orangeIcon = [UIImage imageNamed: @"highlight_Orange"];
-    
-    UIMenuItem *highlightRedItem = [[UIMenuItem alloc]
-                                    initWithTitle:NSLocalizedString(@"Red Highlight", nil)
-                                    action:@selector(highlight_red)];
-    
-    UIMenuItem *highlightYellowItem = [[UIMenuItem alloc]
-                                       initWithTitle:NSLocalizedString(@"Yellow Highlight", nil)
-                                       action:@selector(highlight_yellow)];
-    
-    UIMenuItem *highlightBlueItem = [[UIMenuItem alloc]
-                                     initWithTitle:NSLocalizedString(@"Blue Highlight", nil)
-                                     action:@selector(highlight_blue)];
-    
-    UIMenuItem *highlightOrangeItem = [[UIMenuItem alloc]
-                                       initWithTitle:NSLocalizedString(@"Orange Highlight", nil)
-                                       action:@selector(highlight_orange)];
-    
-    [highlightRedItem cxa_initWithTitle:@"Red Highlight" action:@selector(highlight_red) image:redIcon];
-    [highlightYellowItem cxa_initWithTitle:@"Yellow Highlight" action:@selector(highlight_yellow) image:yellowIcon];
-    [highlightBlueItem cxa_initWithTitle:@"Blue Highlight" action:@selector(highlight_blue) image:blueIcon];
-    [highlightOrangeItem cxa_initWithTitle:@"Orange Highlight" action:@selector(highlight_orange) image:orangeIcon];
-    
-    [UIMenuController sharedMenuController].menuItems = @[highlightRedItem, highlightYellowItem, highlightBlueItem , highlightOrangeItem];
-    
-    
-    
-    
-//    - (id)cxa_initWithTitle:(NSString *)title action:(SEL)action image:(UIImage *)image;
-//    - (id)cxa_initWithTitle:(NSString *)title action:(SEL)action settings:(CXAMenuItemSettings *)settings;
-//    - (void)cxa_setImage:(UIImage *)image;
-//    - (void)cxa_setSettings:(CXAMenuItemSettings *)settings;
-
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     // Hides the Navigation Bar on appearance
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -250,6 +257,7 @@
     // Adjusts text size in UIWebView
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
+        
         // Convert settings text size to HTML text size
         double size = [settings textSize];
         if (size >= 1 && size <= 10) {
@@ -275,8 +283,11 @@
         }
     
         // Update HTML
-        NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"%f\">%@</font>", size, htmlContent];
-        updateHTML = updatedHTML;
+        if (htmlContent != nil)
+        {
+            NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  htmlContent];
+            updateHTML = updatedHTML;
+        }
         
         // Reload webview html content
         if (updateHTML != nil)
@@ -285,19 +296,20 @@
         }
     }
     
-    // Changes UIWebView to night mode
-    if (htmlContent != nil && [settings nightMode]) {
-        NSString *updatedHTML = [NSString
-                                 stringWithFormat:@"<body bgcolor=\"grey\"><font color=\"white\">%@</font></body>", updateHTML];
-        
-        [[self view]setBackgroundColor:[UIColor grayColor]];
-        
-        [self openHTML:updatedHTML];
-    } else {
-        [[self view]setBackgroundColor:[UIColor whiteColor]];
-    }
+//    // Changes UIWebView to night mode
+//    if (htmlContent != nil && [settings nightMode]) {
+//        NSString *updatedHTML = [NSString
+//                                 stringWithFormat:@"<body bgcolor=\"grey\"><font color=\"white\">%@</font></body>", updateHTML];
+//        
+//        [[self view]setBackgroundColor:[UIColor grayColor]];
+//        
+//        [self openHTML:updatedHTML];
+//    } else {
+//        [[self view]setBackgroundColor:[UIColor whiteColor]];
+//    }
     
     [self.navigationController setToolbarHidden:NO];
+//    [self checkForSavingInconsistencies];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -337,6 +349,7 @@
 // Switch to Saved Pages
 - (void)gesture_SwipeRight:(UISwipeGestureRecognizer*)gestureRecognizer {
     [[self navigationController] pushViewController:savedPagesVC animated:YES];
+    savedPagesVC.referenceToRootViewController = self;
 }
 
 #pragma mark - Button Actions
@@ -345,18 +358,22 @@
 - (IBAction)button_savePageWasPressed:(id)sender {
     savedButtonState = !savedButtonState;
 
-    Page *newPage = [[Page alloc] initWithURL:url html:htmlContent];
-    
+    // Populate the Page object for saving
+    currentPage.url = url;
+    currentPage.htmlContent = htmlContent;
+    currentPage.htmlDictionary = htmlDictionary;
+
     if (url != nil) {
         if (savedButtonState) {
             
             [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
-            [userSettings savePage:newPage];
+            [sharedSettings savePage:currentPage];
+            [savedPagesVC.presentingTableView reloadData];
             
         } else {
             
             // Throw Notification to ask if sure.
-            if ([newPage checkForEdits] == NO) {
+            if ([currentPage checkForEdits] == NO) {
                 UIAlertController *alert = [UIAlertController
                                             alertControllerWithTitle:@"Page Deletion"
                                             message:@"This Page and its Highlights will be removed from Saved Pages. This cannot be reversed."
@@ -368,8 +385,9 @@
                                          handler:^(UIAlertAction *action) {
                                              
                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                             [userSettings removePage:newPage];
                                              [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Unclicked"]];
+                                             [sharedSettings removePage:currentPage];
+                                             [savedPagesVC.presentingTableView reloadData];
                                          
                                          }];
                 
@@ -408,10 +426,10 @@
 // Handle sharing of Page Object and Notebook Object, depending on settings.
 // Should also present an option to view the full page normally.
 - (IBAction)button_actionWasPressed :(id)sender {
-    UIAlertController * view=   [UIAlertController
-                                 alertControllerWithTitle:nil
-                                 message:nil
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController * view = [UIAlertController
+                                alertControllerWithTitle:nil
+                                message:nil
+                                preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *viewFullPage = [UIAlertAction
                                    actionWithTitle:@"View Full Page"
@@ -421,10 +439,8 @@
                                        // Get the Full page for viewing
                                        [view dismissViewControllerAnimated:YES completion:nil];
                                        
-                                       if (url != nil)
-                                       {
+                                       if (url != nil) {
                                            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-
                                        }
                                        isViewingFullPage = YES;
                                    }];
@@ -436,9 +452,10 @@
                                         {
                                            // View the page the rED way
                                             
-                                            if (url != nil)
-                                            {
-                                                [self getHTML:url];
+                                            if (url != nil) {
+#warning Highlights aren't being preserved when we do this
+// I think we need to programatically set any highlighted text when we load the page
+                                                [self openHTML:currentPage.htmlContent];
                                             }
                                             isViewingFullPage = NO;
                                         }];
@@ -449,7 +466,7 @@
                             handler:^(UIAlertAction *action)
                             {
                                 // Present Sharing View
-                                if (userSettings.sharingMode) {
+                                if (sharedSettings.sharingMode) {
                                     
                                     // Share Page AND Notebook
                                     if ([MFMailComposeViewController canSendMail]) {
@@ -503,7 +520,6 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    
     if (error != nil) {
         NSLog(@"%@", [error localizedDescription]);
     }
@@ -513,6 +529,7 @@
 
 // Switch to expanded settings state
 - (IBAction)button_defaultSettingsWasPressed:(id)sender {
+    
     // This button has changed function due to text size deprecation
     //[self.navigationController.toolbar setItems:array_settingsToolbarButtons animated:YES];
     [self button_moreWasPressed:nil];
@@ -532,6 +549,7 @@
 // Toggle Night Mode
 - (IBAction)button_nightModeWasPressed:(id)sender {
     nightModeState = !nightModeState;
+    
     if (nightModeState) {
         [cp changeColorProfile:@"NightMode"];
         [button_nightMode setImage:[UIImage imageNamed:@"settingsToolbar_NightMode_Unclicked"]];
@@ -558,21 +576,21 @@
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
-#pragma mark - Supporting Actions
+#pragma mark - Supporting Methods
 
 // Action for "Done Button" in "textSizeWasPressed" method
 - (IBAction)button_doneWasPressed:(id)sender {
-    [userSettings setTextSize:slider_textSize.value];
+    [sharedSettings setTextSize:slider_textSize.value];
     [self.navigationController.toolbar setItems:array_defaultToolbarButtons animated:YES];
 }
 
 // Action Method for Text Size slider
 - (IBAction)slider_textSizeValueChanged:(id)sender {
-    [userSettings setTextSize:slider_textSize.value];
+    [sharedSettings setTextSize:slider_textSize.value];
     
-    // MAKE THIS INTO A METHOD
     Settings *settings = [Settings sharedSettings];
     if (htmlContent != nil) {
+        
         // Convert settings text size to HTML text size
         double size = [settings textSize];
         if (size >= 1 && size < 11) {
@@ -609,14 +627,51 @@
                 [self openHTML:updateHTML];
             }
             previousSize = size;
-            
         }
     }
+}
+
+// Makes sure that the page is not saved if the page was removed
+- (void)checkForSavingInconsistencies {
+    if (![sharedSettings.array_pages containsObject:currentPage]) {
+        NSLog(@"New Page inconsistent - Not a Saved Page");
+        savedButtonState = NO;
+        button_savePage.image = [UIImage imageNamed:@"toolbar_Save_Unclicked"];
+        [savedPagesVC.presentingTableView reloadData];
+    }
+}
+
+- (void)resetViewForCurrentPage {
+    currentPage = [[Page alloc] initWithURL:url html:htmlContent];
+    savedButtonState = NO;
+    button_savePage.image = [UIImage imageNamed:@"toolbar_Save_Unclicked"];
+}
+
+- (void)loadPage:(Page *)pageToLoad {
+    
+    // Clear the lastLoadedPages
+    for (Page *p in sharedSettings.array_pages) {
+        if (p.isLastLoadedPage) {
+            p.isLastLoadedPage = NO;
+        }
+    }
+    
+    NSLog(@"Page Loaded: %@", pageToLoad.title);
+    url = pageToLoad.url;
+    htmlContent = pageToLoad.htmlContent;
+    searchBar.text = url;
+    currentPage = pageToLoad;
+    pageToLoad.isLastLoadedPage = YES;
+    
+    [self openHTML:htmlContent];
 }
 
 #pragma mark - Highlighting Methods
 
 - (void)highlight_yellow {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
     
     const CGFloat *components = CGColorGetComponents([cp highlight_yellow].CGColor);
     CGFloat r = components[0];
@@ -637,9 +692,22 @@
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
     
+    // if the button_savePage isn't pressed, press it to save the page
+    if (savedButtonState == NO) {
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [sharedSettings savePage:currentPage];
+    }
+    
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_yellow])];
 }
 
 - (void)highlight_red {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
+    
     const CGFloat *components = CGColorGetComponents([cp highlight_red].CGColor);
     CGFloat r = components[0];
     CGFloat g = components[1];
@@ -658,9 +726,23 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+    // If button_savePage isn't pressed, then press it to save the page
+    if (savedButtonState == NO) {
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [sharedSettings savePage:currentPage];
+    }
+    
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_red])];
+    
 }
 
 - (void)highlight_blue {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
     
     const CGFloat *components = CGColorGetComponents([cp highlight_blue].CGColor);
     CGFloat r = components[0];
@@ -680,9 +762,22 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+    // if the button_savePage isn't pressed, press it to save the page
+    if (savedButtonState == NO) {
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [sharedSettings savePage:currentPage];
+    }
+    
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_blue])];
 }
 
 - (void)highlight_orange {
+    
+    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
+    NSString *highlightQuote =  [UIPasteboard generalPasteboard].string;
     
     const CGFloat *components = CGColorGetComponents([cp highlight_orange].CGColor);
     CGFloat r = components[0];
@@ -701,6 +796,17 @@
     [webView stringByEvaluatingJavaScriptFromString:insertSpan];
     
     savedHtml = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('html')[0].innerHTML"];
+    
+    // if the button_savePage isn't pressed, press it to save the page
+    if (savedButtonState == NO) {
+        savedButtonState = YES;
+        [button_savePage setImage:[UIImage imageNamed:@"toolbar_Save_Clicked"]];
+        [sharedSettings savePage:currentPage];
+    }
+
+    // Save the Highlight
+    [self highlightIsMadeWithQuote:highlightQuote color:([cp highlight_orange])];
+    
 }
 
 #pragma mark - HTML Handlers
@@ -722,6 +828,7 @@
 }
 
 - (void)getHTML:(NSString *)URL {
+    
     // URLString is the URL from which the data is downloaded from
     NSString *URLString = [NSString stringWithFormat:@"https://www.readability.com/api/content/v1/parser?url=%@&token=79df0f9969a83dfb8759ba33c4530d6d04ffe87f", URL];
     
@@ -731,7 +838,6 @@
     // Data download block
     [AppDelegate downloadDataFromURL:websiteUrl withCompletionHandler:^(NSData *data) {
         if (data != nil) {
-            
             NSError *error;
             NSMutableDictionary *returnedDict = [NSJSONSerialization
                                                  JSONObjectWithData:data
@@ -739,6 +845,7 @@
                                                  error:&error];
             if (error != nil) {
                 NSLog(@"%@",[error localizedDescription]);
+                
                 UIAlertView *alert = [[UIAlertView alloc]
                                       initWithTitle:@"Uh-Oh!"
                                       message:@"The URL you requested is not compatible with rED :("
@@ -748,7 +855,6 @@
                 [alert show];
                 
             } else {
-                
                 self.htmlDictionary = [returnedDict objectForKey:@"content"];
                 self.url = [returnedDict objectForKey:@"url"];
                 
@@ -757,7 +863,6 @@
                 
                 // HTML is opened in the UIWebView
                 [self openHTML:htmlContent];
-                
             }
         }
     }];
@@ -766,17 +871,38 @@
 #pragma mark - UIWebView Handlers
 
 - (void)openHTML:(NSString *)html {
+    
     // Set appropiate text size
-    NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  html];
-    html = updatedHTML;
+    if (html != nil) {
+        NSString *updatedHTML = [NSString stringWithFormat:@"<font size=\"7\">%@</font>",  html];
+        html = updatedHTML;
+    }
     
     //Loads UIWebView with HTML
-    if (html != nil)
-    {
+    if (html != nil) {
         [webView loadHTMLString:html baseURL:nil];
     }
+    [self resetViewForCurrentPage];
 }
 
+// saves highlights to array_highlightsFromPage (page) and array_highlights (notebook)
+- (void)highlightIsMadeWithQuote:(NSString *)quote color:(UIColor *)color {
+    
+    // Creates the highlight
+    Highlight *newHighlight = [[Highlight alloc] init];
+    [newHighlight setQuote: quote];
+    [newHighlight setColor: color];
+    [newHighlight setContainingPage: currentPage];
+    
+    [currentPage.array_highlightsFromPage addObject:newHighlight]; // Saves the highlight to the page's array of highlights
+    [nb.array_highlights addObject:newHighlight]; // Saves the highlight to the notebook's array of highlights
+        
+    NSLog(@"Page Highlight Count: %lu", [currentPage.array_highlightsFromPage count]);
+    NSLog(@"Notebook Highlight Count: %lu", [nb.array_highlights count]);
+    
+}
+
+// make a method that removes highlights ( both text/color and the saved highlight in the highlight array of pages (make a new array) )
 
 #pragma mark - Navigation
  
@@ -784,5 +910,13 @@
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+ // Give yourself a high five because you're awesome :)
  }
+
 @end
+
+// Saved Sites Bug Notes
+// If you don't select any, one is already highlighted by default but when you swipe back it goes back to the page you were just on
+// No matter which you select, it loads the most recently added page
+
+

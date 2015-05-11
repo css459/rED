@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView_pagePreview;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+//-(void)autoScrollInvocation;
+
 @end

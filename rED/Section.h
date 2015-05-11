@@ -39,7 +39,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface Section : NSObject
+@interface Section : NSObject <NSCoding>
 
 // Section Parameters
 @property (nonatomic) UIColor *color;
@@ -51,8 +51,13 @@
 
 // Initializers
 - (instancetype)initWithTitle:(NSString *)ttl;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
-// Utility Methods
+// Supporting Methods
 - (NSString *)formatDate:(NSDate *)date;
+- (void)cycleColors;
+
+// Archiving
+- (void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end

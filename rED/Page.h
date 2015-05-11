@@ -38,7 +38,7 @@
 #import <Foundation/Foundation.h>
 #import "Notebook.h"
 
-@interface Page : NSObject
+@interface Page : NSObject <NSCoding>
 
 @property (nonatomic) NSDate *dateSaved;
 @property (nonatomic) NSString *title;
@@ -47,13 +47,15 @@
 @property (nonatomic) NSMutableArray *array_highlightsFromPage;
 @property (nonatomic) NSUInteger indexInArray;
 @property (nonatomic) BOOL pageHasEdits;
+@property (nonatomic) BOOL isLastLoadedPage;
 @property (weak, nonatomic) NSDictionary *htmlDictionary;
 @property (strong, nonatomic) NSString *articleTitle;
 
 // Initializers
 - (instancetype)initWithURL:(NSString *)urlAddress html:(NSString *)HTML;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
-// Supporting Actions
+// Supporting Methods
 - (BOOL)checkForEdits;
 - (void)formatTitle;
 - (NSString *)formatDate;
