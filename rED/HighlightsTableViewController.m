@@ -19,7 +19,6 @@
     
     int sectionsCount;
     int rowsCount;
-    
 }
 @end
 

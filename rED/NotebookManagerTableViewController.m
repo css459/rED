@@ -22,7 +22,6 @@
     
     AddSectionViewController *addSectionVC;
 }
-
 @end
 
 @implementation NotebookManagerTableViewController

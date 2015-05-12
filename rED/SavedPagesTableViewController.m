@@ -68,7 +68,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
-    NSLog(@"Expected cell count from pages array: %lu", (unsigned long)sharedSettings.array_pages.count);
 }
 
 - (void)didReceiveMemoryWarning {

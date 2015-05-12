@@ -202,7 +202,7 @@
         if (lastLoadedPage) {
             [self loadPage:lastLoadedPage];
         } else {
-        [self getHTML:[sharedSettings homeSite]];
+            [self getHTML:[sharedSettings homeSite]];
         }
     }
     return self;

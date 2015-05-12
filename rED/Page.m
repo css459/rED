@@ -29,7 +29,6 @@
         pageHasEdits = NO;
         isLastLoadedPage = NO;
         
-        NSLog(@"INITWITHURLRECEIVED: %@", url);
         [self formatTitle];
     }
     return self;
@@ -105,11 +104,12 @@
     
 }
 
-- (void)modifyArticleTitle:(NSString *)ttl
-{
+- (void)modifyArticleTitle:(NSString *)ttl {
     articleTitle = ttl;
     title = ttl;
-    NSLog(@"Article title: %@", articleTitle);
+    if (articleTitle != NULL) {
+        NSLog(@"Article title: %@", articleTitle);
+    }
 }
 
 - (NSString *)formatDate {

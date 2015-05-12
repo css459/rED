@@ -37,7 +37,7 @@
                                           
                                           // If it's other than 200, then show it on the console.
                                           if (HTTPStatusCode != 200) {
-                                              NSLog(@"HTTP status code = %ld", (long)HTTPStatusCode);
+//                                              NSLog(@"HTTP status code = %ld", (long)HTTPStatusCode);
                                           }
                                           
                                           // Call the completion handler with the returned data on the main thread.
@@ -66,10 +66,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSDictionary *website = [launchOptions objectForKey:@"UIApplicationLaunchOptionsURLKey"];
-    NSString *returnedWebsite = [website description];
-    NSLog(@"****** %@", returnedWebsite);
-    
     return YES;
 }
 
