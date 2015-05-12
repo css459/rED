@@ -9,7 +9,6 @@
 #import "ThankYouViewController.h"
 
 @interface ThankYouViewController ()
-
 @end
 
 @implementation ThankYouViewController

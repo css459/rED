@@ -74,7 +74,7 @@
 
 - (IBAction)button_saveNewSectionWasPressed:(id)sender {
     [sharedNotebook saveSection:newSection];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*
