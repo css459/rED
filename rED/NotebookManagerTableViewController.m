@@ -26,7 +26,7 @@
 @end
 
 @implementation NotebookManagerTableViewController
-@synthesize referenceToNotesViewController;
+@synthesize referenceToNotesViewController, presentingTableView;
 
 #pragma mark - Initializers
 
@@ -66,6 +66,10 @@
                                    target:self
                                    action:@selector(button_addWasPressed:)];
     self.navigationItem.rightBarButtonItem = button_add;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [presentingTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,7 +113,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [referenceToNotesViewController loadSection:sectionAtIndexPath.indexInArray];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

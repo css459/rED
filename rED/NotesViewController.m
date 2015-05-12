@@ -142,6 +142,7 @@
 
 #pragma mark - Supporting Actions
 
+// Used for sharing the current section
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     
     if (error != nil) {
@@ -153,6 +154,7 @@
 
 #pragma mark - Section Handlers
 
+// Loads a section at the given index for the section in array_sections
 - (void)loadSection:(NSUInteger)sectionAtIndex {
     NSLog(@"Accessing Section at index: %lu", (unsigned long)sectionAtIndex);
     
@@ -168,6 +170,7 @@
     [self viewWillAppear:YES];
 }
 
+// Parallels the mutated loadedSection to its older version in array_sections
 - (void)saveSectionChanges {
     NSUInteger indexOfSection = loadedSection.indexInArray;
     NSLog(@"Saving Section: %@ at index: %lu", loadedSection.title, (unsigned long)indexOfSection);

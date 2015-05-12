@@ -29,6 +29,7 @@
     if (self) {
         cp = [[ColorPalette alloc] init];
         sharedNotebook = [Notebook sharedNotebook];
+        sectionForEdit = [[Section alloc] init];
         
         sectionForEdit = [sharedNotebook.array_sections objectAtIndex:indexOfSectionForEdit];
     }
@@ -75,12 +76,12 @@
 
 - (IBAction)button_changeColorWasPressed:(id)sender {
     [sectionForEdit cycleColors];
-    button_changeColor.tintColor = sectionForEdit.color;
+    button_changeColor.backgroundColor = sectionForEdit.color;
 }
 
 - (IBAction)button_saveSectionEditsWasPressed:(id)sender {
     [self saveSectionChanges];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Section Handlers
@@ -88,7 +89,7 @@
 - (void)saveSectionChanges {
     NSLog(@"Saving Section: %@ at index: %lu", sectionForEdit.title, (unsigned long)indexOfSectionForEdit);
     
-    sectionForEdit.textContent = textField_sectionName.text;
+    sectionForEdit.title = textField_sectionName.text;
     sectionForEdit.color = button_changeColor.backgroundColor;
     
     [sharedNotebook.array_sections replaceObjectAtIndex:indexOfSectionForEdit withObject:sectionForEdit];

@@ -12,6 +12,7 @@
 @interface NotebookManagerTableViewController : UITableViewController
 
 @property (nonatomic) NotesViewController *referenceToNotesViewController;
+@property (strong, nonatomic) IBOutlet UITableView *presentingTableView;
 
 - (IBAction)button_addWasPressed:(id)sender;
 
