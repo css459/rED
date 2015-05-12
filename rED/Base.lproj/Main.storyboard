@@ -1060,58 +1060,78 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Shorecrest Preparatory App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjm-7U-wSf">
                                 <rect key="frame" x="238" y="573" width="124" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="W8s-UY-xqf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_Shorecrest" translatesAutoresizingMaskIntoConstraints="NO" id="vyw-a2-2ai">
-                                <rect key="frame" x="239" y="465" width="121" height="100"/>
+                                <rect key="frame" x="240" y="465" width="121" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="121" id="cF5-v6-GBa"/>
-                                    <constraint firstAttribute="height" constant="100" id="gyS-Ta-Lbl"/>
+                                    <constraint firstAttribute="width" constant="121" id="IP9-Yy-LwR"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt3-VR-9lx">
-                                <rect key="frame" x="16" y="51" width="143" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt3-VR-9lx">
+                                <rect key="frame" x="236" y="93" width="129" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="RX5-rC-gh4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Eric Hunt for Coding Guidance and Source Control" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-Sd-3D5">
-                                <rect key="frame" x="16" y="96" width="309" height="19"/>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Cole Smith for UI and Storyboard Design" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylj-77-0eN">
-                                <rect key="frame" x="16" y="123" width="251" height="19"/>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To John Rightmyer for Object Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaI-u8-MSx">
-                                <rect key="frame" x="16" y="150" width="243" height="19"/>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Matt Kongsiri for HTML Parsing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsF-cl-HMI">
-                                <rect key="frame" x="16" y="177" width="203" height="19"/>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To KJ for Backend Web Management" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="320-dL-OCJ">
-                                <rect key="frame" x="16" y="204" width="210" height="19"/>
-                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And also to the Shorecrest Middle Division for providing the vital evocation for this idea." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-jZ-u8Y">
-                                <rect key="frame" x="16" y="251" width="332" height="126"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eric Hunt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngM-Sd-3D5">
+                                <rect key="frame" x="272" y="138" width="57" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="332" id="64O-tV-bTH"/>
-                                    <constraint firstAttribute="height" constant="126" id="rOm-d3-XGD"/>
+                                    <constraint firstAttribute="height" constant="19" id="2Nm-8O-mOh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cole Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylj-77-0eN">
+                                <rect key="frame" x="269" y="165" width="63" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="IDf-q8-Wbz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Rightmyer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaI-u8-MSx">
+                                <rect key="frame" x="256" y="192" width="89" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="l9Z-E8-PpU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matt Kongsiri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsF-cl-HMI">
+                                <rect key="frame" x="261" y="219" width="79" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="5fh-ou-ckH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KJ Nekvasil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="320-dL-OCJ">
+                                <rect key="frame" x="267" y="246" width="66" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="uSp-sa-dvx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="And Thank you to Readability for HTML Parsing" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZJ-jZ-u8Y">
+                                <rect key="frame" x="134" y="355" width="332" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="e4k-Ld-Gdl"/>
+                                    <constraint firstAttribute="width" constant="332" id="qOL-HQ-HW5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1120,30 +1140,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eaI-u8-MSx" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="0R6-Rq-vcw"/>
-                            <constraint firstItem="OZJ-jZ-u8Y" firstAttribute="top" secondItem="320-dL-OCJ" secondAttribute="bottom" constant="28" id="0qI-Lv-hvJ"/>
-                            <constraint firstItem="OZJ-jZ-u8Y" firstAttribute="leading" secondItem="320-dL-OCJ" secondAttribute="leading" id="3O2-cK-1u3"/>
-                            <constraint firstItem="ngM-Sd-3D5" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="3hv-eU-4RI"/>
-                            <constraint firstItem="Ylj-77-0eN" firstAttribute="top" secondItem="ngM-Sd-3D5" secondAttribute="bottom" constant="8" id="6i1-24-s51"/>
-                            <constraint firstItem="Rjm-7U-wSf" firstAttribute="top" secondItem="vyw-a2-2ai" secondAttribute="bottom" constant="8" symbolic="YES" id="AKV-ak-1oh"/>
-                            <constraint firstItem="vyw-a2-2ai" firstAttribute="centerX" secondItem="Rjm-7U-wSf" secondAttribute="centerX" id="HAA-he-eKz"/>
-                            <constraint firstItem="Tt3-VR-9lx" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="HEh-yq-F23"/>
-                            <constraint firstItem="Ylj-77-0eN" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="Lc1-Qr-gCD"/>
-                            <constraint firstAttribute="centerX" secondItem="Rjm-7U-wSf" secondAttribute="centerX" id="PVh-6n-700"/>
-                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="eaI-u8-MSx" secondAttribute="leading" id="Pwb-gP-RvW"/>
-                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="Ylj-77-0eN" secondAttribute="leading" id="Reg-Sa-CpO"/>
-                            <constraint firstItem="eaI-u8-MSx" firstAttribute="top" secondItem="Ylj-77-0eN" secondAttribute="bottom" constant="8" id="SWm-lj-7Ce"/>
-                            <constraint firstItem="BsF-cl-HMI" firstAttribute="top" secondItem="eaI-u8-MSx" secondAttribute="bottom" constant="8" id="Uzc-xp-LmQ"/>
-                            <constraint firstItem="320-dL-OCJ" firstAttribute="top" secondItem="BsF-cl-HMI" secondAttribute="bottom" constant="8" id="afk-Oc-ZXC"/>
-                            <constraint firstAttribute="bottom" secondItem="vyw-a2-2ai" secondAttribute="bottom" constant="35" id="ctU-GU-Psd"/>
-                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="320-dL-OCJ" secondAttribute="leading" id="dty-nL-plI"/>
-                            <constraint firstItem="Tt3-VR-9lx" firstAttribute="top" secondItem="c4T-an-jaB" secondAttribute="bottom" constant="31" id="jx4-hB-IBP"/>
-                            <constraint firstItem="ngM-Sd-3D5" firstAttribute="top" secondItem="Tt3-VR-9lx" secondAttribute="bottom" constant="8" id="q1c-fh-WIW"/>
-                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="Tt3-VR-9lx" secondAttribute="leading" id="qEu-A5-dHS"/>
-                            <constraint firstItem="320-dL-OCJ" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="rJo-7X-zL7"/>
-                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="Ocv-8h-0xH" secondAttribute="leadingMargin" id="tPR-WS-oY3"/>
-                            <constraint firstItem="BsF-cl-HMI" firstAttribute="leading" secondItem="ngM-Sd-3D5" secondAttribute="leading" id="wKk-S5-a4Y"/>
-                            <constraint firstItem="RT8-FM-NtA" firstAttribute="top" secondItem="Rjm-7U-wSf" secondAttribute="bottom" constant="8" id="zwQ-Sb-Zno"/>
+                            <constraint firstItem="ngM-Sd-3D5" firstAttribute="centerX" secondItem="Tt3-VR-9lx" secondAttribute="centerX" id="3L8-Hx-S2t"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="top" secondItem="eaI-u8-MSx" secondAttribute="bottom" constant="8" symbolic="YES" id="3Ur-ov-pOY"/>
+                            <constraint firstItem="eaI-u8-MSx" firstAttribute="top" secondItem="Ylj-77-0eN" secondAttribute="bottom" constant="8" symbolic="YES" id="Bbu-4U-KIw"/>
+                            <constraint firstItem="OZJ-jZ-u8Y" firstAttribute="top" secondItem="320-dL-OCJ" secondAttribute="bottom" constant="90" id="C1Y-Jq-w3r"/>
+                            <constraint firstItem="Tt3-VR-9lx" firstAttribute="top" secondItem="c4T-an-jaB" secondAttribute="bottom" constant="73" id="INv-Gc-pFr"/>
+                            <constraint firstItem="OZJ-jZ-u8Y" firstAttribute="centerX" secondItem="Ocv-8h-0xH" secondAttribute="centerX" id="J0j-Ib-giU"/>
+                            <constraint firstItem="Ylj-77-0eN" firstAttribute="top" secondItem="ngM-Sd-3D5" secondAttribute="bottom" constant="8" symbolic="YES" id="OT3-Xv-UUU"/>
+                            <constraint firstItem="eaI-u8-MSx" firstAttribute="centerX" secondItem="BsF-cl-HMI" secondAttribute="centerX" id="Pme-5A-ACy"/>
+                            <constraint firstItem="320-dL-OCJ" firstAttribute="centerX" secondItem="OZJ-jZ-u8Y" secondAttribute="centerX" id="UHv-oY-joD"/>
+                            <constraint firstItem="vyw-a2-2ai" firstAttribute="top" secondItem="OZJ-jZ-u8Y" secondAttribute="bottom" constant="67" id="VgK-Lw-lFd"/>
+                            <constraint firstItem="Ylj-77-0eN" firstAttribute="centerX" secondItem="eaI-u8-MSx" secondAttribute="centerX" id="WYr-Qy-8TO"/>
+                            <constraint firstItem="ngM-Sd-3D5" firstAttribute="centerX" secondItem="Ylj-77-0eN" secondAttribute="centerX" id="deV-TQ-KlT"/>
+                            <constraint firstItem="BsF-cl-HMI" firstAttribute="centerX" secondItem="320-dL-OCJ" secondAttribute="centerX" id="g7W-6Q-sXI"/>
+                            <constraint firstItem="Rjm-7U-wSf" firstAttribute="top" secondItem="vyw-a2-2ai" secondAttribute="bottom" constant="8" symbolic="YES" id="i5C-ha-k7X"/>
+                            <constraint firstItem="vyw-a2-2ai" firstAttribute="centerX" secondItem="Rjm-7U-wSf" secondAttribute="centerX" id="irJ-fI-S1D"/>
+                            <constraint firstItem="ngM-Sd-3D5" firstAttribute="top" secondItem="Tt3-VR-9lx" secondAttribute="bottom" constant="8" symbolic="YES" id="lbs-D1-Mdk"/>
+                            <constraint firstItem="RT8-FM-NtA" firstAttribute="top" secondItem="Rjm-7U-wSf" secondAttribute="bottom" constant="8" symbolic="YES" id="rLM-dz-D4f"/>
+                            <constraint firstItem="OZJ-jZ-u8Y" firstAttribute="centerX" secondItem="vyw-a2-2ai" secondAttribute="centerX" id="whN-Z2-kML"/>
+                            <constraint firstItem="320-dL-OCJ" firstAttribute="top" secondItem="BsF-cl-HMI" secondAttribute="bottom" constant="8" symbolic="YES" id="za6-44-dRd"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -31,7 +31,7 @@
     [self.navigationController setNavigationBarHidden:NO];
     UILabel *naviTitle = [[UILabel alloc] initWithFrame:CGRectZero];
     UIFont *titleFont = [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0];
-    [naviTitle setText:@"Developers"];
+    [naviTitle setText:@"Credits"];
     [naviTitle setFont:titleFont];
     [naviTitle setTextColor:[UIColor darkTextColor]];
     [naviTitle sizeToFit];
