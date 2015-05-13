@@ -14,6 +14,7 @@
 {
     ColorPalette *cp;
     int arrayIndexForColorCycle;
+    NSString *filePath;
 }
 @end
 
@@ -86,6 +87,7 @@
     [aCoder encodeObject:fileName forKey:@"fileName"];
 }
 
+// Generates a copied file and path for object
 - (NSString *)generateFileForSharing {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePath = [archiveDirectory objectAtIndex:0]; // What would this be?
@@ -93,11 +95,27 @@
     NSString *directoryOfSavedSection = [archivePath stringByAppendingPathComponent:fileID];
     
     fileName = fileID;
+    filePath = directoryOfSavedSection;
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedSection];
     NSLog(@"Section file creation completed with status: %d", success);
     
     return directoryOfSavedSection;
+}
+
+// Deletes the shared file so they do not pile up
+- (void)endSharing {
+    if ((filePath != nil) && (fileName != nil)) {
+        NSFileManager *manager = [NSFileManager defaultManager];
+        NSError *error = nil;
+        
+        NSLog(@"Cleaning sent file at path: %@", filePath);
+        
+        [manager removeItemAtPath:filePath error:&error];
+        
+        fileName = nil;
+        filePath = nil;
+    }
 }
 
 @end

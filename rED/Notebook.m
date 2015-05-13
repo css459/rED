@@ -15,6 +15,7 @@
 @interface Notebook ()
 {
     Settings *sharedSettings;
+    NSString *filePath;
 }
 @end
 
@@ -141,6 +142,7 @@
     [aCoder encodeInteger:indexOfLastLoadedSection forKey:@"indexOfLastLoadedSection"];
 }
 
+// Generates a copied file and path for object
 - (NSString *)generateFileForSharing {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePath = [archiveDirectory objectAtIndex:0]; // What would this be?
@@ -148,11 +150,27 @@
     NSString *directoryOfSavedNotebook = [archivePath stringByAppendingPathComponent:fileID];
     
     fileName = fileID;
+    filePath = directoryOfSavedNotebook;
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedNotebook];
     NSLog(@"Notebook file creation completed with status: %d", success);
 
     return directoryOfSavedNotebook;
+}
+
+// Deletes the shared file so they do not pile up
+- (void)endSharing {
+    if ((filePath != nil) && (fileName != nil)) {
+        NSFileManager *manager = [NSFileManager defaultManager];
+        NSError *error = nil;
+
+        NSLog(@"Cleaning sent file at path: %@", filePath);
+
+        [manager removeItemAtPath:filePath error:&error];
+
+        fileName = nil;
+        filePath = nil;
+    }
 }
 
 - (void)importRecievedSectionToArray {}

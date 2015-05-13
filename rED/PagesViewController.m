@@ -451,12 +451,6 @@
                                             isViewingFullPage = NO;
                                         }];
     
-    // ------------------------------------------------------------------------
-    
-    // Please Optimize the code using this information
-    // Any unsued code should be removed
-    // You can use this for both sharing modes since I moved it up here
-    
     // This will get the file name. ie: "page.redpage"
     NSString *pageFile = currentPage.fileName;
     NSString *notebookFile = sharedNotebook.fileName;
@@ -469,39 +463,35 @@
     NSString *emailTitle = @"Your Page and Notebook from rED";
     NSString *messageBody = @"Open this file in rED to view its contents.";
     
-    // ------------------------------------------------------------------------
-    
     UIAlertAction *share = [UIAlertAction
                             actionWithTitle:@"Share"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action)
                             {
                                 // Present Sharing View
+                                // If YES, share both Page and Notebook
                                 if (sharedSettings.sharingMode) {
                                     
-                                    // Share Page AND Notebook
-                                    {
-                                        MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
-                                        mc.mailComposeDelegate = self;
-                                        [mc setSubject:emailTitle];
-                                        [mc setMessageBody:messageBody isHTML:NO];
-                                        
-                                        // Create NSData
-                                        NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
-                                        
-                                        NSData *notebookFileData = [NSData dataWithContentsOfFile:notebookFilePath];
-                                        
-                                        // Define the MIME types
-                                        NSString *pageMimeType = @"application/redpage";
-                                        NSString *notebookMimeType = @"application/rednotebook";
-                                        
-                                        // Add attachments
-                                        [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFile];
-                                        [mc addAttachmentData:notebookFileData mimeType:notebookMimeType fileName:notebookFile];
-                                        
-                                        // Present mail view controller on screen
-                                        [self presentViewController:mc animated:YES completion:NULL];
-                                    }
+                                    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+                                    mc.mailComposeDelegate = self;
+                                    [mc setSubject:emailTitle];
+                                    [mc setMessageBody:messageBody isHTML:NO];
+                                    
+                                    // Create NSData
+                                    NSData *pageFileData = [NSData dataWithContentsOfFile:pageFilePath];
+                                    
+                                    NSData *notebookFileData = [NSData dataWithContentsOfFile:notebookFilePath];
+                                    
+                                    // Define the MIME types
+                                    NSString *pageMimeType = @"application/redpage";
+                                    NSString *notebookMimeType = @"application/rednotebook";
+                                    
+                                    // Add attachments
+                                    [mc addAttachmentData:pageFileData mimeType:pageMimeType fileName:pageFile];
+                                    [mc addAttachmentData:notebookFileData mimeType:notebookMimeType fileName:notebookFile];
+                                    
+                                    // Present mail view controller on screen
+                                    [self presentViewController:mc animated:YES completion:NULL];
                                     
                                 } else {
                                     
@@ -523,6 +513,7 @@
                                     // Present mail view controller on screen
                                     [self presentViewController:mc animated:YES completion:NULL];
                                 }
+                                
                                 [view dismissViewControllerAnimated:YES completion:nil];
                             }];
     
@@ -545,15 +536,6 @@
     }
     
     [self presentViewController:view animated:YES completion:nil];
-
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    if (error != nil) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-    
-    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Switch to expanded settings state
@@ -662,7 +644,6 @@
 
 // Makes sure that the page is not saved if the page was removed
 - (void)checkForSavingInconsistencies {
-    Settings *sharedSettings = [Settings sharedSettings];
     if (![sharedSettings.array_pages containsObject:currentPage]) {
         NSLog(@"New Page inconsistent - Not a Saved Page");
         savedButtonState = NO;
@@ -685,6 +666,22 @@
     currentPage = pageToLoad;
     
     [self openHTML:htmlContent];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    
+    // Throw error if needed
+    if (error != nil) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    
+    // Remove the sent file(s) from the disk
+    if (result == MFMailComposeResultSent) {
+        [currentPage endSharing];
+//        [sharedNotebook endSharing];
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Highlighting Methods

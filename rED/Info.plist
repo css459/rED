@@ -124,6 +124,10 @@
 			<string>rED Page</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.shorecrest.customUTIHandler.redpage</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>rED Logo</string>
+			<key>UTTypeSize64IconFile</key>
+			<string>rED Logo</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -141,6 +145,10 @@
 			<string>rED Notebook</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.shorecrest.customUTIHandler.rednotebook</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>rED Logo</string>
+			<key>UTTypeSize64IconFile</key>
+			<string>rED Logo</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -158,6 +166,10 @@
 			<string>rED Section</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.shorecrest.customUTIHandler.redsection</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>rED Logo 2</string>
+			<key>UTTypeSize64IconFile</key>
+			<string>rED Logo</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

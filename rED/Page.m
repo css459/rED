@@ -11,6 +11,12 @@
 #import "Settings.h"
 #import "AppDelegate.h"
 
+@interface Page ()
+{
+    NSString *filePath;
+}
+@end
+
 @implementation Page
 @synthesize url, htmlContent, dateSaved, array_highlightsFromPage, pageHasEdits, indexInArray, htmlDictionary, articleTitle, title, fileName;
 
@@ -133,18 +139,35 @@
     [aCoder encodeObject:articleTitle forKey:@"articleTitle"];
 }
 
+// Generates a copied file and path for object
 - (NSString *)generateFileForSharing {
     NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *archivePath = [archiveDirectory objectAtIndex:0]; // What would this be?
     NSString *fileID = [NSString stringWithFormat:@"%@.redpage", self.title];
     NSString *directoryOfSavedPage = [archivePath stringByAppendingPathComponent:fileID];
     
-    fileID = fileName;
+    fileName = fileID;
+    filePath = directoryOfSavedPage;
     
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedPage];
     NSLog(@"Page file creation completed with status: %d", success);
     
     return directoryOfSavedPage;
+}
+
+// Deletes the shared file so they do not pile up
+- (void)endSharing {
+    if ((filePath != nil) && (fileName != nil)) {
+        NSFileManager *manager = [NSFileManager defaultManager];
+        NSError *error = nil;
+        
+        NSLog(@"Cleaning sent file at path: %@", filePath);
+        
+        [manager removeItemAtPath:filePath error:&error];
+        
+        fileName = nil;
+        filePath = nil;
+    }
 }
 
 @end

@@ -34,5 +34,6 @@
 // Archiving
 - (void)encodeWithCoder:(NSCoder *)aCoder;
 - (NSString *)generateFileForSharing;
+- (void)endSharing;
 
 @end

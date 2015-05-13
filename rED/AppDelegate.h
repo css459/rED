@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-+(void)downloadDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *))completionHandler;
++ (void)downloadDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *))completionHandler;
 
 @end
 
