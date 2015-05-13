@@ -451,23 +451,23 @@
                                             isViewingFullPage = NO;
                                         }];
     
-    // This will get the file name. ie: "page.redpage"
-    NSString *pageFile = currentPage.fileName;
-    NSString *notebookFile = sharedNotebook.fileName;
-    
-    // This will get the file path. ie: /Users/someone/docs/page.redpage
-    NSString *pageFilePath = [currentPage generateFileForSharing];
-    NSString *notebookFilePath = [sharedNotebook generateFileForSharing];
-    
-    // What the email should say
-    NSString *emailTitle = @"Your Page and Notebook from rED";
-    NSString *messageBody = @"Open this file in rED to view its contents.";
-    
     UIAlertAction *share = [UIAlertAction
                             actionWithTitle:@"Share"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction *action)
                             {
+                                // This will get the file name. ie: "page.redpage"
+                                NSString *pageFile = currentPage.fileName;
+                                NSString *notebookFile = sharedNotebook.fileName;
+                                
+                                // This will get the file path. ie: /Users/someone/docs/page.redpage
+                                NSString *pageFilePath = [currentPage generateFileForSharing];
+                                NSString *notebookFilePath = [sharedNotebook generateFileForSharing];
+                                
+                                // What the email should say
+                                NSString *emailTitle = @"Your Page and Notebook from rED";
+                                NSString *messageBody = @"Open this file in rED to view its contents.";
+                                
                                 // Present Sharing View
                                 // If YES, share both Page and Notebook
                                 if (sharedSettings.sharingMode) {
@@ -676,9 +676,9 @@
     }
     
     // Remove the sent file(s) from the disk
-    if (result == MFMailComposeResultSent) {
+    if (result == MFMailComposeResultCancelled || result == MFMailComposeResultSaved) {
         [currentPage endSharing];
-//        [sharedNotebook endSharing];
+        [sharedNotebook endSharing];
     }
     
     [controller dismissViewControllerAnimated:YES completion:nil];

@@ -149,6 +149,8 @@
     fileName = fileID;
     filePath = directoryOfSavedPage;
     
+    NSLog(@"File Name: %@", fileName);
+    
     BOOL success = [NSKeyedArchiver archiveRootObject:self toFile:directoryOfSavedPage];
     NSLog(@"Page file creation completed with status: %d", success);
     

@@ -43,7 +43,6 @@
 # pragma mark - Page Data Management
 
 - (BOOL)savePage:(Page *)page {
-    NSLog(@"bip");
     NSUInteger originalCount = 0;
     NSUInteger postCount = 0;
     

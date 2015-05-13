@@ -121,17 +121,35 @@
 
 // Open up mail view controller with text
 - (IBAction)button_ShareWasPressed:(id)sender {
-    NSString *emailText = [textView text];
     
-    if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-        mailViewController.mailComposeDelegate = self;
-        
-        [mailViewController setSubject:@"My Note"];
-        [mailViewController setMessageBody:emailText isHTML:NO];
-        
-        [self presentViewController:mailViewController animated:YES completion:nil];
-    }
+    // This will get the file name. ie: "page.redpage"
+    NSString *sectionFile = loadedSection.fileName;
+    
+    // This will get the file path. ie: /Users/someone/docs/page.redpage
+    NSString *sectionFilePath = [loadedSection generateFileForSharing];
+    
+    // What the email should say
+    NSString *emailTitle = @"Your Page and Notebook from rED";
+    NSString *messageBody = @"Open this file in rED to view its contents.";
+    
+    // Share Page ONLY
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    
+    // Create NSData
+    NSData *sectionFileData = [NSData dataWithContentsOfFile:sectionFilePath];
+    
+    // Define the MIME type
+    NSString *sectionMinmeType = @"application/redsection";
+    
+    // Add attachment
+    [mc addAttachmentData:sectionFileData mimeType:sectionMinmeType fileName:sectionFile];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+
 }
 
 // Sections View Controller called via Storyboard segue
@@ -146,6 +164,9 @@
     
     if (error != nil) {
         NSLog(@"%@", [error localizedDescription]);
+    }
+    if (result == MFMailComposeResultCancelled || result == MFMailComposeResultSent) {
+        [loadedSection endSharing];
     }
     
     [controller dismissViewControllerAnimated:YES completion:nil];
