@@ -26,8 +26,10 @@
         url = urlAddress;
         htmlContent = HTML;
         dateSaved = [NSDate date];
-        array_highlightsFromPage = [[NSMutableArray alloc]init];
-        NSLog(@"INITWITHURLRECEIVED: %@", url);
+        array_highlightsFromPage = [[NSMutableArray alloc] init];
+        pageHasEdits = NO;
+        isLastLoadedPage = NO;
+        
         [self formatTitle];
     }
     return self;
@@ -123,7 +125,16 @@
     static Page *sharedPage = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedPage = [[self alloc]init]; });
+        NSArray *archiveDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *archivePathForArray = [archiveDirectory objectAtIndex:0];
+        NSString *directoryForArray = [archivePathForArray stringByAppendingPathComponent:@"UserDataBundle.archive"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:directoryForArray]) {
+            NSArray *array_archivedSingletons = [NSKeyedUnarchiver unarchiveObjectWithFile:directoryForArray];
+            sharedPage = [array_archivedSingletons objectAtIndex:1];
+        } else {
+            sharedPage = [[self alloc] init];
+        }
+    });
     
     return sharedPage;
 }

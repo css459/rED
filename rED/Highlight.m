@@ -66,4 +66,11 @@
     [aCoder encodeObject:color forKey:@"color"];
     [aCoder encodeObject:containingPage forKey:@"containingPage"];
 }
+
+-(NSString *)description
+{
+    NSString *descriptionString = @"";
+    descriptionString = [NSString stringWithFormat:@"%@\n%@\n", quote, containingPage.title];
+    return descriptionString;
+}
 @end

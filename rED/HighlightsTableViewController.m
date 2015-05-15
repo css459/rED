@@ -36,29 +36,32 @@
         sharedNotebook = [Notebook sharedNotebook];
         
         // Model Highlight
+        
+        Page *newPage = [[Page alloc] init];
         Highlight *model = [[Highlight alloc] init];
-        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.quote = @"Yellow";
+        model.containingPage = newPage;
         model.containingPage.title = @"New York Times";
         model.color = [cp highlight_yellow];
         
         [sharedNotebook.array_highlights addObject:model];
-        
+        newPage = [[Page alloc] init];
         model = [[Highlight alloc]init];
-        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.quote = @"Blue";
         model.containingPage.title = @"Chicago Tribune";
         model.color = [cp highlight_blue];
         
         [sharedNotebook.array_highlights addObject:model];
-        
+        newPage = [[Page alloc] init];
         model = [[Highlight alloc]init];
-        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
-        model.containingPage.title = @"Yo Mama";
+        model.quote = @"Red";
+        model.containingPage.title = @"Daily Mail";
         model.color = [cp highlight_red];
         
         [sharedNotebook.array_highlights addObject:model];
-        
+        newPage = [[Page alloc]init];
         model = [[Highlight alloc]init];
-        model.quote = @"Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
+        model.quote = @"Orange";
         model.containingPage.title = @"Washington Post";
         model.color = [cp highlight_orange];
         
@@ -68,31 +71,39 @@
         
         sharedPage = [[Page alloc]init];
         
-//        Highlight *pageModel = [[Highlight alloc]init];
+        Highlight *pageModel = [[Highlight alloc]init];
         
-        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
-        model.containingPage.title = @"Washington Post";
-        model.color = [cp highlight_blue];
+        pageModel = [[Highlight alloc]init];
+        pageModel.containingPage = sharedPage;
+        pageModel.quote = @"Blue";
+        pageModel.containingPage.title = @"Los Angeles Tribune";
+        pageModel.color = [cp highlight_blue];
         
-        [sharedPage.array_highlightsFromPage addObject:model];
+        [sharedPage.array_highlightsFromPage addObject:pageModel];
         
-        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
-        model.containingPage.title = @"Boston Times";
-        model.color = [cp highlight_orange];
+        pageModel = [[Highlight alloc]init];
+        pageModel.containingPage = sharedPage;
+        pageModel.quote = @"Orange";
+        pageModel.containingPage.title = @"Boston Times";
+        pageModel.color = [cp highlight_orange];
         
-        [sharedPage.array_highlightsFromPage addObject:model];
+        [sharedPage.array_highlightsFromPage addObject:pageModel];
         
-        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
-        model.containingPage.title = @"The Guardian";
-        model.color = [cp highlight_red];
+        pageModel = [[Highlight alloc]init];
+        pageModel.containingPage = sharedPage;
+        pageModel.quote = @"Red";
+        pageModel.containingPage.title = @"The Guardian";
+        pageModel.color = [cp highlight_red];
         
-        [sharedPage.array_highlightsFromPage addObject:model];
+        [sharedPage.array_highlightsFromPage addObject:pageModel];
         
-        model.quote = @"Dusto magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.Justo magna non pulvinar porttitor nisl orci.";
-        model.containingPage.title = @"BBC";
-        model.color = [cp highlight_yellow];
+        pageModel = [[Highlight alloc]init];
+        pageModel.containingPage = sharedPage;
+        pageModel.quote = @"Yellow";
+        pageModel.containingPage.title = @"BBC";
+        pageModel.color = [cp highlight_yellow];
 
-        [sharedPage.array_highlightsFromPage addObject:model];
+        [sharedPage.array_highlightsFromPage addObject:pageModel];
         
         NSLog(@"array_highlightsFromPage Contents: %@",sharedPage.array_highlightsFromPage);
     }
@@ -187,7 +198,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HighlightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell_Highlight"];
     Highlight *allHighlightsAtIndex = [sharedNotebook.array_highlights objectAtIndex:indexPath.row];
+    NSLog(@"All Highlights:  %@", allHighlightsAtIndex);
     Highlight *pageHighlightsAtIndex = [sharedPage.array_highlightsFromPage objectAtIndex:indexPath.row];
+    NSLog(@"Page Highlight:  %@", pageHighlightsAtIndex);
     
     switch (self.segmentedControl_sortingOption.selectedSegmentIndex) {
         case 0:
@@ -198,7 +211,7 @@
             break;
             
         case 1:
-
+            
             cell.cellLabel_pageTitle.text = allHighlightsAtIndex.containingPage.title;
             cell.cellLabel_quotation.text = allHighlightsAtIndex.quote;
             cell.cellLabel_colorBar.backgroundColor = allHighlightsAtIndex.color;
